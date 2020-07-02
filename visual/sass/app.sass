@@ -1,0 +1,74 @@
+/* Color Theme Swatches in Hex */
+$verde: #8EFF35
+$amarelo: #FFFF47
+$laranja: #FF6A2D
+$rosa: #FF6D82
+$azul: #283E51
+
+$theme-colors: ("primary": $amarelo, "success": $verde)
+$enable-responsive-font-sizes: true
+$btn-white-space: nowrap
+
+@import "../node_modules/bootstrap/scss/bootstrap"
+
+@font-face
+	font-family: 'Open Sans'
+	src: url(../fonts/OpenSans-ExtraBold.ttf)
+	font-weight: 800
+@font-face
+	font-family: 'Open Sans'
+	src: url(../fonts/OpenSans-Regular.ttf)
+	font-weight: 400
+
+html, body
+	height: 100%
+	font-size: 12pt
+	color: #000
+
+main
+	background: #000
+	min-height: 100%
+	position: relative
+	font-size: 1em
+	font-family: 'Open Sans', sans-serif
+	p
+		font-size: inherit
+
+header
+	background: url(../images/bg.svg) 50% 50% $amarelo
+	background-size: contain
+	-webkit-border-bottom-right-radius: 50px
+	-webkit-border-bottom-left-radius: 50px
+	-moz-border-radius-bottomright: 50px
+	-moz-border-radius-bottomleft: 50px
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+	h1
+		font-size: 4.5em
+	p
+		font-size: 0.8em
+		margin-top: -1em
+
+section
+	padding-top: 375px
+	padding-bottom: 40px
+	background: #333*.15
+	-webkit-border-bottom-right-radius: 50px
+	-webkit-border-bottom-left-radius: 50px
+	-moz-border-radius-bottomright: 50px
+	-moz-border-radius-bottomleft: 50px
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+
+footer
+	text-align: center
+	font-style: italic
+	background: #000
+	color: $white
+	font-size: .7em
+
+nav
+	a
+		font-weight: 800
+		font-size: 1.6em
+		color: $white

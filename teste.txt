@@ -1,0 +1,10 @@
+
+To use this program, you need:
+
+- Any Windows operating system;
+
+- Excel enabled for Macro VBA (Versions: Excel 2016, Excel 2013, Excel 2010 or Excel 2007);
+
+- Fortran Power Station 90 platform (Microsoft) (available at: https://drive.google.com/drive/folders/1375Oy8govONY7KTkZA4BHksFK-aZjnDB?usp=sharing);
+
+- For questions or assistance: jordanbrizi@gmail.com
