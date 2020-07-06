@@ -5,7 +5,6 @@ function createWindow () {
 	const win = new BrowserWindow({
 		width: 360,
 		height: 640,
-		title: 'HHRISK',
 		show: false,
 		backgroundColor: '#000',
 		resizable: false,
