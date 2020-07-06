@@ -1,0 +1,103 @@
+/* Color Theme Swatches in Hex */
+$verde: #8EFF35
+$amarelo: #FFFF47
+$laranja: #FF6A2D
+$rosa: #FF6D82
+$azul: #283E51
+
+$theme-colors: ("primary": $amarelo, "success": $verde)
+$enable-responsive-font-sizes: true
+$btn-white-space: nowrap
+
+@import "../node_modules/bootstrap/scss/bootstrap"
+
+@font-face
+	font-family: 'Open Sans'
+	src: url(../fonts/OpenSans-ExtraBold.ttf)
+	font-weight: 800
+@font-face
+	font-family: 'Open Sans'
+	src: url(../fonts/OpenSans-Regular.ttf)
+	font-weight: 400
+@font-face
+	font-family: 'Open Sans'
+	src: url(../fonts/OpenSans-Italic.ttf)
+	font-weight: 400
+	font-style: italic
+
+html, body
+	height: 100%
+	font-size: 12pt
+	color: #000
+
+main
+	background: #000
+	min-height: 100%
+	position: relative
+	font-size: 1em
+	font-family: 'Open Sans', sans-serif
+	p
+		font-size: inherit
+
+header
+	background: url(../images/bg.svg) 0 0 $amarelo
+	background-size: 72px
+	transform: translateY(-80px)
+	transition: .4s
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+	h1
+		font-size: 4.5em
+	p
+		font-size: 0.8em
+		margin-top: -1em
+.slide
+	transform: translateY(0px) !important
+
+section
+	padding-top: 375px
+	padding-bottom: 40px
+	background: #333*.15
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+
+footer
+	text-align: center
+	background: #000
+	color: #CCC
+	font-size: .7em
+
+nav
+	a
+		font-weight: 800
+		font-size: 1.6em
+		color: $white
+
+#config
+	height: 80px
+	background: rgba($white, 0.9)
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+
+button:focus
+	outline: 0
+
+#config_button
+	width: 20px
+	height: 20px
+	background: url(../images/config.svg) no-repeat 50% 50%
+	position: absolute
+	top: 25px
+	right: 60px
+	border: none
+	z-index: 1100
+
+#close_button
+	width: 20px
+	height: 20px
+	background: url(../images/close.svg) no-repeat 50% 50%
+	position: absolute
+	top: 25px
+	right: 25px
+	border: none
+	z-index: 1100
