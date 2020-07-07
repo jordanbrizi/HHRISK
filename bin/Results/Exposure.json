@@ -1,0 +1,4330 @@
+{
+"non_carcinogenic_doses": [
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+}
+],
+"HQ": [
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+}
+],
+"carcinogenic_doses": [
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  1,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  2,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  3,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age":  6,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 11,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 16,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 18,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 21,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Th        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Pb        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+},
+{
+"Initial_age": 65,
+"Pathway":  2,
+"Chem_Species": "Cd        ",
+"Exp_type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".0000000E+00",
+"ADD Error": ".0000000E+00"
+}
+],
+"CR": [
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   1,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  1,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   2,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  2,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   3,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  3,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   4,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   6,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age":  6,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":   7,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  11,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 11,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  12,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  16,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 16,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  17,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  18,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 18,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  19,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  21,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 21,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  22,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Th        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Pb        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   1,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  65,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+},
+{
+"Initial age": 65,
+"Pathway":  2,
+"Chem. Species": "Cd        ",
+"Exposure type": "Chron",
+"Local":   2,
+"Age":  66,
+"ADD": ".00000E+00",
+"ADD Error": ".00000E+00"
+}
+]
+}

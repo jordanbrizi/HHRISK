@@ -1,0 +1,78 @@
+{
+"ref_values": [
+{
+"Scenary": "AGRICULTURAL",
+"Water reference value": "NATIONAL",
+"Soil reference value": "U.S.EPA  ",
+"Sediment reference value": "REGIONAL "
+}
+],
+"Water_compartment": [
+{
+"Local":   1,
+"Time":   1,
+"MPI": ".63246E+03",
+"Rw-comb": ".10000E+01",
+"IPIth": ".11000E+04"
+},
+{
+"Local":   1,
+"Time":   2,
+"MPI": ".94868E+03",
+"Rw-comb": ".10000E+01",
+"IPIth": ".16500E+04"
+},
+{
+"Local":   2,
+"Time":   1,
+"MPI": ".17393E+04",
+"Rw-comb": ".10000E+01",
+"IPIth": ".30250E+04"
+},
+{
+"Local":   2,
+"Time":   2,
+"MPI": ".10436E+04",
+"Rw-comb": ".10000E+01",
+"IPIth": ".18150E+04"
+}
+],
+"Chemical_evidence_line": [
+{
+"Local":   1,
+"Time":   1,
+"Kd_MPI": ".00000E+00",
+"Risk_chem_wat": ".36632E-01",
+"Risk_chem_soil": ".00000E+00",
+"Risk_chem_sed": ".00000E+00",
+"IR": ".36632E-01"
+},
+{
+"Local":   1,
+"Time":   2,
+"Kd_MPI": ".00000E+00",
+"Risk_chem_wat": ".50134E-01",
+"Risk_chem_soil": ".00000E+00",
+"Risk_chem_sed": ".00000E+00",
+"IR": ".50134E-01"
+},
+{
+"Local":   2,
+"Time":   1,
+"Kd_MPI": ".00000E+00",
+"Risk_chem_wat": ".79337E-01",
+"Risk_chem_soil": ".00000E+00",
+"Risk_chem_sed": ".00000E+00",
+"IR": ".79337E-01"
+},
+{
+"Local":   2,
+"Time":   2,
+"Kd_MPI": ".00000E+00",
+"Risk_chem_wat": ".53934E-01",
+"Risk_chem_soil": ".00000E+00",
+"Risk_chem_sed": ".00000E+00",
+"IR": ".53934E-01"
+}
+]
+}

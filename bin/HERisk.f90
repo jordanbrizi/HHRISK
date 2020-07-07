@@ -79,7 +79,7 @@
 	CHARACTER CHEMICAL(100)*50,KKINFORMATION(6)*10,NOMES(100)*50
 	CHARACTER POLLUTANT(100)*50,TYPE_POLLUTANT(100)*20,RAD_POL(4)*50
 	CHARACTER SCENARIES (4)*12,TYPE_CHEMICAL(2)*14
-	CHARACTER NRISKTYPE(NVIAS)*10
+	CHARACTER NRISKTYPE(NVIAS)*10,aspas*1
 !
 	REAL*8, DIMENSION (:,:,:,:,:), ALLOCATABLE :: HQ
 		REAL*8, DIMENSION (:,:,:,:,:), ALLOCATABLE :: SD_HQ
@@ -135,6 +135,7 @@
 	DIMENSION IR(NIDADE,20),SD_IR(NIDADE,20),ET(NIDADE,3),SD_ET(NIDADE,3),SA(NIDADE,2),SD_SA(NIDADE,2)
 	DIMENSION EV(NIDADE,2),SD_EV(NIDADE,2),AF(NIDADE),SD_AF(NIDADE)
 	DIMENSION EF_INI(NVIAS,NIDADE),SD_EF_INI(NVIAS,NIDADE),AT_INI(2,NVIAS,NIDADE),SD_AT_INI(2,NVIAS,NIDADE)
+	DIMENSION J_INI_AGE(NIDADE)
 !
       DIMENSION MUTAGENIC(100,3),KEY_ANALYZE(3),AMOLAR(4),VIDAMEIA(4)
 !
@@ -206,7 +207,7 @@
 !		                                  INPUT -INPUT-INPUT-INPUT
 !_____________________________________________________________________________________________________________________
 !
-	  open (UNIT=99, file='WARNINGS.out')
+	  open (UNIT=99, file='Results\ WARNINGS.txt')
 !
 	  WRITE(99,'("********************************************************************************************************************************************")')
 	  WRITE(99,'("                                                         WARNINGS!!!!!!!!!")')
@@ -388,17 +389,17 @@
 !
       IF((KEY_ANALYZE(1).EQV..TRUE.).AND.(SCENAR.LE.3))THEN
 !
-!
-!
-	  CALL EXPOSURE (W,CF,SD_CF,FI,SD_FI,IR,SD_IR,FA,SD_FA,FP,SD_FP,ET,SD_ET,SA,SD_SA,AF,SD_AF,EV,SD_EV,&
-	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI) 
-!
-!
       IF((SCENAR.EQ.1).OR.(SCENAR.EQ.3))THEN
 	  INICIO=1
 	  ELSEIF(SCENAR.EQ.2)THEN
 	  INICIO=7
 	  ENDIF
+!
+!
+	  CALL EXPOSURE (W,CF,SD_CF,FI,SD_FI,IR,SD_IR,FA,SD_FA,FP,SD_FP,ET,SD_ET,SA,SD_SA,AF,SD_AF,EV,SD_EV,&
+	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO) 
+!
+!
 !
       CALL RISCOag(NIDADE,NVIAS,CHEMICAL,POLLUTANT,TYPE_POLLUTANT,TYPE_CHEMICAL,NPOL,NCHEM,NTIME,NLOCAL,HQ,SD_HQ,CR,SD_CR,HIag,SD_HIag,CRag,SD_CRag,HIag_ac,SD_HIag_ac,&
 	  CRag_ac,SD_CRag_ac,HIag_tot,SD_HIag_tot,CRag_tot,SD_CRag_tot,HQ_tot,CR_tot,ED,SCENAR,INICIO)
@@ -412,7 +413,33 @@
       CALL RISCOcum(NIDADE,NCHEM,NTIME,NLOCAL,HIag_ac,SD_HIag_ac,CRag,SD_CRag,HIcum,SD_HIcum,CRcum,SD_CRcum,&
 	  HIcum_ac,SD_HIcum_ac,CRcum_ac,SD_CRcum_ac,HIcum_tot,SD_HIcum_tot,CRcum_tot,SD_CRcum_tot,ED,SCENAR,INICIO)
 !
+      aspas = '"'
 !	  
+      J_INI_AGE(1)=1
+	  J_INI_AGE(2)=2
+	  J_INI_AGE(3)=3
+	  J_INI_AGE(4)=6
+	  J_INI_AGE(5)=11
+	  J_INI_AGE(6)=16
+	  J_INI_AGE(7)=18
+	  J_INI_AGE(8)=21
+	  J_INI_AGE(9)=65
+!
+      IF(SCENAR.NE.2)THEN
+      lip=1
+	  ELSE
+	  lip=7
+	  ENDIF
+!
+      jdeci=0
+!
+      DO l=lip,9
+      IF(ED(SCENAR,l).NE.0.0)THEN
+	  jdeci=l
+	  ENDIF
+	  ENDDO
+!
+      CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
 !
 !*******************************************************************************************************************************************
 !
@@ -422,64 +449,12 @@
 !
 !
 ! 
-	  open (UNIT=44, file='Summary_Aggregate_RISK.out')
+	  open (UNIT=44, file='Results\ Summary_Aggregate_RISK.json')
 !
 !
+      WRITE(44,'("{")')
 !
-	  WRITE(44,'("*******************************************************************************************")')
-	  WRITE(44,'("                        OUTPUT RESULTS - SUMMARY AGGREGATE RISK")')
-	  WRITE(44,'("*******************************************************************************************")')
-	  WRITE(44,*)
-	  WRITE(44,'("                    THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(44,*)
- 	  WRITE(44,'("                              AGGREGATE RISK  --  SUMMARY")')
-!
-!
-      DO l=INICIO,NIDADE
-!
-!
-!
-      IF(ED(SCENAR,l).NE.0.0)THEN
-!
-!
-	  NTIMEexp=ED(SCENAR,l)
-!
-!
-      IF(l.EQ.1)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED(SCENAR,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED(SCENAR,2)+2.0
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED(SCENAR,3)+3.0
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED(SCENAR,4)+6.0
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED(SCENAR,5)+11.0
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED(SCENAR,6)+16.0
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED(SCENAR,7)+18.0
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED(SCENAR,8)+21.0
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("                   RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER ")')
-      ENDIF
-!
-!
-!	  WRITE(44,'("*******************************************************************************************")')
-	  WRITE(44,'("-------------------------------------------------------------------------------------------")')
-	  WRITE(44,*)
-!
-!
+	  WRITE(44,'(A1,"non_carcinogenic_risk",A1,": {")')aspas,aspas
 !
 !
 	  LKCHEM=NCHEM
@@ -487,14 +462,8 @@
 !  
 	  DO i=1,LKCHEM
 !
-	  WRITE(44,'(" CHEMICAL = ",A30)')CHEMICAL(i)
+	  WRITE(44,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
 !
-	  WRITE(44,'("___________________________________________________")')
-	  WRITE(44,'("   LOCAL     AGE         HIag             Error   ")')
-	  WRITE(44,'("___________________________________________________")')
-!
-!
-
 !
       DO ii=1,NEW_POL
 !								                  
@@ -503,6 +472,13 @@
 	  ELSE
 	  ENDIF 
 	  ENDDO
+!
+!
+      DO l=INICIO,NIDADE
+!
+      IF(ED(SCENAR,l).NE.0.0)THEN
+!
+      NTIMEexp=ED(SCENAR,l)
 !
 !
 	  DO K=1,NLOCAL
@@ -538,41 +514,95 @@
 	  N_AGE=j+64
 	  ENDIF
 !
+!	  WRITE(44,'("{")')
+!
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
 	  IF(HIag(l,i,j,k).NE.HIag(l,i,j-1,k))THEN
-      write(44,'(3x,I3,6x,I3,2(6X,E11.5) )') K,N_AGE,HIag(l,i,j,k),SD_HIag(l,i,j,k)
 !
-!	  ELSEIF((HIag(l,i,j,k).NE.HIag(l,i,j-1,k)).AND.(j.NE.1))THEN
-!      write(44,'(" ", 11x,I3,2(6X,E11.5) )') N_AGE,HIag(l,i,j,k),SD_HIag(l,i,j,k)
+      WRITE(44,'("{")')
+!
+      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(44,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(44,'(A1,"Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HIag(l,i,j,k),aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(44,'("}")')
+	  ELSE
+	  WRITE(44,'("},")')
+	  ENDIF
 !
 	  ENDIF		
+!
 !
 	  ELSE
 !
 	  IF(HIag(l,i,j,k).NE.HIag(l,i,j-1,k))THEN
-      write(44,'(3x,I3,6x,I3,6X,E11.5)') K,N_AGE,HIag(l,i,j,k)
 !
-!	  ELSEIF((HIag(l,i,j,k).NE.HIag(l,i,j-1,k)).AND.(j.NE.1))THEN
-!      write(44,'(12x,I3,6X,E11.5)') N_AGE,HIag(l,i,j,k)
+      WRITE(44,'("{")')
+
+!
+      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(44,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(44,'("}")')
+	  ELSE
+	  WRITE(44,'("},")')
 	  ENDIF
 !
 	  ENDIF 
 !
-	  ENDDO	   !FIM DO CICLO "j"	             
+      ENDIF
 !
-      IF(K.NE.NLOCAL)THEN
-      write(44,*)
-	  ENDIF
-
+!
+	  ENDDO	   !FIM DO CICLO "j"
+!	             
+!
 	  ENDDO	   !FIM DO CICLO "K"
 !
+      ENDIF ! FIM do IF ED(SCENAR,l)....	             
 !
-	  WRITE(44,'("___________________________________________________")')
-	  WRITE(44,'("   LOCAL     AGE       CRag_tot           Error   ")')
-	  WRITE(44,'("___________________________________________________")')
+      ENDDO  ! FECHA O "DO" DE l
 !
+      IF(i.EQ.NCHEM)THEN
+	  WRITE(44,'("]")')
+	  ELSE
+	  WRITE(44,'("],")')
+	  ENDIF
+!
+	  ENDDO	  ! FIM DO CICLO "i"
+!	       
+	  WRITE(44,'("},")')      
+!
+!     tabela carcinogenicos
+!
+	  WRITE(44,'(A1,"Carcinogenic_risk",A1,": {")')aspas,aspas
+!
+	  LKCHEM=NCHEM
+      NEW_POL=NPOL
+!  
+	  DO i=1,LKCHEM
+!
+      DO ii=1,NEW_POL
+!								                  
+	  IF (CHEMICAL(i).EQ.POLLUTANT(ii)) THEN
+	  iii=ii
+	  ELSE
+	  ENDIF 
+	  ENDDO
+!
+	  WRITE(44,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
+!
+      DO l=INICIO,NIDADE
 !
       IF(l.EQ.1)THEN
 	  M_AGE=NTIMEexp
@@ -594,62 +624,76 @@
 	  M_AGE=NTIMEexp+64
 	  ENDIF
 !
+      IF(ED(SCENAR,l).NE.0.0)THEN
+!
+      NTIMEexp=ED(SCENAR,l)
+!
 !
 	  DO K=1,NLOCAL
+!
+!
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
 	  IF(CRag_tot(l,i,k).NE.0.0)THEN
 !
-      write(44,'( 3x,I3,6x,I3,6X,E11.5,6X,E11.5)') K,M_AGE,CRag_tot(l,i,k),SD_CRag_tot(l,i,k)
+	  WRITE(44,'("{")')
 !
+      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
+      write(44,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag_tot(l,i,k),aspas
+      write(44,'(A1,"Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CRag_tot(l,i,k),aspas
+!
+      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(44,'("}")')	             
 	  ELSE
-!
-      IF(K.EQ.1)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("         Non-carcinogenic chemical species ")')
-	  WRITE(44,*)
+	  WRITE(44,'("},")')	             
 	  ENDIF
 !
-	  ENDIF
+!
+      ENDIF		
 !
 	  ELSE
 !
 	  IF(CRag_tot(l,i,k).NE.0.0)THEN
 !
-      write(44,'( 3x,I3,6x,I3,6X,E11.5)') K,M_AGE,CRag_tot(l,i,k)
+	  WRITE(44,'("{")')
 !
+      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
+      write(44,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag_tot(l,i,k),aspas
+      write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
+!
+      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(44,'("}")')	             
 	  ELSE
-!
-      IF(K.EQ.1)THEN
-	  WRITE(44,*)
-	  WRITE(44,'("         Non-carcinogenic chemical species ")')
-	  WRITE(44,*)
-	  ENDIF
-!
-	  ENDIF
+	  WRITE(44,'("},")')	             
+	  ENDIF  
 !
 	  ENDIF 
 !
+      ENDIF
+!
+!
 	  ENDDO	   !FIM DO CICLO "K"
 !
-	  WRITE(44,'("___________________________________________________")')
-	  WRITE(44,*)
-	  WRITE(44,*)
+      ENDIF ! FIM do IF ED(SCENAR,l)....	             
 !
-	 
+      ENDDO  ! FECHA O "DO" DE l
+!
+      IF(i.EQ.NCHEM)THEN
+	  WRITE(44,'("]")')
+	  ELSE
+	  WRITE(44,'("],")')
+	  ENDIF
+!
 	  ENDDO	  ! FIM DO CICLO "i"
-!	 
 !
-	  WRITE(44,'("*******************************************************************************************")')
-	  WRITE(44,'("*******************************************************************************************")')
-	  WRITE(44,'("*******************************************************************************************")')
+	  WRITE(44,'("}")')
 !
-      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-!
-      ENDDO  ! FECHA O "DO" DE l	
-
+	  WRITE(44,'("}")')
 !
 !
       CLOSE (44)
@@ -660,7 +704,7 @@
 !*******************************************************************************************************************************************
 !
 !
-	  open (UNIT=37, file='Extensive_Aggregate_RISK.out')
+	  open (UNIT=37, file='Results\ Extensive_Aggregate_RISK.json')
 
 
 !
@@ -671,66 +715,16 @@
 !
 !		*******************************************************************************************
 !
+      WRITE(37,'("{")')
 !
 !
-	  WRITE(37,'("***************************************************************************************************************************************")')
-	  WRITE(37,'("                                    OUTPUT RESULTS - AGGREGATE AND ACCUMULATED RISK")')
-	  WRITE(37,'("***************************************************************************************************************************************")')
-	  WRITE(37,*)
-	  WRITE(37,'("                                   THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(37,*)																				 																				 
- 	  WRITE(37,'("                                     AGGREGATE AND ACCUMULATED RISK  -- EXTENSIVE")')
-      WRITE(37,*)																				 																				 
-!
-!
-      
-      DO l=INICIO,NIDADE
-!
-      IF(ED(SCENAR,l).NE.0.0)THEN
-!
-!------------------
-	  NTIMEexp=ED(SCENAR,l)
-!------------------
-!
-!
-      IF(l.EQ.1)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED(SCENAR,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED(SCENAR,2)+2.0
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED(SCENAR,3)+3.0
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED(SCENAR,4)+6.0
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED(SCENAR,5)+11.0
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED(SCENAR,6)+16.0
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED(SCENAR,7)+18.0
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED(SCENAR,8)+21.0
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(37,*)
-	  WRITE(37,'("                                  RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER ")')
-      ENDIF
-!
-!
-	  WRITE(37,*)
-      WRITE(37,*)
-!																									 
-!
-	  IICHEM=NCHEM
+      IICHEM=NCHEM
 	  NEW_POLI=NPOL
-!
+!  
 	  DO i=1,IICHEM
+!
+	  WRITE(37,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
+!
 !
       DO ii=1,NEW_POLI
 !								                  
@@ -738,25 +732,20 @@
 	  iii=ii
 	  ELSE
 	  ENDIF 
-	  ENDDO	  !FECHA O "DO" de NEW_POLI
+	  ENDDO
 !
-	  WRITE(37,'("_______________________________________________________________________________________________________________________________________")')
-!	  WRITE(37,'("   CHEMICAL: ",A30," -  CHEMICAL SPECIES BEHAVIOR IN THE HUMAN BODY: ",A30)')CHEMICAL(i),TYPE_POLLUTANT(l,iii)
-	  WRITE(37,'("   CHEMICAL: ",A30)')CHEMICAL(i)
-	  WRITE(37,*)
-	  WRITE(37,'("     LOCAL      AGE             HI          Error                                CR          Error        CRag         Error")')
-	  WRITE(37,'("_______________________________________________________________________________________________________________________________________")')
 !
-!      WRITE(*,*)CHEMICAL(i)
+      DO l=INICIO,NIDADE
 !
-!       PRINT*, 'CHEMICAL                             TYPE-POLLUTANT'
-!       WRITE(*,*)CHEMICAL(i),TYPE_POLLUTANT(iii)
+      IF(ED(SCENAR,l).NE.0.0)THEN
 !
-
+      NTIMEexp=ED(SCENAR,l)
+!																						
 !
-!	  WRITE(37,*)
 	  DO k=1,NLOCAL
 	  DO j=1,NTIMEexp
+!
+	  WRITE(37,'("{")')
 !
       IF(l.EQ.1)THEN
 	  N_AGE=j
@@ -791,134 +780,90 @@
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
-!
-!
 	  IF(CRag(l,i,j,k).NE.0.0)THEN
 !
-!	  IF(j.eq.1)THEN
-      WRITE(37,'( 5x,I3,7x,I3,9X, E11.5,2X, E11.5,25X, E11.5,2X, E11.5,2X, E11.5,2X, E11.5)') K,N_AGE, HIag(l,i,j,k),SD_HIag(l,i,j,k), CRag(l,i,j,k),SD_CRag(l,i,j,k),CRag_ac(l,i,j,k),SD_CRag_ac(l,i,j,k)
-!	  ELSE
-!      WRITE(37,'( 15x,I3,9X, E11.5,2X, E11.5,25X, E11.5,2X, E11.5,2X, E11.5,2X, E11.5)') N_AGE, HIag(l,i,j,k),SD_HIag(l,i,j,k), CRag(l,i,j,k),SD_CRag(l,i,j,k),CRag_ac(l,i,j,k),SD_CRag_ac(l,i,j,k)
-!	  ENDIF
+      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(37,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(37,'(A1,"HI Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIag(l,i,j,k),aspas
+      write(37,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag(l,i,j,k),aspas
+      write(37,'(A1,"CR Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CRag(l,i,j,k),aspas
+      write(37,'(A1,"CR_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag_ac(l,i,j,k),aspas
+      write(37,'(A1,"CR_accError",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CRag_ac(l,i,j,k),aspas
 !
 	  ELSE
 !
-!	  IF(j.eq.1)THEN
-      WRITE(37,'( 5x,I3,7x,I3,9X, E11.5,2X, E11.5)') K,N_AGE, HIag(l,i,j,k),SD_HIag(l,i,j,k)
-!	  ELSE
-!      WRITE(37,'( 15x,I3,9X, E11.5,2X, E11.5)') N_AGE, HIag(l,i,j,k),SD_HIag(l,i,j,k)
-!	  ENDIF
+      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(37,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(37,'(A1,"HI Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIag(l,i,j,k),aspas
+      write(37,'(A1,"CR",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR_acc",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
 !
 	  ENDIF
-!
-!      WRITE(*,*)CHEMICAL(i)
-!
-!	  ENDIF
 !
 	  ELSE
 !
 !
       IF(CRag(l,i,j,k).NE.0.0)THEN
 !
-!	  IF(j.eq.1)THEN
-	  WRITE(37,'( 5x,I3,7x,I3,9X, E11.5,38X, E11.5,15X, E11.5)') K,N_AGE, HIag(l,i,j,k),CRag(l,i,j,k),CRag_ac(l,i,j,k)
-!	  ELSE
-!	  WRITE(37,'( 15x,I3,9X, E11.5,38X, E11.5,15X, E11.5)') N_AGE, HIag(l,i,j,k),CRag(l,i,j,k),CRag_ac(l,i,j,k)
-!	  ENDIF
+      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(37,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(37,'(A1,"HI Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag(l,i,j,k),aspas
+      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRag_ac(l,i,j,k),aspas
+      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
 !
 	  ELSE
 !					 
-!	  IF(j.eq.1)THEN
-	  WRITE(37,'( 5x,I3,7x,I3,9X, E11.5)') K,N_AGE, HIag(l,i,j,k)
- !     ELSE
-!	  WRITE(37,'( 15x,I3,9X, E11.5)') N_AGE, HIag(l,i,j,k)
-!	  ENDIF
+      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(37,'(A1,"HI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIag(l,i,j,k),aspas
+      write(37,'(A1,"HI Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR_acc",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
 !
       ENDIF
 !
-!      ENDIF
-!
 	  ENDIF
 !
-	  ENDDO	  !FECHA O "DO" de NTIME
 !
-      IF(K.NE.NLOCAL)THEN
-      WRITE(37,*)
-	  ENDIF
-!	 
-	  ENDDO   !FECHA O "DO" de NLOCAL
 !
-!      STOP
-!
-      IF(l.EQ.1)THEN
-	  M_AGE=NTIMEexp
-      ELSEIF(l.EQ.2)THEN
-	  M_AGE=NTIMEexp+1
-      ELSEIF(l.EQ.3)THEN
-	  M_AGE=NTIMEexp+2
-      ELSEIF(l.EQ.4)THEN
-	  M_AGE=NTIMEexp+5
-      ELSEIF(l.EQ.5)THEN
-	  M_AGE=NTIMEexp+10
-      ELSEIF(l.EQ.6)THEN
-	  M_AGE=NTIMEexp+15
-      ELSEIF(l.EQ.7)THEN
-	  M_AGE=NTIMEexp+17
-      ELSEIF(l.EQ.8)THEN
-	  M_AGE=NTIMEexp+20
-      ELSEIF(l.EQ.9)THEN
-	  M_AGE=NTIMEexp+64
-	  ENDIF
-!
-	  WRITE(37,'("---------------------------------------------------------------------------------------------------------------------------------------")')
-	  WRITE(37,'("                                                         LOCAL      AGE                                 CRag_tot       Error")')
-	  WRITE(37,'("---------------------------------------------------------------------------------------------------------------------------------------")')
-	  DO K=1,NLOCAL
-!
-	  IF(KEY_SD.EQV..TRUE.)THEN
-!
-      IF(CRag_tot(l,i,k).NE.0.0)THEN
-	  WRITE(37,'( 57x,I3,7x,I3,32X,E11.5,2X, E11.5)') K,M_AGE,CRag_tot(l,i,k),SD_CRag_tot(l,i,k)
+      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(37,'("}")')	             
 	  ELSE
-!
-	  IF(K.EQ.1)THEN
-	  WRITE(37,'("                                                                                                   Non-carcinogenic chemical species ")')
+	  WRITE(37,'("},")')	             
 	  ENDIF
 !
-	  ENDIF
+	  ENDDO	   !FIM DO CICLO "j"
 !
+	  ENDDO	   !FIM DO CICLO "K"
+!
+      ENDIF ! FIM do IF ED(SCENAR,l)....	             
+!
+      ENDDO  ! FECHA O "DO" DE l
+!
+      IF(i.EQ.NCHEM)THEN
+	  WRITE(37,'("]")')
 	  ELSE
-!
-      IF(CRag_tot(l,i,k).NE.0.0)THEN
-	  WRITE(37,'( 57x,I3,7x,I3,32X, E11.5)') K,M_AGE, CRag_tot(l,i,k)
-	  ELSE
-!
-	  IF(K.EQ.1)THEN
-	  WRITE(37,'("                                                                                                   Non-carcinogenic chemical species ")')
+	  WRITE(37,'("],")')
 	  ENDIF
 !
-      ENDIF
+	  ENDDO	  ! FIM DO CICLO "i"
 !
-      ENDIF
 !
-	  ENDDO	 !FECHA O "DO" de NLOCAL
-!
-	  IF(I.EQ.IICHEM)THEN
-	  WRITE(37,'("_______________________________________________________________________________________________________________________________________")')
-	  ENDIF
-!
-	  ENDDO  ! ACABA O CICLO PARA METAIS
-!
-      WRITE(37,*)
-	  WRITE(37,'("***************************************************************************************************************************************")')
-	  WRITE(37,'("***************************************************************************************************************************************")')
-	  WRITE(37,'("***************************************************************************************************************************************")')
-!
-	  WRITE(37,*)
-!
-      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-      ENDDO  ! ACABA O CICLO POR IDADE
+	  WRITE(37,'("}")')
+
 !
       CLOSE (37)
 !
@@ -930,7 +875,7 @@
 !
 !
 !
-	  open (UNIT=38, file='Extensive_Cumulative_RISK.out')
+	  open (UNIT=38, file='Results\ Extensive_Cumulative_RISK.json')
 
 
 !
@@ -941,65 +886,24 @@
 !
 !		*******************************************************************************************
 !
+      WRITE(38,'("{")')
 !
-!
-	  WRITE(38,'("********************************************************************************************************************************************")')
-	  WRITE(38,'("                                                  OUTPUT RESULTS - CUMULATIVE RISK")')
-	  WRITE(38,'("********************************************************************************************************************************************")')
-	  WRITE(38,*)
-	  WRITE(38,'("                                          THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(38,*)																				 																				 
- 	  WRITE(38,'("                                                   CUMULATIVE RISK  -- EXTENSIVE")')
-	  WRITE(38,*)																				 																				 
+	  WRITE(38,'(A1,"Extensive_Cumulative",A1,": [")')aspas,aspas
 
+!
 !
       DO l=INICIO,NIDADE
 !
       IF(ED(SCENAR,l).NE.0.0)THEN
 !
-!------------------
-	  NTIMEexp=ED(SCENAR,l)
-!------------------
+      NTIMEexp=ED(SCENAR,l)
+!																						
 !
-      IF(l.EQ.1)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED(SCENAR,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED(SCENAR,2)+2.0
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED(SCENAR,3)+3.0
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED(SCENAR,4)+6.0
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED(SCENAR,5)+11.0
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED(SCENAR,6)+16.0
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED(SCENAR,7)+18.0
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                      RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED(SCENAR,8)+21.0
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(38,*)
-	  WRITE(38,'("                                         RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER ")')
-      ENDIF
-!
-	  WRITE(38,*)
-!
-      WRITE(38,*)
-	  WRITE(38,'("____________________________________________________________________________________________________________________________________________")')
-	  WRITE(38,'("   LOCAL       AGE         HIcum         Error                                          CRcum        Error         CRcum_acc      Error   ")')
-	  WRITE(38,'("____________________________________________________________________________________________________________________________________________")')
-!
-!      WRITE(38,*)
 	  DO k=1,NLOCAL
 	  DO j=1,NTIMEexp
+!
+	  WRITE(38,'("{")')
+!
 !
       IF(l.EQ.1)THEN
 	  N_AGE=j
@@ -1037,19 +941,27 @@
 !
       IF(CRcum(l,j,k).NE.0.0)THEN
 !
-!	  IF(j.EQ.1)THEN
-      WRITE(38,'( 3x,I3,8x,I3,7X,E11.5,2X,E11.5,36X,E11.5,2X,E11.5,5X,E11.5,2X,E11.5)') K,N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k), CRcum(l,j,k),SD_CRcum(l,j,k),CRcum_ac(l,j,k),SD_CRcum_ac(l,j,k)
-!	  ELSE
-!      WRITE(38,'( 14x,I3,7X,E11.5,2X,E11.5,36X,E11.5,2X,E11.5,5X,E11.5,2X,E11.5)') N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k), CRcum(l,j,k),SD_CRcum(l,j,k),CRcum_ac(l,j,k),SD_CRcum_ac(l,j,k)
-!	  ENDIF
+      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(38,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(38,'(A1,"HI_tot Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIcum(l,j,k),aspas
+      write(38,'(A1,"CR_cum",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum(l,j,k),aspas
+      write(38,'(A1,"CR_cum Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CRcum(l,j,k),aspas
+      write(38,'(A1,"CR_cum_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum_ac(l,j,k),aspas
+      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,A1,E10.5,A1))') aspas,aspas,aspas,SD_CRcum_ac(l,j,k),aspas
 !
 	  ELSE
 !
-!	  IF(j.EQ.1)THEN
-      WRITE(38,'( 3x,I3,8x,I3,7X,E11.5,2X,E11.5)') K,N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k)
-!	  ELSE
-!      WRITE(38,'( 14x,I3,7X,E11.5,2X,E11.5)') N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k)
-!	  ENDIF
+      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(38,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(38,'(A1,"HI_tot Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIcum(l,j,k),aspas
+      write(38,'(A1,"CR_cum",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum_acc",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
 !
 	  ENDIF
 !
@@ -1057,102 +969,51 @@
 !
       IF(CRcum(l,j,k).NE.0.0)THEN
 !
-!	  IF(j.EQ.1)THEN
-      WRITE(38,'( 3x,I3,8x,I3,6X,E11.5,50X,E11.5,18X,E11.5))') K,N_AGE, HIcum(l,j,k), CRcum(l,j,k),CRcum_ac(l,j,k)
-!	  ELSE
-!      WRITE(38,'( 14x,I3,6X,E11.5,50X,E11.5,18X,E11.5))') N_AGE, HIcum(l,j,k), CRcum(l,j,k),CRcum_ac(l,j,k)
-!	  ENDIF
-!
-	  ELSE
-!	  IF(j.EQ.1)THEN
-      WRITE(38,'( 3x,I3,8x,I3,6X,E11.5)') K,N_AGE,HIcum(l,j,k)
-!	  ELSE
-!      WRITE(38,'( 14x,I3,6X,E11.5)') N_AGE,HIcum(l,j,k)
-!	  ENDIF
-!
-	  ENDIF
-!
-	  ENDIF
-!
-	  ENDDO
-	  IF(K.NE.NLOCAL)THEN
-	  WRITE(38,*)
-	  ENDIF
-      ENDDO
-!	  WRITE(38,*)
-!
-      IF(l.EQ.1)THEN
-	  M_AGE=NTIMEexp
-      ELSEIF(l.EQ.2)THEN
-	  M_AGE=NTIMEexp+1
-      ELSEIF(l.EQ.3)THEN
-	  M_AGE=NTIMEexp+2
-      ELSEIF(l.EQ.4)THEN
-	  M_AGE=NTIMEexp+5
-      ELSEIF(l.EQ.5)THEN
-	  M_AGE=NTIMEexp+10
-      ELSEIF(l.EQ.6)THEN
-	  M_AGE=NTIMEexp+15
-      ELSEIF(l.EQ.7)THEN
-	  M_AGE=NTIMEexp+17
-      ELSEIF(l.EQ.8)THEN
-	  M_AGE=NTIMEexp+20
-      ELSEIF(l.EQ.9)THEN
-	  M_AGE=NTIMEexp+64
-	  ENDIF
-!
-!	  WRITE(38,*)
-	  WRITE(38,'("--------------------------------------------------------------------------------------------------------------------------------------------")')
- 	  WRITE(38,'("                                         CARCINOGENIC CUMULATIVE RISK - TOTAL TIME PERIOD")')
-	  WRITE(38,'("--------------------------------------------------------------------------------------------------------------------------------------------")')
-!	  WRITE(38,*)
-	  WRITE(38,' (''                                         LOCAL     AGE              CRcum_tot      Error  '')')
-	  WRITE(38,*)
-	  DO K=1,NLOCAL
-!
-!
-	  IF(KEY_SD.EQV..TRUE.)THEN
-!
-      IF(CRcum_tot(l,k).NE.0.0) THEN
-	  WRITE(38,'(41X,I3,6X,I3, 13x, E11.5,2x, E11.5)') k,M_AGE, CRcum_tot(l,k),SD_CRcum_tot(l,k)
-	  ELSE
-!
-	  IF(K.EQ.1)THEN
-	  WRITE(38,'("                                           None of the chemical species is carcinogenic ")')
-	  ENDIF
-!
-	  ENDIF
+      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(38,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(38,'(A1,"HI_tot Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum(l,j,k),aspas
+      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum_ac(l,j,k),aspas
+      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
 !
 	  ELSE
 !
-      IF(CRcum_tot(l,k).NE.0.0)THEN
-	  WRITE(38,'(41X,I3,6X,I3, 13x, E11.5)') k,M_AGE, CRcum_tot(l,k)
+      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(38,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(38,'(A1,"HI_tot Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum_acc",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
+!
+	  ENDIF
+!
+	  ENDIF
+!
+!
+      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(38,'("}")')	             
 	  ELSE
-!
-	  IF(K.EQ.1)THEN
-	  WRITE(38,'("                                           None of the chemical species is carcinogenic ")')
+	  WRITE(38,'("},")')	             
 	  ENDIF
 !
-	  ENDIF
+	  ENDDO	   !FIM DO CICLO "j"
 !
-	  ENDIF
+	  ENDDO	   !FIM DO CICLO "K"
 !
+      ENDIF ! FIM do IF ED(SCENAR,l)....	             
 !
-	  ENDDO
+      ENDDO  ! FECHA O "DO" DE l
 !
-!	  WRITE(38,*)
-	  WRITE(38,'("____________________________________________________________________________________________________________________________________________")')
+	  WRITE(38,'("]")')
 !
-      WRITE(38,*)
-	  WRITE(38,'("********************************************************************************************************************************************")')
-	  WRITE(38,'("********************************************************************************************************************************************")')
-	  WRITE(38,'("********************************************************************************************************************************************")')
-!
-	  WRITE(38,*)
-!
-      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-      ENDDO    ! FIM DO CICLO "l"
+	  WRITE(38,'("}")')
+
 !
       close(38)
 !
@@ -1170,69 +1031,21 @@
 !		*******************************************************************************************
 !
 !
-	  open (UNIT=66, file='Summary_Cumulative_RISK.out')
+	  open (UNIT=66, file='Results\ Summary_Cumulative_RISK.json')																				 																				 
 !
 !
+      WRITE(66,'("{")')
 !
-!
-	  WRITE(66,'("*******************************************************************************************")')
-	  WRITE(66,'("                      OUTPUT RESULTS - SUMMARY AGGREGATE RISK")')
-	  WRITE(66,'("*******************************************************************************************")')
-	  WRITE(66,*)
-	  WRITE(66,'("                     THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(66,*)																				 																				 
- 	  WRITE(66,'("                            CUMULATIVE RISK  -- SUMMARY")')
-	  WRITE(66,*)																				 																				 
-!
-!
+	  WRITE(66,'(A1,"non_cumulative_risks",A1,": [")')aspas,aspas
 !
 !
       DO l=INICIO,NIDADE
 !
       IF(ED(SCENAR,l).NE.0.0)THEN
 !
-!------------------
 	  NTIMEexp=ED(SCENAR,l)
-!------------------
-!
-      IF(l.EQ.1)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED(SCENAR,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED(SCENAR,2)+2.0
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED(SCENAR,3)+3.0
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED(SCENAR,4)+6.0
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED(SCENAR,5)+11.0
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED(SCENAR,6)+16.0
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED(SCENAR,7)+18.0
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                   RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED(SCENAR,8)+21.0
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("                       RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER ")')
-      ENDIF
-!
-	  WRITE(66,*)
-!	  WRITE(66,'("*******************************************************************************************")')
 !
 !
-	  WRITE(66,'("___________________________________________________")')
-	  WRITE(66,'("   LOCAL     AGE         HIcum           Error   ")')
-	  WRITE(66,'("___________________________________________________")')
-!
-!      WRITE(66,*)
 	  DO k=1,NLOCAL
 	  DO j=1,NTIMEexp
 !
@@ -1267,72 +1080,114 @@
 	  SD_CRcum_ac(l,j,k)=0.0
 	  ENDIF
 !
-      
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
 !
 	  IF(HIcum(l,j,k).NE.HIcum(l,j-1,k))THEN
-      WRITE(66,'( 3x,I3,6x,I3,6X,E11.5,5X,E11.5)') K,N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k)
-!	  ELSEIF((HIcum(l,j,k).NE.HIcum(l,j-1,k)).AND.(j.NE.1))THEN
-!      WRITE(66,'( 12x,I3,6X,E11.5,5X,E11.5)') N_AGE, HIcum(l,j,k),SD_HIcum(l,j,k)
+!
+      WRITE(66,'("{")')
+!
+      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(66,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(66,'(A1,"Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HIcum(l,j,k),aspas
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(66,'("}")')
+	  ELSE
+	  WRITE(66,'("},")')
+	  ENDIF
+!
 	  ENDIF
 !
 	  ELSE
 !
 	  IF(HIcum(l,j,k).NE.HIcum(l,j-1,k))THEN
-      WRITE(66,'( 3x,I3,6x,I3,6X,E11.5)') K,N_AGE,HIcum(l,j,k)
-!	  ELSEIF((HIcum(l,j,k).NE.HIcum(l,j-1,k)).AND.(j.NE.1))THEN
-!      WRITE(66,'( 12x,I3,6X,E11.5)') N_AGE,HIcum(l,j,k)
+!
+      WRITE(66,'("{")')
+!
+      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(66,'(A1,"HI_tot",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIcum(l,j,k),aspas
+      write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(66,'("}")')
+	  ELSE
+	  WRITE(66,'("},")')
 	  ENDIF
 !
 	  ENDIF
 !
-!
-	  ENDDO
-!
-      IF(K.NE.NLOCAL)THEN
-	  WRITE(66,*)
 	  ENDIF
 !
-      ENDDO
+	  ENDDO	   !FIM DO CICLO "j"
+!	             
+!
+	  ENDDO	   !FIM DO CICLO "K"
+!
+      ENDIF ! FIM do IF ED(SCENAR,l)....	             
+!
+      ENDDO  ! FECHA O "DO" DE l
+!
+!	       
+	  WRITE(66,'("],")')      
+!
+!     tabela carcinogenicos
+!
+	  WRITE(66,'(A1,"Carcinogenic_risks",A1,": [")')aspas,aspas
+!
+!
+      DO l=INICIO,NIDADE
+!
 !
       IF(l.EQ.1)THEN
-	  M_AGE=j
+	  M_AGE=NTIMEexp
       ELSEIF(l.EQ.2)THEN
-	  M_AGE=j+1
+	  M_AGE=NTIMEexp+1
       ELSEIF(l.EQ.3)THEN
-	  M_AGE=j+2
+	  M_AGE=NTIMEexp+2
       ELSEIF(l.EQ.4)THEN
-	  M_AGE=j+5
+	  M_AGE=NTIMEexp+5
       ELSEIF(l.EQ.5)THEN
-	  M_AGE=j+10
+	  M_AGE=NTIMEexp+10
       ELSEIF(l.EQ.6)THEN
-	  M_AGE=j+15
+	  M_AGE=NTIMEexp+15
       ELSEIF(l.EQ.7)THEN
-	  M_AGE=j+17
+	  M_AGE=NTIMEexp+17
       ELSEIF(l.EQ.8)THEN
-	  M_AGE=j+20
+	  M_AGE=NTIMEexp+20
       ELSEIF(l.EQ.9)THEN
-	  M_AGE=j+64
+	  M_AGE=NTIMEexp+64
 	  ENDIF
 !
-	  WRITE(66,'("___________________________________________________")')
-	  WRITE(66,'("   LOCAL     AGE       CRcum_tot         Error    ")')
-	  WRITE(66,'("___________________________________________________")')
+      IF(ED(SCENAR,l).NE.0.0)THEN
+!
+      NTIMEexp=ED(SCENAR,l)
+!
+!
 	  DO K=1,NLOCAL
 !
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
       IF(CRcum_tot(l,k).NE.0.0) THEN
-	  WRITE(66,'(3X,I3,6X,I3,6x, E11.5,5x, E11.5)') k,M_AGE, CRcum_tot(l,k),SD_CRcum_tot(l,k)
-	  ELSE
 !
-	  IF(K.EQ.1)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("  None of the chemical species is carcinogenic ")')
-	  WRITE(66,*)
+      WRITE(66,'("{")')
+!
+      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
+      write(66,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum_tot(l,k),aspas
+      write(66,'(A1,"Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CRcum_tot(l,k),aspas
+!
+      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(66,'("}")')	             
+	  ELSE
+	  WRITE(66,'("},")')	             
 	  ENDIF
 !
 	  ENDIF
@@ -1340,13 +1195,19 @@
 	  ELSE
 !
       IF(CRcum_tot(l,k).NE.0.0)THEN
-	  WRITE(66,'(3X,I3,6X,I3,6x, E11.5)') k,M_AGE, CRcum_tot(l,k)
-	  ELSE
 !
-	  IF(K.EQ.1)THEN
-	  WRITE(66,*)
-	  WRITE(66,'("  None of the chemical species is carcinogenic ")')
-	  WRITE(66,*)
+      WRITE(66,'("{")')
+!
+      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
+      write(66,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CRcum_tot(l,k),aspas
+      write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
+!
+      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+	  WRITE(66,'("}")')	             
+	  ELSE
+	  WRITE(66,'("},")')	             
 	  ENDIF
 !
 	  ENDIF
@@ -1356,20 +1217,13 @@
 !
 	  ENDDO
 !
-!	  WRITE(66,*)
-	  WRITE(66,'("___________________________________________________")')
-!
-      WRITE(66,*)
-	  WRITE(66,'("-------------------------------------------------------------------------------------------")')
-	  WRITE(66,'("-------------------------------------------------------------------------------------------")')
-!	  WRITE(66,'("-------------------------------------------------------------------------------------------")')
-!
-	  WRITE(66,*)
-!
       ENDIF ! FIM do IF ED(SCENAR,l)....
 !
       ENDDO    ! FIM DO CICLO "l"
 !
+	  WRITE(66,'("]")')	             
+!
+	  WRITE(66,'("}")')	             
 !
       close(66)
 !
@@ -1383,31 +1237,13 @@
 !
 !------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 !
-	  open (UNIT=55, file='Complementary_Analyzes.out')
+	  open (UNIT=55, file='Results\ Complementary_Analyzes.json')
 !
 !
-!
-!
-	  WRITE(55,'("*****************************************************************************************************************************************************************************************************************************************************************************************************************")')
-	  WRITE(55,'("                                               OUTPUT RESULTS - COMPLEMENTARY_ANALYZES")')
-	  WRITE(55,'("*****************************************************************************************************************************************************************************************************************************************************************************************************************")')
-!
-!
-!
-      CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
 !
 	  NTIMEexp=NTIME
 !
 !
-	  WRITE(55,*)
-	  WRITE(55,*)
-	  WRITE(55,*)																				 																				 
- 	  WRITE(55,'("                                NON-CARCINOGENIC RISK PERCENTAGE (%) ASSOCIATED WITH EACH CHEMICAL SPECIES")')
-!
-!
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
-	  WRITE(55,'("    LOCAL    AGE RANGE(y)  " <NCHEM>(2X,A10))')	(NOMES(IO), IO=1,NCHEM)
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
 !
 	  JIJ=NCHEM
 !
@@ -1431,233 +1267,260 @@
 	  ENDDO
 	  ENDDO
 !
+	  WRITE(55,'("{")')	 
+!
+	  WRITE(55,'(A1,"non_car_chemicals",A1,": [")')aspas,aspas            
+! 
+!
       DO KO=1,NLOCAL
+!	
 !
-	  WRITE(55,'(4X,I3)') KO
-!
-      IF(ED(SCENAR,1).NE.0.0)THEN
-	  WRITE(55,'(7X,"        1 to <2   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,1,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,1,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,1,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,2).NE.0.0)THEN
-	  WRITE(55,'(7X,"        2 to <3   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(7X,"        2 to <3   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,2,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,2,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,2,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,3).NE.0.0)THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,2,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,3,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,3,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,3,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,4).NE.0.0)THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,4,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,4,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.5))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,5,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,6,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,4,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,4,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,5).NE.0.0)THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,5,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,4,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.9))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,9,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.10))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,10,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,11,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,5,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,5,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,6).NE.0.0)THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,6,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,5,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,4,IOO,11,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.14))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,14,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.15))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,15,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,16,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,6,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,6,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,7).NE.0.0)THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,7,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,6,IOO,3,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.8))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,5,IOO,8,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.13))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,4,IOO,13,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,16,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.17))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,17,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.18))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,18,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,7,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,7,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,8).NE.0.0)THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,8,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,7,IOO,4,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,6,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,5,IOO,11,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,4,IOO,16,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.19))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,3,IOO,19,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.20))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,2,IOO,20,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.21))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(2,1,IOO,21,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,8,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,8,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
       ifinal=64+NTIMEexp
 !
-	  IF(ED(SCENAR,9).NE.0.0)THEN
-	  WRITE(55,'(7X,"       65 to ",I3,"  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') ifinal,(PORCENTAGEM(2,9,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,9).EQ.0.0).AND.(ED(SCENAR,8).NE.0.0).AND.(NTIMEexp.GE.45))THEN
-	  WRITE(55,'(7X,"       65 to ",I3,"  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') ifinal,(PORCENTAGEM(2,8,IOO,45,KO), IOO=1,NCHEM)
-      ENDIF
-!
-!      IF(KO.NE.NLOCAL)THEN
-!	  WRITE(55,*)
-!	  ENDIF
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,9,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(2,9,IOO,1,KO),aspas
+	  ENDIF																					
+	  ENDDO
+	  IF(KO.NE.NLOCAL)THEN
+	  WRITE(55,'("},")')!
+	  ELSE
+	  WRITE(55,'("}")')!
+	  ENDIF
 !
 	  ENDDO	  ! FIM DO KO=1,NLOCAL
 !
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
+	  WRITE(55,'("],")')
 !
 !
-	  WRITE(55,*)
-	  WRITE(55,*)
- 	  WRITE(55,'("                                  CARCINOGENIC RISK PERCENTAGE (%) ASSOCIATED WITH EACH CHEMICAL SPECIES")')
 !
 !
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
-	  WRITE(55,'("    LOCAL    AGE RANGE(y)  " <NCHEM>(2X,A10))')	(NOMES(IO), IO=1,NCHEM)
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
+	  WRITE(55,'(A1,"car_chemicals",A1,": [")')aspas,aspas            
 !
       DO KO=1,NLOCAL
 !
-	  WRITE(55,'(4X,I3)') KO
-!
-      IF(ED(SCENAR,1).NE.0.0)THEN
-	  WRITE(55,'(7X,"        1 to <2   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,1,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,1,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,1,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,2).NE.0.0)THEN
-	  WRITE(55,'(7X,"        2 to <3   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(7X,"        2 to <3   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,2,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,2,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,2,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,3).NE.0.0)THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,2,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(7X,"        3 to <6   ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,3,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,3,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,3,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,4).NE.0.0)THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,4,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,4,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.5))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,5,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"        6 to <11  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,6,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,4,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,4,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,5).NE.0.0)THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,5,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,4,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.9))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,9,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.10))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,10,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       11 to <16  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,11,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,5,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,5,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,6).NE.0.0)THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,6,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,5,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,4,IOO,11,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.14))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,14,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.15))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,15,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       16 to <18  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,16,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,6,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,6,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,7).NE.0.0)THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,7,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,6,IOO,3,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.8))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,5,IOO,8,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.13))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,4,IOO,13,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,16,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.17))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,17,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.18))THEN
-	  WRITE(55,'(7X,"       18 to <21  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,18,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,7,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,7,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,8).NE.0.0)THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,8,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,7,IOO,4,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,6,IOO,6,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,5,IOO,11,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,4,IOO,16,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.19))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,3,IOO,19,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.20))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,2,IOO,20,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.21))THEN
-	  WRITE(55,'(7X,"       21 to <65  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') (PORCENTAGEM(1,1,IOO,21,KO), IOO=1,NCHEM)
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,8,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,8,IOO,1,KO),aspas
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,9).NE.0.0)THEN
-	  WRITE(55,'(7X,"       65 to ",I3,"  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') ifinal,(PORCENTAGEM(1,9,IOO,1,KO), IOO=1,NCHEM)
-	  ELSEIF((ED(SCENAR,9).EQ.0.0).AND.(ED(SCENAR,8).NE.0.0).AND.(NTIMEexp.GE.45))THEN
-	  WRITE(55,'(7X,"       65 to ",I3,"  ",3X,F6.2,<NCHEM-1>(6X,F6.2))') ifinal,(PORCENTAGEM(1,8,IOO,45,KO), IOO=1,NCHEM)
-      ENDIF
+      ifinal=64+NTIMEexp
 !
-!      IF(KO.NE.NLOCAL)THEN
-!	  WRITE(55,*)
-!	  ENDIF
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+	  DO IOO=1,JIJ
+	  IF(IOO.NE.JIJ)THEN
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1,",")') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,9,IOO,1,KO),aspas
+	  ELSE
+      write(55,'(A1,A10,A1,":",1X,A1,E10.5,A1)') aspas,NOMES(IOO),aspas,aspas,PORCENTAGEM(1,9,IOO,1,KO),aspas
+	  ENDIF																					
+	  ENDDO
+	  IF(KO.NE.NLOCAL)THEN
+	  WRITE(55,'("},")')!
+	  ELSE
+	  WRITE(55,'("}")')!
+	  ENDIF
 !
 	  ENDDO	  ! FIM DO KO=1,NLOCAL
 !
+	  WRITE(55,'("],")')
 !
-	  WRITE(55,'("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")')
-	  WRITE(55,*)
-	  WRITE(55,*)
-!	  WRITE(55,*)
+!
+!
+	  WRITE(55,'(A1,"non_car_ways",A1,": [")')aspas,aspas            
 !
 !
       DO l=1,NIDADE
@@ -1681,249 +1544,326 @@
 	  ENDDO
 	  ENDDO
 !
-      NIU=NVIAS-1
-!
- 	  WRITE(55,'("                                                RISK PERCENTAGE (%) ASSOCIATED WITH EACH EXPOSURE ROUTE")')
-!
-!
-      WRITE(55,*)
-	  WRITE(55,'("                                                                NON-CARCINOGENIC RISK   ")')
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
-	  WRITE(55,'("                                                                             PATHWAY   ")')  
-	  WRITE(55,'("   LOCAL    AGE RANGE(y)        1       2       3       4       5       6       7       8       9      10      11      12      13      14    ")')
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
 !
 !
 !
       DO KO=1,NLOCAL
 !
-	  WRITE(55,'(3X,I3)') KO
 !
-      IF(ED(SCENAR,1).NE.0.0)THEN
-	  WRITE(55,'(6X,"        1 to <2 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,1,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(1,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(1,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(1,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,2).NE.0.0)THEN
-	  WRITE(55,'(6X,"        2 to <3 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(6X,"        2 to <3 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,2,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,3).NE.0.0)THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,2,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,3,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(2,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(2,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(2,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,4).NE.0.0)THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(4,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,4,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.5))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,5,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,6,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,5).NE.0.0)THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(5,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(4,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.9))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,9,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.10))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,10,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,11,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(3,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(3,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(3,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,6).NE.0.0)THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(6,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(5,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(4,KP,11,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.14))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,14,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.15))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,15,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,16,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,7).NE.0.0)THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(7,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(6,KP,3,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.8))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(5,KP,8,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.13))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(4,KP,13,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,16,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.17))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,17,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.18))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,18,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(4,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(4,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(4,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,8).NE.0.0)THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(8,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(7,KP,4,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(6,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(5,KP,11,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(4,KP,16,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.19))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(3,KP,19,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.20))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(2,KP,20,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.21))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_NC(1,KP,21,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,9).NE.0.0)THEN
-	  WRITE(55,'(6X,"       65 to ",I3,"  ",5X,F6.2, <NIU>(2X,F6.2))') ifinal,(PORC_VIA_NC(9,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,9).EQ.0.0).AND.(ED(SCENAR,8).NE.0.0).AND.(NTIMEexp.GE.45))THEN
-	  WRITE(55,'(6X,"       65 to ",I3,"  ",5X,F6.2, <NIU>(2X,F6.2))') ifinal,(PORC_VIA_NC(8,KP,45,KO), KP=1,NVIAS)
-      ENDIF
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(5,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(5,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(5,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-!      IF(KO.NE.NLOCAL)THEN
-!	  WRITE(55,*)
-!	  ENDIF
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(6,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(6,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(6,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(7,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(7,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(7,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(8,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(8,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(8,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(9,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_NC(9,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_NC(9,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  IF(KO.NE.NLOCAL)THEN
+	  WRITE(55,'("},")')!
+	  ELSE
+	  WRITE(55,'("}")')!
+	  ENDIF
 !
 	  ENDDO	  ! FIM DO KO=1,NLOCAL
 !
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
+	  WRITE(55,'("],")')
 !
 !
-      WRITE(55,*)
-	  WRITE(55,'("                                                                  CARCINOGENIC RISK   ")')
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
-	  WRITE(55,'("                                                                             PATHWAY   ")')  
-	  WRITE(55,'("   LOCAL    AGE RANGE(y)        1       2       3       4       5       6       7       8       9      10      11      12      13      14    ")')
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
+!
+!
+	  WRITE(55,'(A1,"car_ways",A1,": [")')aspas,aspas            
 !
 !
 !
       DO KO=1,NLOCAL
 !
-	  WRITE(55,'(3X,I3)') KO
-!
-      IF(ED(SCENAR,1).NE.0.0)THEN
-	  WRITE(55,'(6X,"        1 to <2 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,1,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(1,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(1,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(1,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,2).NE.0.0)THEN
-	  WRITE(55,'(6X,"        2 to <3 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(6X,"        2 to <3 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,2,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,3).NE.0.0)THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.2))THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,2,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(6X,"        3 to <6 ",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,3,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(2,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(2,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(2,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,4).NE.0.0)THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(4,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,4,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.5))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,5,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"        6 to <11",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,6,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,5).NE.0.0)THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(5,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(4,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.9))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,9,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.10))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,10,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       11 to <16",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,11,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(3,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(3,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(3,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,6).NE.0.0)THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(6,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(5,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(4,KP,11,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.14))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,14,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.15))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,15,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       16 to <18",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,16,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,7).NE.0.0)THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(7,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.3))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(6,KP,3,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.8))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(5,KP,8,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.13))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(4,KP,13,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,16,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.17))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,17,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.18))THEN
-	  WRITE(55,'(6X,"       18 to <21",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,18,KO), KP=1,NVIAS)
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(4,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(4,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(4,KP,1,KO),aspas
 	  ENDIF
-!
-	  IF(ED(SCENAR,8).NE.0.0)THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(8,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).NE.0.0).AND.(NTIMEexp.GE.4))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(7,KP,4,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).NE.0.0).AND.(NTIMEexp.GE.6))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(6,KP,6,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).NE.0.0).AND.(NTIMEexp.GE.11))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(5,KP,11,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).NE.0.0).AND.(NTIMEexp.GE.16))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(4,KP,16,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).NE.0.0).AND.(NTIMEexp.GE.19))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(3,KP,19,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).NE.0.0).AND.(NTIMEexp.GE.20))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(2,KP,20,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,8).EQ.0.0).AND.(ED(SCENAR,7).EQ.0.0).AND.(ED(SCENAR,6).EQ.0.0).AND.(ED(SCENAR,5).EQ.0.0).AND.(ED(SCENAR,4).EQ.0.0).AND.(ED(SCENAR,3).EQ.0.0).AND.(ED(SCENAR,2).EQ.0.0).AND.(ED(SCENAR,1).NE.0.0).AND.(NTIMEexp.GE.21))THEN
-	  WRITE(55,'(6X,"       21 to <65",7X,F6.2, <NIU>(2X,F6.2))') (PORC_VIA_C(1,KP,21,KO), KP=1,NVIAS)
 	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-	  IF(ED(SCENAR,9).NE.0.0)THEN
-	  WRITE(55,'(6X,"       65 to ",I3,"  ",5X,F6.2, <NIU>(2X,F6.2))') ifinal,(PORC_VIA_C(9,KP,1,KO), KP=1,NVIAS)
-	  ELSEIF((ED(SCENAR,9).EQ.0.0).AND.(ED(SCENAR,8).NE.0.0).AND.(NTIMEexp.GE.45))THEN
-	  WRITE(55,'(6X,"       65 to ",I3,"  ",5X,F6.2, <NIU>(2X,F6.2))') ifinal,(PORC_VIA_C(8,KP,45,KO), KP=1,NVIAS)
-      ENDIF
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(5,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(5,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(5,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
 !
-!      IF(KO.NE.NLOCAL)THEN
-!	  WRITE(55,*)
-!	  ENDIF
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(6,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(6,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(6,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(7,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(7,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(7,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')	
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(8,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(8,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(8,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  WRITE(55,'("},")')
+!
+	  WRITE(55,'("{")')
+      write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
+      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+	  DO KP=1,NVIAS
+	  IF(KP.LT.10)THEN
+      write(55,'(A1,I1,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(9,KP,1,KO),aspas
+	  ELSE
+	  IF(KP.NE.14)THEN
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1,",")') aspas,KP,aspas,aspas,PORC_VIA_C(9,KP,1,KO),aspas
+	  ELSE
+      write(55,'(A1,I2,A1,":",1X,A1,E10.5,A1)') aspas,KP,aspas,aspas,PORC_VIA_C(9,KP,1,KO),aspas
+	  ENDIF
+	  ENDIF
+	  ENDDO
+	  IF(KO.NE.NLOCAL)THEN
+	  WRITE(55,'("},")')!
+	  ELSE
+	  WRITE(55,'("}")')!
+	  ENDIF
 !
 	  ENDDO	  ! FIM DO KO=1,NLOCAL
 !
-	  WRITE(55,'("____________________________________________________________________________________________________________________________________________")')
+	  WRITE(55,'("]")')
 !
-!
-	  WRITE(55,*)
-	  WRITE(55,*)
-!
-!      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-!      ENDDO   !FIM DO CICLO "l"
+	  WRITE(55,'("}")')
 !
 !								 
       CLOSE (55)
@@ -1955,7 +1895,6 @@
 	   PRINT*,'THE CODE FINISHED ALL CALCULATIONS'
        WRITE(*,*)
 	   WRITE(*,*)
-	   pause
 !
 	STOP
 	END
@@ -4470,7 +4409,7 @@
 !
 !
       SUBROUTINE EXPOSURE(W,CF,SD_CF,FI,SD_FI,IR_INI,SD_IR_INI,FA,SD_FA,FP,SD_FP,ET_INI,SD_ET_INI,SA_INI,SD_SA_INI,AF_INI,SD_AF_INI,EV_INI,SD_EV_INI,&
-	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI)
+	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO)
 !
 !
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -4480,9 +4419,9 @@
 !
 	  INTEGER SCENAR
 	  REAL*8 Kd,IR, IR_INI
-	  CHARACTER CHEMICAL(100)*50
+	  CHARACTER CHEMICAL(100)*50,NOMES(100)*50
 	  CHARACTER POLLUTANT(100)*50,TYPE_POLLUTANT(100)*20,RAD_POL(4)*50
-	  CHARACTER NRISKTYPE(NVIAS)*10
+	  CHARACTER NRISKTYPE(NVIAS)*10,aspas*1
 !
 !
 	DIMENSION CSOIL(NCHEM,NTIME,NLOCAL)
@@ -4538,7 +4477,7 @@
 	  DIMENSION SD_ED_INI(3,NIDADE), SD_EF_INI(NVIAS,NIDADE), SD_AT_INI(2,NVIAS,NIDADE), SD_BW_INI(NIDADE)
 !
 	  DIMENSION EF(NVIAS), AT(2,NVIAS)
-	  DIMENSION SD_EF(NVIAS), SD_AT(2,NVIAS)
+	  DIMENSION SD_EF(NVIAS), SD_AT(2,NVIAS),J_INI_AGE(NIDADE)
 !
 	DIMENSION KEYCONC(NCHEM,NTYPECONC), KSTOPWAY(NVIAS), NSTOPNVP(NCHEM+1,NIDADE),LTSP(20), MUTAGENIC(100,3),ADAF(3) 
 !
@@ -8369,13 +8308,49 @@
 !///////////////////////////////////////////////////////////////////////////////
 !///////////////////////////////////////////////////////////////////////////////
 !
+      aspas = '"'
+!	  
+      J_INI_AGE(1)=1
+	  J_INI_AGE(2)=2
+	  J_INI_AGE(3)=3
+	  J_INI_AGE(4)=6
+	  J_INI_AGE(5)=11
+	  J_INI_AGE(6)=16
+	  J_INI_AGE(7)=18
+	  J_INI_AGE(8)=21
+	  J_INI_AGE(9)=65
+!
+      IF(SCENAR.NE.2)THEN
+      lip=1
+	  ELSE
+	  lip=7
+	  ENDIF
+!
+      jdeci=0
+!
+      DO l=lip,9
+      IF(ED_INI(SCENAR,l).NE.0.0)THEN
+	  jdeci=l
+	  ENDIF
+	  ENDDO
+!
+      jway=0
+!
+      DO nn=1,NVIAS
+      IF(W(nn).EQV..TRUE.)THEN
+	  jway=nn
+	  ENDIF
+	  ENDDO
+!
 !           PROTOCOLO DE IMPRESSÃO DA SAIDA DE DADOS
 !
 !      IF(KEY_ANALYZE.EQV..TRUE.)THEN
 !
+      CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
+!
 !
 !	  ABRE-SE O ARQUIVO DE SAIDA E 'Exposure.out'
-	  OPEN(UNIT=33,FILE='Exposure.out')
+	  OPEN(UNIT=33,FILE='Results\ Exposure.json')
 !
       nnc=NLOCAL
 !
@@ -8383,578 +8358,100 @@
 	  LOCALSP(KK)=KK
 	  ENDDO
 !
-	 SELECT CASE(SCENAR)
-	 CASE(1)
 !
+	  WRITE(33,'("{")')
 !
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                                 OUTPUT PARAMETERS ")')
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,*)
-	  WRITE(33,'("                THE PROGRAM IS PERFORMED WITH THE SCENE = 1 (AGRICULTURAL) ")')
+	  WRITE(33,'(A1,"non_carcinogenic_doses",A1,": [")')aspas,aspas
 !
-      DO l=1,NIDADE
+      DO l=INICIO,NIDADE
 !
-      IF(ED_INI(1,l).NE.0.0)THEN
+      IF(ED_INI(SCENAR,l).NE.0.0)THEN
 !
 !------------------
-	  NTIMEexp=ED_INI(1,l)
-!------------------
-!
-!
-      IF(l.EQ.1)THEN
-	  WRITE(33,*)
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED_INI(1,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED_INI(1,2)+2.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED_INI(1,3)+3.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED_INI(1,4)+6.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED_INI(1,5)+11.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED_INI(1,6)+16.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED_INI(1,7)+18.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED_INI(1,8)+21.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER ")')
-	  WRITE(33,'("*******************************************************************************************")')
-      ENDIF
-!
-!		  
+	  NTIMEexp=ED_INI(SCENAR,l)
+!------------------ 
 !
       DO n=1,NVIAS
 !
       IF(W(n).EQV..TRUE.)THEN
 !
-!      
 !
 	  KCHEM=NCHEM
       NPOL=NPOL
 !
       DO i=1,KCHEM
 !
-  	  DO ii=1,NPOL							                  
-	  IF (CHEMICAL(i).EQ.POLLUTANT(ii)) THEN
-	  iii=ii
+!
+      DO K=1,NLOCAL
+!
+	  DO j=1,NTIMEexp 
+!
+      IF(l.EQ.1)THEN
+	  N_AGE=j
+      ELSEIF(l.EQ.2)THEN
+	  N_AGE=j+1
+      ELSEIF(l.EQ.3)THEN
+	  N_AGE=j+2
+      ELSEIF(l.EQ.4)THEN
+	  N_AGE=j+5
+      ELSEIF(l.EQ.5)THEN
+	  N_AGE=j+10
+      ELSEIF(l.EQ.6)THEN
+	  N_AGE=j+15
+      ELSEIF(l.EQ.7)THEN
+	  N_AGE=j+17
+      ELSEIF(l.EQ.8)THEN
+	  N_AGE=j+20
+      ELSEIF(l.EQ.9)THEN
+	  N_AGE=j+64
+	  ENDIF
+!
+!
+      WRITE(33,'("{")')
+!
+      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(33,'(A1,"ADD",A1,":",1x,A1,E12.7,A1,",") )') aspas,aspas,aspas,ADD(l,1,n,i,j,k),aspas
+      write(33,'(A1,"ADD Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,1,n,i,j,k),aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+	  WRITE(33,'("}")')
 	  ELSE
-	  ENDIF 
-	  ENDDO
-!
-      m=1
-!
-	  WRITE(33,*)
-	  WRITE(33,'("                CALCULATION OF DOSE FOR WAY ",I2, " FOR CHEMICAL ----> ",A30)')n,CHEMICAL(i)
-	  WRITE(33,*)
-	  WRITE(33,'("                Exposure duration assessment = ",A30)')NRISKTYPE(n)
-	  WRITE(33,*)
-	  WRITE(33,'("    NON-CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-	  WRITE(33,'("      LOCAL ",<nnc>I13)')(LOCALSP(kJ),kJ=1,NLOCAL)
-	  WRITE(33,*)
-!
-!
-	  DO j=1,NTIMEexp 
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
+	  WRITE(33,'("},")')
 	  ENDIF
 !
+	  ENDDO	  ! FIM DO j=1,NTIMEexp 
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE, (ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
+	  ENDDO	  ! FIM DO K=1,NLOCAL 
 !
-	  ENDDO		 ! FIM DO j=1,NTIMEexp 
-!
-	  WRITE(33,*)
-	  WRITE(33,'("    HQ",I2)')n
-	  WRITE(33,*)  
-!
-	  DO j=1,NTIMEexp
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
-! 
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(HQ(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!
-      ENDDO
-!	  WRITE(*,*)	HQ(l,n,i,j,1)
-!
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_HQ(l,n,i,j,k), k=1,NLOCAL)
-!	  ENDIF
-!
-	  ENDDO	 ! FIM DO j=1,NTIMEexp 
-!
-	  m=2
-	  WRITE(33,*)
-	  WRITE(33,'("    CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-!
-	  DO j=1,NTIMEexp 
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
-!
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
-!
-	  ENDDO	! FIM DO j=1,NTIMEexp 
-!
-	  WRITE(33,*)
-	  WRITE(33,'("    CR",I2)')n
-	  WRITE(33,*)
-!
-	  DO j=1,NTIMEexp 
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
-!
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(CR(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!
-      ENDDO
-!
-!
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_CR(l,n,i,j,k), k=1,NLOCAL)
-!	  ENDIF
-!
-	  ENDDO	 ! FIM DO j=1,NTIMEexp 
-
-!
-	  WRITE(33,*)
-!
-      IF(NRISKTYPE(n).EQ.'Chronic')THEN
-      iew=1
-      ELSEIF(NRISKTYPE(n).EQ.'Subchronic')THEN
-	  iew=2
-      ELSEIF(NRISKTYPE(n).EQ.'Acute')THEN
-	  iew=3
-	  ENDIF
-!
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  IF(n.EQ.1)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI1,SD_FI1
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF1,SD_CF1
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,n,l),SD_AT_INI(2,n,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,1),SD_BAF(iii,1)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	  
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.2)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)') FI2,SD_FI2
-      WRITE(33,'("     Kd",14X,E11.6,11X,E11.6)') Kd(iii), SD_Kd(iii)
-	  WRITE(33,'("BTF(Soil-Fruit)",6X,E11.6,11X,E11.6)')BTF(iii,1),SD_BTF(iii,1)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("KEYCONC(water)",6X,L7)')KEYCONC(i,14)
-	  WRITE(33,'("KEYCONC(Fruit)",6X,L7)')KEYCONC(i,4)  
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,8),SD_BAF(iii,8)  	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.5)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,2),SD_BAF(iii,2)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,4,iew),SD_RfD(iii,4,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,4,iew),SD_SF(iii,4,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.6)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI6,SD_FI6
-	  WRITE(33,'("     Kd",14X,E11.6,11X,E11.6)')Kd(iii),SD_Kd(iii)
-	  WRITE(33,'("BTF(Soil-Veget.)",5X,E11.6,11X,E11.6)')BTF(iii,7),SD_BTF(iii,7)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(veget.)",4X,L7)')KEYCONC(i,5)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,7),SD_BAF(iii,7)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.3)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI3,SD_FI3
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa3,SD_Fa3
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp3,SD_Fp3
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Feed pl.)",3X,E11.6,11X,E11.6)')BTF(iii,2),SD_BTF(iii,2)
-	  WRITE(33,'("BTF(Feed pl.-Meat)",3X,E11.6,11X,E11.6)')BTF(iii,3),SD_BTF(iii,3)
-	  WRITE(33,'(" BTF(Soil-Meat)",6X,E11.6,11X,E11.6)')BTF(iii,4),SD_BTF(iii,4)
-	  WRITE(33,'(" BTF(Water-Meat)",5X,E11.6,11X,E11.6)')BTF(iii,8),SD_BTF(iii,8)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(soil)",6X,L7)')KEYCONC(i,1)
-	  WRITE(33,'(" KEYCONC(water)",5X,L7)')KEYCONC(i,14)
-	  WRITE(33,'(" KEYCONC(beef)",6X,L7)')KEYCONC(i,6)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,9),SD_BAF(iii,9)	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')				  
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.4)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI4,SD_FI4
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa4,SD_Fa4
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp4,SD_Fp4
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Feed pl.)",3X,E11.6,11X,E11.6)')BTF(iii,2),SD_BTF(iii,2)
-	  WRITE(33,'("BTF(Feed pl.-Milk)",3X,E11.6,11X,E11.6)')BTF(iii,5),SD_BTF(iii,5)
-	  WRITE(33,'(" BTF(Soil-Milk)",6X,E11.6,11X,E11.6)')BTF(iii,6),SD_BTF(iii,6)
-	  WRITE(33,'(" BTF(Water-Milk)",5X,E11.6,11X,E11.6)')BTF(iii,9),SD_BTF(iii,9)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(soil)",6X,L7)')KEYCONC(i,1)
-	  WRITE(33,'(" KEYCONC(water)",5X,L7)')KEYCONC(i,14)
-	  WRITE(33,'(" KEYCONC(milk)",6X,L7)')KEYCONC(i,7)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,10),SD_BAF(iii,10) 	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.7)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI7,SD_FI7
-	  WRITE(33,'("BTF(Water-Fish)",6X,E11.6,11X,E11.6)')BTF(iii,10),SD_BTF(iii,10)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(fish)",6X,L7)')KEYCONC(i,10)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,13),SD_BAF(iii,13)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.8)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI8,SD_FI8
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa8,SD_Fa8
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp8,SD_Fp8
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Bird)",7X,E11.6,11X,E11.6)')BTF(iii,11),SD_BTF(iii,11)
-	  WRITE(33,'("BTF(Water-Bird)",6X,E11.6,11X,E11.6)')BTF(iii,12),SD_BTF(iii,12)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(bird)",6X,L7)')KEYCONC(i,8)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	  
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,11),SD_BAF(iii,11)	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.9)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI9,SD_FI9
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa9,SD_Fa9
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp9,SD_Fp9
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Egg)",8X,E11.6,11X,E11.6)')BTF(iii,13),SD_BTF(iii,13)
-	  WRITE(33,'("BTF(Water-Egg)",7X,E11.6,11X,E11.6)')BTF(iii,14),SD_BTF(iii,14)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(egg)",7X,L7)')KEYCONC(i,9)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	  
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,12),SD_BAF(iii,12)	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.10)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI10,SD_FI10
-	  WRITE(33,'("     Kd",14X,E11.6,11X,E11.6)')Kd(iii),SD_Kd(iii)
-	  WRITE(33,'("BTF(Soil-Grain)",6X,E11.6,11X,E11.6)')BTF(iii,15),SD_BTF(iii,15)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(Grain)",5X,L7)')KEYCONC(i,11)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,16),SD_BAF(iii,16) 	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.11)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,3),SD_BAF(iii,3) 	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,2,iew),SD_RfD(iii,2,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,2,iew),SD_SF(iii,2,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.12)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,4),SD_BAF(iii,4) 	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,5,iew),SD_RfD(iii,5,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,5,iew),SD_SF(iii,5,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.13)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     EV",14X,E11.6,11X,E11.6)')EV13,SD_EV13
-	  WRITE(33,'("     PC",14X,E11.6,11X,E11.6)')PC(iii),SD_PC(iii)
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF13,SD_CF13
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Derm. mutagenicity",2X,L7)')MUTAGENIC(iii,3)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,6),SD_BAF(iii,6) 	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,6,iew),SD_RfD(iii,6,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,6,iew),SD_SF(iii,6,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.14)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(1,l),SD_ED_EXP(1,i)
-	  WRITE(33,'("     EV",14X,E11.6,11X,E11.6)')EV14,SD_EV14
-	  WRITE(33,'("     ABS",13X,E11.6,11X,E11.6)')ABS_(iii),SD_ABS(iii)
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF14,SD_CF14
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,1,l),SD_AT_INI(2,1,l)
-	  WRITE(33,'("Derm. mutagenicity",2X,L7)')MUTAGENIC(iii,3)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,5),SD_BAF(iii,5)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,3,iew),SD_RfD(iii,3,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,3,iew),SD_SF(iii,3,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-!
-      ENDIF ! FIM DO IF(n(i).eq....
-!
-	  WRITE(33,'("------------------------------------------------------------------------------------------")')
-!
-!
-	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)
-!
-!     
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("*******************************************************************************************")')
+	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)     
 !
       ENDIF   ! FIM DO IF PARA CADA WAY	 
 !
       ENDDO   ! FIM DO CICLO "n"
 !
-      ENDIF ! FIM do IF ED(SCENAR,l)....
+      ENDIF   ! FIM do IF ED(SCENAR,l)....
 !
-      ENDDO   ! FIM DO CICLO "l"
-!    
-!	  
-!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ENDDO   ! FIM DO CICLO "l"	
 !
-	   CASE(2)
+	  WRITE(33,'("],")')
 !
+	  WRITE(33,'(A1,"HQ",A1,": [")')aspas,aspas
 !
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                                 OUTPUT PARAMETERS ")')
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,*)
-	  WRITE(33,'("              THE PROGRAM IS PERFORMED WITH THE SCENE = 2 (INDUSTRIAL) ")')
+      DO l=INICIO,NIDADE
 !
-!
-      DO l=7,NIDADE
-!
-      IF(ED_INI(2,l).NE.0.0)THEN
+      IF(ED_INI(SCENAR,l).NE.0.0)THEN
 !
 !------------------
-	  NTIMEexp=ED_INI(2,l)
-!------------------
+	  NTIMEexp=ED_INI(SCENAR,l)
+!------------------ 
 !
-!
-	  IF(l.EQ.7)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("              RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED_INI(2,7)+18.0
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("              RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED_INI(2,8)+21.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("              RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER <")')
-	  WRITE(33,'("*******************************************************************************************")')
-      ENDIF
-!
-!
-      DO kl=1,4
-!
-      IF(kl.EQ.1)THEN
-	  n=1
-	  ELSEIF(kl.EQ.2)THEN
-	  n=11
-	  ELSEIF(kl.EQ.3)THEN
-	  n=12
-	  ELSEIF(kl.EQ.4)THEN
-	  n=14
-      ENDIF
+      DO n=1,NVIAS
 !
       IF(W(n).EQV..TRUE.)THEN
 !
@@ -8964,349 +8461,157 @@
 !
       DO i=1,KCHEM
 !
-  	  DO ii=1,NPOL							                  
-	  IF (CHEMICAL(i).EQ.POLLUTANT(ii)) THEN
-	  iii=ii
+!
+      DO K=1,NLOCAL
+!
+	  DO j=1,NTIMEexp 
+!
+      IF(l.EQ.1)THEN
+	  N_AGE=j
+      ELSEIF(l.EQ.2)THEN
+	  N_AGE=j+1
+      ELSEIF(l.EQ.3)THEN
+	  N_AGE=j+2
+      ELSEIF(l.EQ.4)THEN
+	  N_AGE=j+5
+      ELSEIF(l.EQ.5)THEN
+	  N_AGE=j+10
+      ELSEIF(l.EQ.6)THEN
+	  N_AGE=j+15
+      ELSEIF(l.EQ.7)THEN
+	  N_AGE=j+17
+      ELSEIF(l.EQ.8)THEN
+	  N_AGE=j+20
+      ELSEIF(l.EQ.9)THEN
+	  N_AGE=j+64
+	  ENDIF
+!
+!
+      WRITE(33,'("{")')
+!
+      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(33,'(A1,"ADD",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HQ(l,n,i,j,k),aspas
+      write(33,'(A1,"ADD Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HQ(l,n,i,j,k),aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+	  WRITE(33,'("}")')
 	  ELSE
-	  ENDIF 
-	  ENDDO
+	  WRITE(33,'("},")')
+	  ENDIF	
 !
-      m=1
+	  ENDDO	  ! FIM DO j=1,NTIMEexp 
 !
-	  WRITE(33,*)
-	  WRITE(33,'("                CALCULATION OF DOSE FOR WAY ",I2, " FOR CHEMICAL ----> ",A30)')n,CHEMICAL(i)
-	  WRITE(33,*)
-	  WRITE(33,'("                Exposure duration assessment = ",A30)')NRISKTYPE(n)
-	  WRITE(33,*)
-	  WRITE(33,'("    NON-CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-	  WRITE(33,'("      LOCAL ",<nnc>I13)')(LOCALSP(kJ),kJ=1,NLOCAL)
-	  WRITE(33,*)
+	  ENDDO	  ! FIM DO K=1,NLOCAL 
 !
-	  DO j=1,NTIMEexp 
+	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)     
 !
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
+      ENDIF   ! FIM DO IF PARA CADA WAY	 
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE, (ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
+      ENDDO   ! FIM DO CICLO "n"
 !
-	  ENDDO
+      ENDIF   ! FIM do IF ED(SCENAR,l)....
 !
-	  WRITE(33,*)
-	  WRITE(33,'("    HQ",I2)')n
-	  WRITE(33,*)
+      ENDDO   ! FIM DO CICLO "l"	
 !
-	  DO j=1,NTIMEexp
+	  WRITE(33,'("],")')
 !
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
+	  WRITE(33,'(A1,"carcinogenic_doses",A1,": [")')aspas,aspas
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(HQ(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
+      DO l=INICIO,NIDADE
 !
-      ENDDO
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_HQ(l,n,i,j,kik), kik=1,NLOCAL)
-!	  ENDIF
-!
-	  ENDDO
-!
-	  m=2
-	  WRITE(33,*)
-	  WRITE(33,'("    CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-	  DO j=1,NTIMEexp 
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
-!
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
-!
-	  ENDDO
-!
-	  WRITE(33,*)
-	  WRITE(33,'("    CR",I2)')n
-	  WRITE(33,*)
-!
-	  DO j=1,NTIMEexp
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
-!
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(CR(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!
-      ENDDO
-!	  IF(KEY_SD.EQV..TRUE.)THEN	  
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_CR(l,n,i,j,k), k=1,NLOCAL)
-!	  ENDIF
-!
-	  ENDDO
-!
-	  WRITE(33,*)
-!
-!
-      IF(NRISKTYPE(n).EQ.'Chronic')THEN
-      iew=1
-      ELSEIF(NRISKTYPE(n).EQ.'Subchronic')THEN
-	  iew=2
-      ELSEIF(NRISKTYPE(n).EQ.'Acute')THEN
-	  iew=3
-	  ENDIF
-!
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  IF(n.EQ.1)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(2,l),SD_ED_EXP(2,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI1,SD_FI1
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF1,SD_CF1
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,2,l),SD_AT_INI(2,2,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,1),SD_BAF(iii,1) 	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')			  
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.11)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(2,l),SD_ED_EXP(2,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,2,l),SD_AT_INI(2,2,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,3),SD_BAF(iii,3)  	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,2,iew),SD_RfD(iii,2,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,2,iew),SD_SF(iii,2,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.12)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(2,l),SD_ED_EXP(2,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,2,l),SD_AT_INI(2,2,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	  
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,4),SD_BAF(iii,4)	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,5,iew),SD_RfD(iii,5,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,5,iew),SD_SF(iii,5,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.14)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(2,l),SD_ED_EXP(2,i)
-	  WRITE(33,'("     EV",14X,E11.6,11X,E11.6)')EV14,SD_EV14
-	  WRITE(33,'("     ABS",13X,E11.6,11X,E11.6)')ABS_(iii),SD_ABS(iii)
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF14,SD_CF14
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,2,l),SD_AT_INI(2,2,l)
-	  WRITE(33,'("Derm. mutagenicity",2X,L7)')MUTAGENIC(iii,3)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,5),SD_BAF(iii,5)	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,3,iew),SD_RfD(iii,3,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,3,iew),SD_SF(iii,3,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-!
-      ENDIF
-!
-	  WRITE(33,'("------------------------------------------------------------------------------------------")')
-!
-	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)
-!
-!
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("*******************************************************************************************")')	 
-!   
-      ENDIF   ! FIM DO IF PARA CADA WAY
-!
-      ENDDO   ! FIM DO CICLO "KL" QUE É IGUAL A "n"
-!
-      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-      ENDDO   ! FIM DO CICLO "l"
-!    
-!	  
-!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-!
-	   CASE(3)
-!
-!
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("                                 OUTPUT PARAMETERS ")')
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,*)
-	  WRITE(33,'("               THE PROGRAM IS PERFORMED WITH THE SCENE = 3 (RESIDENTIAL) ")')
-!
-!
-      DO l=1,NIDADE
-!
-      IF(ED_INI(3,l).NE.0.0)THEN
+      IF(ED_INI(SCENAR,l).NE.0.0)THEN
 !
 !------------------
-	  NTIMEexp=ED_INI(3,l)
+	  NTIMEexp=ED_INI(SCENAR,l)
+!------------------ 
+!
+      DO n=1,NVIAS
+!
+      IF(W(n).EQV..TRUE.)THEN
+!
+!
+	  KCHEM=NCHEM
+      NPOL=NPOL
+!
+      DO i=1,KCHEM
+!
+!
+      DO K=1,NLOCAL
+!
+	  DO j=1,NTIMEexp 
+!
+      IF(l.EQ.1)THEN
+	  N_AGE=j
+      ELSEIF(l.EQ.2)THEN
+	  N_AGE=j+1
+      ELSEIF(l.EQ.3)THEN
+	  N_AGE=j+2
+      ELSEIF(l.EQ.4)THEN
+	  N_AGE=j+5
+      ELSEIF(l.EQ.5)THEN
+	  N_AGE=j+10
+      ELSEIF(l.EQ.6)THEN
+	  N_AGE=j+15
+      ELSEIF(l.EQ.7)THEN
+	  N_AGE=j+17
+      ELSEIF(l.EQ.8)THEN
+	  N_AGE=j+20
+      ELSEIF(l.EQ.9)THEN
+	  N_AGE=j+64
+	  ENDIF
+!
+!
+      WRITE(33,'("{")')
+!
+      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(33,'(A1,"ADD",A1,":",1x,A1,E12.7,A1,",") )') aspas,aspas,aspas,ADD(l,2,n,i,j,k),aspas
+      write(33,'(A1,"ADD Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,2,n,i,j,k),aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+	  WRITE(33,'("}")')
+	  ELSE
+	  WRITE(33,'("},")')
+	  ENDIF
+!
+	  ENDDO	  ! FIM DO j=1,NTIMEexp 
+!
+	  ENDDO	  ! FIM DO K=1,NLOCAL 
+!
+	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)     
+!
+      ENDIF   ! FIM DO IF PARA CADA WAY	 
+!
+      ENDDO   ! FIM DO CICLO "n"
+!
+      ENDIF   ! FIM do IF ED(SCENAR,l)....
+!
+      ENDDO   ! FIM DO CICLO "l"	
+!
+	  WRITE(33,'("],")')
 
+	  WRITE(33,'(A1,"CR",A1,": [")')aspas,aspas
+!
+      DO l=INICIO,NIDADE
+!
+      IF(ED_INI(SCENAR,l).NE.0.0)THEN
+!
 !------------------
+	  NTIMEexp=ED_INI(SCENAR,l)
+!------------------ 
 !
-!
-      IF(l.EQ.1)THEN
-	  WRITE(33,*)
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 1 AND <",F4.1," YEARS")') ED_INI(3,1)+1.0
-	  ELSEIF(l.EQ.2)THEN
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 2 AND <",F4.1," YEARS")') ED_INI(3,2)+2.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.3)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 3 AND <",F4.1," YEARS")') ED_INI(3,3)+3.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.4)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 6 AND <",F4.1," YEARS")') ED_INI(3,4)+6.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.5)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 11 AND <",F4.1," YEARS")') ED_INI(3,5)+11.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.6)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 16 AND <",F4.1," YEARS")') ED_INI(3,6)+16.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.7)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 18 AND <",F4.1," YEARS")') ED_INI(3,7)+18.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.8)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR AGE POPULATION BETWEEN 21 AND <",F4.1," YEARS")') ED_INI(3,8)+21.0
-	  WRITE(33,'("*******************************************************************************************")')
-	  ELSEIF(l.EQ.9)THEN
-	  WRITE(33,*)
-	  WRITE(33,*)
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("               RISK ASSESSMENT FOR ADULTS AGED 65 YEARS OR OLDER <")')
-	  WRITE(33,'("*******************************************************************************************")')
-      ENDIF
-!
-!
-!
-      DO kl=1,10
-!
-      IF(kl.EQ.1)THEN
-	  n=1
-	  ELSEIF(kl.EQ.2)THEN
-	  n=2
-	  ELSEIF(kl.EQ.3)THEN
-	  n=3
-	  ELSEIF(kl.EQ.4)THEN
-	  n=4
-	  ELSEIF(kl.EQ.5)THEN
-	  n=5
-	  ELSEIF(kl.EQ.6)THEN
-	  n=6
-	  ELSEIF(kl.EQ.7)THEN
-	  n=11
-	  ELSEIF(kl.EQ.8)THEN
-	  n=12
-	  ELSEIF(kl.EQ.9)THEN
-	  n=13
-	  ELSEIF(kl.EQ.10)THEN
-	  n=14
-      ENDIF
+      DO n=1,NVIAS
 !
       IF(W(n).EQV..TRUE.)THEN
 !
@@ -9314,356 +8619,69 @@
 	  KCHEM=NCHEM
       NPOL=NPOL
 !
-!
       DO i=1,KCHEM
 !
-  	  DO ii=1,NPOL							                  
-	  IF (CHEMICAL(i).EQ.POLLUTANT(ii)) THEN
-	  iii=ii
+!
+      DO K=1,NLOCAL
+!
+	  DO j=1,NTIMEexp 
+!
+      IF(l.EQ.1)THEN
+	  N_AGE=j
+      ELSEIF(l.EQ.2)THEN
+	  N_AGE=j+1
+      ELSEIF(l.EQ.3)THEN
+	  N_AGE=j+2
+      ELSEIF(l.EQ.4)THEN
+	  N_AGE=j+5
+      ELSEIF(l.EQ.5)THEN
+	  N_AGE=j+10
+      ELSEIF(l.EQ.6)THEN
+	  N_AGE=j+15
+      ELSEIF(l.EQ.7)THEN
+	  N_AGE=j+17
+      ELSEIF(l.EQ.8)THEN
+	  N_AGE=j+20
+      ELSEIF(l.EQ.9)THEN
+	  N_AGE=j+64
+	  ENDIF
+!
+!
+      WRITE(33,'("{")')
+!
+      write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Chem. Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
+      write(33,'(A1,"ADD",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CR(l,n,i,j,k),aspas
+      write(33,'(A1,"ADD Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CR(l,n,i,j,k),aspas
+!
+!
+      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+	  WRITE(33,'("}")')
 	  ELSE
-	  ENDIF 
-	  ENDDO
-!
-      m=1
-!
-	  WRITE(33,*)
-	  WRITE(33,'("                CALCULATION OF DOSE FOR WAY ",I2, " FOR CHEMICAL ----> ",A30)')n,CHEMICAL(i)
-	  WRITE(33,*)
-	  WRITE(33,'("                Exposure duration assessment = ",A30)')NRISKTYPE(n)
-	  WRITE(33,*)
-	  WRITE(33,'("    NON-CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-	  WRITE(33,'("      LOCAL ",<nnc>I13)')(LOCALSP(kJ),kJ=1,NLOCAL)
-	  WRITE(33,*)
-!
-	  DO j=1,NTIMEexp
-!
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
+	  WRITE(33,'("},")')
 	  ENDIF
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE, (ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
-	  ENDDO
-	  WRITE(33,*)
-	  WRITE(33,'("    HQ",I2)')n
-	  WRITE(33,*)
-	  DO j=1,NTIMEexp 
+	  ENDDO	  ! FIM DO j=1,NTIMEexp 
 !
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
+	  ENDDO	  ! FIM DO K=1,NLOCAL 
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(HQ(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_HQ(l,n,i,j,k), k=1,NLOCAL)
-!	  ENDIF
-	  ENDDO
+	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)     
 !
-	  m=2
-	  WRITE(33,*)
-	  WRITE(33,'("    CARCINOGENIC DOSE",I2)')n
-	  WRITE(33,*)
-	  DO j=1,NTIMEexp
+      ENDIF   ! FIM DO IF PARA CADA WAY	 
 !
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
+      ENDDO   ! FIM DO CICLO "n"
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)') (SD_ADD(l,m,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  ENDIF
-	  ENDDO
-	  WRITE(33,*)
-	  WRITE(33,'("    CR",I2)')n
-	  WRITE(33,*)
-	  DO j=1,NTIMEexp 
+      ENDIF   ! FIM do IF ED(SCENAR,l)....
 !
-      IF(l.EQ.1)THEN
-	  N_AGE=j
-      ELSEIF(l.EQ.2)THEN
-	  N_AGE=j+1
-      ELSEIF(l.EQ.3)THEN
-	  N_AGE=j+2
-      ELSEIF(l.EQ.4)THEN
-	  N_AGE=j+5
-      ELSEIF(l.EQ.5)THEN
-	  N_AGE=j+10
-      ELSEIF(l.EQ.6)THEN
-	  N_AGE=j+15
-      ELSEIF(l.EQ.7)THEN
-	  N_AGE=j+17
-      ELSEIF(l.EQ.8)THEN
-	  N_AGE=j+20
-      ELSEIF(l.EQ.9)THEN
-	  N_AGE=j+64
-	  ENDIF
+      ENDDO   ! FIM DO CICLO "l"	
 !
-	  WRITE(33,'("Value  AGE  ",I4,<nnc>E13.5)')	N_AGE,(CR(l,n,i,j,k), k=1,NLOCAL)	 ! caso a matriz toda das doses queira ser mostrada no dado de saida
-!	  
-!	  IF(KEY_SD.EQV..TRUE.)THEN	  
-	  WRITE(33,'("Unce.           ",<nnc>E13.5)')(SD_CR(l,n,i,j,k), k=1,NLOCAL)
-!	  ENDIF
-	  ENDDO
+	  WRITE(33,'("]")')
 !
-	  WRITE(33,*)
-!
-      IF(NRISKTYPE(n).EQ.'Chronic')THEN
-      iew=1
-      ELSEIF(NRISKTYPE(n).EQ.'Subchronic')THEN
-	  iew=2
-      ELSEIF(NRISKTYPE(n).EQ.'Acute')THEN
-	  iew=3
-	  ENDIF
-!
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  IF(n.EQ.1)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI1,SD_FI1
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF1,SD_CF1
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,1),SD_BAF(iii,1)	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.2)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)') FI2,SD_FI2
-      WRITE(33,'("     Kd",14X,E11.6,11X,E11.6)') Kd(iii), SD_Kd(iii)
-	  WRITE(33,'("BTF(Soil-Fruit)",6X,E11.6,11X,E11.6)')BTF(iii,1),SD_BTF(iii,1)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("KEYCONC(water)",6X,L7)')KEYCONC(i,14)
-	  WRITE(33,'("KEYCONC(Fruit)",6X,L7)')KEYCONC(i,4)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,8),SD_BAF(iii,8)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.5)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,2),SD_BAF(iii,2) 	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,4,iew),SD_RfD(iii,4,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,4,iew),SD_SF(iii,4,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.6)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI6,SD_FI6
-	  WRITE(33,'("     Kd",14X,E11.6,11X,E11.6)')Kd(iii),SD_Kd(iii)
-	  WRITE(33,'("BTF(Soil-Veget.)",5X,E11.6,11X,E11.6)')BTF(iii,7),SD_BTF(iii,7)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(veget.)",4X,L7)')KEYCONC(i,5)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,7),SD_BAF(iii,7)  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.3)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI3,SD_FI3
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa3,SD_Fa3
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp3,SD_Fp3
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Feed pl.)",3X,E11.6,11X,E11.6)')BTF(iii,2),SD_BTF(iii,2)
-	  WRITE(33,'("BTF(Feed pl.-Meat)",3X,E11.6,11X,E11.6)')BTF(iii,3),SD_BTF(iii,3)
-	  WRITE(33,'(" BTF(Soil-Meat)",6X,E11.6,11X,E11.6)')BTF(iii,4),SD_BTF(iii,4)
-	  WRITE(33,'(" BTF(Water-Meat)",5X,E11.6,11X,E11.6)')BTF(iii,8),SD_BTF(iii,8)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(soil)",6X,L7)')KEYCONC(i,1)
-	  WRITE(33,'(" KEYCONC(water)",5X,L7)')KEYCONC(i,14)
-	  WRITE(33,'(" KEYCONC(Meat)",6X,L7)')KEYCONC(i,6)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,9),SD_BAF(iii,9) 	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	  
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.4)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     FI",14X,E11.6,11X,E11.6)')FI4,SD_FI4
-	  WRITE(33,'("     Fa",14X,E11.6,11X,E11.6)')Fa4,SD_Fa4
-	  WRITE(33,'("     Fp",14X,E11.6,11X,E11.6)')Fp4,SD_Fp4
-	  WRITE(33,'("     fw",14X,E11.6,11X,E11.6)')fw(iii),SD_fw(iii)
-	  WRITE(33,'("BTF(Soil-Feed pl.)",3X,E11.6,11X,E11.6)')BTF(iii,2),SD_BTF(iii,2)
-	  WRITE(33,'("BTF(Feed pl.-Milk)",3X,E11.6,11X,E11.6)')BTF(iii,5),SD_BTF(iii,5)
-	  WRITE(33,'(" BTF(Soil-Milk)",6X,E11.6,11X,E11.6)')BTF(iii,6),SD_BTF(iii,6)
-	  WRITE(33,'(" BTF(Water-Milk)",5X,E11.6,11X,E11.6)')BTF(iii,9),SD_BTF(iii,9)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Oral mutagenicity",3X,L7)')MUTAGENIC(iii,1)
-	  WRITE(33,'(" KEYCONC(soil)",6X,L7)')KEYCONC(i,1)
-	  WRITE(33,'(" KEYCONC(water)",5X,L7)')KEYCONC(i,14)
-	  WRITE(33,'(" KEYCONC(milk)",6X,L7)')KEYCONC(i,7)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,10),SD_BAF(iii,10)	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,1,iew),SD_RfD(iii,1,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,1,iew),SD_SF(iii,1,iew)
-	  WRITE(33,'("_________________________________________________________")')	
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.11)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	 
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,3),SD_BAF(iii,3) 	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,2,iew),SD_RfD(iii,2,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,2,iew),SD_SF(iii,2,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.12)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Inha. mutagenicity",2X,L7)')MUTAGENIC(iii,2)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	  
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,4),SD_BAF(iii,4)	
-	  WRITE(33,'("     RfC",13X,E11.6,11X,E11.6)')RfD(iii,5,iew),SD_RfD(iii,5,iew) 
-	  WRITE(33,'("     IUR",13X,E11.6,11X,E11.6)')SF(iii,5,iew),SD_SF(iii,5,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.13)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     EV",14X,E11.6,11X,E11.6)')EV13,SD_EV13
-	  WRITE(33,'("     PC",14X,E11.6,11X,E11.6)')PC(iii),SD_PC(iii)
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF13,SD_CF13
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Derm. mutagenicity",2X,L7)')MUTAGENIC(iii,3)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,6),SD_BAF(iii,6)	  	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,6,iew),SD_RfD(iii,6,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,6,iew),SD_SF(iii,6,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	  ELSEIF(n.EQ.14)THEN
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("  PARAMETERS            VALEUS             UNCERTAINTIES")')
-	  WRITE(33,'("_________________________________________________________")')
-	  WRITE(33,'("     ED",14X,E11.6,11X,E11.6)')ED_INI(3,l),SD_ED_EXP(3,i)
-	  WRITE(33,'("     EV",14X,E11.6,11X,E11.6)')EV14,SD_EV14
-	  WRITE(33,'("     ABS",13X,E11.6,11X,E11.6)')ABS_(iii),SD_ABS(iii)
-	  WRITE(33,'("     CF",14X,E11.6,11X,E11.6)')CF14,SD_CF14
-	  WRITE(33,'("  AT(CARC.)",10X,E11.6,11X,E11.6)')	AT_INI(2,3,l),SD_AT_INI(2,3,l)
-	  WRITE(33,'("Derm. mutagenicity",2X,L7)')MUTAGENIC(iii,3)
-	  WRITE(33,'("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -")')	  
-	  WRITE(33,'("     BAF",13X,E11.6,11X,E11.6)')BAF(iii,5),SD_BAF(iii,5)	
-	  WRITE(33,'("     RfD",13X,E11.6,11X,E11.6)')RfD(iii,3,iew),SD_RfD(iii,3,iew) 
-	  WRITE(33,'("     SF",14X,E11.6,11X,E11.6)')SF(iii,3,iew),SD_SF(iii,3,iew)
-	  WRITE(33,'("_________________________________________________________")')
-!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-!
-      ENDIF
-!
-	  WRITE(33,'("------------------------------------------------------------------------------------------")')
-!
-	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)
-!
-!
-	  WRITE(33,'("*******************************************************************************************")')
-	  WRITE(33,'("*******************************************************************************************")')	 
-!  
-      ENDIF   ! FIM DO IF PARA CADA WAY
-!
-      ENDDO   ! FIM DO CICLO "KL" QUE É IGUAL A "n"
-!
-      ENDIF ! FIM do IF ED(SCENAR,l)....
-!
-      ENDDO   ! FIM DO CICLO "l"
-!    
-!	  	
-!
-!
-      END SELECT	! ACABA O PROTOCOLO DE IMPRESSÃO PARA OS TRES CASOS
-!
+	  WRITE(33,'("}")')
 !
 !
       RETURN	! FIM DA SUB-ROTINA EXPOSURE
@@ -12577,7 +11595,7 @@
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 !
 	  LOGICAL KEYCONC,KEY_SD
-	CHARACTER CHEMICAL(100)*50,RAD_POL(4)*50
+	CHARACTER CHEMICAL(100)*50,RAD_POL(4)*50,aspas*1
 	DIMENSION CSOIL(NCHEM,NTIME,NLOCAL),CWATER(NCHEM,NTIME,NLOCAL),CWATERDER(NCHEM,NTIME,NLOCAL),CWATEROTHER(NCHEM,NTIME,NLOCAL)
 	DIMENSION CPAR(NCHEM,NTIME,NLOCAL),CSTEAM(NCHEM,NTIME,NLOCAL),CFRUIT(NCHEM,NTIME,NLOCAL),CLEAVES(NCHEM,NTIME,NLOCAL)
 	DIMENSION CBEEF(NCHEM,NTIME,NLOCAL),CMILK(NCHEM,NTIME,NLOCAL),CAVE(NCHEM,NTIME,NLOCAL)
@@ -12871,23 +11889,20 @@
 !	  IMPRESSÃO DOS DADOS DE SAÍDA
 !-----------------------------------------------------------
 !
-	  open (UNIT=63, file='Radiological_RISK.out')	
 !
-	  WRITE(63,'("********************************************************************************************************************************************")')
-	  WRITE(63,'("                                                     OUTPUT RESULTS - RADIOLOGICAL RISK")')
-	  WRITE(63,'("********************************************************************************************************************************************")')
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,'("                                                          SPECIFIC ACTIVITY (Bq/kg)")')
-	  WRITE(63,'("______________________________________________________________________________________________________________________")')
-!    
+      aspas = '"'
+!
+	  open (UNIT=63, file='Results\ Radiological_RISK.json')	
+!
+	  WRITE(63,'("{")')
+!  
+	  WRITE(63,'(A1,"Act_esp",A1,": [")')aspas,aspas
 !
       IF(NTIME.EQ.1)THEN
       NCOMESO=1
 	  ELSE
 	  NCOMESO=2
-	  ENDIF
+	  ENDIF						
 !
       DO k=1,NLOCAL
 	  DO j=NCOMESO,NTIME
@@ -12899,14 +11914,6 @@
       ENDDO
 	  ENDDO
 !
-	  IF(kol.EQ.2)THEN
-	  WRITE(63,'("                                  K-40                             Th-232                            Ra-226   ")')
-	  ELSE
-	  WRITE(63,'("                                  K-40                             Th-232                            U-238   ")')
-	  ENDIF
-!
-	  WRITE(63,'("   Local     time        Value            Error            Value            Error            Value            Error")')
-	  WRITE(63,'("______________________________________________________________________________________________________________________")')
 !
       DO k=1,NLOCAL
 	  DO j=1,NTIME
@@ -12917,41 +11924,112 @@
 !	  IF(j.EQ.1)THEN
 !
       IF(KALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,6(6X,E11.5) )') k,j,ATIVI_ESP(1,j,k),SD_ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),SD_ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k),SD_ATIVI_ESP(3,j,k)
-      ELSEIF((KALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,5(6X,E11.5) )') k,ATIVI_ESP(1,j,k),SD_ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),SD_ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k),SD_ATIVI_ESP(3,j,k)
-      ENDIF
 !
-!	  ELSEIF(((ATIVI_ESP(1,j,k).NE.ATIVI_ESP(1,j-1,k)).OR.(ATIVI_ESP(2,j,k).NE.ATIVI_ESP(2,j-1,k)).OR.(ATIVI_ESP(3,j,k).NE.ATIVI_ESP(3,j-1,k))).AND.(j.NE.1).AND.(KALL(k).EQ.1))THEN
-!      write(63,'( 12x,I3,6(6X,E11.5) )') j,ATIVI_ESP(1,j,k),SD_ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),SD_ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k),SD_ATIVI_ESP(3,j,k)
-!	  ENDIF
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"K-40 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"Th-232 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(2,j,k),aspas
+      write(63,'(A1,"Th-232 Act.Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_ESP(2,j,k),aspas
+	  IF(kol.EQ.2)THEN
+      write(63,'(A1,"Ra-226 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_ATIVI_ESP(3,j,k),aspas
+	  ELSE
+      write(63,'(A1,"U-238 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_ATIVI_ESP(3,j,k),aspas
+      ENDIF
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+!
+      ELSEIF((KALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"K-40 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"Th-232 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(2,j,k),aspas
+      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_ESP(2,j,k),aspas
+	  IF(kol.EQ.2)THEN
+      write(63,'(A1,"Ra-226 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_ATIVI_ESP(3,j,k),aspas
+	  ELSE
+      write(63,'(A1,"U-238 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_ATIVI_ESP(3,j,k),aspas
+      ENDIF
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+      ENDIF
 !
 	  ELSE
 !
-!	  IF(j.EQ.1)THEN
 !
       IF(KALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,6X,E11.5,2(23X,E11.5))') k,j,ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k)
-      ELSEIF((KALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,2(23X,E11.5))') k,ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k)
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"K-40 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Th-232 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(2,j,k),aspas
+      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+	  IF(kol.EQ.2)THEN
+      write(63,'(A1,"Ra-226 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+	  ELSE
+      write(63,'(A1,"U-238 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      ENDIF
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
 	  ENDIF
 !
-!	  ELSEIF(((ATIVI_ESP(1,j,k).NE.ATIVI_ESP(1,j-1,k)).OR.(ATIVI_ESP(2,j,k).NE.ATIVI_ESP(2,j-1,k)).OR.(ATIVI_ESP(3,j,k).NE.ATIVI_ESP(3,j-1,k))).AND.(j.NE.1).AND.(KALL(k).EQ.1))THEN
-!      write(63,'(12x,I3,6X,E11.5,2(23X,E11.5))') j,ATIVI_ESP(1,j,k),ATIVI_ESP(2,j,k),ATIVI_ESP(3,j,k)
-!	  ENDIF
+      ELSEIF((KALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"K-40 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(1,j,k),aspas
+      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Th-232 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(2,j,k),aspas
+      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+	  IF(kol.EQ.2)THEN
+      write(63,'(A1,"Ra-226 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+	  ELSE
+      write(63,'(A1,"U-238 Act.",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_ESP(3,j,k),aspas
+      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      ENDIF
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ENDIF
+!
 !
 	  ENDIF 
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(KALL(k).EQ.1))THEN
-      WRITE(63,*)
-	  ENDIF
-!
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(63,'("______________________________________________________________________________________________________________________")')
 !
+	  WRITE(63,'("],")')
+!
+	  WRITE(63,'(A1,"MIX",A1,": [")')aspas,aspas
 !
       DO k=1,NLOCAL
 	  DO j=NCOMESO,NTIME
@@ -12963,99 +12041,163 @@
       ENDDO
 	  ENDDO
 !
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,'("________________________________________________________________________________________________________________________________________________________")')
-	  WRITE(63,'("                       Radium equivalent activit           Gama absorbed dose rate           Outdoor effective dose            Indoor effective dose    ")')
-	  WRITE(63,'("                                (Bq/kg)                           (nGy/h)                           (mSv/y)                           (mSv/y)           ")')
-	  WRITE(63,'("   Local     time        Value            Error            Value            Error            Value            Error            Value            Error   ")')
-	  WRITE(63,'("________________________________________________________________________________________________________________________________________________________")')
+!
 !
       DO k=1,NLOCAL
 	  DO j=1,NTIME
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
-!	  IF(j.EQ.1)THEN
 !
       IF(JALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,8(6X,E11.5) )') k,j,ATIVI_EQU(j,k),SD_ATIVI_EQU(j,k),DOSE_ABS(j,k),SD_DOSE_ABS(j,k),DOSE_OUT(j,k),SD_DOSE_OUT(j,k),DOSE_IN(j,k),SD_DOSE_IN(j,k)
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"Ra_Eq_act",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Out_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_OUT(j,k),aspas
+      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_DOSE_OUT(j,k),aspas
+      write(63,'(A1,"In_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_IN(j,k),aspas
+      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_DOSE_IN(j,k),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
 	  ELSEIF((JALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,7(6X,E11.5))') k,ATIVI_EQU(j,k),SD_ATIVI_EQU(j,k),DOSE_ABS(j,k),SD_DOSE_ABS(j,k),DOSE_OUT(j,k),SD_DOSE_OUT(j,k),DOSE_IN(j,k),SD_DOSE_IN(j,k)
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra_Eq_act",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Out_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_OUT(j,k),aspas
+      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_DOSE_OUT(j,k),aspas
+      write(63,'(A1,"In_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_IN(j,k),aspas
+      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_DOSE_IN(j,k),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
       ENDIF
 !
-!	  ELSEIF((ATIVI_EQU(j,k).NE.ATIVI_EQU(j-1,k)).AND.(j.NE.1).AND.(JALL(k).EQ.1))THEN
-!      write(63,'(12x,I3,8(6X,E11.5) )') j,ATIVI_EQU(j,k),SD_ATIVI_EQU(j,k),DOSE_ABS(j,k),SD_DOSE_ABS(j,k),DOSE_OUT(j,k),SD_DOSE_OUT(j,k),DOSE_IN(j,k),SD_DOSE_IN(j,k)
-!	  ENDIF
-!
 	  ELSE
 !
-!	  IF(j.EQ.1)THEN
-!
       IF(JALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,6X,E11.5,3(23X,E11.5))') k,j,ATIVI_EQU(j,k),DOSE_ABS(j,k),DOSE_OUT(j,k),DOSE_IN(j,k)
-	  ELSEIF((JALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,3(23X,E11.5))') k,ATIVI_EQU(j,k),DOSE_ABS(j,k),DOSE_OUT(j,k),DOSE_IN(j,k)
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"Ra_Eq_act",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Out_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_OUT(j,k),aspas
+      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"In_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_IN(j,k),aspas
+      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
 	  ENDIF
 !
-!	  ELSEIF((ATIVI_EQU(j,k).NE.ATIVI_EQU(j-1,k)).AND.(j.NE.1).AND.(JALL(k).EQ.1))THEN
-!      write(63,'(12x,I3,6X,E11.5,3(23X,E11.5))') j,ATIVI_EQU(j,k),DOSE_ABS(j,k),DOSE_OUT(j,k),DOSE_IN(j,k)
-!	  ENDIF
+	  ELSEIF((JALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra_Eq_act",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,ATIVI_EQU(j,k),aspas
+      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_ABS(j,k),aspas
+      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Out_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_OUT(j,k),aspas
+      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"In_eff_dose",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,DOSE_IN(j,k),aspas
+      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ENDIF
 !
 	  ENDIF 
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(JALL(k).EQ.1))THEN
-      WRITE(63,*)
-	  ENDIF
-!
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(63,'("________________________________________________________________________________________________________________________________________________________")')
 !
+	  WRITE(63,'("],")')
 !
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,'("                                                                       EXCESS LIFETIME CANCER RISK")')
-	  WRITE(63,'("_____________________________________________________________________________________________________________________________________________________________________________________________")')
-	  WRITE(63,'("                   |                             INDOOR                               |                              OUTDOOR                              |               TOTAL    ")')
-	  WRITE(63,'("                   |           Individual                       Accumulated           |            Individual                       Accumulated           |            Accumulated         ")')
-	  WRITE(63,'("   Local     time  |     Value            Error            Value            Error     |      Value            Error            Value            Error     |      Value            Error   ")')
-	  WRITE(63,'("___________________|__________________________________________________________________|___________________________________________________________________|__________________________________")')
+	  WRITE(63,'(A1,"ELCR",A1,": [")')aspas,aspas
+!
 !
       DO k=1,NLOCAL
 	  DO j=1,NTIME
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
-!	  IF(j.EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,10(6X,E11.5) )') k,j,CARC_IN(j,k),SD_CARC_IN(j,k),CARC_IN_ac(j,k),SD_CARC_IN_ac(j,k),CARC_OUT(j,k),SD_CARC_OUT(j,k),CARC_OUT_ac(j,k),SD_CARC_OUT_ac(j,k),CARC_TOT_ac(j,k),SD_CARC_TOT_ac(j,k)
-!	  ELSEIF(j.NE.1)THEN
-!      write(63,'(12x,I3,10(6X,E11.5) )') j,CARC_IN(j,k),SD_CARC_IN(j,k),CARC_IN_ac(j,k),SD_CARC_IN_ac(j,k),CARC_OUT(j,k),SD_CARC_OUT(j,k),CARC_OUT_ac(j,k),SD_CARC_OUT_ac(j,k),CARC_TOT_ac(j,k),SD_CARC_TOT_ac(j,k)
-!	  ENDIF
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"In_Individual",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_IN(j,k),aspas
+      write(63,'(A1,"In_Individual Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CARC_IN(j,k),aspas
+      write(63,'(A1,"In_Acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_IN_ac(j,k),aspas
+      write(63,'(A1,"In_Acc Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CARC_IN_ac(j,k),aspas
+      write(63,'(A1,"Out_Individual",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_OUT(j,k),aspas
+      write(63,'(A1,"Out_Individual Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CARC_OUT(j,k),aspas
+      write(63,'(A1,"Out_Acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_OUT_ac(j,k),aspas
+      write(63,'(A1,"Out_Acc Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_CARC_OUT_ac(j,k),aspas
+      write(63,'(A1,"tot_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_TOT_ac(j,k),aspas
+      write(63,'(A1,"tot_acc Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CARC_TOT_ac(j,k),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
 !
 	  ELSE
 !
-!	  IF(j.EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,6X,E11.5,4(23X,E11.5))') k,j,CARC_IN(j,k),CARC_IN_ac(j,k),CARC_OUT(j,k),CARC_OUT_ac(j,k),CARC_TOT_ac(j,k)
-!	  ELSEIF(j.NE.1)THEN
-!      write(63,'(12x,I3,6X,E11.5,4(23X,E11.5))') j,CARC_IN(j,k),CARC_IN_ac(j,k),CARC_OUT(j,k),CARC_OUT_ac(j,k),CARC_TOT_ac(j,k)
-!	  ENDIF
-!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"In_Individual",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_IN(j,k),aspas
+      write(63,'(A1,"In_Individual Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"In_Acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_IN_ac(j,k),aspas
+      write(63,'(A1,"In_Acc Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Out_Individual",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_OUT(j,k),aspas
+      write(63,'(A1,"Out_Individual Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Out_Acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_OUT_ac(j,k),aspas
+      write(63,'(A1,"Out_Acc Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"tot_acc",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CARC_TOT_ac(j,k),aspas
+      write(63,'(A1,"tot_acc Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
 	  ENDIF 
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF(K.NE.NLOCAL)THEN
-      WRITE(63,*)
-	  ENDIF
 !
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(63,'("_____________________________________________________________________________________________________________________________________________________________________________________________")')
+!
+	  WRITE(63,'("],")')
+!
+	  WRITE(63,'(A1,"HI",A1,": [")')aspas,aspas
 !
 !
       DO k=1,NLOCAL
@@ -13068,61 +12210,89 @@
       ENDDO
 	  ENDDO
 !
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,*)
-	  WRITE(63,'("                     HAZARD INDEX - NON-CARCINOGENIC RISK ")')
-	  WRITE(63,'("____________________________________________________________________________________")')
-	  WRITE(63,'("                         External Hazard Index             Internal Hazard Index     ")')
-	  WRITE(63,'("   Local     time        Value            Error            Value            Error   ")')
-	  WRITE(63,'("____________________________________________________________________________________")')
 !
       DO k=1,NLOCAL
 	  DO j=1,NTIME
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
 !
-!	  IF(j.EQ.1)THEN
-!
       IF(IALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,4(6X,E11.5) )') k,j,HIND_EXT(j,k),SD_HIND_EXT(j,k),HIND_INT(j,k),SD_HIND_INT(j,k)
-	  ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,3(6X,E11.5) )') k,HIND_EXT(j,k),SD_HIND_EXT(j,k),HIND_INT(j,k),SD_HIND_INT(j,k)
-      ENDIF
 !
-!	  ELSEIF((HIND_EXT(j,k).NE.HIND_EXT(j-1,k)).AND.(j.NE.1).AND.(IALL(k).EQ.1))THEN
-!      write(63,'(12x,I3,4(6X,E11.5) )') j,HIND_EXT(j,k),SD_HIND_EXT(j,k),HIND_INT(j,k),SD_HIND_INT(j,k)
-!	  ENDIF
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"HIex",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIex Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIin",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_INT(j,k),aspas
+      write(63,'(A1,"HIin Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HIND_INT(j,k),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"HIex",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIex Error",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,SD_HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIin",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_INT(j,k),aspas
+      write(63,'(A1,"HIin Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HIND_INT(j,k),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+      ENDIF
 !
 	  ELSE
 !
-!	  IF(j.EQ.1)THEN
-!
       IF(IALL(k).EQ.1)THEN
-      write(63,'(3x,I3,6x,I3,6X,E11.5,23X,E11.5)') k,j,HIND_EXT(j,k),HIND_INT(j,k)
-	  ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(63,'(3x,I3,"       All",5X,E11.5,23X,E11.5)') k,HIND_EXT(j,k),HIND_INT(j,k)
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"HIex",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIex Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"HIin",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_INT(j,k),aspas
+      write(63,'(A1,"HIin Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
 	  ENDIF
 !
-!	  ELSEIF((HIND_EXT(j,k).NE.HIND_EXT(j-1,k)).AND.(j.NE.1).AND.(IALL(k).EQ.1))THEN
-!      write(63,'(12x,I3,6X,E11.5,23X,E11.5)') j,HIND_EXT(j,k),HIND_INT(j,k)
-!	  ENDIF
+	  ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,"All",",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"HIex",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_EXT(j,k),aspas
+      write(63,'(A1,"HIex Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"HIin",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HIND_INT(j,k),aspas
+      write(63,'(A1,"HIin Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ENDIF
 !
 	  ENDIF 
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(IALL(k).EQ.1))THEN
-      WRITE(63,*)
-	  ENDIF
 !
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(63,'("____________________________________________________________________________________")')
 !
+	  WRITE(63,'("]")')
 !
-!
-!
+	  WRITE(63,'("}")')
 !
 	  close(63)
 !
@@ -13152,7 +12322,7 @@
       WRITE(*,*)
       WRITE(*,*)
 !
-	  open (UNIT=39, file='Information.out')	
+	  open (UNIT=39, file='Results\ Information.txt')	
 !
 	  WRITE(39,'("******************************************************************************************************************************************************************************")')
 	  WRITE(39,'("                                                               INFORMATIONS ")')
@@ -13680,8 +12850,8 @@
 	REAL MUL_CFsed,mCd_sed,IPIT_sed,IGEOsed,mPELq,mERMq,Kd_MPI,MUL_RISKwat,MUL_RISKsoil,MUL_RISKsed,IRjFIN
 !
 	  LOGICAL KEYCONC
-	CHARACTER CHEMICAL(100)*50,SPECIE(100)*50,EFREFsoil*50,EFREFsediment*50,SCENARIES (4)*12
-	CHARACTER AGUA_REF(3)*50,SOLO_REF(4)*50,SED_REF(3)*50
+	CHARACTER CHEMICAL(100)*50,SPECIE(100)*50,EFREFsoil*2,EFREFsediment*2,SCENARIES (4)*12
+	CHARACTER AGUA_REF(3)*50,SOLO_REF(4)*50,SED_REF(3)*50,aspas*1,NOMES(100)*50
 	DIMENSION CSOIL(NCHEM,NTIME,NLOCAL),CWATER(NCHEM,NTIME,NLOCAL),CWATERDER(NCHEM,NTIME,NLOCAL),CWATEROTHER(NCHEM,NTIME,NLOCAL)
 	DIMENSION CPAR(NCHEM,NTIME,NLOCAL),CSTEAM(NCHEM,NTIME,NLOCAL),CFRUIT(NCHEM,NTIME,NLOCAL),CLEAVES(NCHEM,NTIME,NLOCAL)
 	DIMENSION CBEEF(NCHEM,NTIME,NLOCAL),CMILK(NCHEM,NTIME,NLOCAL),CAVE(NCHEM,NTIME,NLOCAL)
@@ -13845,7 +13015,7 @@
 !
       EFCROSTAsolo=0.0
 !
-      EFREFsoil='    '   
+      EFREFsoil='  '   
 !
       WRITE(*,*)
       WRITE(*,*)
@@ -13875,7 +13045,7 @@
 !
       EFCROSTAsed=0.0
 !
-	  EFREFsediment='    '   
+	  EFREFsediment='  '   
 !
       WRITE(*,*)
       WRITE(*,*)
@@ -14659,41 +13829,58 @@
 !
       AGUA_REF(1)='NATIONAL'
 	  AGUA_REF(2)='U.S.EPA'
-	  AGUA_REF(3)='  WHO'
+	  AGUA_REF(3)='WHO'
 !											  
 	  SOLO_REF(1)='REGIONAL'
 	  SOLO_REF(2)='NATIONAL'
 	  SOLO_REF(3)='U.S.EPA'
-	  SOLO_REF(4)='PREVENTION VALUE'
+	  SOLO_REF(4)='IN NATURA'
 !
 	  SED_REF(1)='REGIONAL'
 	  SED_REF(2)='NATIONAL'
 	  SED_REF(3)='U.S.EPA'
 !  
+      aspas = '"'
+!
+      Mun_comp=0
+!
+      IF(NCOMPARTIMENTO1.EQ.1)THEN	
+	  Mun_comp=1
+	  ENDIF	
+      IF(NCOMPARTIMENTO2.EQ.1)THEN	
+	  Mun_comp=2
+	  ENDIF
+      IF(NCOMPARTIMENTO3.EQ.1)THEN	
+	  Mun_comp=3
+	  ENDIF  			 
+!
+      CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
 !
 !-----------------------------------------------------------
 !	  IMPRESSÃO DOS DADOS DE SAÍDA
 !-----------------------------------------------------------
 !
-	  open (UNIT=68, file='Ecological_RISK_Individual.out')	
+	  open (UNIT=68, file='Results\ Ecological_RISK_Individual.json')	
 !
-	  WRITE(68,'("********************************************************************************************************************************************")')
-	  WRITE(68,'("                                              OUTPUT RESULTS - ECOLOGICAL RISK BY CHEMICAL SPECIES")')
-	  WRITE(68,'("********************************************************************************************************************************************")')
-	  WRITE(68,*)
-	  WRITE(68,'("                                              THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(68,*)
-	  WRITE(68,'("                                              WATER REFERENCE VALUE USED    ---> ", A9)') AGUA_REF(KEY_WATER)
-	  WRITE(68,*)
-	  WRITE(68,'("                                              SOIL REFERENCE VALUE USED     ---> ", A17)') SOLO_REF(KEY_SOIL)
-	  WRITE(68,*)
-	  WRITE(68,'("                                              SEDIMENT REFERENCE VALUE USED ---> ", A9)') SED_REF(KEY_SEDIMENT)
+	  WRITE(68,'("{")')
 !
-!                         
-	  WRITE(68,*)
-
+	  WRITE(68,'(A1,"ref_values",A1,": [")')aspas,aspas
+!
+      WRITE(68,'("{")')
+!
+      write(68,'(A1,"Scenary",A1,":",1x,A1,A12,A1,",") )') aspas,aspas,aspas,SCENARIES(SCENAR),aspas
+      write(68,'(A1,"Water reference value",A1,":",1x,A1,A8,A1,",") )') aspas,aspas,aspas,AGUA_REF(KEY_WATER),aspas
+      write(68,'(A1,"Soil reference value",A1,":",1x,A1,A9,A1,",") )') aspas,aspas,aspas,SOLO_REF(KEY_SOIL),aspas
+      write(68,'(A1,"Sediment reference value",A1,":",1x,A1,A9,A1) )') aspas,aspas,aspas,SED_REF(KEY_SEDIMENT),aspas
+!
+	  WRITE(68,'("}")')
+!
+	  WRITE(68,'("],")')
+!
+!
 	  DO i=1,NCHEM
 !
+	  WRITE(68,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
 !
       ijj=0
 !
@@ -14705,13 +13892,6 @@
 	  ENDIF 
       ENDDO
 !
-!
-	  WRITE(68,'(" CHEMICAL = ",A30)')CHEMICAL(i)
-!
-	  WRITE(68,'("_____________________________________________________________________________________________________________________________________________________")')
-	  WRITE(68,'("                   | WATER COMPARTMENT |                    SOIL COMPARTMENT                  |                  SEDIMENT COMPARTMENT                | ")')            
-	  WRITE(68,'("   LOCAL    TIME   |      CFwater      |    CFsoil         Igeo         EF-",A2,"         PI      |     CFsed         Igeo         EF-",A2,"         PI      | ")')EFREFsoil,EFREFsediment
-	  WRITE(68,'("___________________|___________________|______________________________________________________|______________________________________________________| ")')
 !
       IF(NTIME.EQ.1)THEN
       NINICIO=1
@@ -14737,32 +13917,59 @@
 !	  IF(j.EQ.1)THEN
 !
       IF(IALL(k).EQ.1)THEN
-      write(68,'(3x,I3,5x,I3,9X,E11.5,7X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5,4X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5)') k,j,CFwater(I,J,K),CFsoil(I,J,K),IGEOsoil(I,J,K),EFsoil(I,J,K),PIsoil(I,J,K),CFsed(I,J,K),IGEOsed(I,J,K),EFsed(I,J,K),PIsed(I,J,K)
-      ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
-      write(68,'(3x,I3,"      All",8X,E11.5,7X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5,4X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5)') k,CFwater(I,J,K),CFsoil(I,J,K),IGEOsoil(I,J,K),EFsoil(I,J,K),PIsoil(I,J,K),CFsed(I,J,K),IGEOsed(I,J,K),EFsed(I,J,K),PIsed(I,J,K)
+!
+      WRITE(68,'("{")')
+      write(68,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(68,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(68,'(A1,"CFwater",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CFwater(I,J,K),aspas
+      write(68,'(A1,"CFsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CFsoil(I,J,K),aspas
+	  write(68,'(A1,"Igeo_soil",A1,":",1x,A1,E11.5,A1,",") )') aspas,aspas,aspas,IGEOsoil(I,J,K),aspas
+      write(68,'(A1,"EFsoil-",A2,A1,":",1x,A1,E10.5,A1,",") )') aspas,EFREFsoil,aspas,aspas,EFsoil(I,J,K),aspas
+      write(68,'(A1,"PIsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PIsoil(I,J,K),aspas
+      write(68,'(A1,"Igeo_sed",A1,":",1x,A1,E11.5,A1,",") )') aspas,aspas,aspas,IGEOsed(I,J,K),aspas
+      write(68,'(A1,"EFsed-",A2,A1,":",1x,A1,E10.5,A1,",") )') aspas,EFREFsediment,aspas,aspas,EFsed(I,J,K),aspas
+      write(68,'(A1,"PI_sed",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,PIsed(I,J,K),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(68,'("}")')
+	  ELSE
+	  WRITE(68,'("},")')
 	  ENDIF
 !
-!	  ELSEIF(((CFsed(I,J,K).NE.CFsed(I,J-1,K)).OR.(CFsoil(I,J,K).NE.CFsoil(I,J-1,K)).OR.(CFwater(I,J,K).NE.CFwater(I,J-1,K)).OR.(EFCsoil(J,K).NE.EFCsoil(J-1,K)).OR.(EFCsediment(J,K).NE.EFCsediment(J-1,K))).AND.(j.NE.1).AND.(IALL(k).EQ.1))THEN
-!      write(68,'(11x,I3,9X,E11.5,7X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5,4X,E11.5,3X,E11.5,2X,E11.5,2X,E11.5)') j,CFwater(I,J,K),CFsoil(I,J,K),IGEOsoil(I,J,K),EFsoil(I,J,K),PIsoil(I,J,K),CFsed(I,J,K),IGEOsed(I,J,K),EFsed(I,J,K),PIsed(I,J,K)
-!	  ENDIF
-! 
+	  ELSEIF((IALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(68,'("{")')
+      write(68,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(68,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(68,'(A1,"CFwater",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CFwater(I,J,K),aspas
+      write(68,'(A1,"CFsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CFsoil(I,J,K),aspas
+	  write(68,'(A1,"Igeo_soil",A1,":",1x,A1,E11.5,A1,",") )') aspas,aspas,aspas,IGEOsoil(I,J,K),aspas
+      write(68,'(A1,"EFsoil-",A2,A1,":",1x,A1,E10.5,A1,",") )') aspas,EFREFsoil,aspas,aspas,EFsoil(I,J,K),aspas
+      write(68,'(A1,"PIsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PIsoil(I,J,K),aspas
+      write(68,'(A1,"Igeo_sed",A1,":",1x,A1,E11.5,A1,",") )') aspas,aspas,aspas,IGEOsed(I,J,K),aspas
+      write(68,'(A1,"EFsed-",A2,A1,":",1x,A1,E10.5,A1,",") )') aspas,EFREFsediment,aspas,aspas,EFsed(I,J,K),aspas
+      write(68,'(A1,"PI_sed",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,PIsed(I,J,K),aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(68,'("}")')
+	  ELSE
+	  WRITE(68,'("},")')
+	  ENDIF
+!
+	  ENDIF
+!
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(IALL(k).EQ.1))THEN
-      WRITE(68,*)
-	  ENDIF
-!
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(68,'("_____________________________________________________________________________________________________________________________________________________")')	 
-      WRITE(68,'(" Reference values: ",4x,E11.5,7X,E11.5,3X,E11.5,30X,E11.5,3X,E11.5)')   WATREF(ijj),SOILREF(ijj),CROSTA(ijj),SEDREF(ijj),SEDREF(ijj)
-	  WRITE(68,*)
-      WRITE(68,*)
-      WRITE(68,*)
+      IF(i.EQ.NCHEM)THEN
+	  WRITE(68,'("]")')
+	  ELSE
+	  WRITE(68,'("],")')
+	  ENDIF
 !
-!
-      ENDDO    ! FIM DO CICLO POR METAL (i)
+	  ENDDO	  ! FIM DO CICLO "i"
+!	       
+	  WRITE(68,'("}")')  
 !
       CLOSE(68)
 !
@@ -14772,24 +13979,23 @@
 !-----------------------------------------------------------
 !
 !
-	  open (UNIT=70, file='Ecological_RISK_Combined.out')	
+	  open (UNIT=70, file='Results\ Ecological_RISK_Combined.json')	
 !
-	  WRITE(70,'("********************************************************************************************************************************************")')
-	  WRITE(70,'("                                                 OUTPUT RESULTS - TOTAL ECOLOGICAL RISK")')
-	  WRITE(70,'("********************************************************************************************************************************************")')
-	  WRITE(70,*)
-	  WRITE(70,'("                                              THE CODE RUN WITH THE SCENARY = ", I3,3X, A12)')	scenar,SCENARIES(SCENAR)
-	  WRITE(70,*)
-	  WRITE(70,'("                                              WATER REFERENCE VALUE USED    ---> ", A9)') AGUA_REF(KEY_WATER)
-	  WRITE(70,*)
-	  WRITE(70,'("                                              SOIL REFERENCE VALUE USED     ---> ", A17)') SOLO_REF(KEY_SOIL)
-	  WRITE(70,*)
-	  WRITE(70,'("                                              SEDIMENT REFERENCE VALUE USED ---> ", A9)') SED_REF(KEY_SEDIMENT)
 !
-!                         
-	  WRITE(70,*)
-	  WRITE(70,*)
+	  WRITE(70,'("{")')
 !
+	  WRITE(70,'(A1,"ref_values",A1,": [")')aspas,aspas
+!
+      WRITE(70,'("{")')
+!
+      write(70,'(A1,"Scenary",A1,":",1x,A1,A12,A1,",") )') aspas,aspas,aspas,SCENARIES(SCENAR),aspas
+      write(70,'(A1,"Water reference value",A1,":",1x,A1,A8,A1,",") )') aspas,aspas,aspas,AGUA_REF(KEY_WATER),aspas
+      write(70,'(A1,"Soil reference value",A1,":",1x,A1,A9,A1,",") )') aspas,aspas,aspas,SOLO_REF(KEY_SOIL),aspas
+      write(70,'(A1,"Sediment reference value",A1,":",1x,A1,A9,A1) )') aspas,aspas,aspas,SED_REF(KEY_SEDIMENT),aspas
+!
+	  WRITE(70,'("}")')
+!
+	  WRITE(70,'("],")')
 !
 !-----------------------------------------------------------
 !	  COMPARTIMENTO AGUA
@@ -14797,10 +14003,8 @@
 !
       IF(NCOMPARTIMENTO1.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'("______________________________________________________________________      ")')
-	  WRITE(70,'("                   |          WATER COMPARTMENT                       |     ")')            
-	  WRITE(70,'("   LOCAL    TIME   |       MPI             Rw-comb            IPIt    |     ")')
-	  WRITE(70,'("___________________|__________________________________________________|     ")')
+	  WRITE(70,'(A1,"Water_compartment",A1,": [")')aspas,aspas
+!
 !
       IF(NTIME.EQ.1)THEN
       NINICIO1=1
@@ -14826,28 +14030,44 @@
 !	  IF(j.EQ.1)THEN
 !
       IF(JALL1(k).EQ.1)THEN
-      write(70,'(3x,I3,5x,I3,8X,E11.5,7X,E11.5,7X,E11.5)') k,j,MPIwat(J,K),RWcomb(J,K),IPIT_water(J,K)
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(70,'(A1,"MPI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,MPIwat(J,K),aspas
+      write(70,'(A1,"Rw-comb",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RWcomb(J,K),aspas
+	  write(70,'(A1,"IPIth",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,IPIT_water(J,K),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
+	  ENDIF
+!
       ELSEIF((JALL1(k).NE.1).AND.(j.EQ.1))THEN
-      write(70,'(3x,I3,"      All",7X,E11.5,7X,E11.5,7X,E11.5)') k,MPIwat(J,K),RWcomb(J,K),IPIT_water(J,K)
+!
+      WRITE(70,'("{")')
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,I3,",") )') aspas,aspas,aspas,aspas
+      write(70,'(A1,"MPI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,MPIwat(J,K),aspas
+      write(70,'(A1,"Rw-comb",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RWcomb(J,K),aspas
+	  write(70,'(A1,"IPIth",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,IPIT_water(J,K),aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
 	  ENDIF
 !
-!	  ELSEIF(((MPIwat(J,K).NE.MPIwat(J-1,K)).OR.(RWcomb(J,K).NE.RWcomb(J-1,K)).OR.(IPIT_water(J,K).NE.IPIT_water(J-1,K))).AND.(j.NE.1).AND.(JALL1(k).EQ.1))THEN
-!      write(70,'(11x,I3,8X,E11.5,7X,E11.5,7X,E11.5)') j,MPIwat(J,K),RWcomb(J,K),IPIT_water(J,K)
-!	  ENDIF
+	  ENDIF
 ! 
-!
       ENDDO		! fim DO j=1,NTIME
-!
-      IF((K.NE.NLOCAL).AND.(JALL1(k).EQ.1))THEN
-      WRITE(70,*)
-	  ENDIF
 !
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(70,'("______________________________________________________________________     ")')
-	  WRITE(70,*)
-      WRITE(70,*)
-      WRITE(70,*)
+      IF((Mun_comp.EQ.1).and.(NDIVISAO.EQ.0))THEN
+	  WRITE(70,'("]")')
+	  ELSE
+	  WRITE(70,'("],")')
+	  ENDIF
 !
       ENDIF						  		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
@@ -14857,10 +14077,8 @@
 !
       IF(NCOMPARTIMENTO2.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'("____________________________________________________________________________________      ")')
-	  WRITE(70,'("                   |                         SOIL COMPARTMENT                       |     ")')            
-	  WRITE(70,'("   LOCAL    TIME   |     PLI          mCd         PERI         IPIt      PI-Nemerov |     ")')
-	  WRITE(70,'("___________________|________________________________________________________________|     ")')
+	  WRITE(70,'(A1,"Soil_compartment",A1,": [")')aspas,aspas
+!
 !
       IF(NTIME.EQ.1)THEN
       NINICIO2=1
@@ -14886,28 +14104,48 @@
 !	  IF(j.EQ.1)THEN
 !
       IF(JALL2(k).EQ.1)THEN
-      write(70,'(3x,I3,5x,I3,6X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') k,j,PLIsoil(J,K),mCd_soil(J,K),PERIsoil(J,K),IPIT_soil(J,K),PINEWsoil(J,K)
-      ELSEIF((JALL2(k).NE.1).AND.(j.EQ.1))THEN
-      write(70,'(3x,I3,"      All",5X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') k,PLIsoil(J,K),mCd_soil(J,K),PERIsoil(J,K),IPIT_soil(J,K),PINEWsoil(J,K)
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(70,'(A1,"PLI_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PLIsoil(J,K),aspas
+      write(70,'(A1,"mCd_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mCd_soil(J,K),aspas
+      write(70,'(A1,"PERIsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PERIsoil(J,K),aspas
+      write(70,'(A1,"IPIT_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,IPIT_soil(J,K),aspas
+	  write(70,'(A1,"PINEW_soil",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,PINEWsoil(J,K),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
 	  ENDIF
 !
-!	  ELSEIF((PLIsoil(J,K).NE.PLIsoil(J-1,K)).AND.(j.NE.1).AND.(JALL2(k).EQ.1))THEN
-!      write(70,'(11x,I3,6X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') j,PLIsoil(J,K),mCd_soil(J,K),PERIsoil(J,K),IPIT_soil(J,K),PINEWsoil(J,K)
-!	  ENDIF
-! 
+	  ELSEIF((JALL2(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(70,'(A1,"PLI_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PLIsoil(J,K),aspas
+      write(70,'(A1,"mCd_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mCd_soil(J,K),aspas
+      write(70,'(A1,"PERIsoil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PERIsoil(J,K),aspas
+      write(70,'(A1,"IPIT_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,IPIT_soil(J,K),aspas
+	  write(70,'(A1,"PINEW_soil",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,PINEWsoil(J,K),aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
+	  ENDIF
+!
+	  ENDIF
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(JALL2(k).EQ.1))THEN
-      WRITE(70,*)
-	  ENDIF
-!
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(70,'("____________________________________________________________________________________     ")')
-	  WRITE(70,*)
-      WRITE(70,*)
-      WRITE(70,*)
+      IF((Mun_comp.EQ.2).and.(NDIVISAO.EQ.0))THEN
+	  WRITE(70,'("]")')
+	  ELSE
+	  WRITE(70,'("],")')
+	  ENDIF
 !
       ENDIF						  		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
@@ -14917,10 +14155,7 @@
 !
       IF(NCOMPARTIMENTO3.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'("___________________________________________________________________________________________________________________________      ")')
-	  WRITE(70,'("                   |                                          SEDIMENT COMPARTMENT                                         |     ")')            
-	  WRITE(70,'("   LOCAL    TIME   |     PLI          mCd         PERI         IPIt        PI-New       m-PEL-q      m-ERM-q       TRI     |     ")')
-	  WRITE(70,'("___________________|_______________________________________________________________________________________________________|     ")')
+	  WRITE(70,'(A1,"Sediment_compartment",A1,": [")')aspas,aspas
 !
       IF(NTIME.EQ.1)THEN
       NINICIO3=1
@@ -14946,28 +14181,55 @@
 !	  IF(j.EQ.1)THEN
 !
       IF(JALL3(k).EQ.1)THEN
-      write(70,'(3x,I3,5x,I3,6X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') k,j,PLIsed(J,K),mCd_sed(J,K),PERIsed(J,K),IPIT_sed(J,K),PINEWsed(J,K),mPELq(J,K),mERMq(J,K),TRI(J,K)
-      ELSEIF((JALL3(k).NE.1).AND.(j.EQ.1))THEN
-      write(70,'(3x,I3,"      All",5X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') k,PLIsed(J,K),mCd_sed(J,K),PERIsed(J,K),IPIT_sed(J,K),PINEWsed(J,K),mPELq(J,K),mERMq(J,K),TRI(J,K)
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(70,'(A1,"PLI_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PLIsed(J,K),aspas
+      write(70,'(A1,"mCd_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mCd_sed(J,K),aspas
+      write(70,'(A1,"PERIsed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PERIsed(J,K),aspas
+      write(70,'(A1,"IPIT_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,IPIT_sed(J,K),aspas
+	  write(70,'(A1,"PINEW_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PINEWsed(J,K),aspas
+	  write(70,'(A1,"m-PEL-q",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mPELq(J,K),aspas
+      write(70,'(A1,"m-ERM-q",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mERMq(J,K),aspas
+      write(70,'(A1,"TRI",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,TRI(J,K),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
 	  ENDIF
 !
-!	  ELSEIF((PLIsed(J,K).NE.PLIsed(J-1,K)).AND.(j.NE.1).AND.(JALL3(k).EQ.1))THEN
-!      write(70,'(11x,I3,6X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5,2X,E11.5)') j,PLIsed(J,K),mCd_sed(J,K),PERIsed(J,K),IPIT_sed(J,K),PINEWsed(J,K),mPELq(J,K),mERMq(J,K),TRI(J,K)
-!	  ENDIF
+      ELSEIF((JALL3(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(70,'(A1,"PLI_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PLIsed(J,K),aspas
+      write(70,'(A1,"mCd_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mCd_sed(J,K),aspas
+      write(70,'(A1,"PERIsed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PERIsed(J,K),aspas
+      write(70,'(A1,"IPIT_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,IPIT_sed(J,K),aspas
+	  write(70,'(A1,"PINEW_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,PINEWsed(J,K),aspas
+	  write(70,'(A1,"m-PEL-q",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mPELq(J,K),aspas
+      write(70,'(A1,"m-ERM-q",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,mERMq(J,K),aspas
+      write(70,'(A1,"TRI",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,TRI(J,K),aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
+	  ENDIF
+!
+	  ENDIF
 ! 
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(JALL3(k).EQ.1))THEN
-      WRITE(70,*)
-	  ENDIF
-!
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(70,'("___________________________________________________________________________________________________________________________     ")')
-	  WRITE(70,*)
-      WRITE(70,*)
-      WRITE(70,*)
+      IF(NDIVISAO.GT.0)THEN
+	  WRITE(70,'("],")')
+	  ELSE
+	  WRITE(70,'("]")')
+	  ENDIF
 !
       ENDIF						  		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
@@ -14978,10 +14240,8 @@
 !
       IF(NDIVISAO.GT.0)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'("_____________________________________________________________________________________________________      ")')
-	  WRITE(70,'("                   |                              CHEMICAL EVIDENCE LINE                             |     ")')            
-	  WRITE(70,'("   LOCAL    TIME   |     Kd_MPI      Risk_chem_wat    Risk_chem_soil    Risk_chem_sed        IR      |     ")')
-	  WRITE(70,'("___________________|_________________________________________________________________________________|     ")')
+	  WRITE(70,'(A1,"Chemical_evidence_line",A1,": [")')aspas,aspas
+!
 !
       IF(NTIME.EQ.1)THEN
       NINICIO4=1
@@ -15003,39 +14263,53 @@
       DO k=1,NLOCAL
 	  DO j=1,NTIME
 !
-!
-!	  IF(j.EQ.1)THEN
-!
       IF(JALL4(k).EQ.1)THEN
-      write(70,'(3x,I3,5x,I3,8X,E11.5,4X,E11.5,7X,E11.5,6X,E11.5,5X,E11.5)') k,j,Kd_MPI(J,K),RISKwat(J,K),RISKsoil(J,K),RISKsed(J,K),IRjFIN(J,K)
-      ELSEIF((JALL4(k).NE.1).AND.(j.EQ.1))THEN
-      write(70,'(3x,I3,"      All",7X,E11.5,4X,E11.5,7X,E11.5,6X,E11.5,5X,E11.5)') k,Kd_MPI(J,K),RISKwat(J,K),RISKsoil(J,K),RISKsed(J,K),IRjFIN(J,K)
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(70,'(A1,"Kd_MPI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,Kd_MPI(J,K),aspas
+      write(70,'(A1,"Risk_chem_wat",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKwat(J,K),aspas
+      write(70,'(A1,"Risk_chem_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKsoil(J,K),aspas
+      write(70,'(A1,"Risk_chem_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKsed(J,K),aspas
+	  write(70,'(A1,"IR",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,IRjFIN(J,K),aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
 	  ENDIF
 !
-!	  ELSEIF(((Kd_MPI(J,K).NE.Kd_MPI(J-1,K)).OR.(RISKwat(J,K).NE.RISKwat(J-1,K)).OR.(RISKsoil(J,K).NE.RISKsoil(J-1,K)).OR.(RISKsed(J,K).NE.RISKsed(J-1,K)).OR.(IRjFIN(J,K).NE.IRjFIN(J-1,K))).AND.(j.NE.1).AND.(JALL4(k).EQ.1))THEN
-!      write(70,'(11x,I3,8X,E11.5,4X,E11.5,7X,E11.5,6X,E11.5,5X,E11.5)') j,Kd_MPI(J,K),RISKwat(J,K),RISKsoil(J,K),RISKsed(J,K),IRjFIN(J,K)
-!	  ENDIF
-! 
+	  ELSEIF((JALL4(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(70,'("{")')	 
+      write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(70,'(A1,"Kd_MPI",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,Kd_MPI(J,K),aspas
+      write(70,'(A1,"Risk_chem_wat",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKwat(J,K),aspas
+      write(70,'(A1,"Risk_chem_soil",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKsoil(J,K),aspas
+      write(70,'(A1,"Risk_chem_sed",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,RISKsed(J,K),aspas
+	  write(70,'(A1,"IR",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,IRjFIN(J,K),aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(70,'("}")')
+	  ELSE
+	  WRITE(70,'("},")')
+	  ENDIF
+!
+	  ENDIF
 !
       ENDDO		! fim DO j=1,NTIME
 !
-      IF((K.NE.NLOCAL).AND.(JALL4(k).EQ.1))THEN
-      WRITE(70,*)
-	  ENDIF
 !
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-	  WRITE(70,'("_____________________________________________________________________________________________________     ")')
-	  WRITE(70,*)
-      WRITE(70,*)
-      WRITE(70,*)
+	  WRITE(70,'("]")')
 !
       ENDIF						  		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
+	  WRITE(70,'("}")')
 !
 !
       CLOSE(70)
-
 !
 !
  	  RETURN
