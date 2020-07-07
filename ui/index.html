@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HHRISK</title>
+	<link rel="stylesheet" type="text/css" href="./css/app.css">
+	<script src="react.development.js"></script>
+	<script src="react-dom.development.js"></script>
+</head>
+
+<body>
+<main>
+	<button type="button" class="main-button" id="config_button" onclick="toggleConfig()"></button>
+	<button type="button" class="main-button" id="close_button" onclick="window.close()"></button>
+
+	<header class="pb-3 fixed-top">
+		<div class="container-fluid" id="config">
+			<div class="row pt-3">
+				<div class="col offset-1">
+					<p class="m-0 font-weight-bold user-select-none"><span data-lang="change_lang"></span>:</p>
+					<a href="#" onclick="setLang('en-US')">
+						<img src="images/enus.png" alt="English USA" title="English USA">
+					</a>
+					<a href="#" onclick="setLang('pt-BR')">
+						<img src="images/ptbr.png" alt="Português Brasil" title="Português Brasil">
+					</a>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+		<div class="container-fluid pt-3 pb-4">
+			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b></h1>
+			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
+		</div>
+	</header>
+
+	<section>
+		<div class="container-fluid">
+			<nav class="nav flex-column">
+				<a class="nav-link pt-0" href="../bin/input.xlsm">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+					</svg>
+				<span data-lang="input_data"></span></a>
+				<a class="nav-link pt-0" href="#" onclick="execute()">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-terminal-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm9.5 5.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm-6.354-.354L4.793 6.5 3.146 4.854a.5.5 0 1 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708z"/>
+					</svg>
+				<span data-lang="execute"></span></a>
+				<a class="nav-link pt-0" href="#">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+					</svg>
+				<span data-lang="how_to_use"></span></a>
+				<a class="nav-link pt-0" href="../bin/HHRISK_9_Guide.pdf" target="_blank">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M12 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+					</svg>
+				<span data-lang="guide"></span></a>
+			</nav>
+		</div>
+	</section>
+
+	<footer class="fixed-bottom">
+		<div class="container-fluid">
+			<p class="pt-3 user-select-none" onclick="location.reload()">
+				&copy; <a href="#" onclick="ipcRenderer.send('teste')" target="_blank">2020</a> - <span class="year"></span>. <span data-lang="all_rights"></span>. <span class="app_version"></span>
+			</p>
+		</div>
+	</footer>
+</main>
+<script>
+	const rend = require('./renderer.js')
+	const $ = arg => document.querySelector(arg)
+	const $$ = arg => document.querySelectorAll(arg)
+	const setLang = arg => {
+		localStorage.setItem('lang', arg)
+		location.reload()
+	}
+
+	if(localStorage.getItem('lang')) {
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+	else {
+		localStorage.setItem('lang', Intl.DateTimeFormat().resolvedOptions().locale)
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+
+	d = new Date()
+	$('.year').innerHTML = d.getFullYear()
+	$('.version').innerHTML = rend.pkg().version
+
+	// PEGA OS ELEMENTOS E INSERE AS DEVIDAS TRADUÇÕES
+	$$('span[data-lang]').forEach(spn => spn.innerHTML = lang[spn.dataset.lang])
+
+	// FAZ O BOX DE CONFIGURAÇÃO ALTERNAR
+	const toggleConfig = () => {
+		if($('header').style.height === '0px') {
+			$('header').classList.toggle('slide')
+		}
+		else {
+			$('header').classList.toggle('slide')
+		}
+	}
+
+	$('#logo').addEventListener('click', () => {
+		rend.ipcRenderer.send('resultados')
+	})
+
+	/*const tab = rend.tabela()
+
+	tabela = Object.keys(tab)
+
+	tabela.forEach(item => {
+		chaves = Object.keys(tab[item])
+		chaves.forEach(valor => {
+			console.log(`${item}: ${valor}`)
+			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
+		})
+	})*/
+
+	// FUNÇÃO PARA EXECUTAR O HHRISK
+	const execute = () => {
+		var child = require('child_process').execFile
+		var path = require('path')
+		var hhrisk_exe = path.resolve('../bin/HHRISK_Version_9.exe')
+
+		child(hhrisk_exe, (err, data) => {
+			if(err){
+				console.error(err)
+				return
+			}
+			console.log(data.toString())
+		})	
+	}
+</script>
+</body>
+</html>
