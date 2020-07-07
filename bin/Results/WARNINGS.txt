@@ -54,9 +54,9 @@
  
  
  
-      WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix
+       WARNING!!! There are no values of contaminant concentrations for SOIL matrix  
  
-              THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
+           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
  
  
  
@@ -65,5 +65,21 @@
       WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
  
            THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
+ 
+ 
+ 
+ 
+ 
+       WARNING!!! There are no values of contaminant concentrations for SOIL matrix  
+ 
+           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Cd                            
+ 
+ 
+ 
+ 
+ 
+      WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
+ 
+           THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Cd                            
  
  

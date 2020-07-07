@@ -19,13 +19,7 @@
         Chemical species 1
             Th
           Matrix
-           SOIL
-         200.000   400.000
-          22.000    66.000
-         250.000   300.000
-          33.000    44.000
-          Matrix
-        PARTICULATE
+        OTHER_WATERS
           2.000     5.500
           0.400     1.000
           3.000     3.300
@@ -34,32 +28,20 @@
         Chemical species 1
             Pb
           Matrix
-           SOIL
-         200.000   400.000
-          22.000    66.000
-         250.000   300.000
-          33.000    44.000
-          Matrix
-        PARTICULATE
+        OTHER_WATERS
           2.000     5.500
           0.400     1.000
           3.000     3.300
           0.300     0.550
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Chemical species 1
+            Cd
+          Matrix
+        OTHER_WATERS
+          2.000     5.500
+          0.400     1.000
+          3.000     3.300
+          0.300     0.550
 
 
 

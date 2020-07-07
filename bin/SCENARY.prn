@@ -5,11 +5,11 @@
         KEY Information        Disabled        Help
 
          Scenary            Nº of chemicalsNº of times Nº of sitesInformation
-        Agricultural               2            2           2       Disabled
-            1                      2            2           2          0
+        Agricultural               3            2           2       Disabled
+            1                      3            2           2          0
         Uncertainties calculation
 
-         .FALSE.
+          .TRUE.
         Human Health risk assessment
 
           .TRUE.
