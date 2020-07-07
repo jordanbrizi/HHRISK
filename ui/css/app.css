@@ -7872,6 +7872,9 @@ header {
     font-size: 0.8em;
     margin-top: -1em; }
 
+.page h1 {
+  font-size: 3em !important; }
+
 .slide {
   transform: translateY(0px) !important; }
 
@@ -7881,6 +7884,13 @@ section {
   background: #080808;
   border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px; }
+
+.over {
+  padding-top: 150px;
+  height: 550px;
+  overflow-x: overlay;
+  color: #fff;
+  font-size: 0.8em; }
 
 footer {
   text-align: center;
@@ -7902,22 +7912,18 @@ nav a {
 button:focus {
   outline: 0; }
 
-#config_button {
+.main-button {
   width: 20px;
   height: 20px;
-  background: url(../images/config.svg) no-repeat 50% 50%;
-  position: absolute;
+  position: fixed;
   top: 25px;
-  right: 60px;
   border: none;
   z-index: 1100; }
 
+#config_button {
+  background: url(../images/config.svg) no-repeat 50% 50%;
+  right: 60px; }
+
 #close_button {
-  width: 20px;
-  height: 20px;
   background: url(../images/close.svg) no-repeat 50% 50%;
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  border: none;
-  z-index: 1100; }
+  right: 25px; }

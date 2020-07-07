@@ -1,10 +1,14 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
-
-const pkg = () => require('./package.json')
-const tabela = () => require('./tabela.json')
+const { ipcRenderer } = require('electron')
+const pkg = () => require('./package')
+const tabela = () => require('./tabela')
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
-const lang = (attr = defaultLang) => require(`./lang/${attr}.json`)
 
-module.exports = {pkg, tabela, lang}
+const lang = (attr = defaultLang) => {
+	if(attr != null) {
+		return require(`./lang/${attr}`)
+	}
+	else {
+		return require(`./lang/${defaultLang}`)	
+	}
+}
+module.exports = {pkg, lang, tabela, ipcRenderer}

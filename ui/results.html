@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Results</title>
+	<link rel="stylesheet" type="text/css" href="./css/app.css">
+</head>
+
+<body>
+<main>
+	<button type="button" class="main-button" id="close_button" onclick="rend.ipcRenderer.send('resultados')"></button>
+
+	<header class="pb-3 fixed-top page">
+		<div class="container-fluid" id="config"></div>
+		<div class="container-fluid pt-3 pb-4">
+			<h1 class="m-0 user-select-none">hh<b>risk</b></h1>
+			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
+		</div>
+	</header>
+
+	<section class="over">
+		<div class="container-fluid">
+			<h2>Resultados</h2>
+			<table class="table text-white">
+				<thead>
+					<tr>
+						<th scope="col">LOCAL</th>
+						<th scope="col">TIME</th>
+						<th scope="col">Kd_MPI</th>
+						<th scope="col">Risk_chem_wat</th>
+						<th scope="col">Risk_chem_soil</th>
+						<th scope="col">Risk_chem_sed</th>
+						<th scope="col">IR</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td scope="col">2</td>
+						<td scope="col">1</td>
+						<td scope="col">.00000E+00</td>
+						<td scope="col">.00000E+00</td>
+						<td scope="col">.54030E-01</td>
+						<td scope="col"></td>
+						<td scope="col">.54030E-01</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<footer class="fixed-bottom">
+		<div class="container-fluid">
+			<p class="pt-3 user-select-none" onclick="location.reload()">
+				&copy; 2020 - <span class="year"></span>. <span data-lang="all_rights"></span>. <span class="app_version"></span>
+			</p>
+		</div>
+	</footer>
+</main>
+<script>
+	const rend = require('./renderer.js')
+	const $ = arg => document.querySelector(arg)
+	const $$ = arg => document.querySelectorAll(arg)
+
+	d = new Date()
+	$('.year').innerHTML = d.getFullYear()
+	$('.version').innerHTML = rend.pkg().version
+
+	const tab = rend.tabela()
+
+	tabela = Object.keys(tab)
+
+	tabela.forEach(item => {
+		chaves = Object.keys(tab[item])
+		chaves.forEach(valor => {
+			console.log(`${item}: ${valor}`)
+			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
+		})
+	})
+</script>
+</body>
+</html>

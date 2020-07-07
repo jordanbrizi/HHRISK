@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HHRISK</title>
 	<link rel="stylesheet" type="text/css" href="./css/app.css">
+	<script src="react.development.js"></script>
+	<script src="react-dom.development.js"></script>
 </head>
 
 <body>
 <main>
-	<button type="button" id="config_button" onclick="toggleConfig()"></button>
-	<button type="button" id="close_button" onclick="window.close()"></button>
+	<button type="button" class="main-button" id="config_button" onclick="toggleConfig()"></button>
+	<button type="button" class="main-button" id="close_button" onclick="window.close()"></button>
+
 	<header class="pb-3 fixed-top">
 		<div class="container-fluid" id="config">
 			<div class="row pt-3">
@@ -26,7 +30,7 @@
 			</div>
 		</div>
 		<div class="container-fluid pt-3 pb-4">
-			<h1 class="m-0 user-select-none">hh<b>risk</b></h1>
+			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b></h1>
 			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
 		</div>
 	</header>
@@ -61,7 +65,7 @@
 	<footer class="fixed-bottom">
 		<div class="container-fluid">
 			<p class="pt-3 user-select-none" onclick="location.reload()">
-				&copy; 2020 - <span class="year"></span>. <span data-lang="all_rights"></span>. <span class="app_version"></span>
+				&copy; <a href="#" onclick="ipcRenderer.send('teste')" target="_blank">2020</a> - <span class="year"></span>. <span data-lang="all_rights"></span>. <span class="app_version"></span>
 			</p>
 		</div>
 	</footer>
@@ -75,7 +79,13 @@
 		location.reload()
 	}
 
-	lang = rend.lang(localStorage.getItem('lang'))
+	if(localStorage.getItem('lang')) {
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+	else {
+		localStorage.setItem('lang', Intl.DateTimeFormat().resolvedOptions().locale)
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
 
 	d = new Date()
 	$('.year').innerHTML = d.getFullYear()
@@ -94,11 +104,21 @@
 		}
 	}
 
-	const testando = JSON.parse(rend.teste())
+	$('#logo').addEventListener('click', () => {
+		rend.ipcRenderer.send('resultados')
+	})
 
-	console.log(
-		testando
-	)
+	/*const tab = rend.tabela()
+
+	tabela = Object.keys(tab)
+
+	tabela.forEach(item => {
+		chaves = Object.keys(tab[item])
+		chaves.forEach(valor => {
+			console.log(`${item}: ${valor}`)
+			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
+		})
+	})*/
 
 	// FUNÇÃO PARA EXECUTAR O HHRISK
 	const execute = () => {
