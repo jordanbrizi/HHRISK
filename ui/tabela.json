@@ -1,0 +1,93 @@
+{
+	"Ecological_RISK_Combined": {
+		"cu": [
+			{
+				"LOCAL": 1,
+				"TIME":    1,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 1,
+				"TIME": 2,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 2,
+				"TIME": 1,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": null,
+				"IR": ".54030E-01"
+			}
+		],
+		"th": [
+			{
+				"LOCAL": 1,
+				"TIME":    1,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 1,
+				"TIME": 2,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			}
+		]
+	},
+	"Ecological_RISK_2": {
+		"th": [
+			{
+				"LOCAL": 1,
+				"TIME":    1,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 1,
+				"TIME": 2,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 2,
+				"TIME": 1,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".54030E-01",
+				"Risk_chem_sed": ".00000E+00",
+				"IR": ".54030E-01"
+			},
+			{
+				"LOCAL": 2,
+				"TIME": 2,
+				"Kd_MPI": ".00000E+00",
+				"Risk_chem_wat": ".00000E+00",
+				"Risk_chem_soil": ".75876E-01",
+				"Risk_chem_sed": ".00000E+00 ",
+				"IR": ".75876E-01"
+			}
+		]
+	}
+}

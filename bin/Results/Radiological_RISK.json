@@ -1,0 +1,132 @@
+{
+"Act_esp": [
+{
+"Local":   1,
+"Time": All,
+"Time": All,
+"K-40 Act.": ".00000E+00",
+"K-40 Act. Error": ".00000E+00",
+"Th-232 Act.": ".00000E+00",
+"Th-232 Act. Error": ".00000E+00",
+"U-238 Act.": ".00000E+00",
+"U-238 Act. Error": ".00000E+00"
+},
+{
+"Local":   2,
+"Time": All,
+"Time": All,
+"K-40 Act.": ".00000E+00",
+"K-40 Act. Error": ".00000E+00",
+"Th-232 Act.": ".00000E+00",
+"Th-232 Act. Error": ".00000E+00",
+"U-238 Act.": ".00000E+00",
+"U-238 Act. Error": ".00000E+00"
+},
+],
+"MIX": [
+{
+"Local":   1,
+"Time": All,
+"Time": All,
+"Ra_Eq_act": ".00000E+00",
+"Ra_Eq_act Error": ".00000E+00",
+"Gama_Ab_Dose": ".00000E+00",
+"Gama_Ab_Dose Error": ".00000E+00",
+"Out_eff_dose": ".00000E+00",
+"Out_eff_dose Error": ".00000E+00",
+"In_eff_dose": ".00000E+00",
+"In_eff_dose Error": ".00000E+00"
+},
+{
+"Local":   2,
+"Time": All,
+"Time": All,
+"Ra_Eq_act": ".00000E+00",
+"Ra_Eq_act Error": ".00000E+00",
+"Gama_Ab_Dose": ".00000E+00",
+"Gama_Ab_Dose Error": ".00000E+00",
+"Out_eff_dose": ".00000E+00",
+"Out_eff_dose Error": ".00000E+00",
+"In_eff_dose": ".00000E+00",
+"In_eff_dose Error": ".00000E+00"
+},
+],
+"ELCR": [
+{
+"Local":   1,
+"Time":   1,
+"In_Individual": ".00000E+00",
+"In_Individual Error": ".00000E+00",
+"In_Acc": ".00000E+00",
+"In_Acc Error": ".00000E+00",
+"Out_Individual": ".00000E+00",
+"Out_Individual Error": ".00000E+00",
+"Out_Acc": ".00000E+00",
+"Out_Acc Error": ".00000E+00",
+"tot_acc": ".00000E+00",
+"tot_acc Error": ".00000E+00"
+},
+{
+"Local":   1,
+"Time":   2,
+"In_Individual": ".00000E+00",
+"In_Individual Error": ".00000E+00",
+"In_Acc": ".00000E+00",
+"In_Acc Error": ".00000E+00",
+"Out_Individual": ".00000E+00",
+"Out_Individual Error": ".00000E+00",
+"Out_Acc": ".00000E+00",
+"Out_Acc Error": ".00000E+00",
+"tot_acc": ".00000E+00",
+"tot_acc Error": ".00000E+00"
+},
+{
+"Local":   2,
+"Time":   1,
+"In_Individual": ".00000E+00",
+"In_Individual Error": ".00000E+00",
+"In_Acc": ".00000E+00",
+"In_Acc Error": ".00000E+00",
+"Out_Individual": ".00000E+00",
+"Out_Individual Error": ".00000E+00",
+"Out_Acc": ".00000E+00",
+"Out_Acc Error": ".00000E+00",
+"tot_acc": ".00000E+00",
+"tot_acc Error": ".00000E+00"
+},
+{
+"Local":   2,
+"Time":   2,
+"In_Individual": ".00000E+00",
+"In_Individual Error": ".00000E+00",
+"In_Acc": ".00000E+00",
+"In_Acc Error": ".00000E+00",
+"Out_Individual": ".00000E+00",
+"Out_Individual Error": ".00000E+00",
+"Out_Acc": ".00000E+00",
+"Out_Acc Error": ".00000E+00",
+"tot_acc": ".00000E+00",
+"tot_acc Error": ".00000E+00"
+}
+],
+"HI": [
+{
+"Local":   1,
+"Time": All,
+"Time": All,
+"HIex": ".00000E+00",
+"HIex Error": ".00000E+00",
+"HIin": ".00000E+00",
+"HIin Error": ".00000E+00"
+},
+{
+"Local":   2,
+"Time": All,
+"Time": All,
+"HIex": ".00000E+00",
+"HIex Error": ".00000E+00",
+"HIin": ".00000E+00",
+"HIin Error": ".00000E+00"
+},
+]
+}
