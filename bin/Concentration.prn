@@ -17,9 +17,9 @@
 
 
         Chemical species 1
-            Th
+            Zn
           Matrix
-        OTHER_WATERS
+        SOIL
           2.000     5.500
           0.400     1.000
           3.000     3.300
@@ -28,14 +28,14 @@
         Chemical species 1
             Pb
           Matrix
-        OTHER_WATERS
+        SOIL
           2.000     5.500
           0.400     1.000
           3.000     3.300
           0.300     0.550
 
         Chemical species 1
-            Cd
+            Ni
           Matrix
         OTHER_WATERS
           2.000     5.500
