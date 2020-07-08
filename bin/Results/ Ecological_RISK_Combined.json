@@ -11,68 +11,88 @@
 {
 "Local":   1,
 "Time":   1,
-"MPI": ".63246E+03",
-"Rw-comb": ".10000E+01",
-"IPIth": ".11000E+04"
+"MPI":  8.00000E+01,
+"Rw-comb":  9.87654E-01,
+"IPIth":  8.00000E+01
 },
 {
 "Local":   1,
 "Time":   2,
-"MPI": ".94868E+03",
-"Rw-comb": ".10000E+01",
-"IPIth": ".16500E+04"
+"MPI":  1.20000E+02,
+"Rw-comb":  9.91736E-01,
+"IPIth":  1.20000E+02
 },
 {
 "Local":   2,
 "Time":   1,
-"MPI": ".17393E+04",
-"Rw-comb": ".10000E+01",
-"IPIth": ".30250E+04"
+"MPI":  2.20000E+02,
+"Rw-comb":  9.95475E-01,
+"IPIth":  2.20000E+02
 },
 {
 "Local":   2,
 "Time":   2,
-"MPI": ".10436E+04",
-"Rw-comb": ".10000E+01",
-"IPIth": ".18150E+04"
+"MPI":  1.32000E+02,
+"Rw-comb":  9.92481E-01,
+"IPIth":  1.32000E+02
+}
+],
+"Soil_compartment": [
+{
+"Local":   1,
+"Time": "All",
+"PLI_soil":  0.00000E+00,
+"mCd_soil":  0.00000E+00,
+"PERIsoil":  0.00000E+00,
+"IPIT_soil":  7.77778E-03,
+"PINEW_soil":  9.81828E-02
+},
+{
+"Local":   2,
+"Time": "All",
+"PLI_soil":  0.00000E+00,
+"mCd_soil":  0.00000E+00,
+"PERIsoil":  0.00000E+00,
+"IPIT_soil":  2.13889E-02,
+"PINEW_soil":  2.70003E-01
 }
 ],
 "Chemical_evidence_line": [
 {
 "Local":   1,
 "Time":   1,
-"Kd_MPI": ".00000E+00",
-"Risk_chem_wat": ".36632E-01",
-"Risk_chem_soil": ".00000E+00",
-"Risk_chem_sed": ".00000E+00",
-"IR": ".36632E-01"
+"Kd_MPI":  0.00000E+00,
+"Risk_chem_wat":  3.09801E-03,
+"Risk_chem_soil":  1.42264E-03,
+"Risk_chem_sed":  0.00000E+00,
+"IR":  2.26068E-03
 },
 {
 "Local":   1,
 "Time":   2,
-"Kd_MPI": ".00000E+00",
-"Risk_chem_wat": ".50134E-01",
-"Risk_chem_soil": ".00000E+00",
-"Risk_chem_sed": ".00000E+00",
-"IR": ".50134E-01"
+"Kd_MPI":  0.00000E+00,
+"Risk_chem_wat":  4.65429E-03,
+"Risk_chem_soil":  2.10404E-03,
+"Risk_chem_sed":  0.00000E+00,
+"IR":  3.37998E-03
 },
 {
 "Local":   2,
 "Time":   1,
-"Kd_MPI": ".00000E+00",
-"Risk_chem_wat": ".79337E-01",
-"Risk_chem_soil": ".00000E+00",
-"Risk_chem_sed": ".00000E+00",
-"IR": ".79337E-01"
+"Kd_MPI":  0.00000E+00,
+"Risk_chem_wat":  8.51828E-03,
+"Risk_chem_soil":  3.78573E-03,
+"Risk_chem_sed":  0.00000E+00,
+"IR":  6.15482E-03
 },
 {
 "Local":   2,
 "Time":   2,
-"Kd_MPI": ".00000E+00",
-"Risk_chem_wat": ".53934E-01",
-"Risk_chem_soil": ".00000E+00",
-"Risk_chem_sed": ".00000E+00",
-"IR": ".53934E-01"
+"Kd_MPI":  0.00000E+00,
+"Risk_chem_wat":  5.11992E-03,
+"Risk_chem_soil":  2.30724E-03,
+"Risk_chem_sed":  0.00000E+00,
+"IR":  3.71457E-03
 }
 ]
 }

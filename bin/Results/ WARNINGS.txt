@@ -16,12 +16,8 @@
  WARNING!!!!!!!!!! SA VALUE IS EQUAL TO 0.0   ---> WAY 14  
  
  
- 
- 
- WARNING!!! CHEMICAL NOT EXIST IN Datachemical RISK DATABASE  --->  Th                            
- 
-       The HQ and CR values will all be zero for this Chemical species  
- 
+ Chemical species = Zn                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
  
  
  
@@ -46,17 +42,25 @@
  
  
  
-           WARNING!!! CHEMICAL NOT EXIST IN Dataecological DATABASE  --->  Th                            
+      WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix
  
-           The index values will all be zero for this Chemical species  
- 
- 
+              THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  Zn                            
  
  
  
-       WARNING!!! There are no values of contaminant concentrations for SOIL matrix  
  
-           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
+ 
+      WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
+ 
+           THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Zn                            
+ 
+ 
+ 
+ 
+ 
+      WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix
+ 
+              THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
  
  
  
@@ -72,7 +76,7 @@
  
        WARNING!!! There are no values of contaminant concentrations for SOIL matrix  
  
-           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Cd                            
+           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Ni                            
  
  
  
@@ -80,6 +84,6 @@
  
       WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
  
-           THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Cd                            
+           THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Ni                            
  
  
