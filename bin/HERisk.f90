@@ -451,7 +451,7 @@
 !
 !
 ! 
-	  open (UNIT=44, file='Results\ Summary_Aggregate_RISK.json')
+	  open (UNIT=44, file='Results\Summary_Aggregate_RISK.json')
 !
 !
       WRITE(44,'("{")')
@@ -706,7 +706,7 @@
 !*******************************************************************************************************************************************
 !
 !
-	  open (UNIT=37, file='Results\ Extensive_Aggregate_RISK.json')
+	  open (UNIT=37, file='Results\Extensive_Aggregate_RISK.json')
 
 
 !
@@ -877,7 +877,7 @@
 !
 !
 !
-	  open (UNIT=38, file='Results\ Extensive_Cumulative_RISK.json')
+	  open (UNIT=38, file='Results\Extensive_Cumulative_RISK.json')
 
 
 !
@@ -1033,7 +1033,7 @@
 !		*******************************************************************************************
 !
 !
-	  open (UNIT=66, file='Results\ Summary_Cumulative_RISK.json')																				 																				 
+	  open (UNIT=66, file='Results\Summary_Cumulative_RISK.json')																				 																				 
 !
 !
       WRITE(66,'("{")')
@@ -1239,7 +1239,7 @@
 !
 !------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 !
-	  open (UNIT=55, file='Results\ Complementary_Analyzes.json')
+	  open (UNIT=55, file='Results\Complementary_Analyzes.json')
 !
 !
 !
@@ -8357,7 +8357,7 @@
 !
 !
 !	  ABRE-SE O ARQUIVO DE SAIDA E 'Exposure.out'
-	  OPEN(UNIT=33,FILE='Results\ Exposure.json')
+	  OPEN(UNIT=33,FILE='Results\Exposure.json')
 !
       nnc=NLOCAL
 !
@@ -11750,7 +11750,7 @@
 !
       aspas = '"'
 !
-	  open (UNIT=63, file='Results\ Radiological_RISK.json')	
+	  open (UNIT=63, file='Results\Radiological_RISK.json')	
 !
 	  WRITE(63,'("{")')
 !  
@@ -13721,7 +13721,7 @@
 !	  IMPRESSÃO DOS DADOS DE SAÍDA
 !-----------------------------------------------------------
 !
-	  open (UNIT=68, file='Results\ Ecological_RISK_Individual.json')	
+	  open (UNIT=68, file='Results\Ecological_RISK_Individual.json')	
 !
 	  WRITE(68,'("{")')
 !
@@ -13840,7 +13840,7 @@
 !-----------------------------------------------------------
 !
 !
-	  open (UNIT=70, file='Results\ Ecological_RISK_Combined.json')	
+	  open (UNIT=70, file='Results\Ecological_RISK_Combined.json')	
 !
 !
 	  WRITE(70,'("{")')
