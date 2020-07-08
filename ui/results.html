@@ -8,43 +8,19 @@
 
 <body>
 <main>
-	<button type="button" class="main-button" id="close_button" onclick="rend.ipcRenderer.send('resultados')"></button>
+	<button type="button" class="main-button" id="close_button"></button>
 
 	<header class="pb-3 fixed-top page">
 		<div class="container-fluid" id="config"></div>
-		<div class="container-fluid pt-3 pb-4">
+		<div class="container-fluid pt-3">
 			<h1 class="m-0 user-select-none">hh<b>risk</b></h1>
-			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
+			<p class="font-italic user-select-none p-0 m-0"><span data-lang="version"></span> <span class="version"></span></p>
 		</div>
 	</header>
 
 	<section class="over">
-		<div class="container-fluid">
-			<h2>Resultados</h2>
-			<table class="table text-white">
-				<thead>
-					<tr>
-						<th scope="col">LOCAL</th>
-						<th scope="col">TIME</th>
-						<th scope="col">Kd_MPI</th>
-						<th scope="col">Risk_chem_wat</th>
-						<th scope="col">Risk_chem_soil</th>
-						<th scope="col">Risk_chem_sed</th>
-						<th scope="col">IR</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td scope="col">2</td>
-						<td scope="col">1</td>
-						<td scope="col">.00000E+00</td>
-						<td scope="col">.00000E+00</td>
-						<td scope="col">.54030E-01</td>
-						<td scope="col"></td>
-						<td scope="col">.54030E-01</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="container-fluid" id="resultados">
+			<h4 class="mb-3 text-center" id="teste">Resultados:</h4>
 		</div>
 	</section>
 
@@ -65,15 +41,31 @@
 	$('.year').innerHTML = d.getFullYear()
 	$('.version').innerHTML = rend.pkg().version
 
-	const tab = rend.tabela()
+	$('#close_button').addEventListener('click', () => {
+		rend.ipcRenderer.send('resultados')
+	})
 
-	tabela = Object.keys(tab)
+	const tab = rend.Exposure()
+	const Exposure = Object.keys(tab)
 
-	tabela.forEach(item => {
-		chaves = Object.keys(tab[item])
-		chaves.forEach(valor => {
-			console.log(`${item}: ${valor}`)
-			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
+	Exposure.forEach(pai => {
+		var tabela = document.createElement('table')
+		var thead = document.createElement('thead')
+		var tbody = document.createElement('tbody')
+
+		tab[pai].forEach(filho => {
+			console.table(filho)
+			var tr = document.createElement('tr')
+			var td = document.createElement('td')
+			text = document.createTextNode(`${filho.ADD}`)
+			tabela.appendChild(
+				tbody.appendChild(
+					tr.appendChild(
+						td.appendChild(text)
+					)
+				)
+			)
+			$('#resultados').appendChild(tabela)
 		})
 	})
 </script>

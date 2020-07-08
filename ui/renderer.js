@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron')
+const path = require('path')
 const pkg = () => require('./package')
-const tabela = () => require('./tabela')
+const Exposure = () => require(path.resolve(`../bin/Results/Exposure`))
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
 
 const lang = (attr = defaultLang) => {
@@ -11,4 +12,4 @@ const lang = (attr = defaultLang) => {
 		return require(`./lang/${defaultLang}`)	
 	}
 }
-module.exports = {pkg, lang, tabela, ipcRenderer}
+module.exports = {pkg, lang, Exposure, ipcRenderer}

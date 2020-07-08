@@ -1,6 +1,5 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
-
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 360,
@@ -18,7 +17,10 @@ const createWindow = () => {
 		backgroundColor: '#000',
 		resizable: false,
 		titleBarStyle: 'hidden',
-		show: true,
+		show: false,
+		webPreferences: {
+			nodeIntegration: true
+		}
 	})
 
 	winResults.loadURL(`file://${__dirname}/results.html`)
@@ -30,6 +32,7 @@ const createWindow = () => {
 
 	Menu.setApplicationMenu(null)
 	win.openDevTools()
+	winResults.openDevTools()
 
 	ipcMain.on('resultados', () => {
 		if (winResults.isVisible() == true) {
