@@ -8412,11 +8412,11 @@
       write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
       write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
       write(33,'(A1,"ADD",A1,":",1x,A1,E12.7,A1,",") )') aspas,aspas,aspas,ADD(l,1,n,i,j,k),aspas
-      write(33,'(A1,"ADD Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,1,n,i,j,k),aspas
+      write(33,'(A1,"ADD_Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,1,n,i,j,k),aspas
 !
 !
       IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
@@ -8492,11 +8492,11 @@
       write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
       write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(33,'(A1,"ADD",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HQ(l,n,i,j,k),aspas
-      write(33,'(A1,"ADD Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HQ(l,n,i,j,k),aspas
+      write(33,'(A1,"HQ",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,HQ(l,n,i,j,k),aspas
+      write(33,'(A1,"HQ_Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_HQ(l,n,i,j,k),aspas
 !
 !
       IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
@@ -8572,11 +8572,11 @@
       write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
       write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
       write(33,'(A1,"ADD",A1,":",1x,A1,E12.7,A1,",") )') aspas,aspas,aspas,ADD(l,2,n,i,j,k),aspas
-      write(33,'(A1,"ADD Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,2,n,i,j,k),aspas
+      write(33,'(A1,"ADD_Error",A1,":",1x,A1,E12.7,A1) )') aspas,aspas,aspas,SD_ADD(l,2,n,i,j,k),aspas
 !
 !
       IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
@@ -8649,14 +8649,14 @@
 !
       WRITE(33,'("{")')
 !
-      write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
-      write(33,'(A1,"Chem. Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A5,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exposure_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(33,'(A1,"ADD",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CR(l,n,i,j,k),aspas
-      write(33,'(A1,"ADD Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CR(l,n,i,j,k),aspas
+      write(33,'(A1,"CR",A1,":",1x,A1,E10.5,A1,",") )') aspas,aspas,aspas,CR(l,n,i,j,k),aspas
+      write(33,'(A1,"CR_Error",A1,":",1x,A1,E10.5,A1) )') aspas,aspas,aspas,SD_CR(l,n,i,j,k),aspas
 !
 !
       IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
