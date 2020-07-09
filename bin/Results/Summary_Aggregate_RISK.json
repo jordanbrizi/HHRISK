@@ -1,0 +1,1180 @@
+{
+"non_carcinogenic_risk": {
+"Zn        ": [
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   1,
+"HI":  1.45015E+00,
+"Error":  3.19286E-01
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   2,
+"HI":  1.84926E+00,
+"Error":  4.11454E-01
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   3,
+"HI":  1.67190E+00,
+"Error":  3.83230E-01
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   6,
+"HI":  1.07792E+00,
+"Error":  2.56748E-01
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":  11,
+"HI":  6.91039E-01,
+"Error":  1.80964E-01
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":  16,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   1,
+"HI":  3.00889E+00,
+"Error":  6.88776E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   2,
+"HI":  2.19739E+00,
+"Error":  4.96038E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   3,
+"HI":  1.98456E+00,
+"Error":  4.60984E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   6,
+"HI":  1.27830E+00,
+"Error":  3.08359E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":  11,
+"HI":  8.18024E-01,
+"Error":  2.16954E-01
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":  16,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   2,
+"HI":  1.45045E+00,
+"Error":  3.19337E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   3,
+"HI":  1.67190E+00,
+"Error":  3.83230E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   6,
+"HI":  1.07792E+00,
+"Error":  2.56748E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  11,
+"HI":  6.91039E-01,
+"Error":  1.80964E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  16,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   2,
+"HI":  3.00949E+00,
+"Error":  6.88886E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   3,
+"HI":  1.98456E+00,
+"Error":  4.60984E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   6,
+"HI":  1.27830E+00,
+"Error":  3.08359E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  11,
+"HI":  8.18024E-01,
+"Error":  2.16954E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  16,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   3,
+"HI":  1.30856E+00,
+"Error":  2.97229E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   4,
+"HI":  1.67190E+00,
+"Error":  3.83230E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   6,
+"HI":  1.07792E+00,
+"Error":  2.56748E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  11,
+"HI":  6.91039E-01,
+"Error":  1.80964E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  16,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   3,
+"HI":  2.72571E+00,
+"Error":  6.41730E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   4,
+"HI":  1.98456E+00,
+"Error":  4.60984E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   6,
+"HI":  1.27830E+00,
+"Error":  3.08359E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  11,
+"HI":  8.18024E-01,
+"Error":  2.16954E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  16,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":   6,
+"HI":  8.42062E-01,
+"Error":  1.99036E-01
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":   7,
+"HI":  1.07792E+00,
+"Error":  2.56748E-01
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  11,
+"HI":  6.91039E-01,
+"Error":  1.80964E-01
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  16,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":   6,
+"HI":  1.76016E+00,
+"Error":  4.29978E-01
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":   7,
+"HI":  1.27830E+00,
+"Error":  3.08359E-01
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  11,
+"HI":  8.18024E-01,
+"Error":  2.16954E-01
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  16,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  11,
+"HI":  5.37867E-01,
+"Error":  1.40211E-01
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  12,
+"HI":  6.91039E-01,
+"Error":  1.80964E-01
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  16,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  11,
+"HI":  1.13185E+00,
+"Error":  3.03099E-01
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  12,
+"HI":  8.18024E-01,
+"Error":  2.16954E-01
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  16,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  16,
+"HI":  5.37898E-01,
+"Error":  1.40219E-01
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  17,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  16,
+"HI":  1.13191E+00,
+"Error":  3.03118E-01
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  17,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  18,
+"HI":  5.37898E-01,
+"Error":  1.40219E-01
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  19,
+"HI":  6.91079E-01,
+"Error":  1.80975E-01
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  21,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  18,
+"HI":  1.13191E+00,
+"Error":  3.03118E-01
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  19,
+"HI":  8.18071E-01,
+"Error":  2.16968E-01
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  21,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age": 21,
+"Local":   1,
+"Age":  21,
+"HI":  4.98824E-01,
+"Error":  1.27370E-01
+},
+{
+"Initial_age": 21,
+"Local":   1,
+"Age":  22,
+"HI":  6.40423E-01,
+"Error":  1.64379E-01
+},
+{
+"Initial_age": 21,
+"Local":   2,
+"Age":  21,
+"HI":  1.04833E+00,
+"Error":  2.75317E-01
+},
+{
+"Initial_age": 21,
+"Local":   2,
+"Age":  22,
+"HI":  7.58372E-01,
+"Error":  1.97118E-01
+},
+{
+"Initial_age": 65,
+"Local":   1,
+"Age":  65,
+"HI":  4.57091E-01,
+"Error":  1.06055E-01
+},
+{
+"Initial_age": 65,
+"Local":   1,
+"Age":  66,
+"HI":  5.84637E-01,
+"Error":  1.36781E-01
+},
+{
+"Initial_age": 65,
+"Local":   2,
+"Age":  65,
+"HI":  9.54000E-01,
+"Error":  2.29058E-01
+},
+{
+"Initial_age": 65,
+"Local":   2,
+"Age":  66,
+"HI":  6.93600E-01,
+"Error":  1.64379E-01
+},
+],
+"Pb        ": [
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   1,
+"HI":  9.33548E-02,
+"Error":  3.43455E-02
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   2,
+"HI":  1.18481E-01,
+"Error":  4.36655E-02
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   3,
+"HI":  9.52544E-02,
+"Error":  3.35742E-02
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":   6,
+"HI":  5.45518E-02,
+"Error":  1.84694E-02
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":  11,
+"HI":  2.65823E-02,
+"Error":  8.73345E-03
+},
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":  16,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   1,
+"HI":  1.91924E-01,
+"Error":  7.17016E-02
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   2,
+"HI":  1.41134E-01,
+"Error":  5.27567E-02
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   3,
+"HI":  1.13262E-01,
+"Error":  4.04900E-02
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":   6,
+"HI":  6.47319E-02,
+"Error":  2.22116E-02
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":  11,
+"HI":  3.13599E-02,
+"Error":  1.03917E-02
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":  16,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   2,
+"HI":  9.33940E-02,
+"Error":  3.43627E-02
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   3,
+"HI":  9.52544E-02,
+"Error":  3.35742E-02
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":   6,
+"HI":  5.45518E-02,
+"Error":  1.84694E-02
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  11,
+"HI":  2.65823E-02,
+"Error":  8.73345E-03
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  16,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   2,
+"HI":  1.92002E-01,
+"Error":  7.17368E-02
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   3,
+"HI":  1.13262E-01,
+"Error":  4.04900E-02
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":   6,
+"HI":  6.47319E-02,
+"Error":  2.22116E-02
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  11,
+"HI":  3.13599E-02,
+"Error":  1.03917E-02
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  16,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   3,
+"HI":  7.48131E-02,
+"Error":  2.63507E-02
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   4,
+"HI":  9.52544E-02,
+"Error":  3.35742E-02
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":   6,
+"HI":  5.45518E-02,
+"Error":  1.84694E-02
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  11,
+"HI":  2.65823E-02,
+"Error":  8.73345E-03
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  16,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   3,
+"HI":  1.54840E-01,
+"Error":  5.53121E-02
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   4,
+"HI":  1.13262E-01,
+"Error":  4.04900E-02
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":   6,
+"HI":  6.47319E-02,
+"Error":  2.22116E-02
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  11,
+"HI":  3.13599E-02,
+"Error":  1.03917E-02
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  16,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":   6,
+"HI":  4.26678E-02,
+"Error":  1.44365E-02
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":   7,
+"HI":  5.45518E-02,
+"Error":  1.84694E-02
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  11,
+"HI":  2.65823E-02,
+"Error":  8.73345E-03
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  16,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":   6,
+"HI":  8.89866E-02,
+"Error":  3.05556E-02
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":   7,
+"HI":  6.47319E-02,
+"Error":  2.22116E-02
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  11,
+"HI":  3.13599E-02,
+"Error":  1.03917E-02
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  16,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  11,
+"HI":  2.05474E-02,
+"Error":  6.72043E-03
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  12,
+"HI":  2.65823E-02,
+"Error":  8.73345E-03
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  16,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  11,
+"HI":  4.37890E-02,
+"Error":  1.46733E-02
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  12,
+"HI":  3.13599E-02,
+"Error":  1.03917E-02
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  16,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  16,
+"HI":  2.05481E-02,
+"Error":  6.72059E-03
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  17,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  16,
+"HI":  4.37906E-02,
+"Error":  1.46737E-02
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  17,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  18,
+"HI":  2.05481E-02,
+"Error":  6.72059E-03
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  19,
+"HI":  2.65833E-02,
+"Error":  8.73367E-03
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  21,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  18,
+"HI":  4.37906E-02,
+"Error":  1.46737E-02
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  19,
+"HI":  3.13611E-02,
+"Error":  1.03920E-02
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  21,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age": 21,
+"Local":   1,
+"Age":  21,
+"HI":  2.02676E-02,
+"Error":  6.60079E-03
+},
+{
+"Initial_age": 21,
+"Local":   1,
+"Age":  22,
+"HI":  2.61455E-02,
+"Error":  8.54398E-03
+},
+{
+"Initial_age": 21,
+"Local":   2,
+"Age":  21,
+"HI":  4.29684E-02,
+"Error":  1.43002E-02
+},
+{
+"Initial_age": 21,
+"Local":   2,
+"Age":  22,
+"HI":  3.08880E-02,
+"Error":  1.01937E-02
+},
+{
+"Initial_age": 65,
+"Local":   1,
+"Age":  65,
+"HI":  2.44571E-02,
+"Error":  8.41887E-03
+},
+{
+"Initial_age": 65,
+"Local":   1,
+"Age":  66,
+"HI":  3.12086E-02,
+"Error":  1.07488E-02
+},
+{
+"Initial_age": 65,
+"Local":   2,
+"Age":  65,
+"HI":  5.08259E-02,
+"Error":  1.77457E-02
+},
+{
+"Initial_age": 65,
+"Local":   2,
+"Age":  66,
+"HI":  3.70680E-02,
+"Error":  1.29447E-02
+},
+],
+"Cd        ": [
+]
+},
+"Carcinogenic_risk": {
+"Zn        ": [
+],
+"Pb        ": [
+{
+"Initial_age":  1,
+"Local":   1,
+"Age":  20,
+"CR":  3.70313E-07,
+"Error":  3.55801E-08
+},
+{
+"Initial_age":  1,
+"Local":   2,
+"Age":  20,
+"CR":  4.69674E-07,
+"Error":  4.84477E-08
+},
+{
+"Initial_age":  2,
+"Local":   1,
+"Age":  21,
+"CR":  3.35543E-07,
+"Error":  3.15078E-08
+},
+{
+"Initial_age":  2,
+"Local":   2,
+"Age":  21,
+"CR":  4.28128E-07,
+"Error":  4.41338E-08
+},
+{
+"Initial_age":  3,
+"Local":   1,
+"Age":  22,
+"CR":  3.02580E-07,
+"Error":  2.76487E-08
+},
+{
+"Initial_age":  3,
+"Local":   2,
+"Age":  22,
+"CR":  3.82906E-07,
+"Error":  3.74501E-08
+},
+{
+"Initial_age":  6,
+"Local":   1,
+"Age":  25,
+"CR":  2.28715E-07,
+"Error":  1.86525E-08
+},
+{
+"Initial_age":  6,
+"Local":   2,
+"Age":  25,
+"CR":  2.84604E-07,
+"Error":  2.42528E-08
+},
+{
+"Initial_age": 11,
+"Local":   1,
+"Age":  30,
+"CR":  1.78316E-07,
+"Error":  1.30968E-08
+},
+{
+"Initial_age": 11,
+"Local":   2,
+"Age":  30,
+"CR":  2.17500E-07,
+"Error":  1.61985E-08
+},
+{
+"Initial_age": 16,
+"Local":   1,
+"Age":  35,
+"CR":  1.78134E-07,
+"Error":  1.31066E-08
+},
+{
+"Initial_age": 16,
+"Local":   2,
+"Age":  35,
+"CR":  2.17360E-07,
+"Error":  1.62201E-08
+},
+{
+"Initial_age": 18,
+"Local":   1,
+"Age":  37,
+"CR":  1.78061E-07,
+"Error":  1.31106E-08
+},
+{
+"Initial_age": 18,
+"Local":   2,
+"Age":  37,
+"CR":  2.17303E-07,
+"Error":  1.62288E-08
+},
+{
+"Initial_age": 21,
+"Local":   1,
+"Age":  40,
+"CR":  1.77979E-07,
+"Error":  1.31173E-08
+},
+{
+"Initial_age": 21,
+"Local":   2,
+"Age":  40,
+"CR":  2.17152E-07,
+"Error":  1.62361E-08
+},
+{
+"Initial_age": 65,
+"Local":   1,
+"Age":  84,
+"CR":  2.22688E-07,
+"Error":  1.78623E-08
+},
+{
+"Initial_age": 65,
+"Local":   2,
+"Age":  84,
+"CR":  2.72714E-07,
+"Error":  2.22302E-08
+}
+],
+"Cd        ": [
+]
+}
+}
