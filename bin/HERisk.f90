@@ -209,12 +209,11 @@
 !		                                  INPUT -INPUT-INPUT-INPUT
 !_____________________________________________________________________________________________________________________
 !
-	  open (UNIT=99, file='Results\ WARNINGS.txt')
+	  open (UNIT=99, file='Results\WARNINGS.txt')
 !
 	  WRITE(99,'("********************************************************************************************************************************************")')
-	  WRITE(99,'("                                                         WARNINGS!!!!!!!!!")')
+	  WRITE(99,'("                                                         !!!!!!!!!WARNINGS!!!!!!!!!")')
 	  WRITE(99,'("********************************************************************************************************************************************")')
-	  WRITE(99,*)
 	  WRITE(99,*)
 !
 !
@@ -230,41 +229,17 @@
 	  WRITE(99,*)
 	  WRITE(99,'('' For more information, enable key --- Information = 1 --- in the Scenary input file '')')
 	  WRITE(99,*)
-	  WRITE(99,*)
       ENDIF 
 !
 !
       IF(NINFORMATION.EQ.1)THEN
-	  WRITE(*,*)
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about ALL the input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(6)
+      KKINFORMATION(6)='y'
 !
       IF((KKINFORMATION(6).EQ.'y').OR.(KKINFORMATION(6).EQ.'Y').OR.(KKINFORMATION(6).EQ.'yes').OR.(KKINFORMATION(6).EQ.'Yes').OR.(KKINFORMATION(6).EQ.'YES'))THEN
 !
       DO KUK=1,5
       KKINFORMATION(KUK)='YES'
 	  ENDDO
-!
-      ELSE
-!
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about the Scenary input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(1)
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about the Concentration input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(2)
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about the Datachemical input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(3)
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about the Dataexp input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(4)
-	  WRITE(*,*)
-	  WRITE(*,'(" Information about the Dataecological input sheet?       --- y = Yes or n = No --- ")')
-      READ(*,*) KKINFORMATION(5)
-	  WRITE(*,*)
-	  WRITE(*,*)
 !
       ENDIF
 !
@@ -1881,6 +1856,7 @@
 !
       IF(KEY_ANALYZE(2).EQV..TRUE.)THEN
 !
+!
       CALL RADIO(VARIASAO,NDURATION,NCHEM,NTIME,NLOCAL,NTYPECONC,CHEMICAL,RAD_POL,AMOLAR,VIDAMEIA,KEY_SD)
 !
       ENDIF
@@ -1888,12 +1864,24 @@
 !
       IF(KEY_ANALYZE(3).EQV..TRUE.)THEN
 !
+      WRITE(*,*)
+	  WRITE(*,'("____________________________________________________________________________________")')   
+	  WRITE(*,'("                            ECOLOGICAL RISK ASSESMENT ")')   
+	  WRITE(*,'("____________________________________________________________________________________")')   
+!
+	  WRITE(99,'("____________________________________________________________________________________________________________________________________________")')
+	  WRITE(99,'("                                                          ECOLOGICAL RISK ASSESMENT")')
+	  WRITE(99,'("____________________________________________________________________________________________________________________________________________")')
+      WRITE(99,*)
+!
       CALL ECOLOGICAL(SCENAR,VARIASAO,NDURATION,NCHEM,NTIME,NLOCAL,NTYPECONC,CHEMICAL,SCENARIES)
 !
       ENDIF
 !
 !
 !
+       WRITE(*,*)
+	   WRITE(*,*)
 	   PRINT*,'THE CODE FINISHED ALL CALCULATIONS'
        WRITE(*,*)
 	   WRITE(*,*)
@@ -2059,18 +2047,13 @@
 	  ENDDO
 !      
       IF((SCENAR.EQ.4).AND.(KEY_ANALYZE(1).EQV..TRUE.))THEN
-	  WRITE(*,*)
-	  WRITE(*,*)
-	  WRITE(*,'('' WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   '')')
-	  WRITE(*,*)
-	  WRITE(*,'('' Scenario 4 - In Natura - does not allow calculation of human health non-radiological risks. '')')
-	  WRITE(*,*)
-	  WRITE(*,'('' The calculation of non-radiological risk will not be performed '')')
-	  WRITE(*,*)
-	  WRITE(*,'('' For more information, enable key information --- Help --- in the Scenary Sheet '')')
-	  WRITE(*,*)
-	  WRITE(*,*)
-	  WRITE(*,*)
+	  WRITE(99,*)
+	  WRITE(99,'('' WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   WARNING!!!!   '')')
+	  WRITE(99,'('' Scenario 4 - In Natura - does not allow calculation of human health non-radiological risks. '')')
+	  WRITE(99,*)
+	  WRITE(99,'('' The calculation of human health risk will not be performed!!! '')')
+	  WRITE(99,'('' For more information, enable key information --- Help --- in the Scenary Sheet '')')
+	  WRITE(99,*)
       ENDIF  
 !                    
       	     
@@ -2898,8 +2881,7 @@
 	  READ(1,35)
 	  DO I=1,NIDADE
 	  READ(1,*)EV(I,2),SD_EV(I,2),AF(I),SD_AF(I),SA(I,2),SD_SA(I,2),EF_INI(14,I),SD_EF_INI(14,I),AT_INI(1,14,I),SD_AT_INI(1,14,I)				
-	  ENDDO
-	  ENDIF	
+	  ENDDO	
 !
      IF(CF(3).EQ.0.0)THEN
 	 WRITE(99,'(" WARNING!!!!!!!!!! CF VALUE IS EQUAL TO 0.0  ---> WAY 14 ")')
@@ -2960,7 +2942,9 @@
 	  WRITE(*,*)
 	  stop
       ENDIF
-
+!
+	  ENDIF
+!
 !---------------------------------------------------------------------------------------------------------------         
 !
 !      PAUSE '1_5'
@@ -3107,8 +3091,7 @@
 	  READ(1,35)
 	  DO I=1,NIDADE
 	  READ(1,*)EV(I,2),SD_EV(I,2),AF(I),SD_AF(I),SA(I,2),SD_SA(I,2),EF_INI(14,I),SD_EF_INI(14,I),AT_INI(1,14,I),SD_AT_INI(1,14,I)				
-	  ENDDO
-	  ENDIF	
+	  ENDDO	
 !
      IF(CF(3).EQ.0.0)THEN
 	 WRITE(99,'(" WARNING!!!!!!!!!! CF VALUE IS EQUAL TO 0.0  ---> WAY 14 ")')
@@ -3157,6 +3140,7 @@
 	 ENDIF
 	 ENDDO	
 !
+	  ENDIF
 !---------------------------------------------------------------------------------------------------------------         
 !
 !
@@ -3602,8 +3586,7 @@
 	  READ(1,35)
 	  DO I=1,NIDADE
 	  READ(1,*)EV(I,2),SD_EV(I,2),AF(I),SD_AF(I),SA(I,2),SD_SA(I,2),EF_INI(14,I),SD_EF_INI(14,I),AT_INI(1,14,I),SD_AT_INI(1,14,I)				
-	  ENDDO
-	  ENDIF	
+	  ENDDO	
 !
      IF(CF(3).EQ.0.0)THEN
 	 WRITE(99,'(" WARNING!!!!!!!!!! CF VALUE IS EQUAL TO 0.0  ---> WAY 14 ")')
@@ -3652,6 +3635,7 @@
 	 ENDIF
 	 ENDDO	
 !
+	  ENDIF
 !---------------------------------------------------------------------------------------------------------------         
 !
       ENDIF		! TERMINA O IF DE "CASE - SCENARY"
@@ -4510,6 +4494,16 @@
 	  SD_RfD,SD_SF,SD_ED_INI,SD_AT_INI,SD_PC,SD_ABS,SD_Kd,SD_fw,SD_BW_INI,BAF,SD_BAF,MUTAGENIC,AMOLAR,VIDAMEIA) 
 !
 !
+      WRITE(*,*)
+	  WRITE(*,'("____________________________________________________________________________________")')   
+	  WRITE(*,'("                           HUMAN HEALTH RISK ASSESMENT ")')   
+	  WRITE(*,'("____________________________________________________________________________________")')   
+!
+      WRITE(99,*)
+	  WRITE(99,'("____________________________________________________________________________________________________________________________________________")')
+	  WRITE(99,'("                                                         HUMAN HEALTH RISK ASSESMENT")')
+	  WRITE(99,'("____________________________________________________________________________________________________________________________________________")')
+!
 ! 
 	   TIMESP(0)=0.0
 !
@@ -4674,21 +4668,13 @@
 !
 	  IF (l.eq.1) THEN
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(*,*)   
-	  WRITE(*,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(*,*)
+	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i) 
+	  WRITE(*,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
 	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical RISK DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(99,*)   
-	  WRITE(99,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(99,*)
 !
       ENDIF
@@ -4824,7 +4810,15 @@
       
 	  IF((KSTOPWAY(1).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(1)=1
-      PRINT*, 'DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway1 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -4934,7 +4928,16 @@
       
 	  IF((KSTOPWAY(2).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(2)=1
-      PRINT*, 'DOSEWAY2 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND VEGETABLES (FRUITS) CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway2 was not calculed, because soil and fruits, seeds or tubers concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY2 WAS NOT CALCULED, BECAUSE SOIL AND FRUITS, SEEDS OR TUBERS'
+      PRINT*, '  CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -5040,7 +5043,15 @@
       
 	  IF((KSTOPWAY(5).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(5)=1
-      PRINT*, 'DOSEWAY5 WAS NOT CALCULED, BECAUSE WATER (DRINKING_WATER) CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway5 was not calculed, because water (DRINKING_WATER) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY5 WAS NOT CALCULED, BECAUSE WATER (DRINKING_WATER) CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -5152,7 +5163,15 @@
       
 	  IF((KSTOPWAY(6).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(6)=1
-      PRINT*, 'DOSEWAY6 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND VEGETABLES (LEAVES) CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway6 was not calculed, because soil and vegetables (leaves) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY6 WAS NOT CALCULED, BECAUSE SOIL AND VEGETABLES (LEAVES) CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -5285,7 +5304,16 @@
       
 	  IF((KSTOPWAY(3).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(3)=1
-      PRINT*, 'DOSEWAY3 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS), VEGETABLES AND BEEF CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway3 was not calculed, because soil, water (OTHER_WATERS) and meat concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY3 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  AND MEAT CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -5421,7 +5449,16 @@
       
 	  IF((KSTOPWAY(4).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(4)=1
-      PRINT*, 'DOSEWAY4 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS), VEGETABLES AND MILK CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway4 was not calculed, because soil, water (OTHER_WATERS) and milk concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY4 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  AND MILK CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -5536,7 +5573,15 @@
       
 	  IF((KSTOPWAY(7).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(7)=1
-      PRINT*, 'DOSEWAY7 WAS NOT CALCULED, BECAUSE WATER (OTHER_WATERS) AND FISH CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway7 was not calculed, because water (OTHER_WATERS) and fish concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY7 WAS NOT CALCULED, BECAUSE WATER (OTHER_WATERS) AND FISH CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -5666,7 +5711,16 @@
       
 	  IF((KSTOPWAY(8).EQ.0).AND.(l.EQ.1))THEN
       KSTOPWAY(8)=1
-      PRINT*, 'DOSEWAY8 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND AVE CONCENTRATIONS NOT EXIST'		 
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway8 was not calculed, because soil, water (OTHER_WATERS) and bird concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY8 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'		 
+      PRINT*, '  AND BIRD CONCENTRATIONS NOT EXIST'		 
 	  ENDIF
 !
 !
@@ -5793,7 +5847,16 @@
       
 	  IF((KSTOPWAY(9).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(9)=1
-      PRINT*, 'DOSEWAY9 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND EGG CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway9 was not calculed, because soil, water (OTHER_WATERS) and egg concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY9 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  AND EGG CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -5908,7 +5971,16 @@
       
 	  IF((KSTOPWAY(10).EQ.0).AND.(l.EQ.1))THEN
       KSTOPWAY(10)=1
-      PRINT*, 'DOSEWAY10 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND GRAIN CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway10 was not calculed, because soil, water (OTHER_WATERS) and grain concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY10 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  AND GRAIN CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 !
@@ -6019,7 +6091,15 @@
       
 	  IF((KSTOPWAY(11).EQ.0).AND.(l.EQ.1))THEN
       KSTOPWAY(11)=1
-      PRINT*, 'DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway11 was not calculed, because particulate concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6126,7 +6206,15 @@
       
 	  IF((KSTOPWAY(12).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(12)=1
-      PRINT*, 'DOSEWAY12 WAS NOT CALCULED, BECAUSE THE STEAM CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway12 was not calculed, because steam concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY12 WAS NOT CALCULED, BECAUSE THE STEAM CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6243,7 +6331,15 @@
       
 	  IF((KSTOPWAY(13).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(13)=1
-      PRINT*, 'DOSEWAY13 WAS NOT CALCULED, BECAUSE WATER (BATH_WATER) CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway13 was not calculed, because water (BATH_WATER) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY13 WAS NOT CALCULED, BECAUSE WATER (BATH_WATER) CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6358,7 +6454,15 @@
       
 	  IF((KSTOPWAY(14).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(14)=1
-      PRINT*, 'DOSEWAY14 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway14 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY14 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6475,21 +6579,13 @@
 	  IF (l.eq.7) THEN
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(*,*)   
-	  WRITE(*,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(*,*)
+	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)  
+	  WRITE(*,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(99,*)   
-	  WRITE(99,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)   
+	  WRITE(99,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(99,*)
 !
       ENDIF
@@ -6617,9 +6713,17 @@
 	  ELSE
 !
       
-	  IF((KSTOPWAY(1).EQ.0).AND.(l.EQ.1))THEN
+	  IF((KSTOPWAY(1).EQ.0).AND.(l.EQ.7))THEN
 	  KSTOPWAY(1)=1
-      PRINT*, 'DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway1 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6723,9 +6827,17 @@
 	  ELSE
 !
       
-	  IF((KSTOPWAY(11).EQ.0).AND.(l.EQ.1))THEN
+	  IF((KSTOPWAY(11).EQ.0).AND.(l.EQ.7))THEN
 	  KSTOPWAY(11)=1
-      PRINT*, 'DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway11 was not calculed, because particulate concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6830,9 +6942,17 @@
 !
 	  ELSE
 !
-	  IF((KSTOPWAY(12).EQ.0).AND.(l.EQ.1))THEN
+	  IF((KSTOPWAY(12).EQ.0).AND.(l.EQ.7))THEN
 	  KSTOPWAY(12)=1
-      PRINT*, 'DOSEWAY12 WAS NOT CALCULED, BECAUSE STEAM CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway12 was not calculed, because steam concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY12 WAS NOT CALCULED, BECAUSE STEAM CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -6946,9 +7066,17 @@
 	  ELSE
 !
       
-	  IF((KSTOPWAY(14).EQ.0).AND.(l.EQ.1))THEN
+	  IF((KSTOPWAY(14).EQ.0).AND.(l.EQ.7))THEN
 	  KSTOPWAY(14)=1
-      PRINT*, 'DOSEWAY14 WAS NOT CALCULED, BECAUSE THE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway14 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY14 WAS NOT CALCULED, BECAUSE THE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -7078,21 +7206,13 @@
 	  IF (l.eq.1) THEN
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(*,*)   
-	  WRITE(*,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(*,*)
+	  WRITE(*,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)  
+	  WRITE(*,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(99,*)   
-	  WRITE(99,'("       The HQ and CR values will all be zero for this Chemical species  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Datachemical DATABASE  --->  ",A30)') CHEMICAL(i)  
+	  WRITE(99,'(" The HQ and CR values will all be zero for this Chemical species!  ")')
       WRITE(99,*)
 !
       ENDIF
@@ -7227,7 +7347,16 @@
       
 	  IF((KSTOPWAY(2).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(2)=1
-      PRINT*, 'DOSEWAY2 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND VEGETABLES (FRUITS) CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway2 was not calculed, because soil, fruits, seeds or tubers concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY2 WAS NOT CALCULED, BECAUSE SOIL AND FRUITS, SEEDS OR TUBERS'
+      PRINT*, '  CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -7332,7 +7461,15 @@
       
 	  IF((KSTOPWAY(5).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(5)=1
-      PRINT*, 'DOSEWAY5 WAS NOT CALCULED, BECAUSE WATER (DRINKING_WATER) CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway5 was not calculed, because water (DRINKING_WATER) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY5 WAS NOT CALCULED, BECAUSE WATER (DRINKING_WATER) CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -7444,7 +7581,15 @@
       
 	  IF((KSTOPWAY(6).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(6)=1
-      PRINT*, 'DOSEWAY6 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS) AND VEGETABLES (LEAVES) CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway6 was not calculed, because soil and vegetables (leaves) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY6 WAS NOT CALCULED, BECAUSE SOIL AND VEGETABLES (LEAVES) CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -7579,7 +7724,16 @@
       
 	  IF((KSTOPWAY(3).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(3)=1
-      PRINT*, 'DOSEWAY3 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS), VEGETABLES AND BEEF CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway3 was not calculed, because soil, water (OTHER_WATERS) and meat concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY3 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  MEAT CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -7716,7 +7870,16 @@
       
 	  IF((KSTOPWAY(4).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(4)=1
-      PRINT*, 'DOSEWAY4 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS), VEGETABLES AND MILK CONCENTRATIONS NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway4 was not calculed, because soil, water (OTHER_WATERS) and milk concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY4 WAS NOT CALCULED, BECAUSE SOIL, WATER (OTHER_WATERS)'
+      PRINT*, '  AND MILK CONCENTRATIONS NOT EXIST'
 	  ENDIF
 !
 !
@@ -7833,7 +7996,15 @@
 !
 	  IF((KSTOPWAY(13).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(13)=1
-      PRINT*, 'DOSEWAY13 WAS NOT CALCULED, BECAUSE WATER (BATH_WATER) CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway13 was not calculed, because water (BATH_WATER) concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY13 WAS NOT CALCULED, BECAUSE WATER (BATH_WATER) CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -7949,7 +8120,15 @@
       
 	  IF((KSTOPWAY(1).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(1)=1
-      PRINT*, 'DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway1 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY1 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -8054,7 +8233,15 @@
       
 	  IF((KSTOPWAY(11).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(11)=1
-      PRINT*, 'DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway11 was not calculed, because particulate concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY11 WAS NOT CALCULED, BECAUSE PARTICULATE CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -8160,7 +8347,15 @@
       
 	  IF((KSTOPWAY(12).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(12)=1
-      PRINT*, 'DOSEWAY12 WAS NOT CALCULED, BECAUSE STEAM CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway12 was not calculed, because steam concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY12 WAS NOT CALCULED, BECAUSE STEAM CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -8275,7 +8470,15 @@
       
 	  IF((KSTOPWAY(14).EQ.0).AND.(l.EQ.1))THEN
 	  KSTOPWAY(14)=1
-      PRINT*, 'DOSEWAY14 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
+!
+	  WRITE(99,*)
+	  WRITE(99,'(" For chemical species = ",A30)')CHEMICAL(i)
+	  WRITE(99,'(" Doseway14 was not calculed, because soil concentrations not exist ")')
+      WRITE(99,*)
+!
+      PRINT*
+	  PRINT*, '  FOR CHEMICAL SPECIES ', CHEMICAL(i)
+      PRINT*, '  DOSEWAY14 WAS NOT CALCULED, BECAUSE SOIL CONCENTRATION NOT EXIST'
 	  ENDIF
 !
 	  ENDIF
@@ -12180,7 +12383,7 @@
       WRITE(*,*)
       WRITE(*,*)
 !
-	  open (UNIT=39, file='Results\ Information.txt')	
+	  open (UNIT=39, file='Results\Information.txt')	
 !
 	  WRITE(39,'("******************************************************************************************************************************************************************************")')
 	  WRITE(39,'("                                                               INFORMATIONS ")')
@@ -12188,66 +12391,50 @@
 !
 	  WRITE(39,*)
 	  WRITE(39,*)
-	  WRITE(39,'(" This file provides more information about the parameters present in the input files: ")')
+	  WRITE(39,'(" This file provides more information about the parameters present in the input sheets: ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Scenary.prn ")')
-	  WRITE(39,'(" - Concentration.prn ")')
-	  WRITE(39,'(" - Datachemical.prn ")')
-	  WRITE(39,'(" - Dataexp.prn ")')
-	  WRITE(39,'(" - Dataecological.prn ")')
+	  WRITE(39,'(" - Scenary ")')
+	  WRITE(39,'(" - Concentration ")')
+	  WRITE(39,'(" - Datachemical ")')
+	  WRITE(39,'(" - Dataexp ")')
+	  WRITE(39,'(" - Dataecological ")')
 	  WRITE(39,*)
 	  WRITE(39,*)
 !
       IF((KKINFORMATION(1).EQ.'y').OR.(KKINFORMATION(1).EQ.'Y').OR.(KKINFORMATION(1).EQ.'yes').OR.(KKINFORMATION(1).EQ.'Yes').OR.(KKINFORMATION(1).EQ.'YES'))THEN
 !
-	  WRITE(39,'("                                         ******************************************************** ")')
-	  WRITE(39,'("                                           INFORMATION ABOUT PARAMETERS OF THE SCENARY.PRN FILE ")')
-	  WRITE(39,'("                                         ******************************************************** ")')
+	  WRITE(39,'("                                         ******************************************************* ")')
+	  WRITE(39,'("                                            INFORMATION ABOUT PARAMETERS OF THE SCENARY SHEET ")')
+	  WRITE(39,'("                                         ******************************************************* ")')
 	  WRITE(39,*)
 	  WRITE(39,'("-------------------- ")')
-	  WRITE(39,'(" - SCENERY key = 1   ---> The calculation will be performed in the AGRICULTURAL scenario ")')
-	  WRITE(39,'("                          The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 1 (AGRICULTURAL) --- ")')
+	  WRITE(39,'(" - SCENERY key = AGRICULTURAL   ---> The calculation will be performed in the AGRICULTURAL scenario ")')
+	  WRITE(39,'("                                     The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 1 (AGRICULTURAL) --- ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - SCENERY key = 2   ---> The calculation will be performed in the INDUSTRIAL scenario ")')
-	  WRITE(39,'("                          The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 2 (INDUSTRIAL) --- ")')
+	  WRITE(39,'(" - SCENERY key = INDUSTRIAL     ---> The calculation will be performed in the INDUSTRIAL scenario ")')
+	  WRITE(39,'("                                     The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 2 (INDUSTRIAL) --- ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - SCENERY key = 3   ---> The calculation will be performed in the RESIDENTIAL scenario ")')
-	  WRITE(39,'("                          The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 3 (RESIDENTIAL) --- ")')
+	  WRITE(39,'(" - SCENERY key = RESIDENTIAL    ---> The calculation will be performed in the RESIDENTIAL scenario ")')
+	  WRITE(39,'("                                     The exposure routes choice must be made in section --- SHEME TO BE USED IF KEY SCENERY = 3 (RESIDENTIAL) --- ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - SCENERY key = 4   ---> The calculation will be performed in the IN NATURE scenario ")')
-	  WRITE(39,'("                          In this case, the human health risk will not be realized, as it is assumed that the risk assessment ")')
-	  WRITE(39,'("                          is being realized in an uninhabited area. ")')
+	  WRITE(39,'(" - SCENERY key = IN NATURA      ---> The calculation will be performed in the IN NATURA scenario ")')
+	  WRITE(39,'("                                     In this case, the human health risk will not be realized, as it is assumed that the risk assessment ")')
+	  WRITE(39,'("                                     is being realized in an uninhabited area. ")')
 	  WRITE(39,*)
-	  WRITE(39,'("                          Examples of possible scenarios 4: ")')
-	  WRITE(39,'("                          - Assessment of a mine in an uninhabited area  ")')
-	  WRITE(39,'("                          - Evaluation of a dump in an uninhabited area  ")')
+	  WRITE(39,'("                                     Examples of possible scenarios IN NATURA: ")')
+	  WRITE(39,'("                                     - Assessment of a mine in an uninhabited area  ")')
+	  WRITE(39,'("                                     - Evaluation of a dump in an uninhabited area  ")')
 	  WRITE(39,'("-------------------- ")')
 	  WRITE(39,'(" - Num. of Chemicals ---> Inform the chemical species number that will be used in the risk assessments ")')
 	  WRITE(39,*)
-	  WRITE(39,'("                          If concentrations for 3 different chemical species are provided in the concentration.inp file ")')
+	  WRITE(39,'("                          If concentrations for 3 different chemical species are provided in the concentration sheet ")')
 	  WRITE(39,'("                          then the value of --- Num. of Chemicals --- must be 3 ")')
 	  WRITE(39,'("-------------------- ")')
-	  WRITE(39,'(" - Num. of Times     ---> Inform the number of Times (chronic or subchronic risk) or Events (acute risk)  ")')
-	  WRITE(39,'("                          for which chemical species concentrations will be provided in the file concentration.inp ")')
+	  WRITE(39,'(" - Num. of Times     ---> Inform the number of Times for which chemical species concentrations will be provided in the concentration sheet ")')
 	  WRITE(39,*)
-	  WRITE(39,'("                          The value of --- Num. of Times --- must be equal to 1 when the program is used for SUBCHRONIC risks.  ")')
-	  WRITE(39,'("                          In this case, the program is unable to make a temporal risk assessment, being possible to supply  ")')
-      WRITE(39,'("                          only 1 concentration for each location, matrix and chemical species.  ")')
 	  WRITE(39,'("-------------------- ")')
 	  WRITE(39,'(" - Num. of Sites     ---> Inform the number of locations for which risk assessments will be realize   ")')
 	  WRITE(39,*)
-	  WRITE(39,'("-------------------- ")')
-	  WRITE(39,'(" - Type of Risk = 1  ---> Human health risks will be calculated according to the ACUTE exposure pattern ")')
-	  WRITE(39,*)
-	  WRITE(39,'(" - Type of Risk = 2  ---> Human health risks will be calculated according to the SUBCHRONIC exposure pattern ")')
-	  WRITE(39,*)
-	  WRITE(39,'(" - Type of Risk = 3  ---> Human health risks will be calculated according to the CHRONIC exposure pattern ")')
-	  WRITE(39,*)
-	  WRITE(39,'("                          How to assess the exposure pattern? ")')
-	  WRITE(39,*)
-	  WRITE(39,'("                          See flowchart on page 16 of the U.S. EPA 2009 reference: ")')
-	  WRITE(39,'("                          U.S. EPA. Risk assessment guidance for superfund volume I: human health evaluation manual ")')
-	  WRITE(39,'("                          Part F, Supplemental guidance for inhalation risk assessment, Washington DC, 2009. ")')
 	  WRITE(39,'("-------------------- ")')
 	  WRITE(39,'(" - Uncertainties key ")')
 	  WRITE(39,*)
@@ -12279,6 +12466,19 @@
 	  WRITE(39,'(" WAY 1 = .FALSE.     = SOIL ----> HUMAN             The exposure route of accidental soil ingestion ")')
 	  WRITE(39,'("                                                    will NOT be considered for the risk calculation ")')
 	  WRITE(39,*)
+	  WRITE(39,'("-------------------- ")')
+	  WRITE(39,'(" - Exposure duration assessment = Acute       ---> Human health risks will be calculated according to the ACUTE exposure pattern ")')
+	  WRITE(39,*)
+	  WRITE(39,'(" - Exposure duration assessment = Subchronic  ---> Human health risks will be calculated according to the SUBCHRONIC exposure pattern ")')
+	  WRITE(39,*)
+	  WRITE(39,'(" - Exposure duration assessment = Chronic     ---> Human health risks will be calculated according to the CHRONIC exposure pattern ")')
+	  WRITE(39,*)
+	  WRITE(39,'("                                                   How to assess the exposure pattern? ")')
+	  WRITE(39,*)
+	  WRITE(39,'("                                                   See flowchart on page 16 of the U.S. EPA 2009 reference: ")')
+	  WRITE(39,'("                                                   U.S. EPA. Risk assessment guidance for superfund volume I: human health evaluation manual ")')
+	  WRITE(39,'("                                                   Part F, Supplemental guidance for inhalation risk assessment, Washington DC, 2009. ")')
+	  WRITE(39,*)
 	  WRITE(39,'("******************************************************************************************************************************************************************************")')
 	  WRITE(39,*)
 	  WRITE(39,*)
@@ -12288,9 +12488,9 @@
 !
       IF((KKINFORMATION(2).EQ.'y').OR.(KKINFORMATION(2).EQ.'Y').OR.(KKINFORMATION(2).EQ.'yes').OR.(KKINFORMATION(2).EQ.'Yes').OR.(KKINFORMATION(2).EQ.'YES'))THEN
 !
-	  WRITE(39,'("                                      ************************************************************** ")')
-	  WRITE(39,'("                                        INFORMATION ABOUT PARAMETERS OF THE CONCENTRATION.PRN FILE ")')
-	  WRITE(39,'("                                      ************************************************************** ")')
+	  WRITE(39,'("                                      ************************************************************* ")')
+	  WRITE(39,'("                                         INFORMATION ABOUT PARAMETERS OF THE CONCENTRATION SHEET ")')
+	  WRITE(39,'("                                      ************************************************************* ")')
 	  WRITE(39,*)
 	  WRITE(39,*)
 	  WRITE(39,'(" Parameters explanation through the example: ")')
@@ -12307,39 +12507,30 @@
 	  WRITE(39,'("-------------------------------------------------------------------------------------")')
 	  WRITE(39,*)
 	  WRITE(39,*)
-	  WRITE(39,'("                                        CHEMICAL (1)")')
-	  WRITE(39,'(" Benzo[a]pyrene      ---> Provide the name of the chemical species (the name must be provided as outlined in the HHRISK guide)")')
-	  WRITE(39,*)
-	  WRITE(39,'(" NUMBER OF MATRIX UTILIZED ")')
-	  WRITE(39,'("        2    ---> provide the number of concentration matrices that will be used, if soil and water concentrations are provided then the value must be 2")')
-	  WRITE(39,'("                  This value cannot be higher than 15, since it is possible to supply only 15 different types of concentration matrices, as explained below")')
-	  WRITE(39,*)
-	  WRITE(39,'("  SOIL   ---> Provide the concentration matrix name ")')
-	  WRITE(39,'("              The possible names are: SOIL; DRINKING_WATER; BATH_WATER; OTHER_WATERS; SEDIMENTS; PARTICULATE; STEAM; FRUIT; LEAVES; MEAT; MILK; BIRD; EGG; FISH; GRAIN ")')
-	  WRITE(39,*)
+	  WRITE(39,'("                                   Chemical species 1")')
+	  WRITE(39,'("                                   Benzo[a]pyrene           ---> Provide the name of the chemical species (the name must be provided as outlined in the HHRISK guide)")')
+	  WRITE(39,'("                                   Matrix")')
+	  WRITE(39,'("                                   SOIL                     ---> Provide the concentration matrix name. The possible names are: SOIL; DRINKING_WATER; BATH_WATER; OTHER_WATERS; SEDIMENTS; PARTICULATE; STEAM; FRUIT; LEAVES; MEAT; MILK; BIRD; EGG; FISH; GRAIN ")')
 	  WRITE(39,'("Line 1: Values time 1        --->  10.47    20.62    4.68   ---> Each column represents a location. Column 1 = Location 1, Column 2 = Location 2, Column 3 = Location 3 .... ")')
 	  WRITE(39,'("Line 2: Uncertainties time 1 --->   1.65     3.92    0.55    ")')
 	  WRITE(39,'("Line 3: Values time 2        --->  11.62    34.09    8.68   ---> Odd lines are for providing concentration values at different times and locations ")')
 	  WRITE(39,'("Line 4: Uncertainties time 2 --->   2.00     4.12    2.92   ---> Pairs lines are to provide the uncertainties of the concentration values at different times and locations ")')
-	  WRITE(39,*)
+	  WRITE(39,'("  Matrix")')
 	  WRITE(39,'("  DRINKING_WATER ")')
 	  WRITE(39,'("  1.00      4.78      12.57  ")')
 	  WRITE(39,'("  0.08      0.42       3.11  ")')
 	  WRITE(39,'("  2.13      5.86      21.95  ")')
 	  WRITE(39,'("  0.44      0.75       5.21  ")')
 	  WRITE(39,'("                                                           <----- There must be only 1 space between one chemical species and another")')
-	  WRITE(39,'("                                        CHEMICAL (2)")')
+	  WRITE(39,'("  Chemical species 2")')
 	  WRITE(39,'("  Pb      ")')
-	  WRITE(39,*)
-	  WRITE(39,'("  NUMBER OF MATRIX UTILIZED ")')
-	  WRITE(39,'("        2    ")')
-	  WRITE(39,*)
+	  WRITE(39,'("  Matrix")')
 	  WRITE(39,'("  SOIL ")')
 	  WRITE(39,'("  2.00      9.66      23.65  ")')
 	  WRITE(39,'("  0.16      1.07       4.22  ")')
 	  WRITE(39,'("  4.26     10.43      42.63  ")')
 	  WRITE(39,'("  0.88      1.50       5.33  ")')
-	  WRITE(39,*)
+	  WRITE(39,'("  Matrix")')
 	  WRITE(39,'("  DRINKING_WATER ")')
 	  WRITE(39,'("  4.00      6.77      12.57  ")')
 	  WRITE(39,'("  0.54      1.00       3.11  ")')
@@ -12355,21 +12546,21 @@
 !
       IF((KKINFORMATION(3).EQ.'y').OR.(KKINFORMATION(3).EQ.'Y').OR.(KKINFORMATION(3).EQ.'yes').OR.(KKINFORMATION(3).EQ.'Yes').OR.(KKINFORMATION(3).EQ.'YES'))THEN
 !
-	  WRITE(39,'("                                       ************************************************************* ")')
-	  WRITE(39,'("                                         INFORMATION ABOUT PARAMETERS OF THE DATACHEMICAL.PRN FILE ")')
-	  WRITE(39,'("                                       ************************************************************* ")')
+	  WRITE(39,'("                                       ************************************************************ ")')
+	  WRITE(39,'("                                          INFORMATION ABOUT PARAMETERS OF THE DATACHEMICAL SHEET ")')
+	  WRITE(39,'("                                       ************************************************************ ")')
 	  WRITE(39,*)
 	  WRITE(39,'("--------------  ")')
-	  WRITE(39,'(" - NPOL         ---> Provide the number of chemical species present in the database ")')
+	  WRITE(39,'(" - NPOL               ---> Provide the number of chemical species present in the database ")')
 	  WRITE(39,*)
       WRITE(39,'("-------------- ")')
-	  WRITE(39,'(" - KEY_SF = 0   ---> The Slope Factors uncertainties will be those provided manually by the user ")')
+	  WRITE(39,'(" - KEY_SF = Disable   ---> The Slope Factors uncertainties will be those provided manually by the user ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - KEY_SF = 1   ---> The Slope Factors uncertainties will be calculated using the lognormal ")')
-	  WRITE(39,'("                     statistical distribution as described by SASSI et al. (2007) ")')
+	  WRITE(39,'(" - KEY_SF = Active    ---> The Slope Factors uncertainties will be calculated using the lognormal ")')
+	  WRITE(39,'("                           statistical distribution as described by SASSI et al. (2007) ")')
 	  WRITE(39,*)
-	  WRITE(39,'("                     SASSI, G. et al. Quantitative estimation of uncertainty in human risk analysis.  ")')
-	  WRITE(39,'("                     Journal of hazardous materials, v. 145, n. 1-2, p. 296-304, 2007.  ")')
+	  WRITE(39,'("                           SASSI, G. et al. Quantitative estimation of uncertainty in human risk analysis.  ")')
+	  WRITE(39,'("                           Journal of hazardous materials, v. 145, n. 1-2, p. 296-304, 2007.  ")')
 	  WRITE(39,*)
       WRITE(39,'("-------------- ")')
 	  WRITE(39,'(" - First parameter is the name of the chemical species ---> For example: Cd, Fe, Pb, Benzo[a]pyrene, 9-Nitrophenanthrene, ... ")')
@@ -12471,9 +12662,9 @@
 !
       IF((KKINFORMATION(4).EQ.'y').OR.(KKINFORMATION(4).EQ.'Y').OR.(KKINFORMATION(4).EQ.'yes').OR.(KKINFORMATION(4).EQ.'Yes').OR.(KKINFORMATION(4).EQ.'YES'))THEN
 !
-	  WRITE(39,'("                                         ******************************************************** ")')
-	  WRITE(39,'("                                           INFORMATION ABOUT PARAMETERS OF THE DATAEXP.PRN FILE ")')
-	  WRITE(39,'("                                         ******************************************************** ")')
+	  WRITE(39,'("                                         ******************************************************* ")')
+	  WRITE(39,'("                                            INFORMATION ABOUT PARAMETERS OF THE DATAEXP SHEET ")')
+	  WRITE(39,'("                                         ******************************************************* ")')
 	  WRITE(39,*)
 	  WRITE(39,'("---------------------------  ")')
 	  WRITE(39,'(" - Exposure duration  ED     ---> Defines how many years a person has been exposed to the contaminant ")')
@@ -12501,37 +12692,38 @@
 !
       IF((KKINFORMATION(5).EQ.'y').OR.(KKINFORMATION(5).EQ.'Y').OR.(KKINFORMATION(5).EQ.'yes').OR.(KKINFORMATION(5).EQ.'Yes').OR.(KKINFORMATION(5).EQ.'YES'))THEN
 !
-	  WRITE(39,'("                                      *************************************************************** ")')
-	  WRITE(39,'("                                        INFORMATION ABOUT PARAMETERS OF THE DATAECOLOGICAL.PRN FILE ")')
-	  WRITE(39,'("                                      *************************************************************** ")')
+	  WRITE(39,'("                                      ************************************************************** ")')
+	  WRITE(39,'("                                         INFORMATION ABOUT PARAMETERS OF THE DATAECOLOGICAL SHEET ")')
+	  WRITE(39,'("                                      ************************************************************** ")')
 	  WRITE(39,*)
 	  WRITE(39,'("----------------------------  ")')
 	  WRITE(39,'(" - Total chemical Num.         ---> Provide the number of chemical species present in the database ")')
 	  WRITE(39,*)
 	  WRITE(39,'("---------------------------- ")')
-	  WRITE(39,'(" - Water reference value = 1   ---> The National water reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Water reference value = National   ---> The National water reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Water reference value = 2   ---> The U.S.EPA water reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Water reference value = U.S EPA    ---> The U.S.EPA water reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Water reference value = 3   ---> The WHO water reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Water reference value = WHO        ---> The WHO water reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
 	  WRITE(39,'("---------------------------- ")')
-	  WRITE(39,'(" - Soil reference value = 1    ---> The Regional soil reference values will be used for the ecological indexes calculation. ")')
-	  WRITE(39,'("    =*= Res.                   ---> It will be used if the SCENARIO used is Residential  - key SCENARIO = 3 - ")')
-	  WRITE(39,'("    =*= Agr.                   ---> It will be used if the SCENARIO used is Agricultural - key SCENARIO = 1 - ")')
-	  WRITE(39,'("    =*= Ind.                   ---> It will be used if the SCENARIO used is Industrial   - key SCENARIO = 2 - ")')
-	  WRITE(39,'("    =*= In Nat.                ---> It will be used if the SCENARIO used is In Nature    - key SCENARIO = 4 - ")')
+	  WRITE(39,'(" - Soil reference value = Regional    ---> The Regional soil reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Soil reference value = 2    ---> The National soil reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'("                          =*= Res.    ---> It will be used if the SCENARIO used is Residential  - key SCENARIO = 3 - ")')
+	  WRITE(39,'("                          =*= Agr.    ---> It will be used if the SCENARIO used is Agricultural - key SCENARIO = 1 - ")')
+	  WRITE(39,'("                          =*= Ind.    ---> It will be used if the SCENARIO used is Industrial   - key SCENARIO = 2 - ")')
+	  WRITE(39,'("                          =*= In Nat  ---> It will be used if the SCENARIO used is In Nature    - key SCENARIO = 4 - ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Soil reference value = 3    ---> The U.S.EPA soil reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Soil reference value = National    ---> The National soil reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,*)
+	  WRITE(39,'(" - Soil reference value = U.S. EPA    ---> The U.S.EPA soil reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
 	  WRITE(39,'("------------------------------- ")')
-	  WRITE(39,'(" - Sediment reference value = 1    ---> The Regional sediment reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Sediment reference value = Regional  ---> The Regional sediment reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Sediment reference value = 2    ---> The National sediment reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Sediment reference value = National  ---> The National sediment reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
-	  WRITE(39,'(" - Sediment reference value = 3    ---> The U.S.EPA sediment reference values will be used for the ecological indexes calculation. ")')
+	  WRITE(39,'(" - Sediment reference value = U.S. EPA  ---> The U.S.EPA sediment reference values will be used for the ecological indexes calculation. ")')
 	  WRITE(39,*)
 	  WRITE(39,'("------------------------------- ")')
 	  WRITE(39,'(" - First parameter is the name of the chemical species ---> For example: Cd, Fe, Pb, Benzo[a]pyrene, 9-Nitrophenanthrene, ... ")')
@@ -12879,25 +13071,16 @@
       EFREFsoil='  '   
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("    WARNING!!! Soil concentrations of reference elements (Fe, Al or Mn) ")')
-	  WRITE(*,'("            were not provided in the concentration.inp input file.")')
-	  WRITE(*,'("     The soil enrichment factor (EF) calculation will not be performed!")')
+	  WRITE(*,'("  WARNING!!! Soil concentrations of reference elements (Fe, Al or Mn) ")')
+	  WRITE(*,'("  were not provided in the concentration sheet of the input file.")')
+	  WRITE(*,'("  The soil enrichment factor (EF) calculation will not be performed!")')
 	  WRITE(*,*)   
-	  WRITE(*,'("                      The soil EF value will be zero  ")')
-      WRITE(*,*)
+	  WRITE(*,'("  The soil EF value will be zero  ")')
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("    WARNING!!! Soil concentrations of reference elements (Fe, Al or Mn) ")')
-	  WRITE(99,'("            were not provided in the concentration.inp input file.")')
-	  WRITE(99,'("     The soil enrichment factor (EF) calculation will not be performed!")')
-	  WRITE(99,*)   
-	  WRITE(99,'("                      The soil EF value will be zero  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! Soil concentrations of reference elements (Fe, Al or Mn) were not provided in the concentration sheet of the input file.")')
+	  WRITE(99,'(" The soil enrichment factor (EF) calculation will not be performed!  ----> The soil EF value will be zero")')
       WRITE(99,*)
 !
 	  ENDIF
@@ -12909,25 +13092,16 @@
 	  EFREFsediment='  '   
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("   WARNING!!! Sediment concentrations of reference elements (Fe, Al or Mn) ")')
-	  WRITE(*,'("            were not provided in the concentration.inp input file.")')
-	  WRITE(*,'("    The sediment enrichment factor (EF) calculation will not be performed!")')
+	  WRITE(*,'("  WARNING!!! Sediment concentrations of reference elements (Fe, Al or Mn) ")')
+	  WRITE(*,'("  were not provided in the concentration sheet of the input file.")')
+	  WRITE(*,'("  The sediment enrichment factor (EF) calculation will not be performed!")')
 	  WRITE(*,*)   
-	  WRITE(*,'("                      The sediment EF value will be zero  ")')
-      WRITE(*,*)
+	  WRITE(*,'("  The sediment EF value will be zero  ")')
       WRITE(*,*)
 !      
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("   WARNING!!! Sediment concentrations of reference elements (Fe, Al or Mn) ")')
-	  WRITE(99,'("            were not provided in the concentration.inp input file.")')
-	  WRITE(99,'("    The sediment enrichment factor (EF) calculation will not be performed!")')
-	  WRITE(99,*)   
-	  WRITE(99,'("                      The sediment EF value will be zero  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! Sediment concentrations of reference elements (Fe, Al or Mn) were not provided in the concentration sheet of the input file.")')
+	  WRITE(99,'(" The soil enrichment factor (EF) calculation will not be performed!  ----> The soil EF value will be zero")')
       WRITE(99,*)
 
 !
@@ -13116,21 +13290,13 @@
       IF((J.EQ.1).AND.(K.EQ.1))THEN
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("           WARNING!!! CHEMICAL NOT EXIST IN Dataecological DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(*,*)   
-	  WRITE(*,'("           The index values will all be zero for this Chemical species  ")')
-      WRITE(*,*)
+	  WRITE(*,'("  WARNING!!! CHEMICAL NOT EXIST IN Dataecological DATABASE  --->  ",A30)') CHEMICAL(i)
+	  WRITE(*,'("  The index values will all be zero for this Chemical species  ")')
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("           WARNING!!! CHEMICAL NOT EXIST IN Dataecological DATABASE  --->  ",A30)') CHEMICAL(i)
-      WRITE(99,*)   
-	  WRITE(99,'("           The index values will all be zero for this Chemical species  ")')
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! CHEMICAL NOT EXIST IN Dataecological DATABASE  --->  ",A30)') CHEMICAL(i)
+	  WRITE(99,'(" The index values will all be zero for this Chemical species  ")')
       WRITE(99,*)
 !
       ENDIF
@@ -13219,21 +13385,13 @@
 !
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("       WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix")') 
-      WRITE(*,*)   
-	  WRITE(*,'("               THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(*,*)
+	  WRITE(*,'("  WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix")')
+	  WRITE(*,'("  THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("      WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix")') 
-      WRITE(99,*)   
-	  WRITE(99,'("              THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! There are no values of contaminant concentrations for OTHER_WATER matrix")')    
+	  WRITE(99,'(" THE VALUES OF THE WATER INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(99,*)
 !
       ENDIF
@@ -13351,21 +13509,13 @@
 !
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("        WARNING!!! There are no values of contaminant concentrations for SOIL matrix  ")') 
-      WRITE(*,*)   
-	  WRITE(*,'("            THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(*,*)
+	  WRITE(*,'("  WARNING!!! There are no values of contaminant concentrations for SOIL matrix  ")')   
+	  WRITE(*,'("  THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("       WARNING!!! There are no values of contaminant concentrations for SOIL matrix  ")') 
-      WRITE(99,*)   
-	  WRITE(99,'("           THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! There are no values of contaminant concentrations for SOIL matrix  ")')  
+	  WRITE(99,'(" THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(99,*)
 !
       ENDIF
@@ -13507,21 +13657,13 @@
 !
 !
       WRITE(*,*)
-      WRITE(*,*)
-      WRITE(*,*)
-	  WRITE(*,'("       WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  ")') 
-      WRITE(*,*)   
-	  WRITE(*,'("            THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(*,*)
+	  WRITE(*,'("  WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  ")')    
+	  WRITE(*,'("  THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(*,*)
 !
       WRITE(99,*)
-      WRITE(99,*)
-      WRITE(99,*)
-	  WRITE(99,'("      WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  ")') 
-      WRITE(99,*)   
-	  WRITE(99,'("           THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
-      WRITE(99,*)
+	  WRITE(99,'(" WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  ")')   
+	  WRITE(99,'(" THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  ",A30)')  CHEMICAL(i)
       WRITE(99,*)
 !
       ENDIF
