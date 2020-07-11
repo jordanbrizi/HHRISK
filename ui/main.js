@@ -15,7 +15,7 @@ const createWindow = () => {
 		width: 1066,
 		height: 600,
 		backgroundColor: '#000',
-		resizable: false,
+		resizable: true,
 		titleBarStyle: 'hidden',
 		show: false,
 		webPreferences: {
