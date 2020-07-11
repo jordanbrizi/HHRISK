@@ -12,30 +12,21 @@ $btn-white-space: nowrap
 @import "../node_modules/bootstrap/scss/bootstrap"
 
 @font-face
-	font-family: 'Open Sans'
-	src: url(../fonts/OpenSans-ExtraBold.ttf)
-	font-weight: 800
-@font-face
-	font-family: 'Open Sans'
-	src: url(../fonts/OpenSans-Regular.ttf)
+	font-family: 'Lexend Deca'
+	src: url(../fonts/LexendDeca-Regular.ttf)
 	font-weight: 400
-@font-face
-	font-family: 'Open Sans'
-	src: url(../fonts/OpenSans-Italic.ttf)
-	font-weight: 400
-	font-style: italic
 
 html, body
 	height: 100%
 	font-size: 12pt
 	color: #000
+	background: #000
 
 main
-	background: #000
 	min-height: 100%
 	position: relative
 	font-size: 1em
-	font-family: 'Open Sans', sans-serif
+	font-family: 'Lexend Deca', sans-serif
 	p
 		font-size: inherit
 
@@ -52,8 +43,10 @@ header
 		font-size: 0.8em
 		margin-top: -1em
 .page
+	transform: translateY(0px)
+	border-radius: 0 !important
 	h1
-		font-size: 3em !important
+		font-size: 2.5em !important
 
 .slide
 	transform: translateY(0px) !important
@@ -65,11 +58,12 @@ section
 	border-bottom-right-radius: 50px
 	border-bottom-left-radius: 50px
 .over
-	padding-top: 150px
-	height: 550px
+	padding-top: 25px
+	height: 472px
 	overflow-x: overlay
 	color: $white
 	font-size: 0.8em
+	border-radius: 0 !important
 
 footer
 	text-align: center
@@ -79,9 +73,13 @@ footer
 
 nav
 	a
+		text-transform: uppercase
 		font-weight: 800
-		font-size: 1.6em
+		font-size: 1.5em
 		color: $white
+		&:hover
+			cursor: default
+
 
 #config
 	height: 80px
@@ -99,6 +97,8 @@ button:focus
 	top: 25px
 	border: none
 	z-index: 1100
+	&:hover
+		cursor: default
 
 #config_button
 	background: url(../images/config.svg) no-repeat 50% 50%
@@ -107,3 +107,10 @@ button:focus
 #close_button
 	background: url(../images/close.svg) no-repeat 50% 50%
 	right: 25px
+
+#loading
+	position: absolute
+	top: 50%
+	left: 50%
+	margin: -2em 0 0 -2em
+	z-index: 2200

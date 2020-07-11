@@ -5,8 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HHRISK</title>
 	<link rel="stylesheet" type="text/css" href="./css/app.css">
-	<script src="react.development.js"></script>
-	<script src="react-dom.development.js"></script>
 </head>
 
 <body>
@@ -107,18 +105,6 @@
 	$('#logo').addEventListener('click', () => {
 		rend.ipcRenderer.send('resultados')
 	})
-
-	/*const tab = rend.tabela()
-
-	tabela = Object.keys(tab)
-
-	tabela.forEach(item => {
-		chaves = Object.keys(tab[item])
-		chaves.forEach(valor => {
-			console.log(`${item}: ${valor}`)
-			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
-		})
-	})*/
 
 	// FUNÇÃO PARA EXECUTAR O HHRISK
 	const execute = () => {
