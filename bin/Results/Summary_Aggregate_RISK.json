@@ -1,7 +1,7 @@
 {
-"non_carcinogenic_risk": {
-"Zn        ": [
+"non_carcinogenic_risk": [
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   1,
@@ -9,6 +9,7 @@
 "Error":  3.19286E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   2,
@@ -16,6 +17,7 @@
 "Error":  4.11454E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   3,
@@ -23,6 +25,7 @@
 "Error":  3.83230E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   6,
@@ -30,6 +33,7 @@
 "Error":  2.56748E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  11,
@@ -37,6 +41,7 @@
 "Error":  1.80964E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  16,
@@ -44,6 +49,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   1,
@@ -51,6 +57,7 @@
 "Error":  6.88776E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   2,
@@ -58,6 +65,7 @@
 "Error":  4.96038E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   3,
@@ -65,6 +73,7 @@
 "Error":  4.60984E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   6,
@@ -72,6 +81,7 @@
 "Error":  3.08359E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  11,
@@ -79,6 +89,7 @@
 "Error":  2.16954E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  16,
@@ -86,6 +97,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   2,
@@ -93,6 +105,7 @@
 "Error":  3.19337E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   3,
@@ -100,6 +113,7 @@
 "Error":  3.83230E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   6,
@@ -107,6 +121,7 @@
 "Error":  2.56748E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  11,
@@ -114,6 +129,7 @@
 "Error":  1.80964E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  16,
@@ -121,6 +137,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  21,
@@ -128,6 +145,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   2,
@@ -135,6 +153,7 @@
 "Error":  6.88886E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   3,
@@ -142,6 +161,7 @@
 "Error":  4.60984E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   6,
@@ -149,6 +169,7 @@
 "Error":  3.08359E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  11,
@@ -156,6 +177,7 @@
 "Error":  2.16954E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  16,
@@ -163,6 +185,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  21,
@@ -170,6 +193,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   3,
@@ -177,6 +201,7 @@
 "Error":  2.97229E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   4,
@@ -184,6 +209,7 @@
 "Error":  3.83230E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   6,
@@ -191,6 +217,7 @@
 "Error":  2.56748E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  11,
@@ -198,6 +225,7 @@
 "Error":  1.80964E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  16,
@@ -205,6 +233,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  21,
@@ -212,6 +241,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   3,
@@ -219,6 +249,7 @@
 "Error":  6.41730E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   4,
@@ -226,6 +257,7 @@
 "Error":  4.60984E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   6,
@@ -233,6 +265,7 @@
 "Error":  3.08359E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  11,
@@ -240,6 +273,7 @@
 "Error":  2.16954E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  16,
@@ -247,6 +281,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  21,
@@ -254,6 +289,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   6,
@@ -261,6 +297,7 @@
 "Error":  1.99036E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   7,
@@ -268,6 +305,7 @@
 "Error":  2.56748E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  11,
@@ -275,6 +313,7 @@
 "Error":  1.80964E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  16,
@@ -282,6 +321,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  21,
@@ -289,6 +329,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   6,
@@ -296,6 +337,7 @@
 "Error":  4.29978E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   7,
@@ -303,6 +345,7 @@
 "Error":  3.08359E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  11,
@@ -310,6 +353,7 @@
 "Error":  2.16954E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  16,
@@ -317,6 +361,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  21,
@@ -324,6 +369,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  11,
@@ -331,6 +377,7 @@
 "Error":  1.40211E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  12,
@@ -338,6 +385,7 @@
 "Error":  1.80964E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  16,
@@ -345,6 +393,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  21,
@@ -352,6 +401,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  11,
@@ -359,6 +409,7 @@
 "Error":  3.03099E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  12,
@@ -366,6 +417,7 @@
 "Error":  2.16954E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  16,
@@ -373,6 +425,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  21,
@@ -380,6 +433,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  16,
@@ -387,6 +441,7 @@
 "Error":  1.40219E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  17,
@@ -394,6 +449,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  21,
@@ -401,6 +457,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  16,
@@ -408,6 +465,7 @@
 "Error":  3.03118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  17,
@@ -415,6 +473,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  21,
@@ -422,6 +481,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  18,
@@ -429,6 +489,7 @@
 "Error":  1.40219E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  19,
@@ -436,6 +497,7 @@
 "Error":  1.80975E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  21,
@@ -443,6 +505,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  18,
@@ -450,6 +513,7 @@
 "Error":  3.03118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  19,
@@ -457,6 +521,7 @@
 "Error":  2.16968E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  21,
@@ -464,6 +529,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  21,
@@ -471,6 +537,7 @@
 "Error":  1.27370E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  22,
@@ -478,6 +545,7 @@
 "Error":  1.64379E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  21,
@@ -485,6 +553,7 @@
 "Error":  2.75317E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  22,
@@ -492,6 +561,7 @@
 "Error":  1.97118E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  65,
@@ -499,6 +569,7 @@
 "Error":  1.06055E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  66,
@@ -506,6 +577,7 @@
 "Error":  1.36781E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  65,
@@ -513,15 +585,15 @@
 "Error":  2.29058E-01
 },
 {
+"Chem_Species": "Zn        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  66,
 "HI":  6.93600E-01,
 "Error":  1.64379E-01
-}
-],
-"Pb        ": [
+},
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   1,
@@ -529,6 +601,7 @@
 "Error":  3.43455E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   2,
@@ -536,6 +609,7 @@
 "Error":  4.36655E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   3,
@@ -543,6 +617,7 @@
 "Error":  3.35742E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   6,
@@ -550,6 +625,7 @@
 "Error":  1.84694E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  11,
@@ -557,6 +633,7 @@
 "Error":  8.73345E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  16,
@@ -564,6 +641,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   1,
@@ -571,6 +649,7 @@
 "Error":  7.17016E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   2,
@@ -578,6 +657,7 @@
 "Error":  5.27567E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   3,
@@ -585,6 +665,7 @@
 "Error":  4.04900E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   6,
@@ -592,6 +673,7 @@
 "Error":  2.22116E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  11,
@@ -599,6 +681,7 @@
 "Error":  1.03917E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  16,
@@ -606,6 +689,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   2,
@@ -613,6 +697,7 @@
 "Error":  3.43627E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   3,
@@ -620,6 +705,7 @@
 "Error":  3.35742E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   6,
@@ -627,6 +713,7 @@
 "Error":  1.84694E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  11,
@@ -634,6 +721,7 @@
 "Error":  8.73345E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  16,
@@ -641,6 +729,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  21,
@@ -648,6 +737,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   2,
@@ -655,6 +745,7 @@
 "Error":  7.17368E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   3,
@@ -662,6 +753,7 @@
 "Error":  4.04900E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   6,
@@ -669,6 +761,7 @@
 "Error":  2.22116E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  11,
@@ -676,6 +769,7 @@
 "Error":  1.03917E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  16,
@@ -683,6 +777,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  21,
@@ -690,6 +785,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   3,
@@ -697,6 +793,7 @@
 "Error":  2.63507E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   4,
@@ -704,6 +801,7 @@
 "Error":  3.35742E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   6,
@@ -711,6 +809,7 @@
 "Error":  1.84694E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  11,
@@ -718,6 +817,7 @@
 "Error":  8.73345E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  16,
@@ -725,6 +825,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  21,
@@ -732,6 +833,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   3,
@@ -739,6 +841,7 @@
 "Error":  5.53121E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   4,
@@ -746,6 +849,7 @@
 "Error":  4.04900E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   6,
@@ -753,6 +857,7 @@
 "Error":  2.22116E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  11,
@@ -760,6 +865,7 @@
 "Error":  1.03917E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  16,
@@ -767,6 +873,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  21,
@@ -774,6 +881,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   6,
@@ -781,6 +889,7 @@
 "Error":  1.44365E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   7,
@@ -788,6 +897,7 @@
 "Error":  1.84694E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  11,
@@ -795,6 +905,7 @@
 "Error":  8.73345E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  16,
@@ -802,6 +913,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  21,
@@ -809,6 +921,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   6,
@@ -816,6 +929,7 @@
 "Error":  3.05556E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   7,
@@ -823,6 +937,7 @@
 "Error":  2.22116E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  11,
@@ -830,6 +945,7 @@
 "Error":  1.03917E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  16,
@@ -837,6 +953,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  21,
@@ -844,6 +961,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  11,
@@ -851,6 +969,7 @@
 "Error":  6.72043E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  12,
@@ -858,6 +977,7 @@
 "Error":  8.73345E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  16,
@@ -865,6 +985,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  21,
@@ -872,6 +993,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  11,
@@ -879,6 +1001,7 @@
 "Error":  1.46733E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  12,
@@ -886,6 +1009,7 @@
 "Error":  1.03917E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  16,
@@ -893,6 +1017,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  21,
@@ -900,6 +1025,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  16,
@@ -907,6 +1033,7 @@
 "Error":  6.72059E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  17,
@@ -914,6 +1041,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  21,
@@ -921,6 +1049,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  16,
@@ -928,6 +1057,7 @@
 "Error":  1.46737E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  17,
@@ -935,6 +1065,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  21,
@@ -942,6 +1073,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  18,
@@ -949,6 +1081,7 @@
 "Error":  6.72059E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  19,
@@ -956,6 +1089,7 @@
 "Error":  8.73367E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  21,
@@ -963,6 +1097,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  18,
@@ -970,6 +1105,7 @@
 "Error":  1.46737E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  19,
@@ -977,6 +1113,7 @@
 "Error":  1.03920E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  21,
@@ -984,6 +1121,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  21,
@@ -991,6 +1129,7 @@
 "Error":  6.60079E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  22,
@@ -998,6 +1137,7 @@
 "Error":  8.54398E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  21,
@@ -1005,6 +1145,7 @@
 "Error":  1.43002E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  22,
@@ -1012,6 +1153,7 @@
 "Error":  1.01937E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  65,
@@ -1019,6 +1161,7 @@
 "Error":  8.41887E-03
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  66,
@@ -1026,6 +1169,7 @@
 "Error":  1.07488E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  65,
@@ -1033,15 +1177,15 @@
 "Error":  1.77457E-02
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  66,
 "HI":  3.70680E-02,
 "Error":  1.29447E-02
-}
-],
-"Cd        ": [
+},
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   1,
@@ -1049,6 +1193,7 @@
 "Error":  6.60087E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   2,
@@ -1056,6 +1201,15 @@
 "Error":  8.72656E-02
 },
 {
+"Chem_Species": "Cd        ",
+"Initial_age":  1,
+"Local":   1,
+"Age":   3,
+"HI":  2.70080E-01,
+"Error":  8.72656E-02
+},
+{
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":   6,
@@ -1063,6 +1217,7 @@
 "Error":  6.11042E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  11,
@@ -1070,6 +1225,7 @@
 "Error":  4.50923E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  16,
@@ -1077,6 +1233,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   1,
@@ -1084,6 +1241,7 @@
 "Error":  1.76774E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   2,
@@ -1091,6 +1249,7 @@
 "Error":  1.03844E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":   6,
@@ -1098,6 +1257,7 @@
 "Error":  7.27126E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  11,
@@ -1105,6 +1265,7 @@
 "Error":  5.36588E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  16,
@@ -1112,6 +1273,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   2,
@@ -1119,6 +1281,7 @@
 "Error":  6.60087E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   3,
@@ -1126,6 +1289,7 @@
 "Error":  8.72656E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":   6,
@@ -1133,6 +1297,7 @@
 "Error":  6.11042E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  11,
@@ -1140,6 +1305,7 @@
 "Error":  4.50923E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  16,
@@ -1147,6 +1313,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  21,
@@ -1154,6 +1321,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   2,
@@ -1161,6 +1329,7 @@
 "Error":  1.76774E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   3,
@@ -1168,6 +1337,7 @@
 "Error":  1.03844E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":   6,
@@ -1175,6 +1345,7 @@
 "Error":  7.27126E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  11,
@@ -1182,6 +1353,7 @@
 "Error":  5.36588E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  16,
@@ -1189,6 +1361,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  21,
@@ -1196,6 +1369,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   3,
@@ -1203,6 +1377,7 @@
 "Error":  6.60087E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   4,
@@ -1210,6 +1385,7 @@
 "Error":  8.72656E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":   6,
@@ -1217,6 +1393,7 @@
 "Error":  6.11042E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  11,
@@ -1224,6 +1401,7 @@
 "Error":  4.50923E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  16,
@@ -1231,6 +1409,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  21,
@@ -1238,6 +1417,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   3,
@@ -1245,6 +1425,7 @@
 "Error":  1.76774E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   4,
@@ -1252,6 +1433,7 @@
 "Error":  1.03844E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":   6,
@@ -1259,6 +1441,7 @@
 "Error":  7.27126E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  11,
@@ -1266,6 +1449,7 @@
 "Error":  5.36588E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  16,
@@ -1273,6 +1457,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  21,
@@ -1280,6 +1465,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   6,
@@ -1287,6 +1473,7 @@
 "Error":  4.62199E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":   7,
@@ -1294,6 +1481,7 @@
 "Error":  6.11042E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  11,
@@ -1301,6 +1489,7 @@
 "Error":  4.50923E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  16,
@@ -1308,6 +1497,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  21,
@@ -1315,6 +1505,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   6,
@@ -1322,6 +1513,7 @@
 "Error":  1.23779E-01
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":   7,
@@ -1329,6 +1521,7 @@
 "Error":  7.27126E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  11,
@@ -1336,6 +1529,7 @@
 "Error":  5.36588E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  16,
@@ -1343,6 +1537,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  21,
@@ -1350,6 +1545,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  11,
@@ -1357,6 +1553,7 @@
 "Error":  3.41084E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  12,
@@ -1364,6 +1561,7 @@
 "Error":  4.50923E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  16,
@@ -1371,6 +1569,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  21,
@@ -1378,6 +1577,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  11,
@@ -1385,6 +1585,7 @@
 "Error":  9.13434E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  12,
@@ -1392,6 +1593,7 @@
 "Error":  5.36588E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  16,
@@ -1399,6 +1601,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  21,
@@ -1406,6 +1609,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  16,
@@ -1413,6 +1617,7 @@
 "Error":  3.41106E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  17,
@@ -1420,6 +1625,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  21,
@@ -1427,6 +1633,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  16,
@@ -1434,6 +1641,7 @@
 "Error":  9.13495E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  17,
@@ -1441,6 +1649,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  21,
@@ -1448,6 +1657,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  18,
@@ -1455,6 +1665,7 @@
 "Error":  3.41106E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  19,
@@ -1462,6 +1673,7 @@
 "Error":  4.50953E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  21,
@@ -1469,6 +1681,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  18,
@@ -1476,6 +1689,7 @@
 "Error":  9.13495E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  19,
@@ -1483,6 +1697,7 @@
 "Error":  5.36624E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  21,
@@ -1490,6 +1705,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  21,
@@ -1497,6 +1713,7 @@
 "Error":  3.08040E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  22,
@@ -1504,6 +1721,7 @@
 "Error":  4.07239E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  21,
@@ -1511,6 +1729,7 @@
 "Error":  8.24943E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  22,
@@ -1518,6 +1737,7 @@
 "Error":  4.84605E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  65,
@@ -1525,6 +1745,7 @@
 "Error":  2.42032E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  66,
@@ -1532,6 +1753,7 @@
 "Error":  3.19974E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  65,
@@ -1539,19 +1761,17 @@
 "Error":  6.48170E-02
 },
 {
+"Chem_Species": "Cd        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  66,
 "HI":  1.08932E-01,
 "Error":  3.80761E-02
 }
-]
-},
-"Carcinogenic_risk": {
-"Zn        ": [
 ],
-"Pb        ": [
+"Carcinogenic_risk": [
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   1,
 "Age":  20,
@@ -1559,6 +1779,7 @@
 "Error":  3.55801E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  1,
 "Local":   2,
 "Age":  20,
@@ -1566,6 +1787,7 @@
 "Error":  4.84477E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   1,
 "Age":  21,
@@ -1573,6 +1795,7 @@
 "Error":  3.15078E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  2,
 "Local":   2,
 "Age":  21,
@@ -1580,6 +1803,7 @@
 "Error":  4.41338E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   1,
 "Age":  22,
@@ -1587,6 +1811,7 @@
 "Error":  2.76487E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  3,
 "Local":   2,
 "Age":  22,
@@ -1594,6 +1819,7 @@
 "Error":  3.74501E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   1,
 "Age":  25,
@@ -1601,6 +1827,7 @@
 "Error":  1.86525E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age":  6,
 "Local":   2,
 "Age":  25,
@@ -1608,6 +1835,7 @@
 "Error":  2.42528E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   1,
 "Age":  30,
@@ -1615,6 +1843,7 @@
 "Error":  1.30968E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 11,
 "Local":   2,
 "Age":  30,
@@ -1622,6 +1851,7 @@
 "Error":  1.61985E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   1,
 "Age":  35,
@@ -1629,6 +1859,7 @@
 "Error":  1.31066E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 16,
 "Local":   2,
 "Age":  35,
@@ -1636,6 +1867,7 @@
 "Error":  1.62201E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   1,
 "Age":  37,
@@ -1643,6 +1875,7 @@
 "Error":  1.31106E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 18,
 "Local":   2,
 "Age":  37,
@@ -1650,6 +1883,7 @@
 "Error":  1.62288E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   1,
 "Age":  40,
@@ -1657,6 +1891,7 @@
 "Error":  1.31173E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 21,
 "Local":   2,
 "Age":  40,
@@ -1664,6 +1899,7 @@
 "Error":  1.62361E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   1,
 "Age":  84,
@@ -1671,14 +1907,12 @@
 "Error":  1.78623E-08
 },
 {
+"Chem_Species": "Pb        ",
 "Initial_age": 65,
 "Local":   2,
 "Age":  84,
 "CR":  2.72714E-07,
 "Error":  2.22302E-08
 }
-],
-"Cd        ": [
 ]
-}
 }
