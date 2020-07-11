@@ -124,7 +124,6 @@
 	REAL*8, DIMENSION (:,:,:,:), ALLOCATABLE :: PORC_VIA_NC
 	    REAL*8, DIMENSION (:,:,:,:), ALLOCATABLE :: PORC_VIA_C
 !
-	    INTEGER, DIMENSION (:), ALLOCATABLE :: jstop
 !	
 !
     DIMENSION RfD(500,6,3),SF(500,6,3), W(NVIAS),BAF(500,14), SD_BAF(500,14) 
@@ -347,8 +346,6 @@
     ALLOCATE (PORC_VIA_NC(NIDADE,NVIAS,NTIME,NLOCAL))
 	    ALLOCATE (PORC_VIA_C(NIDADE,NVIAS,NTIME,NLOCAL))
 !
-	    ALLOCATE (jstop(NCHEM))
-
 !
 !
 	  SCENARIES(1)='AGRICULTURAL'
@@ -402,36 +399,72 @@
 	  J_INI_AGE(8)=21
 	  J_INI_AGE(9)=65
 !
-      IF(SCENAR.NE.2)THEN
-      lip=1
-	  ELSE
-	  lip=7
-	  ENDIF
 !
-      jdeci=0
+	  lstop0=0
+	  istop0=0
+	  jstop0=0
+	  kstop0=0
+	  lstop1=0
+	  istop1=0
+	  kstop1=0
 !
-      DO l=lip,9
-      IF(ED(SCENAR,l).NE.0.0)THEN
-	  jdeci=l
-	  ENDIF
-	  ENDDO
-!	  
-      NTIMEstop=ED(SCENAR,jdeci)
       DO i=1,NCHEM
-	  jstop(i)=0
-      DO j=1,NTIMEstop
-	  IF(HIag(jdeci,i,j,nlocal).NE.HIag(jdeci,i,j-1,nlocal))THEN
-      jstop(i)=j
-	  ENDIF
-	  ENDDO
-	  ENDDO
+	  DO l=INICIO,NIDADE
+	  IF(ED(SCENAR,l).NE.0.0)THEN
+      NTIMEexp=ED(SCENAR,l)
+	  DO K=1,NLOCAL
+      DO j=1,NTIMEexp
 !
-      jstop2=0
-      DO j=1,NTIMEstop
-	  IF(HIcum(jdeci,j,nlocal).NE.HIcum(jdeci,j-1,nlocal))THEN
-      jstop2=j
+	  IF(HIag(l,i,j,k).NE.HIag(l,i,j-1,k))THEN
+	  lstop0=l
+	  istop0=i
+	  jstop0=j
+	  kstop0=k
 	  ENDIF
-	  ENDDO
+!
+      ENDDO	 ! fim ciclo "j"
+!
+	  IF(CRag_tot(l,i,k).NE.0.0)THEN
+	  lstop1=l
+	  istop1=i
+	  kstop1=k
+	  ENDIF
+!
+	  ENDDO	  ! fim ciclo "k"
+	  ENDIF
+	  ENDDO	  ! fim ciclo "l"
+	  ENDDO	  ! fim ciclo "i"
+!
+!
+	  lstop2=0
+	  jstop2=0
+	  kstop2=0
+	  lstop3=0
+	  kstop3=0
+!
+	  DO l=INICIO,NIDADE
+	  IF(ED(SCENAR,l).NE.0.0)THEN
+      NTIMEexp=ED(SCENAR,l)
+	  DO K=1,NLOCAL
+      DO j=1,NTIMEexp
+!
+	  IF(HIcum(l,j,k).NE.HIcum(l,j-1,k))THEN
+	  lstop2=l
+	  jstop2=j
+	  kstop2=k
+	  ENDIF
+!
+	  ENDDO	  ! fim ciclo "j"
+!
+      IF(CRcum_tot(l,k).NE.0.0) THEN
+	  lstop3=l
+	  kstop3=k
+	  ENDIF
+!
+	  ENDDO	  ! fim ciclo "k"
+	  ENDIF
+	  ENDDO	  ! fim ciclo "l"
+!
 !
       CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
 !
@@ -448,7 +481,7 @@
 !
       WRITE(44,'("{")')
 !
-	  WRITE(44,'(A1,"non_carcinogenic_risk",A1,": {")')aspas,aspas
+	  WRITE(44,'(A1,"non_carcinogenic_risk",A1,": [")')aspas,aspas
 !
 !
 	  LKCHEM=NCHEM
@@ -456,7 +489,6 @@
 !  
 	  DO i=1,LKCHEM
 !
-	  WRITE(44,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
 !
 !
       DO ii=1,NEW_POL
@@ -516,6 +548,7 @@
 !
       WRITE(44,'("{")')
 !
+      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
       write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
@@ -524,7 +557,7 @@
 !
 !      write(*,*) j,k,l
 !
-      IF((J.EQ.jstop(i)).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.jstop0).and.(k.EQ.kstop0).and.(l.EQ.lstop0).and.(i.EQ.istop0))THEN
 	  WRITE(44,'("}")')
 	  ELSE
 	  WRITE(44,'("},")')
@@ -538,8 +571,8 @@
 	  IF(HIag(l,i,j,k).NE.HIag(l,i,j-1,k))THEN
 !
       WRITE(44,'("{")')
-
 !
+      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
       write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
@@ -547,7 +580,7 @@
       write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
 !
 !
-      IF((J.EQ.jstop(i)).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.jstop0).and.(k.EQ.kstop0).and.(l.EQ.lstop0).and.(i.EQ.istop0))THEN
 	  WRITE(44,'("}")')
 	  ELSE
 	  WRITE(44,'("},")')
@@ -567,24 +600,14 @@
 !
       ENDDO  ! FECHA O "DO" DE l
 !
-      IF(i.EQ.NCHEM)THEN
-	  WRITE(44,'("]")')
-	  ELSE
-	  WRITE(44,'("],")')
-	  ENDIF
-!
-!      write(*,*)
-!      write(*,*) jstop(i),NLOCAL,jdeci
-!      write(*,*)
-!
 	  ENDDO	  ! FIM DO CICLO "i"
 !	       
-	  WRITE(44,'("},")')      
+	  WRITE(44,'("],")')      
 !
 
 !     tabela carcinogenicos
 !
-	  WRITE(44,'(A1,"Carcinogenic_risk",A1,": {")')aspas,aspas
+	  WRITE(44,'(A1,"Carcinogenic_risk",A1,": [")')aspas,aspas
 !
 	  LKCHEM=NCHEM
       NEW_POL=NPOL
@@ -599,7 +622,6 @@
 	  ENDIF 
 	  ENDDO
 !
-	  WRITE(44,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
 !
       DO l=INICIO,NIDADE
 !
@@ -638,13 +660,14 @@
 !
 	  WRITE(44,'("{")')
 !
+      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
       write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
       write(44,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
       write(44,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRag_tot(l,i,k)
 !
-      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((k.EQ.kstop1).and.(l.EQ.lstop1).and.(i.EQ.istop1))THEN
 	  WRITE(44,'("}")')	             
 	  ELSE
 	  WRITE(44,'("},")')	             
@@ -659,13 +682,14 @@
 !
 	  WRITE(44,'("{")')
 !
+      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
       write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
       write(44,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
       write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
 !
-      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((k.EQ.kstop1).and.(l.EQ.lstop1).and.(i.EQ.istop1))THEN
 	  WRITE(44,'("}")')	             
 	  ELSE
 	  WRITE(44,'("},")')	             
@@ -682,15 +706,9 @@
 !
       ENDDO  ! FECHA O "DO" DE l
 !
-      IF(i.EQ.NCHEM)THEN
-	  WRITE(44,'("]")')
-	  ELSE
-	  WRITE(44,'("],")')
-	  ENDIF
-!
 	  ENDDO	  ! FIM DO CICLO "i"
 !
-	  WRITE(44,'("}")')
+	  WRITE(44,'("]")')
 !
 	  WRITE(44,'("}")')
 !
@@ -838,7 +856,7 @@
 !
 !
 !
-      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.lstop0))THEN
 	  WRITE(37,'("}")')	             
 	  ELSE
 	  WRITE(37,'("},")')	             
@@ -995,7 +1013,7 @@
 	  ENDIF
 !
 !
-      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.lstop2))THEN
 	  WRITE(38,'("}")')	             
 	  ELSE
 	  WRITE(38,'("},")')	             
@@ -1093,7 +1111,7 @@
       write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
       write(66,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIcum(l,j,k)
 !
-      IF((J.EQ.jstop2).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.jstop2).and.(k.EQ.kstop2).and.(l.EQ.lstop2))THEN
 	  WRITE(66,'("}")')
 	  ELSE
 	  WRITE(66,'("},")')
@@ -1113,7 +1131,7 @@
       write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
       write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
 !
-      IF((J.EQ.jstop2).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((j.EQ.jstop2).and.(k.EQ.kstop2).and.(l.EQ.lstop2))THEN
 	  WRITE(66,'("}")')
 	  ELSE
 	  WRITE(66,'("},")')
@@ -1183,7 +1201,7 @@
       write(66,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
       write(66,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRcum_tot(l,k)
 !
-      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((k.EQ.kstop3).and.(l.EQ.lstop3))THEN
 	  WRITE(66,'("}")')	             
 	  ELSE
 	  WRITE(66,'("},")')	             
@@ -1203,7 +1221,7 @@
       write(66,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
       write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
 !
-      IF((K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((k.EQ.kstop3).and.(l.EQ.lstop3))THEN
 	  WRITE(66,'("}")')	             
 	  ELSE
 	  WRITE(66,'("},")')	             
@@ -8552,27 +8570,34 @@
 	  J_INI_AGE(8)=21
 	  J_INI_AGE(9)=65
 !
-      IF(SCENAR.NE.2)THEN
-      lip=1
-	  ELSE
-	  lip=7
-	  ENDIF
+      lstop10=0
+	  nstop10=0
+	  istop10=0
+	  kstop10=0
+	  jstop10=0
 !
-      jdeci=0
-!
-      DO l=lip,9
+      DO l=INICIO,NIDADE
       IF(ED_INI(SCENAR,l).NE.0.0)THEN
-	  jdeci=l
-	  ENDIF
-	  ENDDO
+	  NTIMEexp=ED_INI(SCENAR,l)
+      DO n=1,NVIAS
+      IF(W(n).EQV..TRUE.)THEN
+      DO i=1,NCHEM
+      DO K=1,NLOCAL
+	  DO j=1,NTIMEexp 
 !
-      jway=0
+      lstop10=l
+	  nstop10=n
+	  istop10=i
+	  kstop10=k
+	  jstop10=j
 !
-      DO nn=1,NVIAS
-      IF(W(nn).EQV..TRUE.)THEN
-	  jway=nn
-	  ENDIF
-	  ENDDO
+	  ENDDO	  ! FIM DO j=1,NTIMEexp 
+	  ENDDO	  ! FIM DO K=1,NLOCAL 
+	  ENDDO	  ! FIM DO CICLO DE 'i' (POR METAL)     
+      ENDIF   ! FIM DO IF PARA CADA WAY	 
+      ENDDO   ! FIM DO CICLO "n"
+      ENDIF   ! FIM do IF ED(SCENAR,l)....
+      ENDDO   ! FIM DO CICLO "l"
 !
 !           PROTOCOLO DE IMPRESSÃO DA SAIDA DE DADOS
 !
@@ -8653,7 +8678,7 @@
       write(33,'(A1,"HQ_Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HQ(l,n,i,j,k)
 !
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+      IF((j.EQ.jstop10).and.(K.EQ.kstop10).and.(i.EQ.istop10).and.(l.EQ.lstop10).and.(n.EQ.nstop10))THEN
 	  WRITE(33,'("}")')
 	  ELSE
 	  WRITE(33,'("},")')
@@ -8736,7 +8761,7 @@
       write(33,'(A1,"CR_Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CR(l,n,i,j,k)
 !
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(i.EQ.NCHEM).and.(l.EQ.jdeci).and.(n.EQ.jway))THEN
+      IF((j.EQ.jstop10).and.(K.EQ.kstop10).and.(i.EQ.istop10).and.(l.EQ.lstop10).and.(n.EQ.nstop10))THEN
 	  WRITE(33,'("}")')
 	  ELSE
 	  WRITE(33,'("},")')
