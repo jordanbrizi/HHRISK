@@ -7928,8 +7928,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   1,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.80053E-01,
+"HI Error":  6.60087E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7939,8 +7944,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   2,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7950,8 +7960,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7961,8 +7976,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7972,8 +7992,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7983,8 +8008,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -7994,8 +8024,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8005,8 +8040,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8016,8 +8056,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8027,8 +8072,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8038,8 +8088,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8049,8 +8104,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8060,8 +8120,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8071,8 +8136,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8082,8 +8152,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8093,8 +8168,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8104,8 +8184,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8115,8 +8200,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8126,8 +8216,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8137,8 +8232,13 @@
 "Initial_age":  1,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8148,8 +8248,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   1,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  4.95147E-01,
+"HI Error":  1.76774E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8159,8 +8264,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   2,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8170,8 +8280,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8181,8 +8296,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8192,8 +8312,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8203,8 +8328,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8214,8 +8344,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8225,8 +8360,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8236,8 +8376,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8247,8 +8392,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8258,8 +8408,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8269,8 +8424,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8280,8 +8440,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8291,8 +8456,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8302,8 +8472,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8313,8 +8488,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8324,8 +8504,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8335,8 +8520,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8346,8 +8536,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8357,8 +8552,13 @@
 "Initial_age":  1,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8368,8 +8568,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   2,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.80053E-01,
+"HI Error":  6.60087E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8379,8 +8584,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8390,8 +8600,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8401,8 +8616,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8412,8 +8632,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8423,8 +8648,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8434,8 +8664,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8445,8 +8680,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8456,8 +8696,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8467,8 +8712,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8478,8 +8728,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8489,8 +8744,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8500,8 +8760,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8511,8 +8776,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8522,8 +8792,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8533,8 +8808,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8544,8 +8824,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8555,8 +8840,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8566,8 +8856,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8577,8 +8872,13 @@
 "Initial_age":  2,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8588,8 +8888,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   2,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  4.95147E-01,
+"HI Error":  1.76774E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8599,8 +8904,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8610,8 +8920,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8621,8 +8936,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8632,8 +8952,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8643,8 +8968,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8654,8 +8984,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8665,8 +9000,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8676,8 +9016,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8687,8 +9032,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8698,8 +9048,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8709,8 +9064,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8720,8 +9080,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8731,8 +9096,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8742,8 +9112,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8753,8 +9128,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8764,8 +9144,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8775,8 +9160,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8786,8 +9176,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8797,8 +9192,13 @@
 "Initial_age":  2,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8808,8 +9208,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.80053E-01,
+"HI Error":  6.60087E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8819,8 +9224,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8830,8 +9240,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.70080E-01,
+"HI Error":  8.72656E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8841,8 +9256,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8852,8 +9272,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8863,8 +9288,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8874,8 +9304,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8885,8 +9320,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8896,8 +9336,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8907,8 +9352,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8918,8 +9368,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8929,8 +9384,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8940,8 +9400,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8951,8 +9416,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8962,8 +9432,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8973,8 +9448,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8984,8 +9464,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -8995,8 +9480,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9006,8 +9496,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9017,8 +9512,13 @@
 "Initial_age":  3,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9028,8 +9528,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   3,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  4.95147E-01,
+"HI Error":  1.76774E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9039,8 +9544,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   4,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9050,8 +9560,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   5,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.97088E-01,
+"HI Error":  1.03844E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9061,8 +9576,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9072,8 +9592,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9083,8 +9608,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9094,8 +9624,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9105,8 +9640,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9116,8 +9656,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9127,8 +9672,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9138,8 +9688,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9149,8 +9704,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9160,8 +9720,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9171,8 +9736,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9182,8 +9752,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9193,8 +9768,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9204,8 +9784,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9215,8 +9800,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9226,8 +9816,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9237,8 +9832,13 @@
 "Initial_age":  3,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9248,8 +9848,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26075E-01,
+"HI Error":  4.62199E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9259,8 +9864,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9270,8 +9880,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9281,8 +9896,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9292,8 +9912,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.89113E-01,
+"HI Error":  6.11042E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9303,8 +9928,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9314,8 +9944,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9325,8 +9960,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9336,8 +9976,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9347,8 +9992,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9358,8 +10008,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9369,8 +10024,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9380,8 +10040,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9391,8 +10056,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9402,8 +10072,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9413,8 +10088,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9424,8 +10104,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9435,8 +10120,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9446,8 +10136,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9457,8 +10152,13 @@
 "Initial_age":  6,
 "Local":   1,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9468,8 +10168,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":   6,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  3.46707E-01,
+"HI Error":  1.23779E-01,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9479,8 +10184,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":   7,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9490,8 +10200,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":   8,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9501,8 +10216,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":   9,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9512,8 +10232,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  10,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.08024E-01,
+"HI Error":  7.27126E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9523,8 +10248,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9534,8 +10264,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9545,8 +10280,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9556,8 +10296,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9567,8 +10312,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9578,8 +10328,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9589,8 +10344,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9600,8 +10360,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9611,8 +10376,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9622,8 +10392,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9633,8 +10408,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9644,8 +10424,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9655,8 +10440,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9666,8 +10456,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9677,8 +10472,13 @@
 "Initial_age":  6,
 "Local":   2,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9688,8 +10488,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.30382E-02,
+"HI Error":  3.41084E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9699,8 +10504,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9710,8 +10520,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9721,8 +10536,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9732,8 +10552,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39557E-01,
+"HI Error":  4.50923E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9743,8 +10568,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9754,8 +10584,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9765,8 +10600,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9776,8 +10616,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9787,8 +10632,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9798,8 +10648,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9809,8 +10664,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9820,8 +10680,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9831,8 +10696,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9842,8 +10712,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9853,8 +10728,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9864,8 +10744,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9875,8 +10760,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9886,8 +10776,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9897,8 +10792,13 @@
 "Initial_age": 11,
 "Local":   1,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9908,8 +10808,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  11,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.55855E-01,
+"HI Error":  9.13434E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9919,8 +10824,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  12,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9930,8 +10840,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  13,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9941,8 +10856,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  14,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9952,8 +10872,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  15,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53513E-01,
+"HI Error":  5.36588E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9963,8 +10888,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9974,8 +10904,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9985,8 +10920,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -9996,8 +10936,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10007,8 +10952,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10018,8 +10968,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10029,8 +10984,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10040,8 +11000,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10051,8 +11016,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10062,8 +11032,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10073,8 +11048,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10084,8 +11064,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10095,8 +11080,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10106,8 +11096,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10117,8 +11112,13 @@
 "Initial_age": 11,
 "Local":   2,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10128,8 +11128,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.30444E-02,
+"HI Error":  3.41106E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10139,8 +11144,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10150,8 +11160,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10161,8 +11176,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10172,8 +11192,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10183,8 +11208,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10194,8 +11224,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10205,8 +11240,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10216,8 +11256,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10227,8 +11272,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10238,8 +11288,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10249,8 +11304,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10260,8 +11320,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10271,8 +11336,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10282,8 +11352,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10293,8 +11368,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10304,8 +11384,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10315,8 +11400,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10326,8 +11416,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10337,8 +11432,13 @@
 "Initial_age": 16,
 "Local":   1,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10348,8 +11448,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  16,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.55872E-01,
+"HI Error":  9.13495E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10359,8 +11464,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  17,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10370,8 +11480,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10381,8 +11496,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10392,8 +11512,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10403,8 +11528,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10414,8 +11544,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10425,8 +11560,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10436,8 +11576,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10447,8 +11592,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10458,8 +11608,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10469,8 +11624,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10480,8 +11640,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10491,8 +11656,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10502,8 +11672,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10513,8 +11688,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10524,8 +11704,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10535,8 +11720,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10546,8 +11736,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10557,8 +11752,13 @@
 "Initial_age": 16,
 "Local":   2,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10568,8 +11768,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.30444E-02,
+"HI Error":  3.41106E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10579,8 +11784,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10590,8 +11800,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.39567E-01,
+"HI Error":  4.50953E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10601,8 +11816,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10612,8 +11832,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10623,8 +11848,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10634,8 +11864,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10645,8 +11880,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10656,8 +11896,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10667,8 +11912,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10678,8 +11928,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10689,8 +11944,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10700,8 +11960,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10711,8 +11976,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10722,8 +11992,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10733,8 +12008,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10744,8 +12024,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10755,8 +12040,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10766,8 +12056,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  36,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10777,8 +12072,13 @@
 "Initial_age": 18,
 "Local":   1,
 "Age":  37,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10788,8 +12088,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  18,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.55872E-01,
+"HI Error":  9.13495E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10799,8 +12104,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  19,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10810,8 +12120,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  20,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.53523E-01,
+"HI Error":  5.36624E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10821,8 +12136,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10832,8 +12152,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10843,8 +12168,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10854,8 +12184,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10865,8 +12200,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10876,8 +12216,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10887,8 +12232,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10898,8 +12248,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10909,8 +12264,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10920,8 +12280,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10931,8 +12296,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10942,8 +12312,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10953,8 +12328,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10964,8 +12344,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10975,8 +12360,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10986,8 +12376,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  36,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -10997,8 +12392,13 @@
 "Initial_age": 18,
 "Local":   2,
 "Age":  37,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11008,8 +12408,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  8.40249E-02,
+"HI Error":  3.08040E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11019,8 +12424,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11030,8 +12440,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11041,8 +12456,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11052,8 +12472,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11063,8 +12488,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11074,8 +12504,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11085,8 +12520,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11096,8 +12536,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11107,8 +12552,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11118,8 +12568,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11129,8 +12584,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11140,8 +12600,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11151,8 +12616,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11162,8 +12632,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11173,8 +12648,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  36,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11184,8 +12664,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  37,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11195,8 +12680,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  38,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11206,8 +12696,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  39,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11217,8 +12712,13 @@
 "Initial_age": 21,
 "Local":   1,
 "Age":  40,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.26037E-01,
+"HI Error":  4.07239E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11228,8 +12728,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  21,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  2.31069E-01,
+"HI Error":  8.24943E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11239,8 +12744,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  22,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11250,8 +12760,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  23,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11261,8 +12776,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  24,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11272,8 +12792,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  25,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11283,8 +12808,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  26,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11294,8 +12824,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  27,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11305,8 +12840,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  28,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11316,8 +12856,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  29,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11327,8 +12872,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  30,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11338,8 +12888,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  31,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11349,8 +12904,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  32,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11360,8 +12920,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  33,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11371,8 +12936,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  34,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11382,8 +12952,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  35,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11393,8 +12968,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  36,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11404,8 +12984,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  37,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11415,8 +13000,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  38,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11426,8 +13016,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  39,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11437,8 +13032,13 @@
 "Initial_age": 21,
 "Local":   2,
 "Age":  40,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.38641E-01,
+"HI Error":  4.84605E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11448,8 +13048,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  65,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  6.60196E-02,
+"HI Error":  2.42032E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11459,8 +13064,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  66,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11470,8 +13080,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  67,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11481,8 +13096,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  68,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11492,8 +13112,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  69,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11503,8 +13128,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  70,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11514,8 +13144,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  71,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11525,8 +13160,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  72,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11536,8 +13176,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  73,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11547,8 +13192,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  74,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11558,8 +13208,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  75,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11569,8 +13224,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  76,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11580,8 +13240,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  77,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11591,8 +13256,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  78,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11602,8 +13272,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  79,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11613,8 +13288,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  80,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11624,8 +13304,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  81,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11635,8 +13320,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  82,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11646,8 +13336,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  83,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11657,8 +13352,13 @@
 "Initial_age": 65,
 "Local":   1,
 "Age":  84,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  9.90294E-02,
+"HI Error":  3.19974E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11668,8 +13368,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  65,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.81554E-01,
+"HI Error":  6.48170E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11679,8 +13384,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  66,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11690,8 +13400,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  67,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11701,8 +13416,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  68,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11712,8 +13432,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  69,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11723,8 +13448,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  70,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11734,8 +13464,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  71,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11745,8 +13480,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  72,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11756,8 +13496,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  73,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11767,8 +13512,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  74,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11778,8 +13528,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  75,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11789,8 +13544,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  76,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11800,8 +13560,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  77,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11811,8 +13576,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  78,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11822,8 +13592,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  79,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11833,8 +13608,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  80,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11844,8 +13624,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  81,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11855,8 +13640,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  82,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11866,8 +13656,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  83,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,
@@ -11877,8 +13672,13 @@
 "Initial_age": 65,
 "Local":   2,
 "Age":  84,
+<<<<<<< HEAD
 "HI":  0.00000E+00,
 "HI Error":  0.00000E+00,
+=======
+"HI":  1.08932E-01,
+"HI Error":  3.80761E-02,
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
 "CR": null,
 "CR Error": null,
 "CR_acc": null,

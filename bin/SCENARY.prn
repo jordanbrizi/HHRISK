@@ -6,7 +6,11 @@
 
          Scenary            Nº of chemicalsNº of times Nº of sitesInformation
         Agricultural               3            2           2         Help
+<<<<<<< HEAD
             1                      3            2           2          1
+=======
+            1                      3            2           2          0
+>>>>>>> 79b7bdb80dd4e5a73e1555d00abcab70d0a661ac
         Uncertainties calculation
 
           .TRUE.
