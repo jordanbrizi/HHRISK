@@ -16,6 +16,7 @@ const createWindow = () => {
 		height: 600,
 		backgroundColor: '#000',
 		resizable: true,
+		frame: false,
 		titleBarStyle: 'hidden',
 		show: false,
 		webPreferences: {
