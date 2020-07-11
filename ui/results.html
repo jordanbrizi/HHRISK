@@ -51,6 +51,7 @@ const Render = () => {
 	for(q = 0; q < dados.quantidade(); q++) {
 		const tables = dados.pegar(dados.arquivo(q))
 		const DadosKey = Object.keys(tables)
+
 		DadosKey.forEach(pai => {
 			var caption = document.createElement('h3')
 			caption.classList = 'mt-3 mb-3 text-center'
@@ -65,10 +66,11 @@ const Render = () => {
 			tabela.appendChild(thead)
 			$('#resultados').appendChild(caption)
 	
-			// GERAR OS TH'S DAS TABELAS -------------------------------------------
-				
+			// GERAR OS TH'S DAS TABELAS ---------------------------------------
+
 			var titulos = Object.keys(tables[pai][0])
 			var tr = document.createElement('tr')
+
 			titulos.forEach(t => {
 				let th = document.createElement('th')
 				th.scope = "col"
@@ -77,7 +79,7 @@ const Render = () => {
 					.appendChild(tr).appendChild(th)
 			})
 			
-			//----------------------------------------------------------------------
+			//------------------------------------------------------------------
 			
 			tables[pai].forEach(filho => {
 				var tr = document.createElement('tr')
@@ -93,12 +95,9 @@ const Render = () => {
 			})
 		})
 	}
-
-
 }
 
 Render()
-
 </script>
 </body>
 </html>
