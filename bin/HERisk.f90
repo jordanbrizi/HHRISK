@@ -123,6 +123,8 @@
 !
 	REAL*8, DIMENSION (:,:,:,:), ALLOCATABLE :: PORC_VIA_NC
 	    REAL*8, DIMENSION (:,:,:,:), ALLOCATABLE :: PORC_VIA_C
+!
+	    INTEGER, DIMENSION (:), ALLOCATABLE :: jstop
 !	
 !
     DIMENSION RfD(500,6,3),SF(500,6,3), W(NVIAS),BAF(500,14), SD_BAF(500,14) 
@@ -345,6 +347,9 @@
     ALLOCATE (PORC_VIA_NC(NIDADE,NVIAS,NTIME,NLOCAL))
 	    ALLOCATE (PORC_VIA_C(NIDADE,NVIAS,NTIME,NLOCAL))
 !
+	    ALLOCATE (jstop(NCHEM))
+
+!
 !
 	  SCENARIES(1)='AGRICULTURAL'
 	  SCENARIES(2)='INDUSTRIAL'
@@ -380,11 +385,6 @@
 !
       CALL RISCOag(NIDADE,NVIAS,CHEMICAL,POLLUTANT,TYPE_POLLUTANT,TYPE_CHEMICAL,NPOL,NCHEM,NTIME,NLOCAL,HQ,SD_HQ,CR,SD_CR,HIag,SD_HIag,CRag,SD_CRag,HIag_ac,SD_HIag_ac,&
 	  CRag_ac,SD_CRag_ac,HIag_tot,SD_HIag_tot,CRag_tot,SD_CRag_tot,HQ_tot,CR_tot,ED,SCENAR,INICIO)
-!	
-!      DO L=1,NCHEM
-!      WRITE(*,*) CHEMICAL(L)
-!      write(*,*) (HIag_tot (L,K), K=1,NLOCAL)	
-!	  ENDDO
 !
 !
       CALL RISCOcum(NIDADE,NCHEM,NTIME,NLOCAL,HIag_ac,SD_HIag_ac,CRag,SD_CRag,HIcum,SD_HIcum,CRcum,SD_CRcum,&
@@ -413,6 +413,23 @@
       DO l=lip,9
       IF(ED(SCENAR,l).NE.0.0)THEN
 	  jdeci=l
+	  ENDIF
+	  ENDDO
+!	  
+      NTIMEstop=ED(SCENAR,jdeci)
+      DO i=1,NCHEM
+	  jstop(i)=0
+      DO j=1,NTIMEstop
+	  IF(HIag(jdeci,i,j,nlocal).NE.HIag(jdeci,i,j-1,nlocal))THEN
+      jstop(i)=j
+	  ENDIF
+	  ENDDO
+	  ENDDO
+!
+      jstop2=0
+      DO j=1,NTIMEstop
+	  IF(HIcum(jdeci,j,nlocal).NE.HIcum(jdeci,j-1,nlocal))THEN
+      jstop2=j
 	  ENDIF
 	  ENDDO
 !
@@ -491,7 +508,6 @@
 	  N_AGE=j+64
 	  ENDIF
 !
-!	  WRITE(44,'("{")')
 !
 !
 	  IF(KEY_SD.EQV..TRUE.)THEN
@@ -506,8 +522,9 @@
       write(44,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
       write(44,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIag(l,i,j,k)
 !
+!      write(*,*) j,k,l
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((J.EQ.jstop(i)).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
 	  WRITE(44,'("}")')
 	  ELSE
 	  WRITE(44,'("},")')
@@ -530,7 +547,7 @@
       write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
 !
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((J.EQ.jstop(i)).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
 	  WRITE(44,'("}")')
 	  ELSE
 	  WRITE(44,'("},")')
@@ -556,10 +573,15 @@
 	  WRITE(44,'("],")')
 	  ENDIF
 !
+!      write(*,*)
+!      write(*,*) jstop(i),NLOCAL,jdeci
+!      write(*,*)
+!
 	  ENDDO	  ! FIM DO CICLO "i"
 !	       
 	  WRITE(44,'("},")')      
 !
+
 !     tabela carcinogenicos
 !
 	  WRITE(44,'(A1,"Carcinogenic_risk",A1,": {")')aspas,aspas
@@ -1071,7 +1093,7 @@
       write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
       write(66,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIcum(l,j,k)
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((J.EQ.jstop2).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
 	  WRITE(66,'("}")')
 	  ELSE
 	  WRITE(66,'("},")')
@@ -1091,7 +1113,7 @@
       write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
       write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
 !
-      IF((J.EQ.NTIMEexp).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
+      IF((J.EQ.jstop2).and.(K.EQ.NLOCAL).and.(l.EQ.jdeci))THEN
 	  WRITE(66,'("}")')
 	  ELSE
 	  WRITE(66,'("},")')
@@ -9201,7 +9223,7 @@
 !    PAUSE
 !
 !***************************************************************************************************************************************************************************************
-    IF((KEYCONC_B3.EQV..FALSE.).AND.(KEYCONC_S3.EQV..TRUE.).AND.(KEYCONC_W3.EQV..TRUE.)) THEN
+    IF(KEYCONC_B3.EQV..FALSE.) THEN
 	CBEEF1(i,j,k)=CSOIL(i,j,k)*BTF_SB3*R_IRsolo*Fa*Fp 
 	SD_CBEEF1(i,j,k)=	CBEEF1(i,j,k)*SQRT((SD_CSOIL(i,j,k)/SOIL)**2+(SD_BTF_SB3/BTF_SB3_SUB)**2+(SD_IRsolo/R_IRsolo)**2+(SD_Fa/Fa)**2+(SD_Fp/Fp)**2)
 !---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9340,7 +9362,7 @@
 !   FIM DAS PROTEÇÕES
 !
 !***************************************************************************************************************************************************************************************
-    IF((KEYCONC_M4.EQV..FALSE.).AND.(KEYCONC_S4.EQV..TRUE.).AND.(KEYCONC_W4.EQV..TRUE.)) THEN
+    IF(KEYCONC_M4.EQV..FALSE.) THEN
 !
 	CMILK1(i,j,k)=CSOIL(i,j,k)*BTF_SM4*R_IRsolo*Fa*Fp
 	SD_CMILK1(i,j,k)=	CMILK1(i,j,k)*SQRT((SD_CSOIL(i,j,k)/SOIL)**2+(SD_BTF_SM4/BTF_SM4_SUB)**2+(SD_IRsolo/R_IRsolo)**2+(SD_Fa/Fa)**2+(SD_Fp/Fp)**2)
