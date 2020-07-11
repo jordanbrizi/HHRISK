@@ -26,6 +26,7 @@ const Dados = () => {
 
 	fs.readdirSync(path.resolve('../bin/Results/')).forEach(arquivo => {
 		arquivos.push(`${arquivo}`)
+		console.log(arquivo)
 	})
 
 	for (j = 0; j < arquivos.length; j++) {
