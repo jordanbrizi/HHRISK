@@ -8,43 +8,18 @@
 
 <body>
 <main>
-	<button type="button" class="main-button" id="close_button" onclick="rend.ipcRenderer.send('resultados')"></button>
-
-	<header class="pb-3 fixed-top page">
-		<div class="container-fluid" id="config"></div>
-		<div class="container-fluid pt-3 pb-4">
-			<h1 class="m-0 user-select-none">hh<b>risk</b></h1>
-			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
+	<button type="button" class="main-button" id="close_button"></button>
+	<header class="pb-3 sticky-top page">
+		<div class="container-fluid pt-3">
+			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b>/resultados</h1>
 		</div>
 	</header>
 
 	<section class="over">
-		<div class="container-fluid">
-			<h2>Resultados</h2>
-			<table class="table text-white">
-				<thead>
-					<tr>
-						<th scope="col">LOCAL</th>
-						<th scope="col">TIME</th>
-						<th scope="col">Kd_MPI</th>
-						<th scope="col">Risk_chem_wat</th>
-						<th scope="col">Risk_chem_soil</th>
-						<th scope="col">Risk_chem_sed</th>
-						<th scope="col">IR</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td scope="col">2</td>
-						<td scope="col">1</td>
-						<td scope="col">.00000E+00</td>
-						<td scope="col">.00000E+00</td>
-						<td scope="col">.54030E-01</td>
-						<td scope="col"></td>
-						<td scope="col">.54030E-01</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="container-fluid" id="resultados">
+			<div id="loading" class="spinner-border text-light" style="display: none; width: 4rem; height: 4rem;" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
 		</div>
 	</section>
 
@@ -57,25 +32,72 @@
 	</footer>
 </main>
 <script>
+	console.log(`Resultados.html\n`)
 	const rend = require('./renderer.js')
 	const $ = arg => document.querySelector(arg)
 	const $$ = arg => document.querySelectorAll(arg)
 
 	d = new Date()
 	$('.year').innerHTML = d.getFullYear()
-	$('.version').innerHTML = rend.pkg().version
 
-	const tab = rend.tabela()
-
-	tabela = Object.keys(tab)
-
-	tabela.forEach(item => {
-		chaves = Object.keys(tab[item])
-		chaves.forEach(valor => {
-			console.log(`${item}: ${valor}`)
-			console.table(tab[item][valor]) //cria uma tabela para cada elemento químico
-		})
+	$('#close_button').addEventListener('click', () => {
+		rend.ipcRenderer.send('resultados')
 	})
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+const Render = () => {
+	const dados = rend.Dados()
+	
+	for(q = 0; q < dados.quantidade(); q++) {
+		const tables = dados.pegar(dados.arquivo(q))
+		const DadosKey = Object.keys(tables)
+
+		DadosKey.forEach(pai => {
+			var caption = document.createElement('h3')
+			caption.classList = 'mt-3 mb-3 text-center'
+			caption.innerHTML = pai
+	
+			var tabela = document.createElement('table')
+			tabela.id = pai
+			tabela.classList = 'table table-sm text-white'
+	
+			var thead = document.createElement('thead')
+			var tbody = document.createElement('tbody')
+			tabela.appendChild(thead)
+			$('#resultados').appendChild(caption)
+	
+			// GERAR OS TH'S DAS TABELAS ---------------------------------------
+
+			var titulos = Object.keys(tables[pai][0])
+			var tr = document.createElement('tr')
+
+			titulos.forEach(t => {
+				let th = document.createElement('th')
+				th.scope = "col"
+				th.innerHTML = t
+				$('#resultados').appendChild(tabela).appendChild(thead)
+					.appendChild(tr).appendChild(th)
+			})
+			
+			//------------------------------------------------------------------
+			
+			tables[pai].forEach(filho => {
+				var tr = document.createElement('tr')
+				let td = document.createElement('td')
+				d = []
+				for(var t = 0; t < titulos.length; t++) {
+					d.push(`<td>${filho[titulos[t]]}</td>`)
+				}
+				tr.innerHTML = d.join('')
+	
+				$('#resultados').appendChild(tabela).appendChild(tbody)
+					.appendChild(tr)
+			})
+		})
+	}
+}
+
+Render()
 </script>
 </body>
 </html>
