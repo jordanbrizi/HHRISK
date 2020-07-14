@@ -9,16 +9,46 @@
 <body>
 <main>
 	<button type="button" class="main-button" id="close_button"></button>
-	<header class="pb-3 sticky-top page">
+	<header class="pb-3 sticky-top page bg-primary">
 		<div class="container-fluid pt-3">
 			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b>/resultados</h1>
 		</div>
 	</header>
 
 	<section class="over">
-		<div class="container-fluid" id="resultados">
-			<div id="loading" class="spinner-border text-light" style="display: none; width: 4rem; height: 4rem;" role="status">
+		<div class="container-fluid">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item col" role="presentation">
+					<a class="nav-link active" id="" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">Human Health Risk</a>
+				</li>
+				<li class="nav-item col" role="presentation">
+					<a class="nav-link" id="" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+						aria-selected="false">Ecological Risk</a>
+				</li>
+				<li class="nav-item col" role="presentation">
+					<a class="nav-link" id="" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
+						aria-selected="false">Radiological Risk</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="">
+					Human Health Risk
+				</div>
+				<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="">
+					Ecological Risk
+				</div>
+				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="">
+					Radiological Risk
+				</div>
+			</div>
+			<div id="loading" class="spinner-border text-light" style="width: 4rem; height: 4rem;" role="status">
 				<span class="sr-only">Loading...</span>
+			</div>
+			<div class="accordion" id="resultados">
 			</div>
 		</div>
 	</section>
@@ -31,6 +61,7 @@
 		</div>
 	</footer>
 </main>
+</body>
 <script>
 	console.log(`Resultados.html\n`)
 	const rend = require('./renderer.js')
@@ -40,32 +71,58 @@
 	d = new Date()
 	$('.year').innerHTML = d.getFullYear()
 
+	if (localStorage.getItem('lang')) {
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+	else {
+		localStorage.setItem('lang', Intl.DateTimeFormat()
+			.resolvedOptions().locale)
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+
+	$$('span[data-lang]').forEach(spn => spn.innerHTML = lang[spn.dataset.lang])
+
 	$('#close_button').addEventListener('click', () => {
 		rend.ipcRenderer.send('resultados')
 	})
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-const Render = () => {
-	const dados = rend.Dados()
-	
-	for(q = 0; q < dados.quantidade(); q++) {
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+
+/* const ForRender = dados => {
+	for (q = 0; q < dados.quantidade(); q++) {
 		const tables = dados.pegar(dados.arquivo(q))
 		const DadosKey = Object.keys(tables)
 
 		DadosKey.forEach(pai => {
-			var caption = document.createElement('h3')
-			caption.classList = 'mt-3 mb-3 text-center'
-			caption.innerHTML = pai
-	
+			var card = document.createElement('div')
+			var card_header = document.createElement('div')
+			var card_h2 = document.createElement('h2')
+			var card_header_btn = document.createElement('button')
+			var collapse = document.createElement('div')
 			var tabela = document.createElement('table')
-			tabela.id = pai
-			tabela.classList = 'table table-sm text-white'
-	
-			var thead = document.createElement('thead')
 			var tbody = document.createElement('tbody')
+			var thead = document.createElement('thead')
+
+			card.classList = 'card text-white bg-dark'
+			card_header.classList = 'card-header'
+			card_h2.classList = 'mb-0'
+
+			card_header_btn.classList = 'btn btn-link btn-block btn-card'
+			card_header_btn.dataset.target = `${pai}`
+			card_header_btn.innerHTML = pai
+
+			collapse.classList = 'collapse card-body'
+			collapse.id = pai
+			collapse.dataset.parent = `${pai}`
+			tabela.classList = 'table table-sm text-white table-dark'
+
+			tabela.id = pai
+
 			tabela.appendChild(thead)
-			$('#resultados').appendChild(caption)
-	
+			$('#resultados').appendChild(card).appendChild(card_header)
+				.appendChild(card_h2).appendChild(card_header_btn)
+
 			// GERAR OS TH'S DAS TABELAS ---------------------------------------
 
 			var titulos = Object.keys(tables[pai][0])
@@ -73,31 +130,53 @@ const Render = () => {
 
 			titulos.forEach(t => {
 				let th = document.createElement('th')
-				th.scope = "col"
+				th.scope = 'col'
+				th.classList = 'align-middle text-center'
 				th.innerHTML = t
-				$('#resultados').appendChild(tabela).appendChild(thead)
+				$('#resultados').appendChild(card).appendChild(collapse)
+					.appendChild(tabela).appendChild(thead)
 					.appendChild(tr).appendChild(th)
 			})
-			
-			//------------------------------------------------------------------
-			
+
+			// GERAR OS DADOS --------------------------------------------------
+
 			tables[pai].forEach(filho => {
 				var tr = document.createElement('tr')
-				let td = document.createElement('td')
+				let td = document.createElement('td')	
 				d = []
-				for(var t = 0; t < titulos.length; t++) {
+				for (var t = 0; t < titulos.length; t++) {
 					d.push(`<td>${filho[titulos[t]]}</td>`)
 				}
 				tr.innerHTML = d.join('')
-	
-				$('#resultados').appendChild(tabela).appendChild(tbody)
-					.appendChild(tr)
+				tr.classList = 'text-center'
+
+				$('#resultados').appendChild(card).appendChild(collapse)
+					.appendChild(tabela).appendChild(tbody).appendChild(tr)
 			})
 		})
 	}
-}
+} */
 
-Render()
+const Render = () => {
+	//ForRender(rend.Dados())
+	const dados = rend.Dados()
+	dados.arquivos().forEach(arquivo => {
+		dados.pegar(arquivo)
+	})
+	$('#loading').classList.toggle('invisible')
+} 
+
+document.addEventListener('readystatechange', event => {
+	if (event.target.readyState === "complete") {
+		Render()
+		/* $$('.btn-card').forEach((btn) => {
+			btn.addEventListener('click', function () {
+				$(`.collapse[data-parent="${this.dataset.target}"`).classList.toggle('show')
+			})
+		}) */
+	}
+})
+
+document.body
 </script>
-</body>
 </html>

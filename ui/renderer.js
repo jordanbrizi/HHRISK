@@ -1,6 +1,5 @@
 const { ipcRenderer } = require('electron')
 const path = require('path')
-const { count } = require('console')
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
 const pkg = () => require('./package')
 
@@ -21,21 +20,33 @@ const lang = (attr = defaultLang) => {
 
 const Dados = () => {
 	const fs = require('fs')
-	const arquivos = []
-	const jsons = []
+	const files = []
 
 	fs.readdirSync(path.resolve('../bin/Results/')).forEach(arquivo => {
-		arquivos.push(`${arquivo}`)
-		console.log(arquivo)
+		files.push(`${arquivo}`)
 	})
 
-	for (j = 0; j < arquivos.length; j++) {
-		if (arquivos[j].includes('.json')) jsons.push(arquivos[j])
+	const jsons = files.filter(a => a.includes('.json'))
+
+	const hhr = ['Doses, HQ and CR.json',
+		'Summary Aggregated Risk.json',
+		'Extensive Aggregated Risk.json',
+		'Summary Cumulative Risk.json',
+		'Extensive Cumulative Risk.json',
+		'Complementary Analyzes.json'
+	] // Human Health Risk
+	const er = ['Combined.json', 'Individual.json'] // Ecological Risk
+	const rr = ['Radiological Risk.json'] // Radiological Risk
+
+	const arquivos = {
+		arquivos_hhr: jsons.filter(a => hhr.includes(a)),
+		arquivos_er: jsons.filter(a => er.includes(a)),
+		arquivos_rr: jsons.filter(a => rr.includes(a))
 	}
 
 	return {
 		quantidade: () => jsons.length,
-		arquivo: chave => jsons[chave],
+		arquivos: () => jsons,
 		pegar: arquivo => require(path.resolve(`../bin/Results/${arquivo}`))
 	}
 }

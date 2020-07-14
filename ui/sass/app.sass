@@ -5,7 +5,7 @@ $laranja: #FF6A2D
 $rosa: #FF6D82
 $azul: #283E51
 
-$theme-colors: ("primary": $amarelo, "success": $verde)
+$theme-colors: ("primary": $laranja)
 $enable-responsive-font-sizes: true
 $btn-white-space: nowrap
 
@@ -21,7 +21,9 @@ html, body
 	font-size: 12pt
 	color: #000
 	background: #000
-
+a, .btn-link
+	&:hover
+		text-decoration: none
 main
 	min-height: 100%
 	position: relative
@@ -31,7 +33,7 @@ main
 		font-size: inherit
 
 header
-	background: url(../images/bg.svg) 0 0 $amarelo
+	background: url(../images/bg.svg) 0 0
 	background-size: 72px
 	transform: translateY(-80px)
 	transition: .4s
@@ -52,14 +54,14 @@ header
 	transform: translateY(0px) !important
 
 section
-	padding-top: 375px
+	padding-top: 350px
 	padding-bottom: 40px
 	background: #333*.15
 	border-bottom-right-radius: 50px
 	border-bottom-left-radius: 50px
 .over
-	padding-top: 25px
-	height: 472px
+	padding-top: 15px
+	height: 547px
 	overflow-x: overlay
 	color: $white
 	font-size: 0.8em

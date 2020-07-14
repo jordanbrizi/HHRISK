@@ -12,8 +12,8 @@ const createWindow = () => {
 		}
 	})
 	const winResults = new BrowserWindow({
-		width: 1066,
-		height: 600,
+		width: 1200,
+		height: 675,
 		backgroundColor: '#000',
 		resizable: true,
 		frame: false,
