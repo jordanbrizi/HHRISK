@@ -76,7 +76,7 @@
 	PARAMETER (NIDADE=9)	 ! O 9 TIPO DE IDADES AVALIADAS !!!! ATENÇAO!!!!!!!!!
 	PARAMETER (NVIAS=14)   	 ! O NÚMERO DE VIAS DE EXPOSIÇÃO AVALIADAS !!!! ATENÇAO!!!!!!!!!
     PARAMETER (NVP=0)   	 ! NVP = 0 	o file Variable_Parameters.out não será exibido, NVP = 1 	o file Variable_Parameters.out será exibido
-    CHARACTER(LEN=50)  :: CHEMICAL(500),NOMES(500),POLLUTANT(500),RAD_POL(4)
+    CHARACTER(LEN=50)  :: CHEMICAL(500),NOMES(500),POLLUTANT(500),RAD_POL(4),nomevias(NVIAS)
 	CHARACTER(LEN=10)  :: KKINFORMATION(6),NRISKTYPE(NVIAS)
 	CHARACTER(LEN=20)  :: TYPE_POLLUTANT(500)
 	CHARACTER(LEN=14)  :: SCENARIES(4),TYPE_CHEMICAL(2)
@@ -476,12 +476,12 @@
 !
 !
 ! 
-	  open (UNIT=44, file='Results\Summary_Aggregate_RISK.json')
+	  open (UNIT=44, file='Results\Summary Aggregate Risk.json')
 !
 !
       WRITE(44,'("{")')
 !
-	  WRITE(44,'(A1,"non_carcinogenic_risk",A1,": [")')aspas,aspas
+	  WRITE(44,'(A1,"Summarized aggregate non-carcinogenic risks",A1,": [")')aspas,aspas
 !
 !
 	  LKCHEM=NCHEM
@@ -548,12 +548,12 @@
 !
       WRITE(44,'("{")')
 !
-      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(44,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+      write(44,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(44,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(44,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIag(l,i,j,k)
+      write(44,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(44,'(A1,"HI error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIag(l,i,j,k)
 !
 !      write(*,*) j,k,l
 !
@@ -572,12 +572,12 @@
 !
       WRITE(44,'("{")')
 !
-      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+      write(44,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(44,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
+      write(44,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(44,'(A1,"HI error",A1,":",1X,"null") )') aspas,aspas
 !
 !
       IF((j.EQ.jstop0).and.(k.EQ.kstop0).and.(l.EQ.lstop0).and.(i.EQ.istop0))THEN
@@ -607,7 +607,7 @@
 
 !     tabela carcinogenicos
 !
-	  WRITE(44,'(A1,"Carcinogenic_risk",A1,": [")')aspas,aspas
+	  WRITE(44,'(A1,"Summarized aggregate carcinogenic risks",A1,": [")')aspas,aspas
 !
 	  LKCHEM=NCHEM
       NEW_POL=NPOL
@@ -660,12 +660,12 @@
 !
 	  WRITE(44,'("{")')
 !
-      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+      write(44,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
-      write(44,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
-      write(44,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRag_tot(l,i,k)
+      write(44,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
+      write(44,'(A1,"CR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRag_tot(l,i,k)
 !
       IF((k.EQ.kstop1).and.(l.EQ.lstop1).and.(i.EQ.istop1))THEN
 	  WRITE(44,'("}")')	             
@@ -682,12 +682,12 @@
 !
 	  WRITE(44,'("{")')
 !
-      write(44,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-      write(44,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(44,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+      write(44,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(44,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(44,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
-      write(44,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
-      write(44,'(A1,"Error",A1,":",1X,"null") )') aspas,aspas
+      write(44,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_tot(l,i,k)
+      write(44,'(A1,"CR error",A1,":",1X,"null") )') aspas,aspas
 !
       IF((k.EQ.kstop1).and.(l.EQ.lstop1).and.(i.EQ.istop1))THEN
 	  WRITE(44,'("}")')	             
@@ -721,7 +721,7 @@
 !*******************************************************************************************************************************************
 !
 !
-	  open (UNIT=37, file='Results\Extensive_Aggregate_RISK.json')
+	  open (UNIT=37, file='Results\Extensive Aggregate Risk.json')
 
 
 !
@@ -740,7 +740,7 @@
 !  
 	  DO i=1,IICHEM
 !
-	  WRITE(37,'(A1,A10,A1,": [")')aspas,NOMES(i),aspas
+	  WRITE(37,'(A1,"HI and CR values for",1x,A10,A1,": [")')aspas,NOMES(i),aspas
 !
 !
       DO ii=1,NEW_POLI
@@ -799,27 +799,27 @@
 !
 	  IF(CRag(l,i,j,k).NE.0.0)THEN
 !
-      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(37,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(37,'(A1,"HI Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIag(l,i,j,k)
-      write(37,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag(l,i,j,k)
-      write(37,'(A1,"CR Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CRag(l,i,j,k)
-      write(37,'(A1,"CR_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_ac(l,i,j,k)
-      write(37,'(A1,"CR_accError",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRag_ac(l,i,j,k)
+      write(37,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(37,'(A1,"HI error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIag(l,i,j,k)
+      write(37,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag(l,i,j,k)
+      write(37,'(A1,"CR error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CRag(l,i,j,k)
+      write(37,'(A1,"Accumulated CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_ac(l,i,j,k)
+      write(37,'(A1,"Accumulated CR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRag_ac(l,i,j,k)
 !
 	  ELSE
 !
-      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(37,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(37,'(A1,"HI Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIag(l,i,j,k)
-      write(37,'(A1,"CR",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR_acc",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
+      write(37,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(37,'(A1,"HI error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIag(l,i,j,k)
+      write(37,'(A1,"CR value",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"Accumulated CR value",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"Accumulated CR error",A1,":",1x,"null") )') aspas,aspas
 !
 	  ENDIF
 !
@@ -828,27 +828,27 @@
 !
       IF(CRag(l,i,j,k).NE.0.0)THEN
 !
-      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(37,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(37,'(A1,"HI Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag(l,i,j,k)
-      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_ac(l,i,j,k)
-      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
+      write(37,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(37,'(A1,"HI error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag(l,i,j,k)
+      write(37,'(A1,"CR error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"Accumulated CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRag_ac(l,i,j,k)
+      write(37,'(A1,"Accumulated CR error",A1,":",1x,"null") )') aspas,aspas
 !
 	  ELSE
 !					 
-      write(37,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(37,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(37,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(37,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(37,'(A1,"HI",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
-      write(37,'(A1,"HI Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR_acc",A1,":",1x,"null",",") )') aspas,aspas
-      write(37,'(A1,"CR_acc Error",A1,":",1x,"null") )') aspas,aspas
+      write(37,'(A1,"HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIag(l,i,j,k)
+      write(37,'(A1,"HI error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR value",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"CR error",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"Accumulated CR value",A1,":",1x,"null",",") )') aspas,aspas
+      write(37,'(A1,"Accumulated CR error",A1,":",1x,"null") )') aspas,aspas
 !
       ENDIF
 !
@@ -892,7 +892,7 @@
 !
 !
 !
-	  open (UNIT=38, file='Results\Extensive_Cumulative_RISK.json')
+	  open (UNIT=38, file='Results\Extensive Cumulative Risk.json')
 
 
 !
@@ -905,7 +905,7 @@
 !
       WRITE(38,'("{")')
 !
-	  WRITE(38,'(A1,"Extensive_Cumulative",A1,": [")')aspas,aspas
+	  WRITE(38,'(A1,"Carcinogenic and non-carcinogenic risks in extensive form",A1,": [")')aspas,aspas
 
 !
 !
@@ -958,27 +958,27 @@
 !
       IF(CRcum(l,j,k).NE.0.0)THEN
 !
-      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(38,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(38,'(A1,"HI_tot Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIcum(l,j,k)
-      write(38,'(A1,"CR_cum",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum(l,j,k)
-      write(38,'(A1,"CR_cum Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CRcum(l,j,k)
-      write(38,'(A1,"CR_cum_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_ac(l,j,k)
-      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,ES12.5))') aspas,aspas,SD_CRcum_ac(l,j,k)
+      write(38,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(38,'(A1,"HItot error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIcum(l,j,k)
+      write(38,'(A1,"CRcum value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum(l,j,k)
+      write(38,'(A1,"CRcum error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CRcum(l,j,k)
+      write(38,'(A1,"Accumulated CRcum value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_ac(l,j,k)
+      write(38,'(A1,"Accumulated CRcum error",A1,":",1x,ES12.5))') aspas,aspas,SD_CRcum_ac(l,j,k)
 !
 	  ELSE
 !
-      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(38,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(38,'(A1,"HI_tot Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIcum(l,j,k)
-      write(38,'(A1,"CR_cum",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum_acc",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
+      write(38,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(38,'(A1,"HItot error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIcum(l,j,k)
+      write(38,'(A1,"CRcum value",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CRcum error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"Accumulated CRcum value",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"Accumulated CRcum error",A1,":",1x,"null"))') aspas,aspas
 !
 	  ENDIF
 !
@@ -986,27 +986,27 @@
 !
       IF(CRcum(l,j,k).NE.0.0)THEN
 !
-      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(38,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(38,'(A1,"HI_tot Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum(l,j,k)
-      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_ac(l,j,k)
-      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
+      write(38,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(38,'(A1,"HItot error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CRcum value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum(l,j,k)
+      write(38,'(A1,"CRcum error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"Accumulated CRcum value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_ac(l,j,k)
+      write(38,'(A1,"Accumulated CRcum error",A1,":",1x,"null"))') aspas,aspas
 !
 	  ELSE
 !
-      write(38,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(38,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(38,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(38,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(38,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(38,'(A1,"HI_tot Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum Error",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum_acc",A1,":",1x,"null",",") )') aspas,aspas
-      write(38,'(A1,"CR_cum_acc Error",A1,":",1x,"null"))') aspas,aspas
+      write(38,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(38,'(A1,"HItot error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CRcum value",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"CRcum error",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"Accumulated CRcum value",A1,":",1x,"null",",") )') aspas,aspas
+      write(38,'(A1,"Accumulated CRcum error",A1,":",1x,"null"))') aspas,aspas
 !
 	  ENDIF
 !
@@ -1048,12 +1048,12 @@
 !		*******************************************************************************************
 !
 !
-	  open (UNIT=66, file='Results\Summary_Cumulative_RISK.json')																				 																				 
+	  open (UNIT=66, file='Results\Summary Cumulative Risk.json')																				 																				 
 !
 !
       WRITE(66,'("{")')
 !
-	  WRITE(66,'(A1,"non_cumulative_risks",A1,": [")')aspas,aspas
+	  WRITE(66,'(A1,"Summarized cumulative non-carcinogenic risks",A1,": [")')aspas,aspas
 !
 !
       DO l=INICIO,NIDADE
@@ -1105,11 +1105,11 @@
 !
       WRITE(66,'("{")')
 !
-      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(66,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(66,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIcum(l,j,k)
+      write(66,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(66,'(A1,"HItot error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIcum(l,j,k)
 !
       IF((j.EQ.jstop2).and.(k.EQ.kstop2).and.(l.EQ.lstop2))THEN
 	  WRITE(66,'("}")')
@@ -1125,11 +1125,11 @@
 !
       WRITE(66,'("{")')
 !
-      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(66,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(66,'(A1,"HI_tot",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
-      write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
+      write(66,'(A1,"HItot value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIcum(l,j,k)
+      write(66,'(A1,"HItot error",A1,":",1x,"null") )') aspas,aspas
 !
       IF((j.EQ.jstop2).and.(k.EQ.kstop2).and.(l.EQ.lstop2))THEN
 	  WRITE(66,'("}")')
@@ -1155,7 +1155,7 @@
 !
 !     tabela carcinogenicos
 !
-	  WRITE(66,'(A1,"Carcinogenic_risks",A1,": [")')aspas,aspas
+	  WRITE(66,'(A1,"Summarized cumulative carcinogenic risks",A1,": [")')aspas,aspas
 !
 !
       DO l=INICIO,NIDADE
@@ -1195,11 +1195,11 @@
 !
       WRITE(66,'("{")')
 !
-      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(66,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
-      write(66,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
-      write(66,'(A1,"Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRcum_tot(l,k)
+      write(66,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
+      write(66,'(A1,"CR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CRcum_tot(l,k)
 !
       IF((k.EQ.kstop3).and.(l.EQ.lstop3))THEN
 	  WRITE(66,'("}")')	             
@@ -1215,11 +1215,11 @@
 !
       WRITE(66,'("{")')
 !
-      write(66,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
+      write(66,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l) 
       write(66,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(66,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,M_AGE
-      write(66,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
-      write(66,'(A1,"Error",A1,":",1x,"null") )') aspas,aspas
+      write(66,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CRcum_tot(l,k)
+      write(66,'(A1,"CR error",A1,":",1x,"null") )') aspas,aspas
 !
       IF((k.EQ.kstop3).and.(l.EQ.lstop3))THEN
 	  WRITE(66,'("}")')	             
@@ -1254,7 +1254,7 @@
 !
 !------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 !
-	  open (UNIT=55, file='Results\Complementary_Analyzes.json')
+	  open (UNIT=55, file='Results\Complementary Analyzes.json')
 !
 !
 !
@@ -1286,7 +1286,7 @@
 !
 	  WRITE(55,'("{")')	 
 !
-	  WRITE(55,'(A1,"non_car_chemicals",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Contribution of each chemical species to the non-carcinogenic risks",A1,": [")')aspas,aspas            
 ! 
 !
       DO KO=1,NLOCAL
@@ -1294,7 +1294,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,1,IOO,1,KO)
@@ -1306,7 +1306,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,2,IOO,1,KO)
@@ -1318,7 +1318,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,3,IOO,1,KO)
@@ -1330,7 +1330,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,4,IOO,1,KO)
@@ -1342,7 +1342,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,5,IOO,1,KO)
@@ -1354,7 +1354,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,6,IOO,1,KO)
@@ -1366,7 +1366,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,7,IOO,1,KO)
@@ -1378,7 +1378,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,8,IOO,1,KO)
@@ -1392,7 +1392,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(2,9,IOO,1,KO)
@@ -1413,13 +1413,13 @@
 !
 !
 !
-	  WRITE(55,'(A1,"car_chemicals",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Contribution of each chemical species to the carcinogenic risks",A1,": [")')aspas,aspas            
 !
       DO KO=1,NLOCAL
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,1,IOO,1,KO)
@@ -1431,7 +1431,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,2,IOO,1,KO)
@@ -1443,7 +1443,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,3,IOO,1,KO)
@@ -1455,7 +1455,7 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,4,IOO,1,KO)
@@ -1467,7 +1467,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,5,IOO,1,KO)
@@ -1479,7 +1479,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,6,IOO,1,KO)
@@ -1491,7 +1491,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,7,IOO,1,KO)
@@ -1503,7 +1503,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,8,IOO,1,KO)
@@ -1517,7 +1517,7 @@
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
 	  DO IOO=1,JIJ
 	  IF(IOO.NE.JIJ)THEN
       write(55,'(A1,A10,A1,":",1X,ES10.3,",")') aspas,NOMES(IOO),aspas,PORCENTAGEM(1,9,IOO,1,KO)
@@ -1537,7 +1537,7 @@
 !
 !
 !
-	  WRITE(55,'(A1,"non_car_ways",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Contribution of each pathway to the non-carcinogenic risks",A1,": [")')aspas,aspas            
 !
 !
       DO l=1,NIDADE
@@ -1561,6 +1561,20 @@
 	  ENDDO
 	  ENDDO
 !
+      nomevias(1)='Soil ingestion'
+	  nomevias(2)='Fruit ingestion'
+	  nomevias(3)='Meat ingestion'
+	  nomevias(4)='Milk ingestion'
+	  nomevias(5)='Water ingestion'
+	  nomevias(6)='Vegetables ingestion'
+	  nomevias(7)='Fish ingestion'
+	  nomevias(8)='Bird ingestion'
+	  nomevias(9)='Eggs ingestion'
+	  nomevias(10)='Grains ingestion'
+	  nomevias(11)='Particulate inhalation'
+	  nomevias(12)='Steam inhalation'
+	  nomevias(13)='Dermal water'
+	  nomevias(14)='Dermal soil'
 !
 !
 !
@@ -1569,144 +1583,108 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(1,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(1,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(1,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(1,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(1,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(2,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(2,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(2,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(2,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(2,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(3,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(3,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(3,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(3,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(3,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(4,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(4,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(4,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(4,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(4,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(5,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(5,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(5,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(5,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(5,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(6,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(6,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(6,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(6,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(6,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(7,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(7,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(7,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(7,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(7,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(8,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(8,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(8,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(8,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(8,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,">65",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(9,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_NC(9,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_NC(9,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_NC(9,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_NC(9,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  IF(KO.NE.NLOCAL)THEN
@@ -1722,7 +1700,7 @@
 !
 !
 !
-	  WRITE(55,'(A1,"car_ways",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Contribution of each pathway to the carcinogenic risks",A1,": [")')aspas,aspas            
 !
 !
 !
@@ -1730,144 +1708,108 @@
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"1 to <2",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(1,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(1,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(1,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(1,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(1,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"2 to <3",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(2,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(2,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(2,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(2,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(2,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"3 to <6",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(3,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(3,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(3,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(3,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(3,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"6 to <11",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(4,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(4,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(4,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(4,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(4,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"11 to <16",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(5,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(5,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(5,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(5,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(5,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"16 to <18",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(6,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(6,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(6,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(6,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(6,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"18 to <21",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(7,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(7,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(7,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(7,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(7,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')	
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,"21 to <65",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(8,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(8,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(8,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(8,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(8,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  WRITE(55,'("},")')
 !
 	  WRITE(55,'("{")')
       write(55,'(A1,"Local",A1,":",1x,I3,",")') aspas,aspas,KO
-      write(55,'(A1,"Age_groups",A1,":",1X,A1,"65 to ",I3,A1,",")') aspas,aspas,aspas,ifinal,aspas
+      write(55,'(A1,"Age groups",A1,":",1X,A1,">65",A1,",")') aspas,aspas,aspas,aspas
 	  DO KP=1,NVIAS
-	  IF(KP.LT.10)THEN
-      write(55,'(A1,I1,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(9,KP,1,KO)
-	  ELSE
 	  IF(KP.NE.14)THEN
-      write(55,'(A1,I2,A1,":",1X,ES10.3,",")') aspas,KP,aspas,PORC_VIA_C(9,KP,1,KO)
+      write(55,'(A1,A22,A1,":",1X,ES10.3,",")') aspas,nomevias(KP),aspas,PORC_VIA_C(9,KP,1,KO)
 	  ELSE
-      write(55,'(A1,I2,A1,":",1X,ES10.3)') aspas,KP,aspas,PORC_VIA_C(9,KP,1,KO)
-	  ENDIF
+      write(55,'(A1,A22,A1,":",1X,ES10.3)') aspas,nomevias(KP),aspas,PORC_VIA_C(9,KP,1,KO)
 	  ENDIF
 	  ENDDO
 	  IF(KO.NE.NLOCAL)THEN
@@ -8607,7 +8549,7 @@
 !
 !
 !	  ABRE-SE O ARQUIVO DE SAIDA E 'Exposure.out'
-	  OPEN(UNIT=33,FILE='Results\Exposure.json')
+	  OPEN(UNIT=33,FILE='Results\Doses, HQ and CR.json')
 !
       nnc=NLOCAL
 !
@@ -8618,7 +8560,7 @@
 !
 	  WRITE(33,'("{")')
 !
-	  WRITE(33,'(A1,"non_carcinogenic",A1,": [")')aspas,aspas
+	  WRITE(33,'(A1,"Non-carcinogenic doses and HQ values",A1,": [")')aspas,aspas
 !
       DO l=INICIO,NIDADE
 !
@@ -8666,16 +8608,16 @@
 !
       WRITE(33,'("{")')
 !
-      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
-      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(33,'(A1,"ADD",A1,":",1x,ES12.5,",") )') aspas,aspas,ADD(l,1,n,i,j,k)
-      write(33,'(A1,"ADD_Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ADD(l,1,n,i,j,k)
-      write(33,'(A1,"HQ",A1,":",1x,ES12.5,",") )') aspas,aspas,HQ(l,n,i,j,k)
-      write(33,'(A1,"HQ_Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HQ(l,n,i,j,k)
+      write(33,'(A1,"Dose value",A1,":",1x,ES12.5,",") )') aspas,aspas,ADD(l,1,n,i,j,k)
+      write(33,'(A1,"Dose error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ADD(l,1,n,i,j,k)
+      write(33,'(A1,"HQ value",A1,":",1x,ES12.5,",") )') aspas,aspas,HQ(l,n,i,j,k)
+      write(33,'(A1,"HQ error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HQ(l,n,i,j,k)
 !
 !
       IF((j.EQ.jstop10).and.(K.EQ.kstop10).and.(i.EQ.istop10).and.(l.EQ.lstop10).and.(n.EQ.nstop10))THEN
@@ -8701,7 +8643,7 @@
 	  WRITE(33,'("],")')
 !
 !
-	  WRITE(33,'(A1,"carcinogenic",A1,": [")')aspas,aspas
+	  WRITE(33,'(A1,"Carcinogenic doses and CR values",A1,": [")')aspas,aspas
 !
       DO l=INICIO,NIDADE
 !
@@ -8749,16 +8691,16 @@
 !
       WRITE(33,'("{")')
 !
-      write(33,'(A1,"Initial_age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
+      write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
       write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
-      write(33,'(A1,"Chem_Species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
-	  write(33,'(A1,"Exp_type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
+      write(33,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
+	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(33,'(A1,"Age",A1,":",1x,I3,",") )') aspas,aspas,N_AGE
-      write(33,'(A1,"ADD",A1,":",1x,ES12.5,",") )') aspas,aspas,ADD(l,2,n,i,j,k)
-      write(33,'(A1,"ADD_Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ADD(l,2,n,i,j,k)
-      write(33,'(A1,"CR",A1,":",1x,ES12.5,",") )') aspas,aspas,CR(l,n,i,j,k)
-      write(33,'(A1,"CR_Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CR(l,n,i,j,k)
+      write(33,'(A1,"Dose value",A1,":",1x,ES12.5,",") )') aspas,aspas,ADD(l,2,n,i,j,k)
+      write(33,'(A1,"Dose error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ADD(l,2,n,i,j,k)
+      write(33,'(A1,"CR value",A1,":",1x,ES12.5,",") )') aspas,aspas,CR(l,n,i,j,k)
+      write(33,'(A1,"CR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CR(l,n,i,j,k)
 !
 !
       IF((j.EQ.jstop10).and.(K.EQ.kstop10).and.(i.EQ.istop10).and.(l.EQ.lstop10).and.(n.EQ.nstop10))THEN
@@ -12000,11 +11942,11 @@
 !
       aspas = '"'
 !
-	  open (UNIT=63, file='Results\Radiological_RISK.json')	
+	  open (UNIT=63, file='Results\Radiological Risk.json')	
 !
 	  WRITE(63,'("{")')
 !  
-	  WRITE(63,'(A1,"Act_esp",A1,": [")')aspas,aspas
+	  WRITE(63,'(A1,"Specific Activities",A1,": [")')aspas,aspas
 !
       IF(NTIME.EQ.1)THEN
       NCOMESO=1
@@ -12036,16 +11978,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"K-40 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
-      write(63,'(A1,"K-40 Act. Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(1,j,k)
-      write(63,'(A1,"Th-232 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
-      write(63,'(A1,"Th-232 Act.Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(2,j,k)
+      write(63,'(A1,"K-40 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
+      write(63,'(A1,"K-40 error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(1,j,k)
+      write(63,'(A1,"Th-232 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
+      write(63,'(A1,"Th-232 error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(2,j,k)
 	  IF(kol.EQ.2)THEN
-      write(63,'(A1,"Ra-226 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
 	  ELSE
-      write(63,'(A1,"U-238 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"U-238 Act. Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
       ENDIF
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
@@ -12059,16 +12001,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"K-40 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
-      write(63,'(A1,"K-40 Act. Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(1,j,k)
-      write(63,'(A1,"Th-232 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
-      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(2,j,k)
+      write(63,'(A1,"K-40 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
+      write(63,'(A1,"K-40 error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(1,j,k)
+      write(63,'(A1,"Th-232 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
+      write(63,'(A1,"Th-232 error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_ESP(2,j,k)
 	  IF(kol.EQ.2)THEN
-      write(63,'(A1,"Ra-226 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
 	  ELSE
-      write(63,'(A1,"U-238 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"U-238 Act. Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ATIVI_ESP(3,j,k)
       ENDIF
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
@@ -12086,16 +12028,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"K-40 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
-      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Th-232 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
-      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"K-40 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
+      write(63,'(A1,"K-40 error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Th-232 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
+      write(63,'(A1,"Th-232 error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
 	  IF(kol.EQ.2)THEN
-      write(63,'(A1,"Ra-226 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra-226 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
 	  ELSE
-      write(63,'(A1,"U-238 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"U-238 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       ENDIF
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
@@ -12108,16 +12050,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"K-40 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
-      write(63,'(A1,"K-40 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Th-232 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
-      write(63,'(A1,"Th-232 Act. Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"K-40 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(1,j,k)
+      write(63,'(A1,"K-40 error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Th-232 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(2,j,k)
+      write(63,'(A1,"Th-232 error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
 	  IF(kol.EQ.2)THEN
-      write(63,'(A1,"Ra-226 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"Ra-226 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra-226 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"Ra-226 error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
 	  ELSE
-      write(63,'(A1,"U-238 Act.",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
-      write(63,'(A1,"U-238 Act. Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"U-238 value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_ESP(3,j,k)
+      write(63,'(A1,"U-238 error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       ENDIF
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
@@ -12137,7 +12079,7 @@
 !
 	  WRITE(63,'("],")')
 !
-	  WRITE(63,'(A1,"MIX",A1,": [")')aspas,aspas
+	  WRITE(63,'(A1,"Radium equivalent activities, Absorbed doses rates and Annual effective doses rates",A1,": [")')aspas,aspas
 !
       DO k=1,NLOCAL
 	  DO j=NCOMESO,NTIME
@@ -12162,14 +12104,14 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"Ra_Eq_act",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
-      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_EQU(j,k)
-      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
-      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_ABS(j,k)
-      write(63,'(A1,"Out_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
-      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_OUT(j,k)
-      write(63,'(A1,"In_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
-      write(63,'(A1,"In_eff_dose Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_DOSE_IN(j,k)
+      write(63,'(A1,"Ra-Eq value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
+      write(63,'(A1,"Ra-Eq error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_EQU(j,k)
+      write(63,'(A1,"AD value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
+      write(63,'(A1,"AD error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_ABS(j,k)
+      write(63,'(A1,"Heff-Out value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-Out error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-In value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
+      write(63,'(A1,"Heff-In error",A1,":",1x,ES12.5) )') aspas,aspas,SD_DOSE_IN(j,k)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12181,14 +12123,14 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Ra_Eq_act",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
-      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_EQU(j,k)
-      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
-      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_ABS(j,k)
-      write(63,'(A1,"Out_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
-      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_OUT(j,k)
-      write(63,'(A1,"In_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
-      write(63,'(A1,"In_eff_dose Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_DOSE_IN(j,k)
+      write(63,'(A1,"Ra-Eq value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
+      write(63,'(A1,"Ra-Eq error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ATIVI_EQU(j,k)
+      write(63,'(A1,"AD value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
+      write(63,'(A1,"AD error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_ABS(j,k)
+      write(63,'(A1,"Heff-Out value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-Out error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-In value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
+      write(63,'(A1,"Heff-In error",A1,":",1x,ES12.5) )') aspas,aspas,SD_DOSE_IN(j,k)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12204,14 +12146,14 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"Ra_Eq_act",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
-      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
-      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Out_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
-      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"In_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
-      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra-Eq value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
+      write(63,'(A1,"Ra-Eq error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"AD value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
+      write(63,'(A1,"AD error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Heff-Out value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-Out error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Heff-In value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
+      write(63,'(A1,"Heff-In error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12223,14 +12165,14 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Ra_Eq_act",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
-      write(63,'(A1,"Ra_Eq_act Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Gama_Ab_Dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
-      write(63,'(A1,"Gama_Ab_Dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Out_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
-      write(63,'(A1,"Out_eff_dose Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"In_eff_dose",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
-      write(63,'(A1,"In_eff_dose Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Ra-Eq value",A1,":",1x,ES12.5,",") )') aspas,aspas,ATIVI_EQU(j,k)
+      write(63,'(A1,"Ra-Eq error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"AD value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_ABS(j,k)
+      write(63,'(A1,"AD error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Heff-Out value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_OUT(j,k)
+      write(63,'(A1,"Heff-Out error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Heff-In value",A1,":",1x,ES12.5,",") )') aspas,aspas,DOSE_IN(j,k)
+      write(63,'(A1,"Heff-In error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12248,7 +12190,7 @@
 !
 	  WRITE(63,'("],")')
 !
-	  WRITE(63,'(A1,"ELCR",A1,": [")')aspas,aspas
+	  WRITE(63,'(A1,"Excess Lifetime Cancer Risk",A1,": [")')aspas,aspas
 !
 !
       DO k=1,NLOCAL
@@ -12259,16 +12201,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"In_Individual",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN(j,k)
-      write(63,'(A1,"In_Individual Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_IN(j,k)
-      write(63,'(A1,"In_Acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN_ac(j,k)
-      write(63,'(A1,"In_Acc Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_IN_ac(j,k)
-      write(63,'(A1,"Out_Individual",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT(j,k)
-      write(63,'(A1,"Out_Individual Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_OUT(j,k)
-      write(63,'(A1,"Out_Acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
-      write(63,'(A1,"Out_Acc Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_OUT_ac(j,k)
-      write(63,'(A1,"tot_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
-      write(63,'(A1,"tot_acc Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CARC_TOT_ac(j,k)
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_IN(j,k)
+      write(63,'(A1,"Accumulated indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN_ac(j,k)
+      write(63,'(A1,"Accumulated indoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_IN_ac(j,k)
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_OUT(j,k)
+      write(63,'(A1,"Accumulated outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
+      write(63,'(A1,"Accumulated outdoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_OUT_ac(j,k)
+      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
+      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5) )') aspas,aspas,SD_CARC_TOT_ac(j,k)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12280,16 +12222,16 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"In_Individual",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN(j,k)
-      write(63,'(A1,"In_Individual Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"In_Acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN_ac(j,k)
-      write(63,'(A1,"In_Acc Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Out_Individual",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT(j,k)
-      write(63,'(A1,"Out_Individual Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"Out_Acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
-      write(63,'(A1,"Out_Acc Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"tot_acc",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
-      write(63,'(A1,"tot_acc Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Accumulated indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_IN_ac(j,k)
+      write(63,'(A1,"Accumulated indoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Accumulated outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
+      write(63,'(A1,"Accumulated outdoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
+      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12305,7 +12247,7 @@
 !
 	  WRITE(63,'("],")')
 !
-	  WRITE(63,'(A1,"HI",A1,": [")')aspas,aspas
+	  WRITE(63,'(A1,"External and internal Hazard Indexes",A1,": [")')aspas,aspas
 !
 !
       DO k=1,NLOCAL
@@ -12329,10 +12271,10 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"HIex",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
-      write(63,'(A1,"HIex Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIND_EXT(j,k)
-      write(63,'(A1,"HIin",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
-      write(63,'(A1,"HIin Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIND_INT(j,k)
+      write(63,'(A1,"External HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
+      write(63,'(A1,"External HI error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIND_EXT(j,k)
+      write(63,'(A1,"Internal HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
+      write(63,'(A1,"Internal HI error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIND_INT(j,k)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12344,10 +12286,10 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"HIex",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
-      write(63,'(A1,"HIex Error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIND_EXT(j,k)
-      write(63,'(A1,"HIin",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
-      write(63,'(A1,"HIin Error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIND_INT(j,k)
+      write(63,'(A1,"External HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
+      write(63,'(A1,"External HI error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_HIND_EXT(j,k)
+      write(63,'(A1,"Internal HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
+      write(63,'(A1,"Internal HI error",A1,":",1x,ES12.5) )') aspas,aspas,SD_HIND_INT(j,k)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12363,10 +12305,10 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(63,'(A1,"HIex",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
-      write(63,'(A1,"HIex Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"HIin",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
-      write(63,'(A1,"HIin Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"External HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
+      write(63,'(A1,"External HI error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Internal HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
+      write(63,'(A1,"Internal HI error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12378,10 +12320,10 @@
       WRITE(63,'("{")')
       write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"HIex",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
-      write(63,'(A1,"HIex Error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
-      write(63,'(A1,"HIin",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
-      write(63,'(A1,"HIin Error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"External HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_EXT(j,k)
+      write(63,'(A1,"External HI error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Internal HI value",A1,":",1x,ES12.5,",") )') aspas,aspas,HIND_INT(j,k)
+      write(63,'(A1,"Internal HI error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -13910,11 +13852,11 @@
 !	  IMPRESSÃO DOS DADOS DE SAÍDA
 !-----------------------------------------------------------
 !
-	  open (UNIT=68, file='Results\Ecological_RISK_Individual.json')	
+	  open (UNIT=68, file='Results\Individual.json')	
 !
 	  WRITE(68,'("{")')
 !
-	  WRITE(68,'(A1,"ref_values",A1,": [")')aspas,aspas
+	  WRITE(68,'(A1,"Selected scenario and reference values",A1,": [")')aspas,aspas
 !
       WRITE(68,'("{")')
 !
@@ -13973,12 +13915,12 @@
       write(68,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
       write(68,'(A1,"CFwater",A1,":",1x,ES12.5,",") )') aspas,aspas,CFwater(I,J,K)
       write(68,'(A1,"CFsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsoil(I,J,K)
-	  write(68,'(A1,"Igeo_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
-      write(68,'(A1,"EFsoil-",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
-      write(68,'(A1,"PIsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
-      write(68,'(A1,"Igeo_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
-      write(68,'(A1,"EFsed-",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
-      write(68,'(A1,"PI_sed",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
+	  write(68,'(A1,"Igeo soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
+      write(68,'(A1,"EF soil - ",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
+      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
+      write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
+      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
+      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(68,'("}")')
 	  ELSE
@@ -13992,12 +13934,12 @@
       write(68,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
       write(68,'(A1,"CFwater",A1,":",1x,ES12.5,",") )') aspas,aspas,CFwater(I,J,K)
       write(68,'(A1,"CFsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsoil(I,J,K)
-	  write(68,'(A1,"Igeo_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
-      write(68,'(A1,"EFsoil-",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
-      write(68,'(A1,"PIsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
-      write(68,'(A1,"Igeo_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
-      write(68,'(A1,"EFsed-",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
-      write(68,'(A1,"PI_sed",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
+	  write(68,'(A1,"Igeo soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
+      write(68,'(A1,"EF soil -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
+      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
+      write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
+      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
+      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(68,'("}")')
 	  ELSE
@@ -14029,23 +13971,9 @@
 !-----------------------------------------------------------
 !
 !
-	  open (UNIT=70, file='Results\Ecological_RISK_Combined.json')	
+	  open (UNIT=70, file='Results\Combined.json')	
 !
-!
-	  WRITE(70,'("{")')
-!
-	  WRITE(70,'(A1,"ref_values",A1,": [")')aspas,aspas
-!
-      WRITE(70,'("{")')
-!
-      write(70,'(A1,"Scenary",A1,":",1x,A1,A12,A1,",") )') aspas,aspas,aspas,SCENARIES(SCENAR),aspas
-      write(70,'(A1,"Water reference value",A1,":",1x,A1,A8,A1,",") )') aspas,aspas,aspas,AGUA_REF(KEY_WATER),aspas
-      write(70,'(A1,"Soil reference value",A1,":",1x,A1,A9,A1,",") )') aspas,aspas,aspas,SOLO_REF(KEY_SOIL),aspas
-      write(70,'(A1,"Sediment reference value",A1,":",1x,A1,A9,A1) )') aspas,aspas,aspas,SED_REF(KEY_SEDIMENT),aspas
-!
-	  WRITE(70,'("}")')
-!
-	  WRITE(70,'("],")')
+      WRITE(70,'("{")')	 
 !
 !-----------------------------------------------------------
 !	  COMPARTIMENTO AGUA
@@ -14053,7 +13981,7 @@
 !
       IF(NCOMPARTIMENTO1.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'(A1,"Water_compartment",A1,": [")')aspas,aspas
+	  WRITE(70,'(A1,"Water compartment",A1,": [")')aspas,aspas
 !
 !
       IF(NTIME.EQ.1)THEN
@@ -14127,7 +14055,7 @@
 !
       IF(NCOMPARTIMENTO2.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'(A1,"Soil_compartment",A1,": [")')aspas,aspas
+	  WRITE(70,'(A1,"Soil compartment",A1,": [")')aspas,aspas
 !
 !
       IF(NTIME.EQ.1)THEN
@@ -14158,11 +14086,11 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(70,'(A1,"PLI_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsoil(J,K)
-      write(70,'(A1,"mCd_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_soil(J,K)
-      write(70,'(A1,"PERIsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsoil(J,K)
-      write(70,'(A1,"IPIT_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_soil(J,K)
-	  write(70,'(A1,"PINEW_soil",A1,":",1x,ES12.5) )') aspas,aspas,PINEWsoil(J,K)
+      write(70,'(A1,"PLI",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsoil(J,K)
+      write(70,'(A1,"mCd",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_soil(J,K)
+      write(70,'(A1,"PERI",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsoil(J,K)
+      write(70,'(A1,"IPIT",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_soil(J,K)
+	  write(70,'(A1,"PInem",A1,":",1x,ES12.5) )') aspas,aspas,PINEWsoil(J,K)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
@@ -14174,11 +14102,11 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(70,'(A1,"PLI_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsoil(J,K)
-      write(70,'(A1,"mCd_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_soil(J,K)
-      write(70,'(A1,"PERIsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsoil(J,K)
-      write(70,'(A1,"IPIT_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_soil(J,K)
-	  write(70,'(A1,"PINEW_soil",A1,":",1x,ES12.5) )') aspas,aspas,PINEWsoil(J,K)
+      write(70,'(A1,"PLI",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsoil(J,K)
+      write(70,'(A1,"mCd",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_soil(J,K)
+      write(70,'(A1,"PERI",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsoil(J,K)
+      write(70,'(A1,"IPIT",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_soil(J,K)
+	  write(70,'(A1,"PInem",A1,":",1x,ES12.5) )') aspas,aspas,PINEWsoil(J,K)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
@@ -14205,7 +14133,7 @@
 !
       IF(NCOMPARTIMENTO3.EQ.1)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'(A1,"Sediment_compartment",A1,": [")')aspas,aspas
+	  WRITE(70,'(A1,"Sediment compartment",A1,": [")')aspas,aspas
 !
       IF(NTIME.EQ.1)THEN
       NINICIO3=1
@@ -14235,11 +14163,11 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(70,'(A1,"PLI_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsed(J,K)
-      write(70,'(A1,"mCd_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_sed(J,K)
-      write(70,'(A1,"PERIsed",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsed(J,K)
-      write(70,'(A1,"IPIT_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_sed(J,K)
-	  write(70,'(A1,"PINEW_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,PINEWsed(J,K)
+      write(70,'(A1,"PLI",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsed(J,K)
+      write(70,'(A1,"mCd",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_sed(J,K)
+      write(70,'(A1,"PERI",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsed(J,K)
+      write(70,'(A1,"IPIT",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_sed(J,K)
+	  write(70,'(A1,"PInem",A1,":",1x,ES12.5,",") )') aspas,aspas,PINEWsed(J,K)
 	  write(70,'(A1,"m-PEL-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mPELq(J,K)
       write(70,'(A1,"m-ERM-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mERMq(J,K)
       write(70,'(A1,"TRI",A1,":",1x,ES12.5) )') aspas,aspas,TRI(J,K)
@@ -14254,11 +14182,11 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(70,'(A1,"PLI_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsed(J,K)
-      write(70,'(A1,"mCd_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_sed(J,K)
-      write(70,'(A1,"PERIsed",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsed(J,K)
-      write(70,'(A1,"IPIT_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_sed(J,K)
-	  write(70,'(A1,"PINEW_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,PINEWsed(J,K)
+      write(70,'(A1,"PLI",A1,":",1x,ES12.5,",") )') aspas,aspas,PLIsed(J,K)
+      write(70,'(A1,"mCd",A1,":",1x,ES12.5,",") )') aspas,aspas,mCd_sed(J,K)
+      write(70,'(A1,"PERI",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsed(J,K)
+      write(70,'(A1,"IPIT",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_sed(J,K)
+	  write(70,'(A1,"PInem",A1,":",1x,ES12.5,",") )') aspas,aspas,PINEWsed(J,K)
 	  write(70,'(A1,"m-PEL-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mPELq(J,K)
       write(70,'(A1,"m-ERM-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mERMq(J,K)
       write(70,'(A1,"TRI",A1,":",1x,ES12.5) )') aspas,aspas,TRI(J,K)
@@ -14290,7 +14218,7 @@
 !
       IF(NDIVISAO.GT.0)THEN		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		   			 
 !
-	  WRITE(70,'(A1,"Chemical_evidence_line",A1,": [")')aspas,aspas
+	  WRITE(70,'(A1,"Chemical Line of Evidence",A1,": [")')aspas,aspas
 !
 !
       IF(NTIME.EQ.1)THEN
@@ -14318,10 +14246,10 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
-      write(70,'(A1,"Kd_MPI",A1,":",1x,ES12.5,",") )') aspas,aspas,Kd_MPI(J,K)
-      write(70,'(A1,"Risk_chem_wat",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKwat(J,K)
-      write(70,'(A1,"Risk_chem_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsoil(J,K)
-      write(70,'(A1,"Risk_chem_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsed(J,K)
+      write(70,'(A1,"Kd-MPI",A1,":",1x,ES12.5,",") )') aspas,aspas,Kd_MPI(J,K)
+      write(70,'(A1,"Risk ChemLoE water",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKwat(J,K)
+      write(70,'(A1,"Risk ChemLoE soil",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsoil(J,K)
+      write(70,'(A1,"Risk ChemLoE sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsed(J,K)
 	  write(70,'(A1,"IR",A1,":",1x,ES12.5) )') aspas,aspas,IRjFIN(J,K)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
@@ -14334,10 +14262,10 @@
       WRITE(70,'("{")')	 
       write(70,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
       write(70,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
-      write(70,'(A1,"Kd_MPI",A1,":",1x,ES12.5,",") )') aspas,aspas,Kd_MPI(J,K)
-      write(70,'(A1,"Risk_chem_wat",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKwat(J,K)
-      write(70,'(A1,"Risk_chem_soil",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsoil(J,K)
-      write(70,'(A1,"Risk_chem_sed",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsed(J,K)
+      write(70,'(A1,"Kd-MPI",A1,":",1x,ES12.5,",") )') aspas,aspas,Kd_MPI(J,K)
+      write(70,'(A1,"Risk ChemLoE water",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKwat(J,K)
+      write(70,'(A1,"Risk ChemLoE soil",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsoil(J,K)
+      write(70,'(A1,"Risk ChemLoE sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsed(J,K)
 	  write(70,'(A1,"IR",A1,":",1x,ES12.5) )') aspas,aspas,IRjFIN(J,K)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
