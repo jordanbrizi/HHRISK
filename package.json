@@ -1,0 +1,36 @@
+{
+  "name": "HERisk",
+  "productName": "HERisk",
+  "description": "Programa de cálculo de risco.",
+  "keywords": [
+    "herisk",
+    "electron",
+    "nodejs",
+    "fortran"
+  ],
+  "main": "./ui/main.js",
+  "version": "1.0.0",
+  "author": "Britus",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . --overwrite --icon=ui/favicon.ico --ignore=.vscode --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Herisk\""
+  },
+  "devDependencies": {
+    "bootstrap": "^4.5.0",
+    "electron": "9.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jordanbrizi/HHRISK.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanbrizi/HHRISK/issues"
+  },
+  "homepage": "https://github.com/jordanbrizi/HHRISK#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.0.0-alpha5",
+    "electron-packager": "^15.0.0",
+    "xlsx": "^0.16.4"
+  }
+}

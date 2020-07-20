@@ -32,6 +32,7 @@ const createWindow = () => {
 	})
 
 	Menu.setApplicationMenu(null)
+	
 	win.openDevTools()
 	winResults.openDevTools()
 
@@ -42,13 +43,14 @@ const createWindow = () => {
 			winResults.show()
 		}
 	})
+	ipcMain.on('sair', () => {
+		app.quit()
+	})
 }
 
 app.on('ready', createWindow)
-app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
-		app.quit()
-	}
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') app.quit()
 })
 app.on('activate', function () {
 	if (BrowserWindow.getAllWindows().length === 0) {

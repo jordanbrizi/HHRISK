@@ -3,13 +3,18 @@ $verde: #8EFF35
 $amarelo: #FFFF47
 $laranja: #FF6A2D
 $rosa: #FF6D82
-$azul: #283E51
+$azul: #c3ddff
+$bg: #2C2F33
+$navy: #23272A
 
-$theme-colors: ("primary": $laranja)
-$enable-responsive-font-sizes: true
+$theme-colors: ("primary": $azul)
 $btn-white-space: nowrap
+$enable-rounded: false
+$enable-shadows: false
+$enable-pointer-cursor-for-buttons: false
+$enable-responsive-font-sizes: true
 
-@import "../node_modules/bootstrap/scss/bootstrap"
+@import "../../node_modules/bootstrap/scss/bootstrap"
 
 @font-face
 	font-family: 'Lexend Deca'
@@ -19,8 +24,8 @@ $btn-white-space: nowrap
 html, body
 	height: 100%
 	font-size: 12pt
-	color: #000
-	background: #000
+	color: $navy
+	background: $navy
 a, .btn-link
 	&:hover
 		text-decoration: none
@@ -33,14 +38,13 @@ main
 		font-size: inherit
 
 header
-	background: url(../images/bg.svg) 0 0
-	background-size: 72px
 	transform: translateY(-80px)
 	transition: .4s
 	border-bottom-right-radius: 50px
 	border-bottom-left-radius: 50px
 	h1
 		font-size: 4.5em
+		color: $navy
 	p
 		font-size: 0.8em
 		margin-top: -1em
@@ -56,7 +60,7 @@ header
 section
 	padding-top: 350px
 	padding-bottom: 40px
-	background: #333*.15
+	background-color: $bg
 	border-bottom-right-radius: 50px
 	border-bottom-left-radius: 50px
 .over
@@ -69,7 +73,7 @@ section
 
 footer
 	text-align: center
-	background: #000
+	background: $navy
 	color: #CCC
 	font-size: .7em
 
@@ -85,12 +89,12 @@ nav
 
 #config
 	height: 80px
-	background: rgba($white, 0.9)
+	background: rgba($white, 0.8)
 	border-bottom-right-radius: 50px
 	border-bottom-left-radius: 50px
 
-button:focus
-	outline: 0
+button:focus, button:hover
+	outline: 0 !important
 
 .main-button
 	width: 20px
@@ -116,3 +120,8 @@ button:focus
 	left: 50%
 	margin: -2em 0 0 -2em
 	z-index: 2200
+
+.btn-create-sheet
+	background-image: url(../images/table.svg)
+	background-position: 90% 50%
+	background-repeat: no-repeat
