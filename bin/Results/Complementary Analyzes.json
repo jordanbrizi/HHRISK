@@ -1,5 +1,5 @@
 {
-"Contribution of each chemical species to the non-carcinogenic risks": [
+"Non-carcinogenic risks contribution (%) of each chemical species": [
 {
 "Local":   1,
 "Age groups": "1 to <2",
@@ -127,7 +127,7 @@
 "Cd        ":  1.530E+01
 }
 ],
-"Contribution of each chemical species to the carcinogenic risks": [
+"Carcinogenic risks contribution (%) of each chemical species": [
 {
 "Local":   1,
 "Age groups": "1 to <2",
@@ -255,7 +255,7 @@
 "Cd        ":  0.000E+00
 }
 ],
-"Contribution of each pathway to the non-carcinogenic risks": [
+"Contribution (%) of each pathway to the non-carcinogenic risks": [
 {
 "Local":   1,
 "Age groups": "1 to <2",

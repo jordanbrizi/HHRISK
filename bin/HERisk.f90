@@ -1286,7 +1286,7 @@
 !
 	  WRITE(55,'("{")')	 
 !
-	  WRITE(55,'(A1,"Contribution of each chemical species to the non-carcinogenic risks",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Non-carcinogenic risks contribution (%) of each chemical species",A1,": [")')aspas,aspas            
 ! 
 !
       DO KO=1,NLOCAL
@@ -1413,7 +1413,7 @@
 !
 !
 !
-	  WRITE(55,'(A1,"Contribution of each chemical species to the carcinogenic risks",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Carcinogenic risks contribution (%) of each chemical species",A1,": [")')aspas,aspas            
 !
       DO KO=1,NLOCAL
 !
@@ -1537,7 +1537,7 @@
 !
 !
 !
-	  WRITE(55,'(A1,"Contribution of each pathway to the non-carcinogenic risks",A1,": [")')aspas,aspas            
+	  WRITE(55,'(A1,"Contribution (%) of each pathway to the non-carcinogenic risks",A1,": [")')aspas,aspas            
 !
 !
       DO l=1,NIDADE
