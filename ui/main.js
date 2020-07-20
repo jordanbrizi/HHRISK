@@ -12,8 +12,8 @@ const createWindow = () => {
 		}
 	})
 	const winResults = new BrowserWindow({
-		width: 1066,
-		height: 600,
+		width: 1200,
+		height: 675,
 		backgroundColor: '#000',
 		resizable: true,
 		frame: false,
@@ -32,6 +32,7 @@ const createWindow = () => {
 	})
 
 	Menu.setApplicationMenu(null)
+	
 	win.openDevTools()
 	winResults.openDevTools()
 
@@ -42,13 +43,14 @@ const createWindow = () => {
 			winResults.show()
 		}
 	})
+	ipcMain.on('sair', () => {
+		app.quit()
+	})
 }
 
 app.on('ready', createWindow)
-app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
-		app.quit()
-	}
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') app.quit()
 })
 app.on('activate', function () {
 	if (BrowserWindow.getAllWindows().length === 0) {
