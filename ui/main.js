@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu, ipcMain} = require('electron')
+const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
+const { fstat } = require('fs')
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 360,
@@ -7,6 +8,7 @@ const createWindow = () => {
 		backgroundColor: '#000',
 		resizable: false,
 		frame: false,
+		show: false,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -18,7 +20,7 @@ const createWindow = () => {
 		resizable: true,
 		frame: false,
 		titleBarStyle: 'hidden',
-		show: false,
+		show: true,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -27,13 +29,13 @@ const createWindow = () => {
 	winResults.loadURL(`file://${__dirname}/results.html`)
 	win.loadURL(`file://${__dirname}/index.html`)
 
-	win.once('ready-to-show', () => {
-		win.show()
-	})
+	// win.once('ready-to-show', () => {
+	// 	win.show()
+	// })
 
 	Menu.setApplicationMenu(null)
 	
-	win.openDevTools()
+	//win.openDevTools()
 	winResults.openDevTools()
 
 	ipcMain.on('resultados', () => {
@@ -43,8 +45,33 @@ const createWindow = () => {
 			winResults.show()
 		}
 	})
-	ipcMain.on('sair', () => {
-		app.quit()
+
+	ipcMain.on('sair', () => app.quit())
+
+	ipcMain.on('salvar_planilha', (event, arg) => {
+		let path = require('path')
+		let options = {
+			title: "Selecionar Pasta",
+			defaultPath: path.resolve(require('os').homedir()),
+			properties: ['openDirectory']
+		}
+		dialog.showOpenDialog(options).then((response) => {
+			if(response.canceled === false) {
+				const fs = require('fs')
+				arg.sheets.forEach(arquivo => {
+					file_name = path.resolve(
+						response.filePaths + arquivo.replace(arg.path, '/')
+					)
+					fs.rename(arquivo, file_name, err => {
+						if(err) throw err
+					})
+				})
+				require('child_process')
+					.exec(`start "" "${response.filePaths}"`)
+			}
+		}).catch(err => {
+			console.log(err)
+		})
 	})
 }
 

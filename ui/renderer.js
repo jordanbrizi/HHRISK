@@ -58,38 +58,30 @@ const Dados = () => {
 const gerarOds = t => {
 	const path = require('path')
 	const xlsx = require('xlsx')
-
+	const caminho = path.resolve(`./bin/Results/`)
+	const planilhas = []
 	jsons = Dados().arquivos()[t] // PEGA OS JSONS DO GRUPO t
 	jsons.forEach(json => {
 		arquivo = Dados().pegar(json)
 		chaves = Object.keys(arquivo)
 		const wb = xlsx.utils.book_new()
 		chaves.forEach(chave => {
-			rdn = Math.floor(Math.random() * 99)
-			chaveNew = chave.substring(0, 28) + ' ' + rdn
-			header = chave 
-			chaves = Object.keys(arquivo[chave][1])
+			chaveNew = chave.substring(0, 28) + '...'
+			keys = Object.keys(arquivo[chave][0])
 			ws = xlsx.utils.json_to_sheet(arquivo[chave])
-			const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: chaves.length } }]
+			//const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
 			//ws["!merges"] = merge
-			console.log(ws)
 			xlsx.utils.book_append_sheet(
 				wb,
 				ws,
 				chaveNew
 			)
 		})
-		xlsx.writeFile(wb, `./bin/Results/${json.replace('.json', '')}.ods`)
+		let filePath = `./bin/Results/${json.replace('.json', '')}.ods`
+		xlsx.writeFile(wb, filePath)
+		planilhas.push(path.resolve(filePath))
 	})
-	// const { remote } = require('electron')
-	// dialog = remote.dialog
-
-	// let options = {
-	// 	title: "Salvar Arquivo",
-	// 	defaultPath: path.resolve(require('os').homedir()),
-	// 	filters: [{ name: 'Open Document Sheet', extensions: ['ods'] }],
-	// }
-
-	//dialog.showSaveDialog(remote.getCurrentWindow(), options)
+	
+	ipcRenderer.send('salvar_planilha', {path: caminho, sheets: planilhas})
 }
 module.exports = {pkg, lang, Dados, ipcRenderer, gerarOds}
