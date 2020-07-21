@@ -9,16 +9,42 @@
 <body>
 <main>
 	<button type="button" class="main-button" id="close_button"></button>
-	<header class="pb-3 sticky-top page">
+	<header class="pb-3 sticky-top page bg-primary">
 		<div class="container-fluid pt-3">
 			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b>/resultados</h1>
 		</div>
 	</header>
 
 	<section class="over">
-		<div class="container-fluid" id="resultados">
-			<div id="loading" class="spinner-border text-light" style="display: none; width: 4rem; height: 4rem;" role="status">
+		<div class="container-fluid">
+			<div id="loading" class="spinner-border text-light" style="width: 4rem; height: 4rem;" role="status">
 				<span class="sr-only">Loading...</span>
+			</div>
+			<div class="btn-group mr-3">
+				<button class="btn btn-secondary btn-lg btn-top active" type="button" data-target="#hhr">Human Health Risk</button>
+				<button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" data-drop="hhr" aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu bg-none p-0 m-0" style="width: 100%; transform: translateY(-1px);" data-toggle="#hhr">
+					<button class="btn btn-success btn-block btn-lg btn-create-sheet pr-5" type="button" data-target="hhr">Salvar Planilhas</button>
+				</div>
+			</div>
+			<div class="btn-group mr-3">
+				<button class="btn btn-secondary btn-lg btn-top" type="button" data-target="#er">Ecological Risk</button>
+				<button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" data-drop="er" aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu bg-none p-0 m-0" style="width: 100%; transform: translateY(-1px);" data-toggle="#er">
+					<button class="btn btn-success btn-block btn-lg btn-create-sheet pr-5" type="button" data-target="er">Salvar Planilhas</button>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-secondary btn-lg btn-top" type="button" data-target="#rr">Radiological Risk</button>
+				<button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" data-drop="rr" aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu bg-none p-0 m-0" style="width: 100%; transform: translateY(-1px);" data-toggle="#rr">
+					<button class="btn btn-success btn-block btn-lg btn-create-sheet pr-5" type="button" data-target="rr">Salvar Planilha</button>
+				</div>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane pt-3 active" id="hhr" role="tabpanel" aria-labelledby=""></div>
+				<div class="tab-pane pt-3" id="er" role="tabpanel" aria-labelledby=""></div>
+				<div class="tab-pane pt-3" id="rr" role="tabpanel" aria-labelledby=""></div>
 			</div>
 		</div>
 	</section>
@@ -31,8 +57,9 @@
 		</div>
 	</footer>
 </main>
+</body>
 <script>
-	console.log(`Resultados.html\n`)
+	console.log(`Resultados.html\n\n`)
 	const rend = require('./renderer.js')
 	const $ = arg => document.querySelector(arg)
 	const $$ = arg => document.querySelectorAll(arg)
@@ -40,64 +67,96 @@
 	d = new Date()
 	$('.year').innerHTML = d.getFullYear()
 
+	if (localStorage.getItem('lang')) {
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+	else {
+		localStorage.setItem('lang', Intl.DateTimeFormat()
+			.resolvedOptions().locale)
+		var lang = rend.lang(localStorage.getItem('lang'))
+	}
+
+	$$('span[data-lang]').forEach(spn => spn.innerHTML = lang[spn.dataset.lang])
+
 	$('#close_button').addEventListener('click', () => {
 		rend.ipcRenderer.send('resultados')
 	})
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
 const Render = () => {
 	const dados = rend.Dados()
-	
-	for(q = 0; q < dados.quantidade(); q++) {
-		const tables = dados.pegar(dados.arquivo(q))
-		const DadosKey = Object.keys(tables)
+	const grupos = Object.keys(dados.arquivos())
+	// GRUPODE DOS JSONS
+	grupos.forEach(grupo => {
+		// ARQUIVOS DOS JSONS
+		dados.arquivos()[grupo].forEach(arquivo => {
+			chaves = Object.keys(dados.pegar(arquivo))
+			// CHAVES DOS JSONS
+			chaves.forEach(chave => {
+				titulos = Object.keys(dados.pegar(arquivo)[chave][0])
+				
+				tabela = document.createElement('table')
+				tbody = document.createElement('tbody')
+				thead = document.createElement('thead')
+				tr = document.createElement('tr')
+				h6 = document.createElement('h6')
+				
+				h6.innerHTML = `${chave}:`
+				h6.classList = 'mb-3'
+				tabela.classList = 'table table-sm table-hover table-striped table-dark'
+				thTitulos = titulos.reduce((acc, t) => {
+					acc += `<th class="align-middle text-center">${t.trim()}</th>`
+					return acc
+				}, '')
 
-		DadosKey.forEach(pai => {
-			var caption = document.createElement('h3')
-			caption.classList = 'mt-3 mb-3 text-center'
-			caption.innerHTML = pai
-	
-			var tabela = document.createElement('table')
-			tabela.id = pai
-			tabela.classList = 'table table-sm text-white'
-	
-			var thead = document.createElement('thead')
-			var tbody = document.createElement('tbody')
-			tabela.appendChild(thead)
-			$('#resultados').appendChild(caption)
-	
-			// GERAR OS TH'S DAS TABELAS ---------------------------------------
-
-			var titulos = Object.keys(tables[pai][0])
-			var tr = document.createElement('tr')
-
-			titulos.forEach(t => {
-				let th = document.createElement('th')
-				th.scope = "col"
-				th.innerHTML = t
-				$('#resultados').appendChild(tabela).appendChild(thead)
-					.appendChild(tr).appendChild(th)
-			})
-			
-			//------------------------------------------------------------------
-			
-			tables[pai].forEach(filho => {
-				var tr = document.createElement('tr')
-				let td = document.createElement('td')
-				d = []
-				for(var t = 0; t < titulos.length; t++) {
-					d.push(`<td>${filho[titulos[t]]}</td>`)
-				}
-				tr.innerHTML = d.join('')
-	
-				$('#resultados').appendChild(tabela).appendChild(tbody)
+				$(`#${grupo}`).appendChild(h6)
+				$(`#${grupo}`).appendChild(tabela).appendChild(thead)
 					.appendChild(tr)
+				tr.innerHTML = thTitulos
+
+				rows = Object.keys(dados.pegar(arquivo)[chave]) //CHAVE DOS REGISTROS
+				rows.forEach(key => {
+					trRegs = document.createElement('tr')
+					regs = Object.values(dados.pegar(arquivo)[chave][key])
+						.join('</td><td class="align-middle text-center">') //REGISTROS
+					trRegs.innerHTML = `<td class="align-middle text-center">${regs}</td>`
+					$(`#${grupo}`).appendChild(tabela).appendChild(tbody)
+						.appendChild(trRegs)
+				})
 			})
 		})
-	}
+	})
+	// REMOVE O LOADING
+	$('#loading').classList.toggle('invisible')
+	// FUNCIONALIDADE DOS NAVS
+	$$('.btn-top').forEach(btn => {
+		btn.addEventListener('click', function () {
+			// REMOVE OS .active DE TODOS	
+			$$('.btn-top').forEach(ts => ts.classList.remove('active'))
+			$$('.tab-pane').forEach(ts => ts.classList.remove('active'))
+			// ADICIONA APENAS AO ATUAL
+			this.classList.toggle('active')
+			$(`${this.dataset.target}`).classList.toggle('active')
+		})
+	})
+	$$('.dropdown-toggle').forEach(btn => {
+		btn.addEventListener('click', function () {
+			$(`.dropdown-menu[data-toggle='#${this.dataset.drop}']`).classList.toggle('show')
+		})
+	})
+	$$('.btn-create-sheet').forEach(btn => {
+		btn.addEventListener('click', function () {
+			console.log(rend.gerarOds(this.dataset.target))
+		})
+	})
 }
 
-Render()
+document.addEventListener('readystatechange', event => {
+	if (event.target.readyState === "complete") {
+		Render()
+	}
+})
 </script>
-</body>
 </html>
