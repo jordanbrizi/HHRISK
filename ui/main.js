@@ -8,7 +8,7 @@ const createWindow = () => {
 		backgroundColor: '#000',
 		resizable: false,
 		frame: false,
-		show: false,
+		show: true,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -20,7 +20,7 @@ const createWindow = () => {
 		resizable: true,
 		frame: false,
 		titleBarStyle: 'hidden',
-		show: true,
+		show: false,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -29,14 +29,14 @@ const createWindow = () => {
 	winResults.loadURL(`file://${__dirname}/results.html`)
 	win.loadURL(`file://${__dirname}/index.html`)
 
-	// win.once('ready-to-show', () => {
-	// 	win.show()
-	// })
+	win.once('ready-to-show', () => {
+		win.show()
+	})
 
 	Menu.setApplicationMenu(null)
 	
 	//win.openDevTools()
-	winResults.openDevTools()
+	//winResults.openDevTools()
 
 	ipcMain.on('resultados', () => {
 		if (winResults.isVisible() == true) {
