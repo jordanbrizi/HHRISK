@@ -1,18 +1,20 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, remote } = require('electron')
 const { createBrotliDecompress } = require('zlib')
 const { cachedDataVersionTag } = require('v8')
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
 const pkg = () => require('../package')
+const resultsPath = arg => remote.app.getAppPath() + '\\bin\\Results\\' + arg
+const mainPath = arg => remote.app.getAppPath() + '\\' + arg
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 const lang = (attr = defaultLang) => {
 	if(attr != null) {
-		return require(`./lang/${attr}`)
+		return require(mainPath(`ui\\lang\\${attr}`))
 	}
 	else {
-		return require(`./lang/${defaultLang}`)	
+		return require(mainPath(`ui\\lang\\${defaultLang}`))	
 	}
 }
 
@@ -23,7 +25,7 @@ const Dados = () => {
 	const path = require('path')
 	const fs = require('fs')
 	const files = []
-	fs.readdirSync(path.resolve('./bin/Results/')).forEach(arquivo => {
+	fs.readdirSync(mainPath('\\bin\\Results')).forEach(arquivo => {
 		files.push(`${arquivo}`)
 	})
 
@@ -48,40 +50,8 @@ const Dados = () => {
 	return {
 		quantidade: () => arquivos.length,
 		arquivos: () => arquivos,
-		pegar: arquivo => require(path.resolve(`./bin/Results/${arquivo}`))
+		pegar: arquivo => require(resultsPath(arquivo))
 	}
 }
 
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-const gerarOds = t => {
-	const path = require('path')
-	const xlsx = require('xlsx')
-	const caminho = path.resolve(`./bin/Results/`)
-	const planilhas = []
-	jsons = Dados().arquivos()[t] // PEGA OS JSONS DO GRUPO t
-	jsons.forEach(json => {
-		arquivo = Dados().pegar(json)
-		chaves = Object.keys(arquivo)
-		const wb = xlsx.utils.book_new()
-		chaves.forEach(chave => {
-			chaveNew = chave.substring(0, 28) + '...'
-			keys = Object.keys(arquivo[chave][0])
-			ws = xlsx.utils.json_to_sheet(arquivo[chave])
-			//const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
-			//ws["!merges"] = merge
-			xlsx.utils.book_append_sheet(
-				wb,
-				ws,
-				chaveNew
-			)
-		})
-		let filePath = `./bin/Results/${json.replace('.json', '')}.ods`
-		xlsx.writeFile(wb, filePath)
-		planilhas.push(path.resolve(filePath))
-	})
-	
-	ipcRenderer.send('salvar_planilha', {path: caminho, sheets: planilhas})
-}
-module.exports = {pkg, lang, Dados, ipcRenderer, gerarOds}
+module.exports = {pkg, lang, Dados, ipcRenderer}
