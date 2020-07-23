@@ -1,6 +1,13 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
 const { fstat } = require('fs')
+const path = require('path')
+const resultsPath = app.getAppPath() + '\\bin\\Results\\'
+const appPath = app.getAppPath() + '\\'
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 360,
@@ -8,7 +15,8 @@ const createWindow = () => {
 		backgroundColor: '#000',
 		resizable: false,
 		frame: false,
-		show: false,
+		show: true,
+		icon: __dirname + '/favicon.ico',
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -20,7 +28,8 @@ const createWindow = () => {
 		resizable: true,
 		frame: false,
 		titleBarStyle: 'hidden',
-		show: true,
+		show: false,
+		icon: __dirname + '/favicon.ico',
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -29,14 +38,14 @@ const createWindow = () => {
 	winResults.loadURL(`file://${__dirname}/results.html`)
 	win.loadURL(`file://${__dirname}/index.html`)
 
-	// win.once('ready-to-show', () => {
-	// 	win.show()
-	// })
+	win.once('ready-to-show', () => {
+		win.show()
+	})
 
 	Menu.setApplicationMenu(null)
 	
-	//win.openDevTools()
-	winResults.openDevTools()
+	// win.openDevTools()
+	// winResults.openDevTools()
 
 	ipcMain.on('resultados', () => {
 		if (winResults.isVisible() == true) {
@@ -48,22 +57,84 @@ const createWindow = () => {
 
 	ipcMain.on('sair', () => app.quit())
 
-	ipcMain.on('salvar_planilha', (event, arg) => {
-		let path = require('path')
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+
+	const Dados = () => {
+		const fs = require('fs')
+		const files = []
+		fs.readdirSync(resultsPath).forEach(arquivo => {
+			files.push(`${arquivo}`)
+		})
+
+		const jsons = files.filter(a => a.includes('.json'))
+
+		const hhr = ['Doses, HQ and CR.json',
+			'Summary Aggregate Risk.json',
+			'Extensive Aggregate Risk.json',
+			'Summary Cumulative Risk.json',
+			'Extensive Cumulative Risk.json',
+			'Complementary Analyzes.json'
+		] // Human Health Risk
+		const er = ['Combined.json', 'Individual.json'] // Ecological Risk
+		const rr = ['Radiological Risk.json'] // Radiological Risk
+
+		const arquivos = {
+			hhr: jsons.filter(a => hhr.includes(a)),
+			er: jsons.filter(a => er.includes(a)),
+			rr: jsons.filter(a => rr.includes(a))
+		}
+
+		return {
+			quantidade: () => arquivos.length,
+			arquivos: () => arquivos,
+			pegar: arquivo => require(path.resolve(resultsPath + arquivo))
+		}
+	}
+
+	ipcMain.on('gerarOds', (event, arg) => {
+		const xlsx = require('xlsx')
+		const planilhas = []
+		jsons = Dados().arquivos()[arg.grupo] // PEGA OS JSONS DO GRUPO t
+		jsons.forEach(json => {
+			arquivo = Dados().pegar(json)
+			chaves = Object.keys(arquivo)
+			const wb = xlsx.utils.book_new()
+			chaves.forEach(chave => {
+				chaveNew = chave.substring(0, 28) + '...'
+				keys = Object.keys(arquivo[chave][0])
+				header = [{chave: chave}]
+				ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
+				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
+				const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
+				ws["!merges"] = merge
+				xlsx.utils.book_append_sheet(
+					wb,
+					ws,
+					chaveNew
+				)
+			})
+			let sheetPath = app.getPath('temp')
+			let sheetName = `\\${json.replace('.json', '')}.ods`
+			xlsx.writeFile(wb, sheetPath+sheetName)
+			planilhas.push(sheetName)
+		})
 		let options = {
 			title: "Selecionar Pasta",
-			defaultPath: path.resolve(require('os').homedir()),
+			defaultPath: app.getPath('documents'),
 			properties: ['openDirectory']
 		}
+
+		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
+
 		dialog.showOpenDialog(options).then((response) => {
-			if(response.canceled === false) {
+			if (response.canceled === false) {
 				const fs = require('fs')
-				arg.sheets.forEach(arquivo => {
-					file_name = path.resolve(
-						response.filePaths + arquivo.replace(arg.path, '/')
-					)
-					fs.rename(arquivo, file_name, err => {
-						if(err) throw err
+				planilhas.forEach(sheet => {
+					oldPath = path.resolve(app.getPath('temp') + sheet)
+					newPath = path.resolve(response.filePaths + sheet)
+					fs.rename(oldPath, newPath, err => {
+						if (err) throw err
 					})
 				})
 				require('child_process')
@@ -73,7 +144,24 @@ const createWindow = () => {
 			console.log(err)
 		})
 	})
+
+	ipcMain.on('execute', (event, arg) => {
+		var child = require('child_process')
+		var path = require('path')
+		var hhrisk_exe = appPath + 'bin\\HERisk.exe'
+		child.exec(`cd "${appPath}bin" & cmd /K ${hhrisk_exe}`, (err, data, t) => {
+			if (err) {
+				console.error(err)
+				// event.sender.send('executed', false)
+				return
+			}
+		})
+		event.sender.send('executed', true)
+	})
 }
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
@@ -83,4 +171,11 @@ app.on('activate', function () {
 	if (BrowserWindow.getAllWindows().length === 0) {
 		createWindow()
 	}
+})
+app.setAboutPanelOptions({
+	applicationName: "HERisk",
+	applicationVersion: app.getVersion(),
+	copyright: "Todos os direitos reservados",
+	version: app.getVersion(),
+	iconPath: appPath + 'ui\\favicon.ico'
 })

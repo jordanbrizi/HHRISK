@@ -1,5 +1,5 @@
 {
-  "name": "HERisk",
+  "name": "herisk",
   "productName": "HERisk",
   "description": "Programa de cálculo de risco.",
   "keywords": [
@@ -9,15 +9,21 @@
     "fortran"
   ],
   "main": "./ui/main.js",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "author": "Britus",
   "scripts": {
     "start": "electron .",
+    "build": "electron-builder",
     "package-win": "electron-packager . --overwrite --icon=ui/favicon.ico --ignore=.vscode --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Herisk\""
+  },
+  "build": {
+    "asar": false,
+    "icon": "ui/favicon.ico"
   },
   "devDependencies": {
     "bootstrap": "^4.5.0",
-    "electron": "9.0.2"
+    "electron": "9.0.2",
+    "electron-builder": "^22.7.0"
   },
   "repository": {
     "type": "git",

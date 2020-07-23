@@ -40,29 +40,33 @@ main
 header
 	transform: translateY(-80px)
 	transition: .4s
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
+	height: 200px
+	border-bottom-right-radius: 40px
 	h1
-		font-size: 4.5em
+		font-size: 4.0em
 		color: $navy
-	p
-		font-size: 0.8em
-		margin-top: -1em
+		padding: 
+			top: 10px
+	&.slide
+		transform: translateY(0px) !important
+
 .page
 	transform: translateY(0px)
 	border-radius: 0 !important
+	height: 80px
 	h1
 		font-size: 2.5em !important
-
-.slide
-	transform: translateY(0px) !important
+		margin: 0
+		padding: 0
 
 section
-	padding-top: 350px
-	padding-bottom: 40px
+	padding:
+		top: 400px
+		bottom: 20px
+	height: 590px
+	color: $white
 	background-color: $bg
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
+	border-bottom-right-radius: 40px
 .over
 	padding-top: 15px
 	height: 547px
@@ -71,13 +75,16 @@ section
 	font-size: 0.8em
 	border-radius: 0 !important
 
-footer
-	text-align: center
-	background: $navy
-	color: #CCC
-	font-size: .7em
+#menu-bottom
+	font-size: 0.8em
 
-nav
+footer
+	background: $navy
+	color: rgba($white, 0.4)
+	font-size: .7em
+	height: 50px
+
+#menu-principal
 	a
 		text-transform: uppercase
 		font-weight: 800
@@ -86,33 +93,50 @@ nav
 		&:hover
 			cursor: default
 
-
 #config
-	height: 80px
+	height: 70px
 	background: rgba($white, 0.8)
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
+	border-bottom-right-radius: 40px
+	p
+		font-size: 0.8em
+
+#config-footer
+	height: 50px
+	transform: translateY(2px)
+	background: $navy
+	color: $white
+	transition: .4s
+	border-top-right-radius: 50px
+	border-top-left-radius: 50px
+	&.slide
+		transform: translateY(-48px) !important
 
 button:focus, button:hover
 	outline: 0 !important
 
-.main-button
-	width: 20px
-	height: 20px
+#top-buttons
 	position: fixed
-	top: 25px
-	border: none
-	z-index: 1100
-	&:hover
-		cursor: default
+	top: 0
+	right: 0
+	z-index: 5000
 
-#config_button
-	background: url(../images/config.svg) no-repeat 50% 50%
-	right: 60px
+.btn-main
+	width: 45px
+	height: 29px
+	border: none
 
 #close_button
-	background: url(../images/close.svg) no-repeat 50% 50%
-	right: 25px
+	background: url(../images/x.svg) no-repeat 50% 50%
+	&:hover
+		background-color: $rosa !important
+
+#minimize_button
+	background: url(../images/dash.svg) no-repeat 50% 50%
+	&:hover
+		background-color: rgba($white, 0.8) !important
+
+#config_button
+	background: url(../images/gear.svg) no-repeat 50% 50%
 
 #loading
 	position: absolute
