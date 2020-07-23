@@ -1,4 +1,4 @@
-const { ipcRenderer, remote } = require('electron')
+const { ipcRenderer, remote, shell } = require('electron')
 const { createBrotliDecompress } = require('zlib')
 const { cachedDataVersionTag } = require('v8')
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
@@ -54,4 +54,4 @@ const Dados = () => {
 	}
 }
 
-module.exports = {pkg, lang, Dados, ipcRenderer}
+module.exports = {pkg, lang, Dados, ipcRenderer, shell, remote}

@@ -8,8 +8,11 @@
 
 <body>
 <main>
-	<button type="button" class="main-button" id="close_button"></button>
-	<header class="pb-3 sticky-top page bg-primary">
+	<div class="btn-group btn-group-lg text-right" id="top-buttons">
+		<button class="btn btn-primary btn-main" id="minimize_button" onclick="rend.remote.BrowserWindow.getFocusedWindow().minimize()"></button>
+		<button class="btn btn-danger btn-main" id="close_button" onclick="rend.remote.app.hide()"></button>
+	</div>
+	<header class="pb-3 page bg-primary">
 		<div class="container-fluid pt-3">
 			<h1 class="m-0 user-select-none" id="logo">he<b>risk</b>/resultados</h1>
 		</div>
@@ -55,9 +58,9 @@
 			</div> -->
 
 			<div class="tab-content">
-				<div class="tab-pane pt-3 active" id="hhr" role="tabpanel" aria-labelledby=""></div>
-				<div class="tab-pane pt-3" id="er" role="tabpanel" aria-labelledby=""></div>
-				<div class="tab-pane pt-3" id="rr" role="tabpanel" aria-labelledby=""></div>
+				<div class="tab-pane pt-3 active" id="hhr"></div>
+				<div class="tab-pane pt-3" id="er"></div>
+				<div class="tab-pane pt-3" id="rr"></div>
 			</div>
 		</div>
 	</section>

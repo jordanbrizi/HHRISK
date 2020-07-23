@@ -16,6 +16,7 @@ const createWindow = () => {
 		resizable: false,
 		frame: false,
 		show: true,
+		icon: __dirname + '/favicon.ico',
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -28,6 +29,7 @@ const createWindow = () => {
 		frame: false,
 		titleBarStyle: 'hidden',
 		show: false,
+		icon: __dirname + '/favicon.ico',
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -101,18 +103,21 @@ const createWindow = () => {
 			chaves.forEach(chave => {
 				chaveNew = chave.substring(0, 28) + '...'
 				keys = Object.keys(arquivo[chave][0])
-				ws = xlsx.utils.json_to_sheet(arquivo[chave])
-				//const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
-				//ws["!merges"] = merge
+				header = [{chave: chave}]
+				ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
+				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
+				const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
+				ws["!merges"] = merge
 				xlsx.utils.book_append_sheet(
 					wb,
 					ws,
 					chaveNew
 				)
 			})
-			let filePath = resultsPath + `${json.replace('.json', '')}.ods`
-			xlsx.writeFile(wb, filePath)
-			planilhas.push(path.resolve(filePath))
+			let sheetPath = app.getPath('temp')
+			let sheetName = `\\${json.replace('.json', '')}.ods`
+			xlsx.writeFile(wb, sheetPath+sheetName)
+			planilhas.push(sheetName)
 		})
 		let options = {
 			title: "Selecionar Pasta",
@@ -125,11 +130,10 @@ const createWindow = () => {
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
-				planilhas.forEach(arquivo => {
-					file_name = path.resolve(
-						response.filePaths + arquivo.replace(resultsPath, '/')
-					)
-					fs.rename(arquivo, file_name, err => {
+				planilhas.forEach(sheet => {
+					oldPath = path.resolve(app.getPath('temp') + sheet)
+					newPath = path.resolve(response.filePaths + sheet)
+					fs.rename(oldPath, newPath, err => {
 						if (err) throw err
 					})
 				})
@@ -167,4 +171,11 @@ app.on('activate', function () {
 	if (BrowserWindow.getAllWindows().length === 0) {
 		createWindow()
 	}
+})
+app.setAboutPanelOptions({
+	applicationName: "HERisk",
+	applicationVersion: app.getVersion(),
+	copyright: "Todos os direitos reservados",
+	version: app.getVersion(),
+	iconPath: appPath + 'ui\\favicon.ico'
 })
