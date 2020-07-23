@@ -13,8 +13,7 @@
   "author": "Britus",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
-    "package-win": "electron-packager . --overwrite --icon=ui/favicon.ico --ignore=.vscode --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Herisk\""
+    "build": "electron-builder"
   },
   "build": {
     "asar": false,
