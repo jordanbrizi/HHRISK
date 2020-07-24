@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HHRISK</title>
-	<link rel="stylesheet" type="text/css" href="./css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
 					<a class="nav-link m-0 p-0 mr-4" href="#">How to use</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link m-0 p-0 mr-4" href="#">Guide</a>
+					<a class="nav-link m-0 p-0 mr-4" href="#" onclick="rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\HERisk.pdf')">Guide</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link m-0 p-0 mr-4" href="#" onclick="toggleConfig()">Config</a>
@@ -115,6 +115,7 @@
 	// FUNÇÃO PARA EXECUTAR O HHRISK
 	const execute = () => {
 		$('#execute-btn .spinner-border').classList.remove('invisible')
+		rend.ipcRenderer.send('clearResults') // APAGA OS JSONS DA PASTA
 		rend.ipcRenderer.send('execute')
 		rend.ipcRenderer.on('executed', (_, args) => {
 			if (args) {

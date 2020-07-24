@@ -60,7 +60,7 @@ const createWindow = () => {
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
 
-	const Dados = () => {
+	const obterJsons = () => {
 		const fs = require('fs')
 		const files = []
 		fs.readdirSync(resultsPath).forEach(arquivo => {
@@ -69,6 +69,10 @@ const createWindow = () => {
 
 		const jsons = files.filter(a => a.includes('.json'))
 
+		return jsons
+	}
+
+	const Dados = () => {
 		const hhr = ['Doses, HQ and CR.json',
 			'Summary Aggregate Risk.json',
 			'Extensive Aggregate Risk.json',
@@ -80,9 +84,9 @@ const createWindow = () => {
 		const rr = ['Radiological Risk.json'] // Radiological Risk
 
 		const arquivos = {
-			hhr: jsons.filter(a => hhr.includes(a)),
-			er: jsons.filter(a => er.includes(a)),
-			rr: jsons.filter(a => rr.includes(a))
+			hhr: obterJsons().filter(a => hhr.includes(a)),
+			er: obterJsons().filter(a => er.includes(a)),
+			rr: obterJsons().filter(a => rr.includes(a))
 		}
 
 		return {
@@ -101,7 +105,7 @@ const createWindow = () => {
 			chaves = Object.keys(arquivo)
 			const wb = xlsx.utils.book_new()
 			chaves.forEach(chave => {
-				chaveNew = chave.substring(0, 28) + '...'
+				chaveNew = chave.substring(0, 28) + '...' //C/ ATÉ 31 CARACTERES
 				keys = Object.keys(arquivo[chave][0])
 				header = [{chave: chave}]
 				ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
@@ -145,6 +149,12 @@ const createWindow = () => {
 		})
 	})
 
+	ipcMain.on('clearResults', (event, arg) => {
+		const fs = require('fs')
+		obterJsons().forEach(json => fs.unlinkSync(resultsPath + json))
+		return
+	})
+
 	ipcMain.on('execute', (event, arg) => {
 		var child = require('child_process')
 		var path = require('path')
@@ -152,7 +162,6 @@ const createWindow = () => {
 		child.exec(`cd "${appPath}bin" & cmd /K ${hhrisk_exe}`, (err, data, t) => {
 			if (err) {
 				console.error(err)
-				// event.sender.send('executed', false)
 				return
 			}
 		})

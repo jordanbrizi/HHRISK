@@ -31,7 +31,7 @@ const Dados = () => {
 
 	const jsons = files.filter(a => a.includes('.json'))
 
-	const hhr = ['Doses, HQ and CR.json',
+	const hhr = [
 		'Summary Aggregate Risk.json',
 		'Extensive Aggregate Risk.json',
 		'Summary Cumulative Risk.json',
