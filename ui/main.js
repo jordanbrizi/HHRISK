@@ -21,21 +21,7 @@ const createWindow = () => {
 			nodeIntegration: true
 		}
 	})
-	const winResults = new BrowserWindow({
-		width: 1200,
-		height: 675,
-		backgroundColor: '#000',
-		resizable: true,
-		frame: false,
-		titleBarStyle: 'hidden',
-		show: false,
-		icon: __dirname + '/favicon.ico',
-		webPreferences: {
-			nodeIntegration: true
-		}
-	})
 
-	winResults.loadURL(`file://${__dirname}/results.html`)
 	win.loadURL(`file://${__dirname}/index.html`)
 
 	win.once('ready-to-show', () => {
@@ -45,63 +31,39 @@ const createWindow = () => {
 	Menu.setApplicationMenu(null)
 	
 	// win.openDevTools()
-	// winResults.openDevTools()
-
-	ipcMain.on('resultados', () => {
-		if (winResults.isVisible() == true) {
-			winResults.hide()			
-		} else {
-			winResults.show()
-		}
-	})
 
 	ipcMain.on('sair', () => app.quit())
 
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
-
-	const obterJsons = () => {
-		const fs = require('fs')
+		
+	const Obter = () => {
 		const files = []
+		const fs = require('fs')
 		fs.readdirSync(resultsPath).forEach(arquivo => {
 			files.push(`${arquivo}`)
 		})
 
-		const jsons = files.filter(a => a.includes('.json'))
-
-		return jsons
+		return {
+			jsons: files.filter(a => a.includes('.json')),
+			txts: files.filter(a => a.includes('.txt')),
+		}
 	}
 
-	const Dados = () => {
-		const hhr = ['Doses, HQ and CR.json',
-			'Summary Aggregate Risk.json',
-			'Extensive Aggregate Risk.json',
-			'Summary Cumulative Risk.json',
-			'Extensive Cumulative Risk.json',
-			'Complementary Analyzes.json'
-		] // Human Health Risk
-		const er = ['Combined.json', 'Individual.json'] // Ecological Risk
-		const rr = ['Radiological Risk.json'] // Radiological Risk
-
-		const arquivos = {
-			hhr: obterJsons().filter(a => hhr.includes(a)),
-			er: obterJsons().filter(a => er.includes(a)),
-			rr: obterJsons().filter(a => rr.includes(a))
-		}
-
-		return {
-			quantidade: () => arquivos.length,
-			arquivos: () => arquivos,
-			pegar: arquivo => require(path.resolve(resultsPath + arquivo))
-		}
+	const Resultados = {
+		jsons: Obter().jsons,
+		txts: Obter().txts,
+		quantidade: tipo => Resultados[tipo].length,
+		arquivos: () => arquivos,
+		pegar: arquivo => require(path.resolve(resultsPath + arquivo))
 	}
 
 	ipcMain.on('gerarOds', (event, arg) => {
 		const xlsx = require('xlsx')
 		const planilhas = []
-		jsons = Dados().arquivos()[arg.grupo] // PEGA OS JSONS DO GRUPO t
+		jsons = Resultados.jsons
 		jsons.forEach(json => {
-			arquivo = Dados().pegar(json)
+			arquivo = Resultados.pegar(json)
 			chaves = Object.keys(arquivo)
 			const wb = xlsx.utils.book_new()
 			chaves.forEach(chave => {
@@ -129,8 +91,7 @@ const createWindow = () => {
 			properties: ['openDirectory']
 		}
 
-		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
-
+	// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
@@ -151,7 +112,7 @@ const createWindow = () => {
 
 	ipcMain.on('clearResults', (event, arg) => {
 		const fs = require('fs')
-		obterJsons().forEach(json => fs.unlinkSync(resultsPath + json))
+		Resultados.jsons.forEach(json => fs.unlinkSync(resultsPath + json))
 		return
 	})
 

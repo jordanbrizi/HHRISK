@@ -10,8 +10,8 @@
 <body>
 <main>
 	<div class="btn-group btn-group-lg text-right" id="top-buttons">
-		<button class="btn btn-primary btn-main" id="minimize_button" onclick="rend.remote.BrowserWindow.getFocusedWindow().minimize()"></button>
-		<button class="btn btn-danger btn-main" id="close_button" onclick="rend.ipcRenderer.send('sair')"></button>
+		<button title="Minimizar" class="btn btn-primary btn-main" id="minimize_button" onclick="rend.remote.BrowserWindow.getFocusedWindow().minimize()"></button>
+		<button title="Fechar" class="btn btn-danger btn-main" id="close_button" onclick="rend.ipcRenderer.send('sair')"></button>
 	</div>
 
 	<header class="pb-3 fixed-top bg-primary">
@@ -32,14 +32,14 @@
 	<section>
 		<div class="container">
 			<nav class="nav flex-column mb-3" id="menu-principal">
-				<a class="nav-link p-0 mb-2" href="#" onclick="rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\input.xlsm')">
+				<a class="nav-link p-0 mb-2" href="#" onclick="rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\input.xlsm')" title="Abrir planilha para inseir os dados.">
 					<span data-lang="input_data"></span>
 				</a>
-				<a class="nav-link p-0 mb-2" href="#" id="execute-btn" onclick="execute()">
+				<a class="nav-link p-0 mb-2" href="#" id="execute-btn" onclick="execute()" title="Executar o HERisk.">
 					<span data-lang="execute"></span>
 					<span class="spinner-border invisible" role="status"></span>
 				</a>
-				<a class="nav-link p-0 mb-2" href="#" id="results">
+				<a class="nav-link p-0 mb-2" href="#" id="results" title="Salvar planilhas dos resultados.">
 					<span data-lang="results"></span>
 				</a>
 			</nav>
@@ -109,7 +109,7 @@
 	}
 
 	$('#results').addEventListener('click', () => {
-		rend.ipcRenderer.send('resultados')
+		rend.ipcRenderer.send('gerarOds')
 	})
 
 	// FUNÇÃO PARA EXECUTAR O HHRISK
