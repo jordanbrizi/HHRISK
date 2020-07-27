@@ -1,4 +1,3 @@
-// Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
 const { fstat } = require('fs')
 const path = require('path')
@@ -21,11 +20,38 @@ const createWindow = () => {
 			nodeIntegration: true
 		}
 	})
+	const winWarnings = new BrowserWindow({
+		width: 360,
+		height: 640,
+		backgroundColor: '#FFF',
+		resizable: false,
+		show: false,
+		icon: __dirname + '/favicon.ico',
+		webPreferences: {
+			nodeIntegration: true
+		}
+	})
+	const winInformation = new BrowserWindow({
+		width: 360,
+		height: 640,
+		backgroundColor: '#FFF',
+		resizable: false,
+		show: false,
+		icon: __dirname + '/favicon.ico',
+		webPreferences: {
+			nodeIntegration: true
+		}
+	})
 
 	win.loadURL(`file://${__dirname}/index.html`)
+	winWarnings.loadURL(resultsPath + 'WARNINGS.txt')
+	winInformation.loadURL(resultsPath + 'Information.txt')
 
 	win.once('ready-to-show', () => {
 		win.show()
+	})
+	winWarnings.on('closed', () => {
+		winWarnings = null
 	})
 
 	Menu.setApplicationMenu(null)
