@@ -15,6 +15,7 @@
 	</div>
 
 	<header class="pb-3 fixed-top bg-primary">
+<<<<<<< HEAD
 		<div class="container bg-light" id="config">
 			<p class="m-0 pt-2 user-select-none"><span data-lang="change_lang"></span>:</p>
 			<a href="#" onclick="setLang('en-US')">
@@ -26,6 +27,25 @@
 		</div>
 		<div class="container">
 			<h1 class="m-0 mt-4 user-select-none" id="logo">he<b>risk</b></h1>
+=======
+		<div class="container-fluid bg-light" id="config">
+			<div class="row pt-3">
+				<div class="col offset-1">
+					<p class="m-0 font-weight-bold user-select-none"><span data-lang="change_lang"></span>:</p>
+					<a href="#" onclick="setLang('en-US')">
+						<img src="images/enus.png" alt="English USA" title="English USA">
+					</a>
+					<a href="#" onclick="setLang('pt-BR')">
+						<img src="images/ptbr.png" alt="Português Brasil" title="Português Brasil">
+					</a>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+		<div class="container-fluid pt-3 pb-4">
+			<h1 class="m-0 user-select-none" id="logo">hh<b>risk</b></h1>
+			<p class="font-italic user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
+>>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 		</div>
 	</header>
 
@@ -37,11 +57,28 @@
 				</a>
 				<a class="nav-link p-0 mb-2" href="#" id="execute-btn" onclick="execute()" title="Executar o HERisk.">
 					<span data-lang="execute"></span>
-					<span class="spinner-border invisible" role="status"></span>
+					<span class="spinner-border d-none" role="status" aria-hidden="true"></span>
 				</a>
 				<a class="nav-link p-0 mb-2" href="#" id="results" title="Salvar planilhas dos resultados.">
 					<span data-lang="results"></span>
 				</a>
+<<<<<<< HEAD
+=======
+
+				<a class="nav-link pt-0" href="#">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+					</svg>
+					<span data-lang="how_to_use"></span>
+				</a>
+
+				<a class="nav-link pt-0" href="../bin/HHRISK_9_Guide.pdf" target="_blank">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M12 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+					</svg>
+					<span data-lang="guide"></span>
+				</a>
+>>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 			</nav>
 			<ul class="nav" id="menu-bottom">
 				<li class="nav-item">
@@ -61,14 +98,21 @@
 	</section>
 
 	<footer class="fixed-bottom">
+<<<<<<< HEAD
 		<div class="container">
+=======
+		<div class="container-fluid">
+>>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 			<p class="pt-3 user-select-none" onclick="location.reload()">
 				&copy; 2020 - <span class="year"></span>. <span data-lang="all_rights"></span>. <span class="app_version"></span>
 			</p>
 		</div>
+<<<<<<< HEAD
 		<div class="container" id="config-footer">
 			<p class="m-0 pt-3 user-select-none"><span data-lang="version"></span> <span class="version"></span></p>
 		</div>
+=======
+>>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 	</footer>
 </main>
 </body>
@@ -100,11 +144,9 @@
 	const toggleConfig = () => {
 		if($('header').style.height === '0px') {
 			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
 		}
 		else {
 			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
 		}
 	}
 
@@ -114,6 +156,7 @@
 
 	// FUNÇÃO PARA EXECUTAR O HHRISK
 	const execute = () => {
+<<<<<<< HEAD
 		$('#execute-btn .spinner-border').classList.remove('invisible')
 		rend.ipcRenderer.send('clearResults') // APAGA OS JSONS DA PASTA
 		rend.ipcRenderer.send('execute')
@@ -127,8 +170,20 @@
 				if(localStorage.getItem('lang') == 'en-US') {
 					$('span[data-lang="execute"').innerHTML = 'Executed'
 				}
+=======
+		$('#execute-btn .spinner-border').classList.toggle('d-none')
+		var child = require('child_process')
+		var path = require('path')
+		var hhrisk_exe = path.resolve('../bin/HERisk.exe')
+		child.exec(`cd ../bin & cmd /K ${hhrisk_exe}`, (err, data, t) => {
+			if(err){
+				console.error(err)
+				return
+>>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 			}
+			console.log(data.toString())
 		})
+		console.log($('#execute-btn .spinner-border').classList)
 	}
 </script>
 </html>
