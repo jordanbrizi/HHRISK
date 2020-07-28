@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
 const { fstat } = require('fs')
 const path = require('path')
@@ -8,10 +7,6 @@ const appPath = app.getAppPath() + '\\'
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-=======
-// Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu, ipcMain} = require('electron')
->>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 360,
@@ -19,11 +14,8 @@ const createWindow = () => {
 		backgroundColor: '#000',
 		resizable: false,
 		frame: false,
-<<<<<<< HEAD
 		show: true,
 		icon: __dirname + '/favicon.ico',
-=======
->>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -64,7 +56,6 @@ const createWindow = () => {
 
 	Menu.setApplicationMenu(null)
 	
-<<<<<<< HEAD
 	// win.openDevTools()
 
 	ipcMain.on('sair', () => app.quit())
@@ -162,22 +153,11 @@ const createWindow = () => {
 			}
 		})
 		event.sender.send('executed', true)
-=======
-	win.openDevTools()
-	winResults.openDevTools()
-
-	ipcMain.on('resultados', () => {
-		if (winResults.isVisible() == true) {
-			winResults.hide()			
-		} else {
-			winResults.show()
-		}
-	})
-	ipcMain.on('sair', () => {
-		app.quit()
->>>>>>> 39d9aa5686bc26510bb8baebdb57f262b29ce598
 	})
 }
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
