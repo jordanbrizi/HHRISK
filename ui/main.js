@@ -135,6 +135,7 @@ const createWindow = () => {
 	ipcMain.on('clearResults', (event, arg) => {
 		const fs = require('fs')
 		Resultados.jsons.forEach(json => fs.unlinkSync(resultsPath + json))
+		Resultados.txts.forEach(txt => fs.unlinkSync(resultsPath + txt))
 		return
 	})
 
@@ -144,19 +145,25 @@ const createWindow = () => {
 		var herisk_exe = appPath + 'bin\\HERisk.exe'
 		var coco = `cd "${appPath}bin" & cmd /K ${herisk_exe}`
 		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
-			console.log(stderr)
 			if(err) {
 				const prns = [
 					"Concentration.prn",
-					"datachemical.prn",
+					"Datachemical.prn",
 					"Dataecological.prn",
-					"dataexp.prn",
-					"SCENARY.prn"
+					"Dataexp.prn",
+					"Scenary.prn"
 				]
 				const prn = prns.filter(a => stderr.includes(a))
-				if(prn > 1) {
-					console.log(`Ocorreu um erro maluco em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`)
-				}				
+				const erros = ["divide by zero"]
+				const erro = erros.filter(a => stderr.includes(a))
+
+				if(prn.length > 0) {
+					console.log(`Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`)
+				}
+				if(erro.length > 0) {
+					console.log(`Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`)
+				}
+				return
 			}
 			event.sender.send('executed', true)
 		})
