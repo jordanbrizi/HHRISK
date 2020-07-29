@@ -2,43 +2,11 @@
                                                          !!!!!!!!!WARNINGS!!!!!!!!!
 ********************************************************************************************************************************************
  
+ WARNING!!! SOME VALUE OF BW ARE EQUAL TO ZERO!!!!! 
+ 
+ WARNING!!! SOME VALUE OF BW ARE EQUAL TO ZERO!!!!! 
+ 
  
 ____________________________________________________________________________________________________________________________________________
                                                          HUMAN HEALTH RISK ASSESMENT
 ____________________________________________________________________________________________________________________________________________
- 
- Chemical species = Zn                            
- The oral SF is equal to zero!!! CR value will be equal to zero too!! 
- 
- 
- For chemical species = Cd                            
- Doseway2 was not calculed, because soil and fruits, seeds or tubers concentrations not exist 
- 
- 
- Chemical species = Cd                            
- The oral SF is equal to zero!!! CR value will be equal to zero too!! 
- 
-____________________________________________________________________________________________________________________________________________
-                                                          ECOLOGICAL RISK ASSESMENT
-____________________________________________________________________________________________________________________________________________
- 
- 
- WARNING!!! Soil concentrations of reference elements (Fe, Al or Mn) were not provided in the concentration sheet of the input file.
- The soil enrichment factor (EF) calculation will not be performed!  ----> The soil EF value will be zero
- 
- 
- WARNING!!! Sediment concentrations of reference elements (Fe, Al or Mn) were not provided in the concentration sheet of the input file.
- The soil enrichment factor (EF) calculation will not be performed!  ----> The soil EF value will be zero
- 
- 
- WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
- THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Zn                            
- 
- 
- WARNING!!! There are no values of contaminant concentrations for SEDIMENT matrix  
- THE VALUES OF THE SEDIMENT INDICES WILL NOT BE CALCULATED FOR ----->  Pb                            
- 
- 
- WARNING!!! There are no values of contaminant concentrations for SOIL matrix  
- THE VALUES OF THE SOIL INDICES WILL NOT BE CALCULATED FOR ----->  Cd                            
- 

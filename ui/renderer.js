@@ -1,7 +1,6 @@
 const { ipcRenderer, remote, shell } = require('electron')
 const defaultLang = Intl.DateTimeFormat().resolvedOptions().locale
 const pkg = () => require('../package')
-const resultsPath = arg => remote.app.getAppPath() + '\\bin\\Results\\' + arg
 const mainPath = arg => remote.app.getAppPath() + '\\' + arg
 
 // -----------------------------------------------------------------------------

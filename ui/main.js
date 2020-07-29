@@ -32,7 +32,7 @@ const createWindow = () => {
 		}
 	})
 	const winInformation = new BrowserWindow({
-		width: 360,
+		width: 640,
 		height: 640,
 		backgroundColor: '#FFF',
 		resizable: false,
@@ -100,11 +100,7 @@ const createWindow = () => {
 				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
 				const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
 				ws["!merges"] = merge
-				xlsx.utils.book_append_sheet(
-					wb,
-					ws,
-					chaveNew
-				)
+				xlsx.utils.book_append_sheet(wb, ws, chaveNew)
 			})
 			let sheetPath = app.getPath('temp')
 			let sheetName = `\\${json.replace('.json', '')}.ods`
@@ -145,14 +141,25 @@ const createWindow = () => {
 	ipcMain.on('execute', (event, arg) => {
 		var child = require('child_process')
 		var path = require('path')
-		var hhrisk_exe = appPath + 'bin\\HERisk.exe'
-		child.exec(`cd "${appPath}bin" & cmd /K ${hhrisk_exe}`, (err, data, t) => {
-			if (err) {
-				console.error(err)
-				return
+		var herisk_exe = appPath + 'bin\\HERisk.exe'
+		var coco = `cd "${appPath}bin" & cmd /K ${herisk_exe}`
+		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
+			console.log(stderr)
+			if(err) {
+				const prns = [
+					"Concentration.prn",
+					"datachemical.prn",
+					"Dataecological.prn",
+					"dataexp.prn",
+					"SCENARY.prn"
+				]
+				const prn = prns.filter(a => stderr.includes(a))
+				if(prn > 1) {
+					console.log(`Ocorreu um erro maluco em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`)
+				}				
 			}
+			event.sender.send('executed', true)
 		})
-		event.sender.send('executed', true)
 	})
 }
 
