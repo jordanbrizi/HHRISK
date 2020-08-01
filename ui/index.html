@@ -13,7 +13,7 @@
 		<button title="Minimizar" class="btn btn-primary btn-main" id="minimize_button" onclick="rend.remote.BrowserWindow.getFocusedWindow().minimize()"></button>
 		<button title="Fechar" class="btn btn-danger btn-main" id="close_button" onclick="rend.ipcRenderer.send('sair')"></button>
 	</div>
-
+	
 	<header class="pb-3 fixed-top bg-primary">
 		<div class="container bg-light" id="config">
 			<p class="m-0 pt-2 user-select-none"><span data-lang="change_lang"></span>:</p>
@@ -23,40 +23,36 @@
 			<a href="#" onclick="setLang('pt-BR')">
 				<img src="images/ptbr.png" alt="Português Brasil" title="Português Brasil">
 			</a>
-		</div>
-		<div class="container">
 			<h1 class="m-0 mt-4 user-select-none" id="logo">he<b>risk</b></h1>
 		</div>
 	</header>
 
 	<section>
 		<div class="container">
-			<nav class="nav flex-column mb-3" id="menu-principal">
+			<div id="modal">
+				<div class="container">
+					<div class="alert alert-danger d-none" id="executeDanger" role="alert"></div>
+				</div>
+			</div>
+
+			<nav class="nav flex-column" id="menu-principal">
 				<a class="nav-link p-0 mb-2" href="#" onclick="rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\input.xlsm')" title="Abrir planilha para inseir os dados.">
 					<span data-lang="input_data"></span>
 				</a>
 				<a class="nav-link p-0 mb-2" href="#" id="execute-btn" onclick="execute()" title="Executar o HERisk.">
 					<span data-lang="execute"></span>
-					<span class="spinner-border invisible" role="status"></span>
 				</a>
 				<a class="nav-link p-0 mb-2" href="#" id="results" title="Salvar planilhas dos resultados.">
 					<span data-lang="results"></span>
 				</a>
 			</nav>
-			<ul class="nav" id="menu-bottom">
-				<li class="nav-item">
-					<a class="nav-link m-0 p-0 mr-4" href="#">How to use</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link m-0 p-0 mr-4" href="#" onclick="rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\HERisk.pdf')">Guide</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link m-0 p-0 mr-4" href="#" onclick="toggleConfig()">Config</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link m-0 p-0 mr-4" href="#" onclick="rend.remote.app.showAboutPanel()">About</a>
-				</li>
-			</ul>
+
+			<nav class="nav flex-column" id="menu-bottom">
+				<a class="nav-link p-0 m-0" title="How to use">How to use</a>
+				<a class="nav-link p-0 m-0" title="See the guide" onclick="rend.ipcRenderer.send('guide')">Guide</a>
+				<a class="nav-link p-0 m-0" title="Set preferences" onclick="toggleConfig()">Preferences</a>
+				<a class="nav-link p-0 m-0" title="About" onclick="rend.remote.app.showAboutPanel()">About</a>
+			</nav>
 		</div>
 	</section>
 
@@ -114,20 +110,17 @@
 
 	// FUNÇÃO PARA EXECUTAR O HHRISK
 	const execute = () => {
-		$('#execute-btn .spinner-border').classList.remove('invisible')
 		rend.ipcRenderer.send('clearResults') // APAGA OS JSONS DA PASTA
 		rend.ipcRenderer.send('execute')
 		rend.ipcRenderer.on('executed', (_, args) => {
-			if (args) {
-				$('#execute-btn .spinner-border').classList.add('invisible')
-				$('#execute-btn').setAttribute('disabled', '')
-				if(localStorage.getItem('lang') == 'pt-BR') {
-					$('span[data-lang="execute"').innerHTML = 'Executado'
-				}
-				if(localStorage.getItem('lang') == 'en-US') {
-					$('span[data-lang="execute"').innerHTML = 'Executed'
-				}
+			if (args.result == false) {
+				$('#executeDanger').innerHTML = args.msg
+				$('#executeDanger').classList.toggle('d-none')
+				setTimeout(() => {
+					$('#executeDanger').classList.toggle('d-none')
+				}, 10000)
 			}
+			console.log(args)
 		})
 	}
 </script>

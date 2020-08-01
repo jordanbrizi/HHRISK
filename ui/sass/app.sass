@@ -47,29 +47,18 @@ header
 		color: $navy
 		padding: 
 			top: 10px
-	&.slide
-		transform: translateY(0px) !important
 
-.page
-	transform: translateY(0px)
-	border-radius: 0 !important
-	height: 80px
-	h1
-		font-size: 2.5em !important
-		margin: 0
-		padding: 0
+.slide
+	transform: translateY(0px) !important
 
 section
 	padding:
-		top: 400px
+		top: 320px
 		bottom: 20px
 	height: 590px
 	color: $white
 	background-color: $bg
 	border-bottom-right-radius: 40px
-
-#menu-bottom
-	font-size: 0.8em
 
 footer
 	background: $navy
@@ -85,7 +74,15 @@ footer
 		color: $white
 		&:hover
 			cursor: default
-			color: $azul
+			color: $verde
+
+#menu-bottom
+	a
+		text-transform: uppercase
+		font-size: 1em
+		&:hover
+			cursor: default
+			color: $verde
 
 #config
 	height: 70px
@@ -104,6 +101,13 @@ footer
 	border-top-left-radius: 50px
 	&.slide
 		transform: translateY(-48px) !important
+
+#modal
+	width: 100%
+	min-height: 120px
+	position: absolute
+	top: 135px
+	right: 0
 
 button:focus, button:hover
 	outline: 0 !important
@@ -128,9 +132,6 @@ button:focus, button:hover
 	background: url(../images/dash.svg) no-repeat 50% 50%
 	&:hover
 		background-color: rgba($white, 0.8) !important
-
-#config_button
-	background: url(../images/gear.svg) no-repeat 50% 50%
 
 #loading
 	position: absolute

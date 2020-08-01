@@ -20,19 +20,8 @@ const createWindow = () => {
 			nodeIntegration: true
 		}
 	})
-	const winWarnings = new BrowserWindow({
-		width: 360,
-		height: 640,
-		backgroundColor: '#FFF',
-		resizable: false,
-		show: false,
-		icon: __dirname + '/favicon.ico',
-		webPreferences: {
-			nodeIntegration: true
-		}
-	})
-	const winInformation = new BrowserWindow({
-		width: 640,
+	const winGuide = new BrowserWindow({
+		width: 1024,
 		height: 640,
 		backgroundColor: '#FFF',
 		resizable: false,
@@ -44,25 +33,21 @@ const createWindow = () => {
 	})
 
 	win.loadURL(`file://${__dirname}/index.html`)
-	winWarnings.loadURL(resultsPath + 'WARNINGS.txt')
-	winInformation.loadURL(resultsPath + 'Information.txt')
+	winGuide.loadURL(appPath + 'bin/HERisk.pdf')
 
 	win.once('ready-to-show', () => {
 		win.show()
 	})
-	winWarnings.on('closed', () => {
-		winWarnings = null
-	})
 
 	Menu.setApplicationMenu(null)
 	
-	// win.openDevTools()
-
+	win.openDevTools()
+	ipcMain.on('guide', () => winGuide.show())
 	ipcMain.on('sair', () => app.quit())
 
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
-		
+	// OBTER OS ARQUIVOS EM JSON E TXT DA PASTA RESULTS	
 	const Obter = () => {
 		const files = []
 		const fs = require('fs')
@@ -98,7 +83,8 @@ const createWindow = () => {
 				header = [{chave: chave}]
 				ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
 				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
-				const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
+				const merge =
+					[{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
 				ws["!merges"] = merge
 				xlsx.utils.book_append_sheet(wb, ws, chaveNew)
 			})
@@ -107,6 +93,7 @@ const createWindow = () => {
 			xlsx.writeFile(wb, sheetPath+sheetName)
 			planilhas.push(sheetName)
 		})
+
 		let options = {
 			title: "Selecionar Pasta",
 			defaultPath: app.getPath('documents'),
@@ -145,6 +132,7 @@ const createWindow = () => {
 		var herisk_exe = appPath + 'bin\\HERisk.exe'
 		var coco = `cd "${appPath}bin" & cmd /K ${herisk_exe}`
 		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
+			const dados = { result: true }
 			if(err) {
 				const prns = [
 					"Concentration.prn",
@@ -158,14 +146,15 @@ const createWindow = () => {
 				const erro = erros.filter(a => stderr.includes(a))
 
 				if(prn.length > 0) {
-					console.log(`Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`)
+					dados.result = false
+					dados.msg = `Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`
 				}
 				if(erro.length > 0) {
-					console.log(`Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`)
+					dados.result = false
+					dados.msg = `Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`
 				}
-				return
 			}
-			event.sender.send('executed', true)
+			event.sender.send('executed', dados)
 		})
 	})
 }
