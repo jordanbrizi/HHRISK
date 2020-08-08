@@ -1,45 +1,45 @@
 {
-  "name": "herisk",
-  "productName": "HERisk",
-  "description": "Programa de cálculo de risco.",
-  "keywords": [
-    "herisk",
-    "electron",
-    "nodejs",
-    "fortran"
-  ],
-  "main": "./ui/main.js",
-  "version": "1.0.0-beta",
-  "author": "Britus",
-  "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
-  },
-  "build": {
-    "asar": false,
-    "icon": "ui/favicon.ico"
-  },
-  "devDependencies": {
-    "bootstrap": "^4.5.0",
-    "electron": "9.0.2",
-    "electron-builder": "^22.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/jordanbrizi/HHRISK.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jordanbrizi/HHRISK/issues"
-  },
-  "homepage": "https://github.com/jordanbrizi/HHRISK#readme",
-  "dependencies": {
-    "bootstrap-icons": "^1.0.0-alpha5",
-    "electron-packager": "^15.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-transition-group": "^4.4.1",
-    "reactstrap": "^8.5.1",
-    "xlsx": "^0.16.4"
-  }
+	"name": "herisk",
+	"productName": "HERisk",
+	"description": "Programa de cálculo de risco.",
+	"keywords": [
+		"herisk",
+		"electron",
+		"nodejs",
+		"fortran"
+	],
+	"main": "./ui/main.js",
+	"version": "1.0.0-beta",
+	"author": "Britus",
+	"scripts": {
+		"start": "electron .",
+		"build": "electron-builder"
+	},
+	"build": {
+		"asar": false,
+		"icon": "ui/favicon.ico"
+	},
+	"devDependencies": {
+		"bootstrap": "^4.5.0",
+		"electron": "9.0.2",
+		"electron-builder": "^22.7.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:jordanbrizi/HERisk.git"
+	},
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jordanbrizi/HERisk/issues"
+	},
+	"homepage": "https://github.com/jordanbrizi/HERisk#readme",
+	"dependencies": {
+		"bootstrap-icons": "^1.0.0-alpha5",
+		"electron-packager": "^15.0.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-transition-group": "^4.4.1",
+		"reactstrap": "^8.5.1",
+		"xlsx": "^0.16.4"
+	}
 }
