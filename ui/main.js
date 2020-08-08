@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, dialog, Notification} = require('electron')
 const { fstat } = require('fs')
 const path = require('path')
 const resultsPath = app.getAppPath() + '\\bin\\Results\\'
@@ -122,20 +122,20 @@ const createWindow = () => {
 		})
 	})
 
-	ipcMain.on('clearResults', (event, arg) => {
-		const fs = require('fs')
-		Resultados.jsons.forEach(json => fs.unlinkSync(resultsPath + json))
-		Resultados.txts.forEach(txt => fs.unlinkSync(resultsPath + txt))
-		return
-	})
-
 	ipcMain.on('execute', (event, arg) => {
-		var child = require('child_process')
-		var path = require('path')
-		var herisk_exe = appPath + 'bin\\HERisk.exe'
-		var coco = `cd "${appPath}bin" & cmd /K ${herisk_exe}`
+		const fs = require('fs')
+		const child = require('child_process')
+		const path = require('path')
+		const herisk_exe = appPath + 'bin\\HERisk.exe'
+
+		// LIMPA A PASTA RESULTS
+		if (Resultados.jsons == true) {
+			Resultados.jsons.forEach(json => fs.unlinkSync(resultsPath + json))
+		}
+		if (Resultados.txts == true) {
+			Resultados.txts.forEach(txt => fs.unlinkSync(resultsPath + txt))
+		}
 		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
-			const dados = { result: true, msg: "Successfully executed." }
 			if(err) {
 				const prns = [
 					"Concentration.prn",
@@ -149,22 +149,29 @@ const createWindow = () => {
 				const erro = erros.filter(a => stderr.includes(a))
 
 				if(prn.length > 0) {
-					dados.result = false
-					dados.msg = `Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`
+					new Notification({
+						title: 'Error',
+						body: `Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`
+					}).show()
 				}
 				if(erro.length > 0) {
-					dados.result = false
-					dados.msg = `Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`
+					new Notification({
+						title: 'Error',
+						body: `Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`
+					}).show()
 				}
+			} else {
+				new Notification({
+					title: 'Success',
+					body: 'Successfully executed.'
+				}).show()
 			}
-			event.sender.send('executed', dados)
 		})
 	})
 }
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') app.quit()
