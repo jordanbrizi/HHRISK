@@ -11,7 +11,7 @@ const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 360,
 		height: 640,
-		backgroundColor: '#000',
+		backgroundColor: '#23272A',
 		resizable: false,
 		frame: false,
 		show: true,
@@ -23,13 +23,10 @@ const createWindow = () => {
 	const winGuide = new BrowserWindow({
 		width: 1024,
 		height: 640,
-		backgroundColor: '#FFF',
-		resizable: false,
+		backgroundColor: '#23272A',
+		resizable: true,
 		show: false,
-		icon: __dirname + '/favicon.ico',
-		webPreferences: {
-			nodeIntegration: true
-		}
+		icon: __dirname + '/favicon.ico'
 	})
 
 	win.loadURL(`file://${__dirname}/index.html`)
@@ -42,8 +39,14 @@ const createWindow = () => {
 	Menu.setApplicationMenu(null)
 	
 	win.openDevTools()
+
 	ipcMain.on('guide', () => winGuide.show())
 	ipcMain.on('sair', () => app.quit())
+
+	winGuide.on('close', e => {
+		e.preventDefault()
+		winGuide.hide()
+	})
 
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
@@ -132,7 +135,7 @@ const createWindow = () => {
 		var herisk_exe = appPath + 'bin\\HERisk.exe'
 		var coco = `cd "${appPath}bin" & cmd /K ${herisk_exe}`
 		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
-			const dados = { result: true }
+			const dados = { result: true, msg: "Successfully executed." }
 			if(err) {
 				const prns = [
 					"Concentration.prn",

@@ -45,12 +45,13 @@ header
 	h1
 		font-size: 4.0em
 		color: $navy
-		padding: 
-			top: 10px
 
 .slide
 	transform: translateY(0px) !important
-
+#logo
+	letter-spacing: -0.1em
+	padding-top: 30px
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 section
 	padding:
 		top: 320px
@@ -72,6 +73,7 @@ footer
 		font-weight: 800
 		font-size: 1.5em
 		color: $white
+		width: fit-content
 		&:hover
 			cursor: default
 			color: $verde
@@ -80,6 +82,7 @@ footer
 	a
 		text-transform: uppercase
 		font-size: 1em
+		width: fit-content
 		&:hover
 			cursor: default
 			color: $verde
@@ -112,6 +115,16 @@ footer
 button:focus, button:hover
 	outline: 0 !important
 
+#title-bar
+	width: 270px
+	height: 29px
+	user-select: none
+	-webkit-app-region: drag
+	z-index: 7000
+	position: absolute
+	top: 0
+	left: 0
+
 #top-buttons
 	position: fixed
 	top: 0
@@ -132,10 +145,3 @@ button:focus, button:hover
 	background: url(../images/dash.svg) no-repeat 50% 50%
 	&:hover
 		background-color: rgba($white, 0.8) !important
-
-#loading
-	position: absolute
-	top: 50%
-	left: 50%
-	margin: -2em 0 0 -2em
-	z-index: 2200

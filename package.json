@@ -36,6 +36,10 @@
   "dependencies": {
     "bootstrap-icons": "^1.0.0-alpha5",
     "electron-packager": "^15.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-transition-group": "^4.4.1",
+    "reactstrap": "^8.5.1",
     "xlsx": "^0.16.4"
   }
 }
