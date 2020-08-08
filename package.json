@@ -1,5 +1,5 @@
 {
-  "name": "HERisk",
+  "name": "herisk",
   "productName": "HERisk",
   "description": "Programa de cálculo de risco.",
   "keywords": [
@@ -13,11 +13,16 @@
   "author": "Britus",
   "scripts": {
     "start": "electron .",
-    "package-win": "electron-packager . --overwrite --icon=ui/favicon.ico --ignore=.vscode --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Herisk\""
+    "build": "electron-builder"
+  },
+  "build": {
+    "asar": false,
+    "icon": "ui/favicon.ico"
   },
   "devDependencies": {
     "bootstrap": "^4.5.0",
-    "electron": "9.0.2"
+    "electron": "9.0.2",
+    "electron-builder": "^22.7.0"
   },
   "repository": {
     "type": "git",
@@ -31,6 +36,10 @@
   "dependencies": {
     "bootstrap-icons": "^1.0.0-alpha5",
     "electron-packager": "^15.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-transition-group": "^4.4.1",
+    "reactstrap": "^8.5.1",
     "xlsx": "^0.16.4"
   }
 }

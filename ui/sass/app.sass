@@ -40,88 +40,98 @@ main
 header
 	transform: translateY(-80px)
 	transition: .4s
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
+	height: 200px
+	border-bottom-right-radius: 40px
 	h1
-		font-size: 4.5em
+		font-size: 4.0em
 		color: $navy
-	p
-		font-size: 0.8em
-		margin-top: -1em
-.page
-	transform: translateY(0px)
-	border-radius: 0 !important
-	h1
-		font-size: 2.5em !important
 
 .slide
 	transform: translateY(0px) !important
-
+#logo
+	letter-spacing: -0.1em
+	padding-top: 30px
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 section
-	padding-top: 350px
-	padding-bottom: 40px
-	background-color: $bg
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
-.over
-	padding-top: 15px
-	height: 547px
-	overflow-x: overlay
+	padding:
+		top: 320px
+		bottom: 20px
+	height: 590px
 	color: $white
-	font-size: 0.8em
-	border-radius: 0 !important
+	background-color: $bg
+	border-bottom-right-radius: 40px
 
 footer
-	text-align: center
 	background: $navy
-	color: #CCC
+	color: rgba($white, 0.4)
 	font-size: .7em
+	height: 50px
 
-nav
+#menu-principal
 	a
 		text-transform: uppercase
 		font-weight: 800
 		font-size: 1.5em
 		color: $white
+		width: fit-content
 		&:hover
 			cursor: default
+			color: $verde
 
+#menu-bottom
+	a
+		text-transform: uppercase
+		font-size: 1em
+		width: fit-content
+		&:hover
+			cursor: default
+			color: $verde
 
 #config
-	height: 80px
+	height: 70px
 	background: rgba($white, 0.8)
-	border-bottom-right-radius: 50px
-	border-bottom-left-radius: 50px
+	border-bottom-right-radius: 40px
+	p
+		font-size: 0.8em
 
-button:focus, button:hover
-	outline: 0 !important
+#config-footer
+	height: 50px
+	transform: translateY(2px)
+	background: $navy
+	color: $white
+	transition: .4s
+	border-top-right-radius: 50px
+	border-top-left-radius: 50px
+	&.slide
+		transform: translateY(-48px) !important
 
-.main-button
-	width: 20px
-	height: 20px
+#title-bar
+	width: 270px
+	height: 29px
+	user-select: none
+	-webkit-app-region: drag
+	z-index: 7000
+	position: absolute
+	top: 0
+	left: 0
+
+#top-buttons
 	position: fixed
-	top: 25px
-	border: none
-	z-index: 1100
-	&:hover
-		cursor: default
+	top: 0
+	right: 0
+	z-index: 5000
 
-#config_button
-	background: url(../images/config.svg) no-repeat 50% 50%
-	right: 60px
+.btn-main
+	width: 45px
+	height: 29px
+	border: none
 
 #close_button
-	background: url(../images/close.svg) no-repeat 50% 50%
-	right: 25px
+	background: url(../images/x.svg) no-repeat 50% 50%
+	&:hover
+		background-color: $rosa !important
 
-#loading
-	position: absolute
-	top: 50%
-	left: 50%
-	margin: -2em 0 0 -2em
-	z-index: 2200
-
-.btn-create-sheet
-	background-image: url(../images/table.svg)
-	background-position: 90% 50%
-	background-repeat: no-repeat
+#minimize_button
+	background: url(../images/dash.svg) no-repeat 50% 50%
+	&:hover
+		background-color: rgba($white, 0.8) !important
