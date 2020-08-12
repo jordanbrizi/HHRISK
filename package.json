@@ -9,7 +9,7 @@
 		"fortran"
 	],
 	"main": "./ui/main.js",
-	"version": "1.0.0-beta",
+	"version": "1.0.0",
 	"author": "Britus",
 	"scripts": {
 		"start": "electron .",
@@ -17,7 +17,11 @@
 	},
 	"build": {
 		"asar": false,
-		"icon": "ui/favicon.ico"
+		"icon": "ui/favicon.ico",
+		"target": "NSIS",
+		"nsis": {
+			"oneClick": false
+		}
 	},
 	"devDependencies": {
 		"bootstrap": "^4.5.0",

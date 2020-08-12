@@ -1,5 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog, Notification} = require('electron')
-const { fstat } = require('fs')
+const { app, BrowserWindow, Menu, ipcMain, dialog, Notification } = require('electron')
 const path = require('path')
 const resultsPath = app.getAppPath() + '\\bin\\Results\\'
 const appPath = app.getAppPath() + '\\'
@@ -38,7 +37,7 @@ const createWindow = () => {
 
 	Menu.setApplicationMenu(null)
 	
-	win.openDevTools()
+	// win.openDevTools()
 
 	ipcMain.on('guide', () => winGuide.show())
 	ipcMain.on('sair', () => app.quit())
@@ -72,9 +71,16 @@ const createWindow = () => {
 		pegar: arquivo => require(path.resolve(resultsPath + arquivo))
 	}
 
-	ipcMain.on('gerarOds', (event, arg) => {
+	ipcMain.on('gerarOds', () => {
+		new Notification({ body: 'Generating ODS files' }).show()
+		console.log('Generating ODS files')
 		const xlsx = require('xlsx')
 		const planilhas = []
+		const options = {
+			title: "Selecionar Pasta",
+			defaultPath: app.getPath('documents'),
+			properties: ['openDirectory']
+		}
 		jsons = Resultados.jsons
 		jsons.forEach(json => {
 			arquivo = Resultados.pegar(json)
@@ -91,24 +97,18 @@ const createWindow = () => {
 				ws["!merges"] = merge
 				xlsx.utils.book_append_sheet(wb, ws, chaveNew)
 			})
-			let sheetPath = app.getPath('temp')
-			let sheetName = `\\${json.replace('.json', '')}.ods`
-			xlsx.writeFile(wb, sheetPath+sheetName)
+			const sheetName = `\\${json.replace('.json', '')}.ods`
+			xlsx.writeFile(wb, options.defaultPath + sheetName)
 			planilhas.push(sheetName)
 		})
-
-		let options = {
-			title: "Selecionar Pasta",
-			defaultPath: app.getPath('documents'),
-			properties: ['openDirectory']
-		}
-
+		new Notification({ body: 'Done' }).show()
+		console.log('ODS files has been generated.')
 	// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
 				planilhas.forEach(sheet => {
-					oldPath = path.resolve(app.getPath('temp') + sheet)
+					oldPath = path.resolve(options.defaultPath + sheet)
 					newPath = path.resolve(response.filePaths + sheet)
 					fs.rename(oldPath, newPath, err => {
 						if (err) throw err
@@ -123,9 +123,9 @@ const createWindow = () => {
 	})
 
 	ipcMain.on('execute', (event, arg) => {
+		new Notification({ body: 'Executing' }).show()
 		const fs = require('fs')
 		const child = require('child_process')
-		const path = require('path')
 		const herisk_exe = appPath + 'bin\\HERisk.exe'
 
 		// LIMPA A PASTA RESULTS
@@ -135,6 +135,7 @@ const createWindow = () => {
 		if (Resultados.txts == true) {
 			Resultados.txts.forEach(txt => fs.unlinkSync(resultsPath + txt))
 		}
+
 		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
 			if(err) {
 				const prns = [
@@ -151,13 +152,15 @@ const createWindow = () => {
 				if(prn.length > 0) {
 					new Notification({
 						title: 'Error',
-						body: `Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`
+						body: `Ocorreu um erro em ${prn}. Por favor, verifique
+							os dados inseridos e tente novamente.`
 					}).show()
 				}
 				if(erro.length > 0) {
 					new Notification({
 						title: 'Error',
-						body: `Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`
+						body: `Foi inserido um valor 0 em algum campo. Por favor,
+							verifique os valores inseridos.`
 					}).show()
 				}
 			} else {
@@ -168,6 +171,7 @@ const createWindow = () => {
 			}
 		})
 	})
+	new Notification({ body: 'Teste |Teasdkasçdk çlkas l|| ' }).show()
 }
 
 // -----------------------------------------------------------------------------
