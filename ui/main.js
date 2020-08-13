@@ -36,7 +36,7 @@ const createWindow = () => {
 	})
 
 	Menu.setApplicationMenu(null)
-	
+
 	// win.openDevTools()
 
 	ipcMain.on('guide', () => winGuide.show())
@@ -71,9 +71,8 @@ const createWindow = () => {
 		pegar: arquivo => require(path.resolve(resultsPath + arquivo))
 	}
 
-	ipcMain.on('gerarOds', () => {
-		new Notification({ body: 'Generating ODS files' }).show()
-		console.log('Generating ODS files')
+	ipcMain.on('gerarOds', (event, arg) => {
+		event.sender.send('resposta', 'Generating ODS files.')
 		const xlsx = require('xlsx')
 		const planilhas = []
 		const options = {
@@ -83,32 +82,33 @@ const createWindow = () => {
 		}
 		jsons = Resultados.jsons
 		jsons.forEach(json => {
-			arquivo = Resultados.pegar(json)
-			chaves = Object.keys(arquivo)
+			const arquivo = Resultados.pegar(json)
+			const chaves = Object.keys(arquivo)
 			const wb = xlsx.utils.book_new()
 			chaves.forEach(chave => {
-				chaveNew = chave.substring(0, 28) + '...' //C/ ATÉ 31 CARACTERES
-				keys = Object.keys(arquivo[chave][0])
-				header = [{chave: chave}]
-				ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
+				const chaveNew = chave.substring(0, 28) + '...' //C/ ATÉ 31 CARACTERES
+				const keys = Object.keys(arquivo[chave][0])
+				const header = [{ chave: chave }]
+				const ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
 				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
 				const merge =
-					[{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length -1) } }]
+					[{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length - 1) } }]
 				ws["!merges"] = merge
 				xlsx.utils.book_append_sheet(wb, ws, chaveNew)
 			})
 			const sheetName = `\\${json.replace('.json', '')}.ods`
-			xlsx.writeFile(wb, options.defaultPath + sheetName)
+			xlsx.writeFile(wb, resultsPath + sheetName)
 			planilhas.push(sheetName)
 		})
-		new Notification({ body: 'Done' }).show()
-		console.log('ODS files has been generated.')
-	// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
+
+		event.sender.send('resposta', 'ODS files has been generated.')
+
+		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
 				planilhas.forEach(sheet => {
-					oldPath = path.resolve(options.defaultPath + sheet)
+					oldPath = path.resolve(resultsPath + sheet)
 					newPath = path.resolve(response.filePaths + sheet)
 					fs.rename(oldPath, newPath, err => {
 						if (err) throw err
@@ -123,21 +123,21 @@ const createWindow = () => {
 	})
 
 	ipcMain.on('execute', (event, arg) => {
-		new Notification({ body: 'Executing' }).show()
+		event.sender.send('resposta', 'HERisk is running...')
 		const fs = require('fs')
 		const child = require('child_process')
 		const herisk_exe = appPath + 'bin\\HERisk.exe'
 
 		// LIMPA A PASTA RESULTS
-		if (Resultados.jsons == true) {
+		if (Resultados.jsons === true) {
 			Resultados.jsons.forEach(json => fs.unlinkSync(resultsPath + json))
 		}
-		if (Resultados.txts == true) {
+		if (Resultados.txts === true) {
 			Resultados.txts.forEach(txt => fs.unlinkSync(resultsPath + txt))
 		}
-
-		child.exec(herisk_exe, {"cwd": appPath+"bin"}, (err, data, stderr) => {
-			if(err) {
+		event.sender.send('resposta', 'Cleaning the results folder...')
+		child.exec(herisk_exe, { "cwd": appPath + "bin" }, (err, data, stderr) => {
+			if (err) {
 				const prns = [
 					"Concentration.prn",
 					"Datachemical.prn",
@@ -149,14 +149,14 @@ const createWindow = () => {
 				const erros = ["divide by zero"]
 				const erro = erros.filter(a => stderr.includes(a))
 
-				if(prn.length > 0) {
+				if (prn.length > 0) {
 					new Notification({
 						title: 'Error',
 						body: `Ocorreu um erro em ${prn}. Por favor, verifique
 							os dados inseridos e tente novamente.`
 					}).show()
 				}
-				if(erro.length > 0) {
+				if (erro.length > 0) {
 					new Notification({
 						title: 'Error',
 						body: `Foi inserido um valor 0 em algum campo. Por favor,
@@ -164,14 +164,10 @@ const createWindow = () => {
 					}).show()
 				}
 			} else {
-				new Notification({
-					title: 'Success',
-					body: 'Successfully executed.'
-				}).show()
+				event.sender.send('resposta', 'Successfully executed.')
 			}
 		})
 	})
-	new Notification({ body: 'Teste |Teasdkasçdk çlkas l|| ' }).show()
 }
 
 // -----------------------------------------------------------------------------

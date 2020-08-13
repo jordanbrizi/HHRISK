@@ -51,8 +51,7 @@ const clicks = {
 	sair: () =>
 		rend.ipcRenderer.send('sair'),
 	setLang: arg => {
-		localStorage.setItem('lang', arg)
-		// location.reload()
+		localStorage.setItem('lang', arg)// location.reload()
 	},
 }
 
@@ -74,6 +73,7 @@ const Top = () => {
 	)
 }
 
+
 const Header = () => {
 	return (
 		<header className="pb-3 fixed-top bg-primary">
@@ -93,88 +93,114 @@ const Header = () => {
 	)
 }
 
-	class Section extends React.Component {
-		constructor(props) {
-			super(props)
-			this.state = {
-				execute: 'Execute'
-			}
-		}
-		render() {
-			return (
-				<section>
-					<Container>
-						<Nav vertical id="menu-principal">
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 mb-2"
-									onClick={clicks.abrirPlanilha}
-									title="Abrir planilha para inseir os dados."
-									data-br="Inserir dados"
-									data-title-br="">
-									Input data
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 mb-2"
-									onClick={clicks.execute}
-									title="Executar o HERisk."
-									data-title-br="Executar o HERisk."
-									data-br="Executar">
-									{this.state.execute}
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 mb-2"
-									title="Salvar planilhas dos resultados."
-									onClick={clicks.gerarOds}
-									data-br="Salvar resultados">
-									Save results
-								</NavLink>
-							</NavItem>
-						</Nav>
-						<hr />
-						<Nav id="menu-bottom" vertical>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 m-0"
-									title="How to use"
-									data-br="Como usar"
-									onClick={null}>How to use
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 m-0"
-									title="See the guide"
-									data-br="Guia"
-									onClick={clicks.guide}>Guide
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 m-0"
-									title="Set preferences"
-									data-br="Configurações"
-									onClick={clicks.toggleConfig}>Preferences
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									className="nav-link p-0 m-0"
-									title="About"
-									data-br="Sobre"
-									onClick={clicks.showAboutPanel}>About
-								</NavLink>
-							</NavItem>
-						</Nav>
-					</Container>
-				</section>
-			)
+class Section extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			execute: 'Execute',
+			messages: null
 		}
 	}
+	componentWillUnmount = () => {
+	}
+	componentDidMount = () => {
+	}
+	execute = () => {
+		rend.ipcRenderer.send('execute')
+		$('.msgs').classList.toggle('mostrar')
+		rend.ipcRenderer.on('resposta', function (_, args) {
+			$('.msgs').innerHTML = `<p class="m-0 p-0 pr-3">${args}</p>`
+		})
+		setTimeout(() => {
+			$('.msgs').classList.toggle('mostrar')
+		}, 5000)
+	}
+	gerarOds = () => {
+		rend.ipcRenderer.send('gerarOds')
+		$('.msgs').classList.toggle('mostrar')
+		rend.ipcRenderer.on('resposta', function (_, args) {
+			$('.msgs').innerHTML = `<p class="m-0 p-0 pr-3">${args}</p>`
+		})
+		setTimeout(() => {
+			$('.msgs').classList.toggle('mostrar')
+		}, 15000)
+	}
+	render() {
+		return (
+			<section>
+				<Container>
+					<Alert color="primary" className="msgs text-center" isOpen={true}>aaa</Alert>
+					<Nav vertical id="menu-principal">
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 mb-2"
+								onClick={clicks.abrirPlanilha}
+								title="Abrir planilha para inseir os dados."
+								data-br="Inserir dados"
+								data-title-br="">
+								Input data
+								</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 mb-2"
+								onClick={this.execute}
+								title="Executar o HERisk."
+								data-title-br="Executar o HERisk."
+								data-br="Executar">
+								{this.state.execute}
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 mb-2"
+								title="Salvar planilhas dos resultados."
+								onClick={this.gerarOds}
+								data-br="Salvar resultados">
+								Save results
+								</NavLink>
+						</NavItem>
+					</Nav>
+					<hr />
+					<Nav id="menu-bottom" vertical>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 m-0"
+								title="How to use"
+								data-br="Como usar"
+								onClick={() => this.setState({ messages: 'teste' })}>How to use
+								</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 m-0"
+								title="See the guide"
+								data-br="Guia"
+								onClick={clicks.guide}>Guide
+								</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 m-0"
+								title="Set preferences"
+								data-br="Configurações"
+								onClick={clicks.toggleConfig}>Preferences
+								</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								className="nav-link p-0 m-0"
+								title="About"
+								data-br="Sobre"
+								onClick={clicks.showAboutPanel}>About
+								</NavLink>
+						</NavItem>
+					</Nav>
+				</Container>
+			</section>
+		)
+	}
+}
 
 const Footer = props => {
 	return (
