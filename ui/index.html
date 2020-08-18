@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HERisk</title>
 	<link rel="stylesheet" type="text/css" href="css/app.css">
-	<script src="./react.development.js" crossorigin></script>
-	<script src="./react-dom.development.js" crossorigin></script>
+	<script src="./react.production.min.js" crossorigin></script>
+	<script src="./react-dom.production.min.js" crossorigin></script>
 	<script src="./react-transition-group.min.js" crossorigin></script>
 	<script src="./babel.min.js" crossorigin></script>
 </head>
@@ -22,7 +22,6 @@ const $$ = arg => document.querySelectorAll(arg)
 </script>
 <script type="text/babel">
 import { Container, Alert, Button, Nav, NavItem, NavLink } from "reactstrap"
-
 // OBJETO COM AS FUNÇÕES DE CLICKS DO LINKS
 
 const clicks = {
@@ -52,14 +51,13 @@ const clicks = {
 	sair: () =>
 		rend.ipcRenderer.send('sair'),
 	setLang: arg => {
-		localStorage.setItem('lang', arg)
-		// location.reload()
+		localStorage.setItem('lang', arg)// location.reload()
 	},
 }
 
 // COMPONENTES DO REACT
 
-const Top = props => {
+const Top = () => {
 	return (
 		<Container>
 			<div id="title-bar"></div>
@@ -75,7 +73,8 @@ const Top = props => {
 	)
 }
 
-const Header = props => {
+
+const Header = () => {
 	return (
 		<header className="pb-3 fixed-top bg-primary">
 			<div className="container-fluid bg-light" id="config">
@@ -95,11 +94,59 @@ const Header = props => {
 }
 
 class Section extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			execute: 'Execute',
+			desativado: true,
+			status: false,
+			message: '',
+			color: 'success'
+		}
+	}
+	componentWillUnmount = () => {
+	}
+	componentDidMount = () => {
+	}
+	execute = () => {
+		rend.ipcRenderer.send('execute')
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({message: args, status: true, color: 'success'})
+		})
+		this.setState({
+			execute: 'Executed',
+			desativado: false,
+		})
+		setTimeout(() => {
+			this.setState({ status: false })
+		}, 15000)
+	}
+	gerarOds = () => {
+		rend.ipcRenderer.send('gerarOds')
+		rend.ipcRenderer.on('responseError', (_, args) => {
+			this.setState({ message: args, status: true, color: 'danger'})
+		})
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({ success: args, status: true, color: 'success'})
+		})
+		setTimeout(() => {
+			this.setState({ status: false })
+		}, 15000)
+	}
 	render() {
 		return (
 			<section>
 				<Container>
-					<Nav vertical={true} id="menu-principal">
+					<div id="alerts">
+						<Alert
+							color={this.state.color}
+							id="alertas"
+							className="text-center"
+							isOpen={this.state.status}>
+							<b>{this.state.message}</b>
+						</Alert>
+					</div>
+					<Nav vertical id="menu-principal">
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 mb-2"
@@ -108,36 +155,37 @@ class Section extends React.Component {
 								data-br="Inserir dados"
 								data-title-br="">
 								Input data
-							</NavLink>
+								</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 mb-2"
-								onClick={clicks.execute}
+								onClick={this.execute}
 								title="Executar o HERisk."
 								data-title-br="Executar o HERisk."
 								data-br="Executar">
-								Execute
+								{this.state.execute}
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 mb-2"
 								title="Salvar planilhas dos resultados."
-								onClick={clicks.gerarOds}
-								data-br="Salvar resultados">
+								onClick={this.gerarOds}
+								data-br="Salvar resultados"
+								disabled={this.state.desativado}>
 								Save results
-							</NavLink>
+								</NavLink>
 						</NavItem>
 					</Nav>
-					<hr/>
-					<Nav id="menu-bottom" vertical={true}>
+					<hr />
+					<Nav id="menu-bottom" vertical>
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 m-0"
 								title="How to use"
-								data-br="Como usar"
-								onClick={null}>How to use
+								data-br="Como usar">
+								How to use
 							</NavLink>
 						</NavItem>
 						<NavItem>
@@ -146,7 +194,7 @@ class Section extends React.Component {
 								title="See the guide"
 								data-br="Guia"
 								onClick={clicks.guide}>Guide
-							</NavLink>
+								</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
@@ -154,7 +202,7 @@ class Section extends React.Component {
 								title="Set preferences"
 								data-br="Configurações"
 								onClick={clicks.toggleConfig}>Preferences
-							</NavLink>
+								</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
@@ -162,7 +210,7 @@ class Section extends React.Component {
 								title="About"
 								data-br="Sobre"
 								onClick={clicks.showAboutPanel}>About
-							</NavLink>
+								</NavLink>
 						</NavItem>
 					</Nav>
 				</Container>
