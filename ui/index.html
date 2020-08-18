@@ -98,7 +98,10 @@ class Section extends React.Component {
 		super(props)
 		this.state = {
 			execute: 'Execute',
-			messages: null
+			desativado: true,
+			status: false,
+			message: '',
+			color: 'success'
 		}
 	}
 	componentWillUnmount = () => {
@@ -107,29 +110,42 @@ class Section extends React.Component {
 	}
 	execute = () => {
 		rend.ipcRenderer.send('execute')
-		$('.msgs').classList.toggle('mostrar')
-		rend.ipcRenderer.on('resposta', function (_, args) {
-			$('.msgs').innerHTML = `<p class="m-0 p-0 pr-3">${args}</p>`
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({message: args, status: true, color: 'success'})
+		})
+		this.setState({
+			execute: 'Executed',
+			desativado: false,
 		})
 		setTimeout(() => {
-			$('.msgs').classList.toggle('mostrar')
-		}, 5000)
+			this.setState({ status: false })
+		}, 15000)
 	}
 	gerarOds = () => {
 		rend.ipcRenderer.send('gerarOds')
-		$('.msgs').classList.toggle('mostrar')
-		rend.ipcRenderer.on('resposta', function (_, args) {
-			$('.msgs').innerHTML = `<p class="m-0 p-0 pr-3">${args}</p>`
+		rend.ipcRenderer.on('responseError', (_, args) => {
+			this.setState({ message: args, status: true, color: 'danger'})
+		})
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({ success: args, status: true, color: 'success'})
 		})
 		setTimeout(() => {
-			$('.msgs').classList.toggle('mostrar')
+			this.setState({ status: false })
 		}, 15000)
 	}
 	render() {
 		return (
 			<section>
 				<Container>
-					<Alert color="primary" className="msgs text-center" isOpen={true}>aaa</Alert>
+					<div id="alerts">
+						<Alert
+							color={this.state.color}
+							id="alertas"
+							className="text-center"
+							isOpen={this.state.status}>
+							<b>{this.state.message}</b>
+						</Alert>
+					</div>
 					<Nav vertical id="menu-principal">
 						<NavItem>
 							<NavLink
@@ -156,7 +172,8 @@ class Section extends React.Component {
 								className="nav-link p-0 mb-2"
 								title="Salvar planilhas dos resultados."
 								onClick={this.gerarOds}
-								data-br="Salvar resultados">
+								data-br="Salvar resultados"
+								disabled={this.state.desativado}>
 								Save results
 								</NavLink>
 						</NavItem>
@@ -167,9 +184,9 @@ class Section extends React.Component {
 							<NavLink
 								className="nav-link p-0 m-0"
 								title="How to use"
-								data-br="Como usar"
-								onClick={() => this.setState({ messages: 'teste' })}>How to use
-								</NavLink>
+								data-br="Como usar">
+								How to use
+							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
