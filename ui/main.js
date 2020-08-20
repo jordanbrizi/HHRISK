@@ -128,13 +128,13 @@ const createWindow = () => {
 		const herisk_exe = appPath + 'bin\\HERisk.exe'
 
 		// LIMPA A PASTA RESULTS
-		if (Resultados() === true) {
+		event.sender.send('responseSuccess', 'Cleaning the results folder...')
+		if (Resultados().length > 0) {
 			Resultados().forEach(json => fs.unlinkSync(resultsPath + json))
 		}
-		if (Resultados('txts') === true) {
+		if (Resultados('txts').length > 0) {
 			Resultados('txts').forEach(txt => fs.unlinkSync(resultsPath + txt))
 		}
-		event.sender.send('responseSuccess', 'Cleaning the results folder...')
 		child.exec(herisk_exe, { "cwd": appPath + "bin" }, (err, data, stderr) => {
 			if (err) {
 				const prns = [
