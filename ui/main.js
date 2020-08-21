@@ -54,7 +54,7 @@ const createWindow = () => {
 
 	Menu.setApplicationMenu(null)
 
-	// win.openDevTools()
+	win.openDevTools()
 
 	ipcMain.on('guide', () => winGuide.show())
 	ipcMain.on('sair', () => app.quit())
@@ -72,7 +72,7 @@ const createWindow = () => {
 		const xlsx = require('xlsx')
 		const planilhas = []
 		const options = {
-			title: "Selecionar Pasta",
+			title: "Select Folder",
 			defaultPath: app.getPath('documents'),
 			properties: ['openDirectory']
 		}
@@ -149,10 +149,10 @@ const createWindow = () => {
 				const erro = erros.filter(a => stderr.includes(a))
 
 				if (prn.length > 0) {
-					event.sender.send('responseError', `Ocorreu um erro em ${prn}. Por favor, verifique os dados inseridos e tente novamente.`)
+					event.sender.send('responseError', `An error occurred in ${prn}. Please check the data entered and try again.`)
 				}
 				if (erro.length > 0) {
-					event.sender.send('responseError', `Foi inserido um valor 0 em algum campo. Por favor, verifique os valores inseridos.`)
+					event.sender.send('responseError', `A value of 0 was inserted in some field. Please check the entered values.`)
 				}
 			} else {
 				event.sender.send('responseSuccess', 'Successfully executed.')
