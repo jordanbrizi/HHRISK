@@ -19,24 +19,41 @@
 	const rend = require('./renderer.js')
 	const $ = arg => document.querySelector(arg)
 	const $$ = arg => document.querySelectorAll(arg)
+	const toggleConfig = () => {
+		if ($('header').style.height === '0px') {
+			$('header').classList.toggle('slide')
+			$('#config-footer').classList.toggle('slide')
+		}
+		else {
+			$('header').classList.toggle('slide')
+			$('#config-footer').classList.toggle('slide')
+		}
+	}
 	const defaultLang = lang => {
-		console.log(localStorage.getItem('lang'))
-		if (lang === 'br') {
+		if(localStorage.getItem('lang')) {
+			rend.ipcRenderer.send('lang', localStorage.getItem('lang'))
+			if (lang === 'br') {
 			$$('* [data-br]').forEach(e => {
 				e.innerHTML = e.dataset.br
 				e.setAttribute('title', e.dataset.br_title)
 			})
+			}
+			if (lang === 'default') {
+				$$('* [data-en]').forEach(e => {
+					e.innerHTML = e.dataset.en
+					e.setAttribute('title', e.dataset.en_title)
+				})
+			}
 		}
-		if (lang === 'default') {
-			$$('* [data-en]').forEach(e => {
-				e.innerHTML = e.dataset.en
-				e.setAttribute('title', e.dataset.en_title)
-			})
+		else {
+			localStorage.setItem('lang', 'default')
+			location.reload()
 		}
 	}
 	const setLang = arg => {
 		localStorage.setItem('lang', arg)// location.reload()
 		defaultLang(arg)
+		toggleConfig()
 	}
 </script>
 <script type="text/babel">
@@ -50,16 +67,6 @@ const clicks = {
 		rend.remote.app.showAboutPanel(),
 	gerarOds: () =>
 		rend.ipcRenderer.send('gerarOds'),
-	toggleConfig: () => {
-		if ($('header').style.height === '0px') {
-			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
-		}
-		else {
-			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
-		}
-	},
 	execute: () => {
 		rend.ipcRenderer.send('execute') // EXECUTA O HERISK.EXE
 	},
@@ -127,7 +134,7 @@ class Section extends React.Component {
 	componentDidMount = () => {
 	}
 	execute = () => {
-		rend.ipcRenderer.send('execute')
+		rend.ipcRenderer.send('execute', localStorage.getItem('lang'))
 		rend.ipcRenderer.on('responseSuccess', (_, args) => {
 			this.setState({message: args, status: true, color: 'success'})
 		})
@@ -140,7 +147,7 @@ class Section extends React.Component {
 		}, 15000)
 	}
 	gerarOds = () => {
-		rend.ipcRenderer.send('gerarOds')
+		rend.ipcRenderer.send('gerarOds', localStorage.getItem('lang'))
 		rend.ipcRenderer.on('responseError', (_, args) => {
 			this.setState({ message: args, status: true, color: 'danger'})
 		})
@@ -233,7 +240,7 @@ class Section extends React.Component {
 								title="Set preferences."
 								data-en_title="Set preferences."
 								data-br_title="Alterar as configurações."
-								onClick={clicks.toggleConfig}>Preferences
+								onClick={() => toggleConfig()}>Preferences
 								</NavLink>
 						</NavItem>
 						<NavItem>

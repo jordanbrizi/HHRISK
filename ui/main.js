@@ -54,7 +54,7 @@ const createWindow = () => {
 
 	Menu.setApplicationMenu(null)
 
-	win.openDevTools()
+	// win.openDevTools()
 
 	ipcMain.on('guide', () => winGuide.show())
 	ipcMain.on('sair', () => app.quit())
@@ -63,16 +63,29 @@ const createWindow = () => {
 		e.preventDefault()
 		winGuide.hide()
 	})
-
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
 
 	ipcMain.on('gerarOds', (event, arg) => {
-		event.sender.send('responseSuccess', 'Generating ODS files.')
+		const messages = {
+			default: [
+				'Generating ODS files.',
+				'Select Folder',
+				'ODS files has been generated.',
+				'Canceled by user.'
+			],
+			br: [
+				'Gerando arquivos ODS.',
+				'Selecionar pasta',
+				'As planilhas ODS foram geradas.',
+				'Cancelado pelo usuário.'
+			]
+		}
+		event.sender.send('responseSuccess', messages[arg][0])
 		const xlsx = require('xlsx')
 		const planilhas = []
 		const options = {
-			title: "Select Folder",
+			title: messages[arg][1],
 			defaultPath: app.getPath('documents'),
 			properties: ['openDirectory']
 		}
@@ -98,7 +111,7 @@ const createWindow = () => {
 			planilhas.push(sheetName)
 		})
 
-		event.sender.send('responseSuccess', 'ODS files has been generated.')
+		event.sender.send('responseSuccess', messages[arg][2])
 
 		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
 		dialog.showOpenDialog(options).then((response) => {
@@ -114,7 +127,7 @@ const createWindow = () => {
 				require('child_process')
 					.exec(`start "" "${response.filePaths}"`)
 			} else {
-				event.sender.send('responseError', 'Canceled by user.')
+				event.sender.send('responseError', messages[arg][3])
 			}
 		}).catch(err => {
 			console.log(err)
@@ -122,13 +135,29 @@ const createWindow = () => {
 	})
 
 	ipcMain.on('execute', (event, arg) => {
-		event.sender.send('responseSuccess', 'HERisk is running...')
+		const messages = {
+			default: [
+				'HERisk is running...',
+				'Cleaning the results folder...',
+				'An error occurred in ###. Please check the data entered and try again.',
+				'A value of 0 was inserted in some field. Please check the entered values.',
+				'Successfully executed.'
+			],
+			br: [
+				'HERisk está sendo executado...',
+				'Limpando os resultados anteriores...',
+				'Ocorreu um erro em ###. Por favor, verifique os dados inseridos e tente novamente.',
+				'Um valor 0 ou nulo foi inserido em algum campo. Por favor, verifique os dados inseridos e tente novamente.',
+				'Executado com sucesso.'
+			]
+		}
+		event.sender.send('responseSuccess', messages[arg][0])
 		const fs = require('fs')
 		const child = require('child_process')
 		const herisk_exe = appPath + 'bin\\HERisk.exe'
 
 		// LIMPA A PASTA RESULTS
-		event.sender.send('responseSuccess', 'Cleaning the results folder...')
+		event.sender.send('responseSuccess', messages[arg][1])
 		if (Resultados().length > 0) {
 			Resultados().forEach(json => fs.unlinkSync(resultsPath + json))
 		}
@@ -149,13 +178,14 @@ const createWindow = () => {
 				const erro = erros.filter(a => stderr.includes(a))
 
 				if (prn.length > 0) {
-					event.sender.send('responseError', `An error occurred in ${prn}. Please check the data entered and try again.`)
+					event.sender.send('responseError',
+						messages[arg][2].replace('###', prn))
 				}
 				if (erro.length > 0) {
-					event.sender.send('responseError', `A value of 0 was inserted in some field. Please check the entered values.`)
+					event.sender.send('responseError', messages[arg][3])
 				}
 			} else {
-				event.sender.send('responseSuccess', 'Successfully executed.')
+				event.sender.send('responseSuccess', messages[arg][4])
 			}
 		})
 	})
