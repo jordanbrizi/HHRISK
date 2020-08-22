@@ -16,9 +16,45 @@
 </body>
 
 <script>
-const rend = require('./renderer.js')
-const $ = arg => document.querySelector(arg)
-const $$ = arg => document.querySelectorAll(arg)
+	const rend = require('./renderer.js')
+	const $ = arg => document.querySelector(arg)
+	const $$ = arg => document.querySelectorAll(arg)
+	const toggleConfig = () => {
+		if ($('header').style.height === '0px') {
+			$('header').classList.toggle('slide')
+			$('#config-footer').classList.toggle('slide')
+		}
+		else {
+			$('header').classList.toggle('slide')
+			$('#config-footer').classList.toggle('slide')
+		}
+	}
+	const defaultLang = lang => {
+		if(localStorage.getItem('lang')) {
+			rend.ipcRenderer.send('lang', localStorage.getItem('lang'))
+			if (lang === 'br') {
+			$$('* [data-br]').forEach(e => {
+				e.innerHTML = e.dataset.br
+				e.setAttribute('title', e.dataset.br_title)
+			})
+			}
+			if (lang === 'default') {
+				$$('* [data-en]').forEach(e => {
+					e.innerHTML = e.dataset.en
+					e.setAttribute('title', e.dataset.en_title)
+				})
+			}
+		}
+		else {
+			localStorage.setItem('lang', 'default')
+			location.reload()
+		}
+	}
+	const setLang = arg => {
+		localStorage.setItem('lang', arg)// location.reload()
+		defaultLang(arg)
+		toggleConfig()
+	}
 </script>
 <script type="text/babel">
 import { Container, Alert, Button, Nav, NavItem, NavLink } from "reactstrap"
@@ -31,16 +67,6 @@ const clicks = {
 		rend.remote.app.showAboutPanel(),
 	gerarOds: () =>
 		rend.ipcRenderer.send('gerarOds'),
-	toggleConfig: () => {
-		if ($('header').style.height === '0px') {
-			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
-		}
-		else {
-			$('header').classList.toggle('slide')
-			$('#config-footer').classList.toggle('slide')
-		}
-	},
 	execute: () => {
 		rend.ipcRenderer.send('execute') // EXECUTA O HERISK.EXE
 	},
@@ -49,10 +75,7 @@ const clicks = {
 	minimize: () =>
 		rend.remote.BrowserWindow.getFocusedWindow().minimize(),
 	sair: () =>
-		rend.ipcRenderer.send('sair'),
-	setLang: arg => {
-		localStorage.setItem('lang', arg)// location.reload()
-	},
+		rend.ipcRenderer.send('sair')
 }
 
 // COMPONENTES DO REACT
@@ -62,11 +85,11 @@ const Top = () => {
 		<Container>
 			<div id="title-bar"></div>
 			<div className="btn-group btn-group-lg text-right" id="top-buttons">
-				<button title="Minimizar" className="btn btn-primary btn-main"
+				<button title="Minimize" className="btn btn-primary btn-main"
 					id="minimize_button"
 					onClick={clicks.minimize}>
 				</button>
-				<button title="Fechar" className="btn btn-danger btn-main" id="close_button"
+				<button title="Close" className="btn btn-danger btn-main" id="close_button"
 					onClick={clicks.sair}></button>
 			</div>
 		</Container>
@@ -74,23 +97,25 @@ const Top = () => {
 }
 
 
-const Header = () => {
-	return (
-		<header className="pb-3 fixed-top bg-primary">
-			<div className="container-fluid bg-light" id="config">
-				<p className="m-0 pt-2 user-select-none">
-					<span data-br="Alterar língua">Change language:</span>
-				</p>
-				<a href="#" onClick={clicks.setLang('default')}>
-					<img src="images/enus.png" alt="English USA" title="English USA"/>
-				</a>
-				<a href="#" onClick={clicks.setLang('br')}>
-					<img src="images/ptbr.png" alt="Português Brasil" title="Português Brasil"/>
-				</a>
-				<h1 className="m-0 mt-4 user-select-none" id="logo">HE<b>Risk</b></h1>
-			</div>
-		</header>
-	)
+class Header extends React.Component {
+	render() {
+		return (
+			<header className="pb-3 fixed-top bg-primary">
+				<div className="container-fluid bg-light" id="config">
+					<p className="m-0 pt-2 user-select-none">
+						<span data-en="Change language:" data-br="Alterar língua">Change language:</span>
+					</p>
+					<a href="#" onClick={() => setLang('default')}>
+						<img src="images/enus.png" alt="English USA" title="English USA"/>
+					</a>
+					<a href="#" onClick={() => setLang('br')}>
+						<img src="images/ptbr.png" alt="Português Brasil" title="Português Brasil"/>
+					</a>
+					<h1 className="m-0 mt-4 user-select-none" id="logo">HE<b>Risk</b></h1>
+				</div>
+			</header>
+		)
+	}
 }
 
 class Section extends React.Component {
@@ -109,7 +134,7 @@ class Section extends React.Component {
 	componentDidMount = () => {
 	}
 	execute = () => {
-		rend.ipcRenderer.send('execute')
+		rend.ipcRenderer.send('execute', localStorage.getItem('lang'))
 		rend.ipcRenderer.on('responseSuccess', (_, args) => {
 			this.setState({message: args, status: true, color: 'success'})
 		})
@@ -122,7 +147,7 @@ class Section extends React.Component {
 		}, 15000)
 	}
 	gerarOds = () => {
-		rend.ipcRenderer.send('gerarOds')
+		rend.ipcRenderer.send('gerarOds', localStorage.getItem('lang'))
 		rend.ipcRenderer.on('responseError', (_, args) => {
 			this.setState({ message: args, status: true, color: 'danger'})
 		})
@@ -151,9 +176,11 @@ class Section extends React.Component {
 							<NavLink
 								className="nav-link p-0 mb-2"
 								onClick={clicks.abrirPlanilha}
-								title="Abrir planilha para inseir os dados."
-								data-br="Inserir dados"
-								data-title-br="">
+								title="Open spreadsheet to input data."
+								data-en_title="Open spreadsheet to input data."
+								data-br_title="Abrir planilha para inserir os dados."
+								data-en="Input data"
+								data-br="Inserir dados">
 								Input data
 								</NavLink>
 						</NavItem>
@@ -161,8 +188,10 @@ class Section extends React.Component {
 							<NavLink
 								className="nav-link p-0 mb-2"
 								onClick={this.execute}
-								title="Executar o HERisk."
-								data-title-br="Executar o HERisk."
+								title="Execute the HERisk."
+								data-en_title="Execute the HERisk."
+								data-br_title="Executar o HERisk."
+								data-en="Execute"
 								data-br="Executar">
 								{this.state.execute}
 							</NavLink>
@@ -170,9 +199,12 @@ class Section extends React.Component {
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 mb-2"
-								title="Salvar planilhas dos resultados."
-								onClick={this.gerarOds}
+								title="Save worksheets of the results."
+								data-en_title="Save worksheets of the results."
+								data-br_title="Salvar planilhas dos resultados."
+								data-en="Save results"
 								data-br="Salvar resultados"
+								onClick={this.gerarOds}
 								disabled={this.state.desativado}>
 								Save results
 								</NavLink>
@@ -183,7 +215,10 @@ class Section extends React.Component {
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 m-0"
-								title="How to use"
+								title="Video guide on how to use the program."
+								data-en_title="Video guide on how to use the program."
+								data-br_title="Guia em vídeo de como usar o programa."
+								data-en="How to use"
 								data-br="Como usar">
 								How to use
 							</NavLink>
@@ -191,7 +226,10 @@ class Section extends React.Component {
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 m-0"
-								title="See the guide"
+								title="See the guide in PDF."
+								data-en_title="See the guide in PDF."
+								data-br_title="Veja o guia em PDF."
+								data-en="Guide"
 								data-br="Guia"
 								onClick={clicks.guide}>Guide
 								</NavLink>
@@ -199,15 +237,19 @@ class Section extends React.Component {
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 m-0"
-								title="Set preferences"
-								data-br="Configurações"
-								onClick={clicks.toggleConfig}>Preferences
+								title="Set preferences."
+								data-en_title="Set preferences."
+								data-br_title="Alterar as configurações."
+								onClick={() => toggleConfig()}>Preferences
 								</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
 								className="nav-link p-0 m-0"
-								title="About"
+								title="About HERisk"
+								data-en_title="About HERisk."
+								data-br_title="Sobre o HERisk."
+								data-en="About"
 								data-br="Sobre"
 								onClick={clicks.showAboutPanel}>About
 								</NavLink>
@@ -225,12 +267,17 @@ const Footer = props => {
 			<Container>
 				<p className="pt-3 user-select-none">
 					&copy; 2020 - {new Date().getFullYear()}.
-					<span data-br=" Todos os direitos reservados."> All rights reserved.</span>
+					<span
+						title="All rights reserved."
+						data-en_title="All rights reserved."
+						data-br_title="Todos os direitos reservados."
+						data-en=" All rights reserved."
+						data-br=" Todos os direitos reservados."> All rights reserved.</span>
 				</p>
 			</Container>
 			<Container id="config-footer">
 				<p className="m-0 pt-3 user-select-none">
-					<span data-br="version">Version </span>
+					<span data-en="Version " data-br="Versão ">Version </span>
 					<span className="version">{rend.remote.app.getVersion()}</span>
 				</p>
 			</Container>
@@ -249,5 +296,10 @@ ReactDOM.render(
 	</div>,
 	$('main')
 )
+
+// CHAMAR A FUNÇÃO DE TRADUÇÃO COM A LÍNGUA ATUAL
+
+defaultLang(localStorage.getItem('lang'))
+
 </script>
 </html>
