@@ -38,7 +38,6 @@
 	},
 	"homepage": "https://github.com/jordanbrizi/HERisk#readme",
 	"dependencies": {
-		"bootstrap-icons": "^1.0.0-alpha5",
 		"electron-packager": "^15.0.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
