@@ -166,6 +166,7 @@ const createWindow = () => {
 		}
 		child.exec(herisk_exe, { "cwd": appPath + "bin" }, (err, data, stderr) => {
 			if (err) {
+				event.sender.send('responseError', stderr)
 				const prns = [
 					"Concentration.prn",
 					"Datachemical.prn",

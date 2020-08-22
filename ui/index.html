@@ -30,8 +30,8 @@
 		}
 	}
 	const defaultLang = lang => {
-		if(localStorage.getItem('lang')) {
-			rend.ipcRenderer.send('lang', localStorage.getItem('lang'))
+		if(getActualLang) {
+			rend.ipcRenderer.send('lang', getActualLang)
 			if (lang === 'br') {
 			$$('* [data-br]').forEach(e => {
 				e.innerHTML = e.dataset.br
@@ -55,6 +55,7 @@
 		defaultLang(arg)
 		toggleConfig()
 	}
+	const getActualLang = localStorage.getItem('lang')
 </script>
 <script type="text/babel">
 import { Container, Alert, Button, Nav, NavItem, NavLink } from "reactstrap"
@@ -122,7 +123,7 @@ class Section extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			execute: 'Execute',
+			execute: getActualLang === 'br' ? 'Executar' : 'Execute',
 			desativado: true,
 			status: false,
 			message: '',
@@ -134,20 +135,34 @@ class Section extends React.Component {
 	componentDidMount = () => {
 	}
 	execute = () => {
-		rend.ipcRenderer.send('execute', localStorage.getItem('lang'))
-		rend.ipcRenderer.on('responseSuccess', (_, args) => {
-			this.setState({message: args, status: true, color: 'success'})
+		rend.ipcRenderer.send('execute', getActualLang)
+		rend.ipcRenderer.on('responseError', (_, args) => {
+			this.setState({
+				message: args,
+				status: true,
+				color: 'danger',
+				execute: getActualLang === 'br' ? 'Executar' : 'Execute'
+			})
 		})
-		this.setState({
-			execute: 'Executed',
-			desativado: false,
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({
+				message: args,
+				status: true,
+				color: 'success',
+				execute: getActualLang === 'br' ? 'Executado' : 'Executed',
+				desativado: false
+			})
 		})
 		setTimeout(() => {
 			this.setState({ status: false })
 		}, 15000)
 	}
+
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	
 	gerarOds = () => {
-		rend.ipcRenderer.send('gerarOds', localStorage.getItem('lang'))
+		rend.ipcRenderer.send('gerarOds', getActualLang)
 		rend.ipcRenderer.on('responseError', (_, args) => {
 			this.setState({ message: args, status: true, color: 'danger'})
 		})
@@ -277,8 +292,14 @@ const Footer = props => {
 			</Container>
 			<Container id="config-footer">
 				<p className="m-0 pt-3 user-select-none">
-					<span data-en="Version " data-br="Versão ">Version </span>
-					<span className="version">{rend.remote.app.getVersion()}</span>
+					<span
+					data-en_title="Version"
+					data-br_title="Versão"
+					data-en="Version "
+					data-br="Versão ">Version </span>
+					<span className="version">
+						{rend.remote.app.getVersion()}
+					</span>
 				</p>
 			</Container>
 		</footer>
@@ -299,7 +320,7 @@ ReactDOM.render(
 
 // CHAMAR A FUNÇÃO DE TRADUÇÃO COM A LÍNGUA ATUAL
 
-defaultLang(localStorage.getItem('lang'))
+defaultLang(getActualLang)
 
 </script>
 </html>
