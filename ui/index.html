@@ -71,6 +71,8 @@ const clicks = {
 	execute: () => {
 		rend.ipcRenderer.send('execute') // EXECUTA O HERISK.EXE
 	},
+	how_to: () =>
+		rend.ipcRenderer.send('how_to'),
 	guide: () =>
 		rend.ipcRenderer.send('guide'),
 	minimize: () =>
@@ -234,7 +236,8 @@ class Section extends React.Component {
 								data-en_title="Video guide on how to use the program."
 								data-br_title="Guia em vídeo de como usar o programa."
 								data-en="How to use"
-								data-br="Como usar">
+								data-br="Como usar"
+								onClick={clicks.how_to}>
 								How to use
 							</NavLink>
 						</NavItem>

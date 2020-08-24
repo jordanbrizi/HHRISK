@@ -11,7 +11,7 @@ const Resultados = tipo => {
 		case 'txts':
 			return Obter().filter(a => a.includes('.txt'))
 			break
-	
+
 		default:
 			return Obter().filter(a => a.includes('.json'))
 			break
@@ -23,7 +23,7 @@ const Resultados = tipo => {
 
 const createWindow = () => {
 	app.allowRendererProcessReuse = false
-	setInterval(() => {Resultados()}, 1000)
+	setInterval(() => { Resultados() }, 1000)
 	const win = new BrowserWindow({
 		width: 360,
 		height: 640,
@@ -44,25 +44,40 @@ const createWindow = () => {
 		show: false,
 		icon: __dirname + '/favicon.ico'
 	})
+	const winHowto = new BrowserWindow({
+		width: 1006,
+		height: 595,
+		backgroundColor: '#23272A',
+		resizable: false,
+		show: false,
+		icon: __dirname + '/favicon.ico',
+		webPreferences: {
+			nodeIntegration: true
+		}
+	})
 
 	win.loadURL(`file://${__dirname}/index.html`)
+	winHowto.loadURL(`file://${__dirname}/how_to.html`)
 	winGuide.loadURL(appPath + 'bin/HERisk.pdf')
 
-	win.once('ready-to-show', () => {
-		win.show()
-	})
+	win.once('ready-to-show', () => win.show())
 
 	Menu.setApplicationMenu(null)
 
 	// win.openDevTools()
 
+	ipcMain.on('how_to', () => winHowto.show())
 	ipcMain.on('guide', () => winGuide.show())
-	ipcMain.on('sair', () => app.quit())
-
+	
+	winHowto.on('close', e => {
+		e.preventDefault()
+		winHowto.hide()
+	})
 	winGuide.on('close', e => {
 		e.preventDefault()
 		winGuide.hide()
 	})
+	ipcMain.on('sair', () => app.quit())
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
 
@@ -139,14 +154,14 @@ const createWindow = () => {
 			default: [
 				'HERisk is running...',
 				'Cleaning the results folder...',
-				'An error occurred in ###. Please check the data entered and try again.',
+				'An error occurred in ### sheet. Please check the data entered and try again.',
 				'A value of 0 was inserted in some field. Please check the entered values.',
 				'Successfully executed.'
 			],
 			br: [
 				'HERisk está sendo executado...',
 				'Limpando os resultados anteriores...',
-				'Ocorreu um erro em ###. Por favor, verifique os dados inseridos e tente novamente.',
+				'Ocorreu um erro na planilha ###. Por favor, verifique os dados inseridos e tente novamente.',
 				'Um valor 0 ou nulo foi inserido em algum campo. Por favor, verifique os dados inseridos e tente novamente.',
 				'Executado com sucesso.'
 			]
