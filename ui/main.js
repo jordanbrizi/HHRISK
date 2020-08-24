@@ -168,11 +168,11 @@ const createWindow = () => {
 			if (err) {
 				event.sender.send('responseError', stderr)
 				const prns = [
-					"Concentration.prn",
-					"Datachemical.prn",
-					"Dataecological.prn",
-					"Dataexp.prn",
-					"Scenary.prn"
+					"Concentration",
+					"Datachemical",
+					"Dataecological",
+					"Dataexp",
+					"Scenary"
 				]
 				const prn = prns.filter(a => stderr.includes(a))
 				const erros = ["divide by zero"]
