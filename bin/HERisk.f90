@@ -1970,7 +1970,7 @@
 	  ENDDO
 !
 !
-      OPEN(UNIT=1,STATUS='OLD',FILE='SCENARY.prn')
+      OPEN(UNIT=1,STATUS='OLD',FILE='Scenary.prn')
 !
 !	 
       READ(1,12)
@@ -3708,7 +3708,7 @@
 	DIMENSION KEYCONC(NCHEM,NTYPECONC)  ! NTYPECONC SÃO OS 15 TIPOS DE CONCENTRAÇOES ACIMA !!!!
 	DIMENSION TIMESP(0:NTIME)
 !
-      OPEN(UNIT=3,STATUS='OLD',FILE='concentration.prn')
+      OPEN(UNIT=3,STATUS='OLD',FILE='Concentration.prn')
 !
 !
       DO i=1,NCHEM
@@ -14314,7 +14314,7 @@
 !
 !
 !
-      OPEN(UNIT=9,STATUS='OLD',FILE='dataecological.prn')     
+      OPEN(UNIT=9,STATUS='OLD',FILE='Dataecological.prn')     
 !
 !	
       READ(9,*)

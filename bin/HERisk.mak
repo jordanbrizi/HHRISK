@@ -30,9 +30,8 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-# PROP Target_Last_Scanned "HERisk - Win32 Debug"
-F90=fl32.exe
 RSC=rc.exe
+F90=fl32.exe
 
 !IF  "$(CFG)" == "HERisk - Win32 Release"
 
@@ -141,16 +140,6 @@ LINK32_OBJS= \
 SOURCE=.\HERisk.f90
 
 "$(INTDIR)\HERisk.obj" : $(SOURCE) "$(INTDIR)"
-
-
-# End Source File
-################################################################################
-# Begin Source File
-
-SOURCE=\Users\Jordan\AppData\Local\Programs\herisk\resources\app\bin\HERisk.f90
-
-"$(INTDIR)\HERisk.obj" : $(SOURCE) "$(INTDIR)"
-   $(F90) $(F90_PROJ) $(SOURCE)
 
 
 # End Source File
