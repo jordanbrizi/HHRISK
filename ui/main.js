@@ -57,7 +57,7 @@ const createWindow = () => {
 	})
 
 	win.loadURL(`file://${__dirname}/index.html`)
-	winHowto.loadURL(`file://${__dirname}/how_to.html`)
+	winHowto.loadURL('https://www.youtube.com/embed/w3-UVmYQrmM')
 	winGuide.loadURL(appPath + 'bin/HERisk.pdf')
 
 	win.once('ready-to-show', () => win.show())
