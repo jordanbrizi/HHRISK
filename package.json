@@ -9,7 +9,7 @@
 		"fortran"
 	],
 	"main": "./ui/main.js",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Britus",
 	"scripts": {
 		"start": "electron .",
@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"bootstrap": "^4.5.0",
 		"electron": "9.0.2",
-		"electron-builder": "^22.7.0"
+		"electron-builder": "^22.8.0"
 	},
 	"repository": {
 		"type": "git",
@@ -38,7 +38,6 @@
 	},
 	"homepage": "https://github.com/jordanbrizi/HERisk#readme",
 	"dependencies": {
-		"electron-packager": "^15.0.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-transition-group": "^4.4.1",
