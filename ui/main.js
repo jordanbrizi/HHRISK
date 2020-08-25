@@ -35,49 +35,46 @@ const createWindow = () => {
 		webPreferences: {
 			nodeIntegration: true
 		}
-	})
-	const winGuide = new BrowserWindow({
-		width: 1024,
-		height: 640,
-		backgroundColor: '#23272A',
-		resizable: true,
-		show: false,
-		icon: __dirname + '/favicon.ico'
-	})
-	const winHowto = new BrowserWindow({
-		width: 1006,
-		height: 595,
-		backgroundColor: '#23272A',
-		resizable: false,
-		show: false,
-		icon: __dirname + '/favicon.ico',
-		webPreferences: {
-			nodeIntegration: true
-		}
-	})
+	})	
 
 	win.loadURL(`file://${__dirname}/index.html`)
-	winHowto.loadURL('https://www.youtube.com/embed/w3-UVmYQrmM')
-	winGuide.loadURL(appPath + 'bin/HERisk.pdf')
-
-	win.once('ready-to-show', () => win.show())
-
-	Menu.setApplicationMenu(null)
-
-	// win.openDevTools()
-
-	ipcMain.on('how_to', () => winHowto.show())
-	ipcMain.on('guide', () => winGuide.show())
 	
-	winHowto.on('close', e => {
-		e.preventDefault()
-		winHowto.hide()
+	win.once('ready-to-show', () => win.show())
+	
+	Menu.setApplicationMenu(null)
+	
+	// win.openDevTools()
+	
+	ipcMain.on('how_to', () => {
+		const winHowto = new BrowserWindow({
+			width: 1006,
+			height: 595,
+			backgroundColor: '#23272A',
+			resizable: false,
+			show: false,
+			icon: __dirname + '/favicon.ico',
+			webPreferences: {
+				nodeIntegration: true
+			}
+		})
+		winHowto.loadURL('https://www.youtube.com/embed/w3-UVmYQrmM')
+		winHowto.show()
 	})
-	winGuide.on('close', e => {
-		e.preventDefault()
-		winGuide.hide()
+	ipcMain.on('guide', () => {
+		const winGuide = new BrowserWindow({
+			width: 1024,
+			height: 640,
+			backgroundColor: '#23272A',
+			resizable: true,
+			show: false,
+			icon: __dirname + '/favicon.ico'
+		})
+		winGuide.loadURL(appPath + 'bin/HERisk.pdf')
+		winGuide.show()
 	})
+	
 	ipcMain.on('sair', () => app.quit())
+
 	// -------------------------------------------------------------------------
 	// -------------------------------------------------------------------------
 
