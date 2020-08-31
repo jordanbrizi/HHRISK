@@ -1,0 +1,112 @@
+********************************************************************************************************************************************
+                                                         !!!!!!!!!WARNINGS!!!!!!!!!
+********************************************************************************************************************************************
+ 
+ 
+____________________________________________________________________________________________________________________________________________
+                                                         HUMAN HEALTH RISK ASSESMENT
+____________________________________________________________________________________________________________________________________________
+ 
+ Chemical species = Al                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Al                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Ba                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Ba                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Br                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Br                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cd                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cd                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Co                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Co                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cr(III)                       
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cr(III)                       
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cu                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Cu                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Fe                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Fe                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Mn                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Mn                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Ni                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Ni                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = U                             
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = U                             
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = V                             
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = V                             
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Zn                            
+ The oral SF is equal to zero!!! CR value will be equal to zero too!! 
+ 
+ 
+ Chemical species = Zn                            
+ The oral water SF is equal to zero!!! CR value will be equal to zero too!! 
+ 

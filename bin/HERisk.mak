@@ -30,8 +30,8 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-RSC=rc.exe
 F90=fl32.exe
+RSC=rc.exe
 
 !IF  "$(CFG)" == "HERisk - Win32 Release"
 
