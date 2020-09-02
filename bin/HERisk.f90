@@ -374,9 +374,23 @@
 	  INICIO=7
 	  ENDIF
 !
+      nomevias(1)='Soil ingestion'
+	  nomevias(2)='Fruit ingestion'
+	  nomevias(3)='Meat ingestion'
+	  nomevias(4)='Milk ingestion'
+	  nomevias(5)='Water ingestion'
+	  nomevias(6)='Vegetables ingestion'
+	  nomevias(7)='Fish ingestion'
+	  nomevias(8)='Bird ingestion'
+	  nomevias(9)='Eggs ingestion'
+	  nomevias(10)='Grains ingestion'
+	  nomevias(11)='Particulate inhalation'
+	  nomevias(12)='Steam inhalation'
+	  nomevias(13)='Dermal water'
+	  nomevias(14)='Dermal soil'
 !
 	  CALL EXPOSURE (W,CF,SD_CF,FI,SD_FI,IR,SD_IR,FA,SD_FA,FP,SD_FP,ET,SD_ET,SA,SD_SA,AF,SD_AF,EV,SD_EV,&
-	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO) 
+	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO,nomevias) 
 !
 !
 !
@@ -1560,21 +1574,6 @@
 	  ENDDO
 	  ENDDO
 	  ENDDO
-!
-      nomevias(1)='Soil ingestion'
-	  nomevias(2)='Fruit ingestion'
-	  nomevias(3)='Meat ingestion'
-	  nomevias(4)='Milk ingestion'
-	  nomevias(5)='Water ingestion'
-	  nomevias(6)='Vegetables ingestion'
-	  nomevias(7)='Fish ingestion'
-	  nomevias(8)='Bird ingestion'
-	  nomevias(9)='Eggs ingestion'
-	  nomevias(10)='Grains ingestion'
-	  nomevias(11)='Particulate inhalation'
-	  nomevias(12)='Steam inhalation'
-	  nomevias(13)='Dermal water'
-	  nomevias(14)='Dermal soil'
 !
 !
 !
@@ -4380,7 +4379,7 @@
 !
 !
       SUBROUTINE EXPOSURE(W,CF,SD_CF,FI,SD_FI,IR_INI,SD_IR_INI,FA,SD_FA,FP,SD_FP,ET_INI,SD_ET_INI,SA_INI,SD_SA_INI,AF_INI,SD_AF_INI,EV_INI,SD_EV_INI,&
-	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO)
+	  NVP,NIDADE,NVIAS,SCENAR,NCHEM,NTIME,NDURATION,VARIASAO,NLOCAL,NTYPECONC,HQ,SD_HQ,CR,SD_CR,CHEMICAL,TIMESP,NRISKTYPE,EF_INI,SD_EF_INI,AT_INI,SD_AT_INI,INICIO,nomevias)
 !
 !
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -4390,7 +4389,7 @@
 !
 	  INTEGER SCENAR
 	  REAL*8 Kd,IR, IR_INI
-	  CHARACTER(LEN=50)  :: CHEMICAL(500),NOMES(500),POLLUTANT(500),RAD_POL(4)
+	  CHARACTER(LEN=50)  :: CHEMICAL(500),NOMES(500),POLLUTANT(500),RAD_POL(4),nomevias(NVIAS)
 	  CHARACTER(LEN=20)  ::	TYPE_POLLUTANT(500)
 	  CHARACTER(LEN=10)  :: NRISKTYPE(NVIAS) 
 !
@@ -8609,7 +8608,7 @@
       WRITE(33,'("{")')
 !
       write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
-      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Pathway",A1,":",1X,A1,A22,A1,",") )') aspas,aspas,aspas,nomevias(n),aspas
       write(33,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
 	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
@@ -8692,7 +8691,7 @@
       WRITE(33,'("{")')
 !
       write(33,'(A1,"Initial age",A1,":",1x,I2,",") )') aspas,aspas,J_INI_AGE(l)
-      write(33,'(A1,"Pathway",A1,":",1x,I2,",") )') aspas,aspas,n
+      write(33,'(A1,"Pathway",A1,":",1X,A1,A22,A1,",") )') aspas,aspas,aspas,nomevias(n),aspas
       write(33,'(A1,"Chemical species",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NOMES(i),aspas
 	  write(33,'(A1,"Exposure type",A1,":",1x,A1,A10,A1,",") )') aspas,aspas,aspas,NRISKTYPE(n),aspas
       write(33,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
