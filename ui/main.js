@@ -72,7 +72,27 @@ const createWindow = () => {
 		winGuide.loadURL(appPath + 'bin/HERisk.pdf')
 		winGuide.show()
 	})
-	
+	ipcMain.on('guideSave', () => {
+		const options = {
+			defaultPath: app.getPath('documents'),
+			properties: ['openDirectory']
+		}
+		dialog.showOpenDialog(options).then((response) => {
+			if (response.canceled === false) {
+				const fs = require('fs')
+				const old = path.resolve(appPath + 'bin\\HERisk.pdf')
+				const nFile = path.resolve(response.filePaths + '\\HERisk.pdf')
+				console.log(response, old, nFile)
+				fs.copyFile(old, nFile, () => {
+					require('child_process')
+						.exec(`start "" "${response.filePaths}"`)
+				})
+			}
+		}).catch(err => {
+			event.sender.send('responseError', err)
+		})
+	})
+
 	ipcMain.on('sair', () => app.quit())
 
 	// -------------------------------------------------------------------------
