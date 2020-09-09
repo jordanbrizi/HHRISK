@@ -80,9 +80,8 @@ const createWindow = () => {
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
-				const old = path.resolve(appPath + 'bin\\HERisk.pdf')
-				const nFile = path.resolve(response.filePaths + '\\HERisk.pdf')
-				console.log(response, old, nFile)
+				const old = path.resolve(appPath + 'bin\\HERisk.docx')
+				const nFile = path.resolve(response.filePaths + '\\HERisk.docx')
 				fs.copyFile(old, nFile, () => {
 					require('child_process')
 						.exec(`start "" "${response.filePaths}"`)
