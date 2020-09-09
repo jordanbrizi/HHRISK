@@ -9,7 +9,7 @@
 		"fortran"
 	],
 	"main": "./ui/main.js",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": "Britus",
 	"scripts": {
 		"start": "electron .",

@@ -80,9 +80,8 @@ const createWindow = () => {
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
 				const fs = require('fs')
-				const old = path.resolve(appPath + 'bin\\HERisk.pdf')
-				const nFile = path.resolve(response.filePaths + '\\HERisk.pdf')
-				console.log(response, old, nFile)
+				const old = path.resolve(appPath + 'bin\\HERisk.docx')
+				const nFile = path.resolve(response.filePaths + '\\HERisk.docx')
 				fs.copyFile(old, nFile, () => {
 					require('child_process')
 						.exec(`start "" "${response.filePaths}"`)
@@ -150,9 +149,16 @@ const createWindow = () => {
 			if (response.canceled === false) {
 				const fs = require('fs')
 				planilhas.forEach(sheet => {
-					oldPath = path.resolve(app.getPath('temp') + sheet)
-					newPath = path.resolve(response.filePaths + sheet)
+					const oldPath = path.resolve(app.getPath('temp') + sheet)
+					const newPath = path.resolve(response.filePaths + sheet)
 					fs.rename(oldPath, newPath, err => {
+						if (err) throw err
+					})
+				})
+				Resultados('txts').forEach(txt => {
+					const oldPath = path.resolve(resultsPath + txt)
+					const newPath = path.resolve(response.filePaths + `\\${txt}`)
+					fs.copyFile(oldPath, newPath, err => {
 						if (err) throw err
 					})
 				})
