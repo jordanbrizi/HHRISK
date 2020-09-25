@@ -1,21 +1,14 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog, Notification } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
 const path = require('path')
 const resultsPath = app.getAppPath() + '\\bin\\Results\\'
 const appPath = app.getAppPath() + '\\'
+const fs = require('fs')
 
-// OBTER OS ARQUIVOS EM JSON E TXT DA PASTA RESULTS	
-const Obter = () => require('fs').readdirSync(resultsPath)
-// FILTRAR OS RESULTADOS EM JSON OU TXT
-const Resultados = tipo => {
-	switch (tipo) {
-		case 'txts':
-			return Obter().filter(a => a.includes('.txt'))
-			break
-
-		default:
-			return Obter().filter(a => a.includes('.json'))
-			break
-	}
+// OBTER OS ARQUIVOS EM JSON E TXT DA PASTA RESULTS
+class Resultados {
+	Arquivos = () => require('fs').readdirSync(resultsPath)
+	jsons = () => this.Arquivos().filter(a => a.includes('.json'))
+	txts = () => this.Arquivos().filter(a => a.includes('.txt'))
 }
 
 // -----------------------------------------------------------------------------
@@ -23,7 +16,6 @@ const Resultados = tipo => {
 
 const createWindow = () => {
 	app.allowRendererProcessReuse = false
-	setInterval(() => { Resultados() }, 1000)
 	const win = new BrowserWindow({
 		width: 360,
 		height: 640,
@@ -45,6 +37,7 @@ const createWindow = () => {
 	
 	// win.openDevTools()
 	
+	// ABRIR A JANELA DO VÍDEO DE APRESENTAÇÃO ---------------------------------
 	ipcMain.on('how_to', () => {
 		const winHowto = new BrowserWindow({
 			width: 1006,
@@ -60,7 +53,9 @@ const createWindow = () => {
 		winHowto.loadURL('https://www.youtube.com/embed/w3-UVmYQrmM')
 		winHowto.show()
 	})
-	ipcMain.on('guide', () => {
+
+	// ABRIR O GUIA EM PDF -----------------------------------------------------
+	.on('guide', () => {
 		const winGuide = new BrowserWindow({
 			width: 1024,
 			height: 640,
@@ -72,14 +67,15 @@ const createWindow = () => {
 		winGuide.loadURL(appPath + 'bin/HERisk.pdf')
 		winGuide.show()
 	})
-	ipcMain.on('guideSave', () => {
+
+	// SALVAR O GUIA EM DOCX ---------------------------------------------------
+	.on('guideSave', () => {
 		const options = {
 			defaultPath: app.getPath('documents'),
 			properties: ['openDirectory']
 		}
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
-				const fs = require('fs')
 				const old = path.resolve(appPath + 'bin\\HERisk.docx')
 				const nFile = path.resolve(response.filePaths + '\\HERisk.docx')
 				fs.copyFile(old, nFile, () => {
@@ -91,88 +87,64 @@ const createWindow = () => {
 			event.sender.send('responseError', err)
 		})
 	})
-
-	ipcMain.on('sair', () => app.quit())
-
-	// -------------------------------------------------------------------------
-	// -------------------------------------------------------------------------
-
-	ipcMain.on('gerarOds', (event, arg) => {
-		const messages = {
-			default: [
-				'Generating ODS files.',
-				'Select Folder',
-				'ODS files has been generated.',
-				'Canceled by user.'
-			],
-			br: [
-				'Gerando arquivos ODS.',
-				'Selecionar pasta',
-				'As planilhas ODS foram geradas.',
-				'Cancelado pelo usuário.'
-			]
-		}
-		event.sender.send('responseSuccess', messages[arg][0])
-		const xlsx = require('xlsx')
-		const planilhas = []
+	
+	// SALVAR O ARQUIVO INPUT --------------------------------------------------
+	.on('inputSave', () => {
 		const options = {
-			title: messages[arg][1],
 			defaultPath: app.getPath('documents'),
 			properties: ['openDirectory']
 		}
-		jsons = Resultados()
-		// console.log(jsons)
-		jsons.forEach(json => {
-			const arquivo = require(path.resolve(resultsPath + json))
-			const chaves = Object.keys(arquivo)
-			const wb = xlsx.utils.book_new()
-			chaves.forEach(chave => {
-				const chaveNew = chave.substring(0, 28) + '...' //C/ ATÉ 31 CARACTERES
-				const keys = Object.keys(arquivo[chave][0])
-				const header = [{ chave: chave }]
-				const ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
-				xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
-				const merge =
-					[{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length - 1) } }]
-				ws["!merges"] = merge
-				xlsx.utils.book_append_sheet(wb, ws, chaveNew)
-			})
-			const sheetName = `\\${json.replace('.json', '')}.ods`
-			xlsx.writeFile(wb, app.getPath('temp') + sheetName)
-			planilhas.push(sheetName)
-		})
-
-		event.sender.send('responseSuccess', messages[arg][2])
-
-		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
 		dialog.showOpenDialog(options).then((response) => {
 			if (response.canceled === false) {
-				const fs = require('fs')
-				planilhas.forEach(sheet => {
-					const oldPath = path.resolve(app.getPath('temp') + sheet)
-					const newPath = path.resolve(response.filePaths + sheet)
-					fs.rename(oldPath, newPath, err => {
-						if (err) throw err
-					})
+				const old = path.resolve(appPath + 'bin\\input.xlsm')
+				const nFile = path.resolve(response.filePaths + '\\input.xlsm')
+				fs.copyFile(old, nFile, () => {
+					require('child_process')
+						.exec(`start "" "${response.filePaths}"`)
 				})
-				Resultados('txts').forEach(txt => {
-					const oldPath = path.resolve(resultsPath + txt)
-					const newPath = path.resolve(response.filePaths + `\\${txt}`)
-					fs.copyFile(oldPath, newPath, err => {
-						if (err) throw err
-					})
-				})
-				require('child_process')
-					.exec(`start "" "${response.filePaths}"`)
-			} else {
-				event.sender.send('responseError', messages[arg][3])
 			}
 		}).catch(err => {
-			console.log(err)
+			event.sender.send('responseError', err)
 		})
 	})
 
+	// ENVIAR ARQUIVO DE INPUT ATUALIZADO PARA A PASTA DO APP ------------------
+	.on('inputUp', (event, arg) => {
+		const options = {
+			defaultPath: app.getPath('documents'),
+			properties: ['openFile'],
+			filters: [
+				{
+					name: 'Excel Open XML Macro-Enabled Spreadsheet',
+					extensions: ['xlsm']
+				}
+			]
+		}
+		dialog.showOpenDialog(options).then((response) => {
+			if (response.canceled === false) {
+				const old = path.resolve(response.filePaths[0])
+				const nFile = path.resolve(appPath + 'bin\\input.xlsm')
+				fs.copyFile(old, nFile, () => {
+					const messages = {
+						default: "File updated successfully.",
+						br: "Arquivo atualizado com sucesso."
+					}
+					event.sender.send('responseSuccess', messages[arg])
+				})
+			}
+		}).catch(err => {
+			event.sender.send('responseError', err)
+		})
+	})
+
+	// SAIR DO APLICATIVO ------------------------------------------------------
+	.on('sair', () => app.quit())
+
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+
 	ipcMain.on('execute', (event, arg) => {
+		Obter = new Resultados
 		const messages = {
 			default: [
 				'HERisk is running...',
@@ -190,17 +162,16 @@ const createWindow = () => {
 			]
 		}
 		event.sender.send('responseSuccess', messages[arg][0])
-		const fs = require('fs')
 		const child = require('child_process')
 		const herisk_exe = appPath + 'bin\\HERisk.exe'
 
 		// LIMPA A PASTA RESULTS
 		event.sender.send('responseSuccess', messages[arg][1])
-		if (Resultados().length > 0) {
-			Resultados().forEach(json => fs.unlinkSync(resultsPath + json))
+		if (Obter.jsons().length > 0) {
+			Obter.jsons().forEach(json => fs.unlinkSync(resultsPath + json))
 		}
-		if (Resultados('txts').length > 0) {
-			Resultados('txts').forEach(txt => fs.unlinkSync(resultsPath + txt))
+		if (Obter.txts().length > 0) {
+			Obter.txts().forEach(txt => fs.unlinkSync(resultsPath + txt))
 		}
 		child.exec(herisk_exe, { "cwd": appPath + "bin" }, (err, data, stderr) => {
 			if (err) {
@@ -228,10 +199,92 @@ const createWindow = () => {
 			}
 		})
 	})
+
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+
+	ipcMain.on('gerarOds', (event, arg) => {
+		let Obter = new Resultados()
+		const messages = {
+			default: [
+				'Generating ODS files.',
+				'Select Folder',
+				'ODS files has been generated.',
+				'Canceled by user.'
+			],
+			br: [
+				'Gerando arquivos ODS.',
+				'Selecionar pasta',
+				'As planilhas ODS foram geradas.',
+				'Cancelado pelo usuário.'
+			]
+		}
+		event.sender.send('responseSuccess', messages[arg][0])
+		const xlsx = require('xlsx')
+		const planilhas = []
+		const options = {
+			title: messages[arg][1],
+			defaultPath: app.getPath('documents'),
+			properties: ['openDirectory']
+		}
+		Obter.jsons().forEach(json => {
+			fs.readFile(path.resolve(resultsPath + json), (err, data) => {
+				let arquivo = JSON.parse(data)
+				const chaves = Object.keys(arquivo)
+				const wb = xlsx.utils.book_new()
+
+				chaves.forEach(chave => {
+					//LIMITA OS TÍTULOS PARA ATÉ 31 CARACTERES
+					const chaveNew = chave.substring(0, 28) + '...'
+					const keys = Object.keys(arquivo[chave][0])
+					const header = [{ chave: chave }]
+					const ws = xlsx.utils.json_to_sheet(header, { skipHeader: true })
+					xlsx.utils.sheet_add_json(ws, arquivo[chave], { origin: "A2" })
+					const merge =
+						[{ s: { r: 0, c: 0 }, e: { r: 0, c: (keys.length - 1) } }]
+					ws["!merges"] = merge
+					xlsx.utils.book_append_sheet(wb, ws, chaveNew)
+				})
+				const sheetName = `\\${json.replace('.json', '')}.ods`
+				xlsx.writeFile(wb, resultsPath + sheetName)
+				planilhas.push(sheetName)
+			})
+		})
+
+		event.sender.send('responseSuccess', messages[arg][2])
+
+		// ABRIR O DIÁLOGO DE SELEÇÃO DE PASTA
+		dialog.showOpenDialog(options).then((response) => {
+			if (response.canceled === false) {
+				planilhas.forEach(sheet => {
+					const oldPath = path.resolve(resultsPath + sheet)
+					const newPath = path.resolve(response.filePaths + sheet)
+					fs.rename(oldPath, newPath, err => {
+						if (err) throw err
+					})
+				})
+				Obter.txts().forEach(txt => {
+					const oldPath = path.resolve(resultsPath + txt)
+					const newPath = path.resolve(response.filePaths + `\\${txt}`)
+					fs.copyFile(oldPath, newPath, err => {
+						if (err) throw err
+					})
+				})
+				require('child_process')
+					.exec(`start "" "${response.filePaths}"`)
+				
+			} else {
+				event.sender.send('responseError', messages[arg][3])
+			}
+		}).catch(err => {
+			console.log(err)
+		})
+	})
 }
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') app.quit()
