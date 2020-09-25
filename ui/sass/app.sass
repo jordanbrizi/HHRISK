@@ -6,6 +6,7 @@ $rosa: #FF6D82
 $azul: #c3ddff
 $bg: #2C2F33
 $navy: #23272A
+$white: #FFFFFF
 
 $theme-colors: ("primary": $azul)
 $btn-white-space: nowrap
@@ -14,7 +15,7 @@ $enable-shadows: false
 $enable-pointer-cursor-for-buttons: false
 $enable-responsive-font-sizes: true
 
-@import "../../node_modules/bootstrap/scss/bootstrap"
+@import ../../node_modules/bootstrap/scss/bootstrap
 
 @font-face
 	font-family: 'Lexend Deca'
@@ -43,20 +44,20 @@ header
 	height: 200px
 	border-bottom-right-radius: 40px
 	h1
-		font-size: 4.0em
+		font-size: 3em
 		color: $navy
 
 .slide
 	transform: translateY(0px) !important
+
 #logo
 	letter-spacing: -0.1em
 	padding-top: 30px
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
 section
-	padding:
-		top: 0px
-		bottom: 20px
-	height: 590px
+	padding: 0
+	height: 600px
 	color: $white
 	background-color: $bg
 	border-bottom-right-radius: 40px
@@ -65,20 +66,39 @@ footer
 	background: $navy
 	color: rgba($white, 0.4)
 	font-size: .7em
-	height: 50px
+	height: 40px
+	.container
+		height: 100%
+		p
+			padding-top: 12px
+
+#grid
+	height: 600px
+	display: flex
+	flex-direction: column
+	justify-content: flex-end
+
+#alerts
+	height: 211px
 
 #menu-principal
+	padding: 1em 0
+	border-bottom: 1px solid $navy
 	a
 		text-transform: uppercase
 		font-weight: 800
-		font-size: 1.5em
+		font-size: 1.3em
 		color: $white
 		width: fit-content
 		&:hover
 			cursor: default
 			color: $verde
+.nav-item
+	display: flex
+	justify-content: flex-start
 
 #menu-bottom
+	padding: 1em 0
 	a
 		text-transform: uppercase
 		font-size: 1em
@@ -95,15 +115,15 @@ footer
 		font-size: 0.8em
 
 #config-footer
-	height: 50px
+	height: 40px
 	transform: translateY(2px)
 	background: $navy
 	color: $white
 	transition: .4s
-	border-top-right-radius: 50px
-	border-top-left-radius: 50px
+	border-top-right-radius: 40px
+	border-top-left-radius: 40px
 	&.slide
-		transform: translateY(-48px) !important
+		transform: translateY(-40px) !important
 
 #title-bar
 	width: 270px
@@ -136,10 +156,6 @@ footer
 	&:hover
 		background-color: rgba($white, 0.8) !important
 
-#alerts
-	height: 318px
-	padding-top: 135px
-
-#guideSave
+.guideSave
 	margin-top: -2px
-	margin-right: 8px
+	margin-left: 8px

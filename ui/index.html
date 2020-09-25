@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HERisk</title>
-	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/app.min.css">
 	<script src="./react.production.min.js" crossorigin></script>
 	<script src="./react-dom.production.min.js" crossorigin></script>
 	<script src="./react-transition-group.min.js" crossorigin></script>
@@ -37,16 +37,18 @@
 					e.innerHTML = e.dataset.br
 					e.setAttribute('title', e.dataset.br_title)
 				})
-				$('[data-id="guideSave"]').setAttribute('title',
-					$('[data-id="guideSave"]').dataset.br_title)
+				$$('.babel-fish').forEach(e => {
+					e.setAttribute('title',	e.dataset.br_title)
+				})
 			}
 			if (lang === 'default') {
 				$$('* [data-en]').forEach(e => {
 					e.innerHTML = e.dataset.en
 					e.setAttribute('title', e.dataset.en_title)
 				})
-				$('[data-id="guideSave"]').setAttribute('title',
-					$('[data-id="guideSave"]').dataset.en_title)
+				$$('.babel-fish').forEach(e => {
+					e.setAttribute('title', e.dataset.en_title)
+				})
 			}
 		}
 		else {
@@ -70,17 +72,14 @@ const clicks = {
 		rend.shell.openPath(rend.remote.app.getAppPath() + '\\bin\\input.xlsm'),
 	showAboutPanel: () =>
 		rend.remote.app.showAboutPanel(),
-	gerarOds: () =>
-		rend.ipcRenderer.send('gerarOds'),
-	execute: () => {
-		rend.ipcRenderer.send('execute') // EXECUTA O HERISK.EXE
-	},
 	how_to: () =>
 		rend.ipcRenderer.send('how_to'),
 	guide: () =>
 		rend.ipcRenderer.send('guide'),
 	guideSave: () =>
 		rend.ipcRenderer.send('guideSave'),
+	inputSave: () =>
+		rend.ipcRenderer.send('inputSave'),
 	minimize: () =>
 		rend.remote.BrowserWindow.getFocusedWindow().minimize(),
 	sair: () =>
@@ -175,16 +174,36 @@ class Section extends React.Component {
 			this.setState({ message: args, status: true, color: 'danger'})
 		})
 		rend.ipcRenderer.on('responseSuccess', (_, args) => {
-			this.setState({ success: args, status: true, color: 'success'})
+			this.setState({ message: args, status: true, color: 'success'})
 		})
 		setTimeout(() => {
 			this.setState({ status: false })
 		}, 15000)
 	}
+
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+
+	inputUp = () => {
+		rend.ipcRenderer.send('inputUp', getActualLang)
+		rend.ipcRenderer.on('responseError', (_, args) => {
+			this.setState({ message: args, status: true, color: 'danger' })
+		})
+		rend.ipcRenderer.on('responseSuccess', (_, args) => {
+			this.setState({ message: args, status: true, color: 'success' })
+		})
+		setTimeout(() => {
+			this.setState({ status: false })
+		}, 15000)
+	}
+
+	// -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+
 	render() {
 		return (
 			<section>
-				<Container>
+				<Container id="grid">
 					<div id="alerts">
 						<Alert
 							color={this.state.color}
@@ -197,19 +216,39 @@ class Section extends React.Component {
 					<Nav vertical id="menu-principal">
 						<NavItem>
 							<NavLink
-								className="p-0 mb-2"
-								onClick={clicks.abrirPlanilha}
+								className="p-0 m-0 mr-3"
+								onClick={() => clicks.abrirPlanilha()}
 								title="Open spreadsheet to input data."
 								data-en_title="Open spreadsheet to input data."
 								data-br_title="Abrir planilha para inserir os dados."
 								data-en="Input data"
 								data-br="Inserir dados">
 								Input data
-								</NavLink>
+							</NavLink>
+							<NavLink
+								className="p-0 m-0 mr-3 babel-fish"
+								title="Download Input.xlsm"
+								data-en_title="Download Input.xlsm"
+								data-br_title="Baixar o Input.xlsm"
+								onClick={() => clicks.inputSave()}>
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-download-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.5a.5.5 0 0 1 1 0V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0zm-.354 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V11h-1v3.293l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z" />
+								</svg>
+							</NavLink>
+							<NavLink
+								className="p-0 m-0 babel-fish"
+								title="Upload Input.xlsm"
+								data-en_title="Upload Input.xlsm"
+								data-br_title="Enviar o Input.xlsm"
+								onClick={this.inputUp}>
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-upload-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0zm-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0z" />
+								</svg>
+							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink
-								className="p-0 mb-2"
+								className="p-0 m-0"
 								onClick={this.execute}
 								title="Execute the HERisk."
 								data-en_title="Execute the HERisk."
@@ -221,7 +260,7 @@ class Section extends React.Component {
 						</NavItem>
 						<NavItem>
 							<NavLink
-								className="p-0 mb-2"
+								className="p-0 m-0"
 								title="Save worksheets of the results."
 								data-en_title="Save worksheets of the results."
 								data-br_title="Salvar planilhas dos resultados."
@@ -233,7 +272,6 @@ class Section extends React.Component {
 								</NavLink>
 						</NavItem>
 					</Nav>
-					<hr />
 					<Nav id="menu-bottom" vertical pills>
 						<NavItem>
 							<NavLink
@@ -247,9 +285,9 @@ class Section extends React.Component {
 								How to use
 							</NavLink>
 						</NavItem>
-						<NavItem className="nav-fill">
+						<NavItem>
 							<NavLink
-								className="float-left p-0 m-0"
+								className="p-0 m-0 mr-2"
 								title="See the guide in PDF."
 								data-en_title="See the guide in PDF."
 								data-br_title="Veja o guia em PDF."
@@ -259,13 +297,13 @@ class Section extends React.Component {
 								Guide
 							</NavLink>
 							<NavLink
-								className="float-left p-0 m-0 ml-2"
+								className="p-0 m-0 babel-fish"
 								data-id="guideSave"
 								title="Save the guide in DOCX."
 								data-en_title="Save the guide in DOCX."
 								data-br_title="Salve o guia em DOCX."
 								onClick={() => clicks.guideSave()}>
-									<svg width="1.2em" height="1.2em" id="guideSave" viewBox="0 0 16 16" class="bi bi-arrow-down-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 										<path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.5a.5.5 0 0 1 1 0V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0zm-.354 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V11h-1v3.293l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z" />
 									</svg>
 							</NavLink>
@@ -303,7 +341,7 @@ const Footer = props => {
 	return (
 		<footer className="fixed-bottom">
 			<Container>
-				<p className="pt-3 user-select-none">
+				<p className="user-select-none">
 					&copy; 2020 - {new Date().getFullYear()}.
 					<span
 						title="All rights reserved."
@@ -314,7 +352,7 @@ const Footer = props => {
 				</p>
 			</Container>
 			<Container id="config-footer">
-				<p className="m-0 pt-3 user-select-none">
+				<p className="m-0 user-select-none">
 					<span
 					data-en_title="Version"
 					data-br_title="Versão"
