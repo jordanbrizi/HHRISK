@@ -12955,7 +12955,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(16)).AND.(KEYCONC(i,1).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Al
-	  EFCROSTAsolo=CROSTA(15)
+	  EFCROSTAsolo=SOILREF(15)
 	  EFREFsoil=CHEMICAL(i)
 	  nnn=1
 !
@@ -12971,7 +12971,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(7)).AND.(KEYCONC(i,1).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Fe
-	  EFCROSTAsolo=CROSTA(7)
+	  EFCROSTAsolo=SOILREF(7)
 	  EFREFsoil=CHEMICAL(i)
 	  nnn=1
 !
@@ -12987,7 +12987,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(9)).AND.(KEYCONC(i,1).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Mn
-	  EFCROSTAsolo=CROSTA(9)
+	  EFCROSTAsolo=SOILREF(9)
 	  EFREFsoil=CHEMICAL(i)
 	  nnn=1
 !
@@ -13004,7 +13004,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(16)).AND.(KEYCONC(i,15).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Al
-	  EFCROSTAsed=CROSTA(15)
+	  EFCROSTAsed=SEDREF(15)
 	  EFREFsediment=CHEMICAL(i)
 	  mmm=1
 !
@@ -13020,7 +13020,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(7)).AND.(KEYCONC(i,15).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Fe
-	  EFCROSTAsed=CROSTA(7)
+	  EFCROSTAsed=SEDREF(7)
 	  EFREFsediment=CHEMICAL(i)
 	  mmm=1
 !
@@ -13036,7 +13036,7 @@
 !
       DO I=1,NCHEM		  ! CICLO POR ESPÉCIE QUÍMICA								                  
 	  IF ((CHEMICAL(i).EQ.SPECIE(9)).AND.(KEYCONC(i,15).EQV..TRUE.)) THEN	   ! VALOR DE REFERENCIA SENDO O Mn
-	  EFCROSTAsed=CROSTA(9)
+	  EFCROSTAsed=SEDREF(9)
 	  EFREFsediment=CHEMICAL(i)
 	  mmm=1
 !
@@ -13428,8 +13428,8 @@
 !
       S_CFsoilNAC_soil(J,K)=S_CFsoilNAC_soil(J,K)+CFsoilNAC(I,J,K)
 !-------------------------------------------------------------------
-      IF((CROSTA(iii).GT.0.0).AND.(CSOIL(I,J,K).GT.0.0))THEN
-      IGEOsoil(I,J,K)=LOG10(CSOIL(I,J,K)/(1.5*CROSTA(iii)))/LOG10(2.0)
+      IF((SOILREF(iii).GT.0.0).AND.(CSOIL(I,J,K).GT.0.0))THEN
+      IGEOsoil(I,J,K)=LOG10(CSOIL(I,J,K)/(1.5*SOILREF(iii)))/LOG10(2.0)
 	  ELSE
 	  IGEOsoil(I,J,K)=0.0
 	  ENDIF
@@ -13446,8 +13446,8 @@
 !
 !-------------------------------------------------------------------
 !
-      IF((EFCSOIL(J,K).GT.0.0).AND.(EFCROSTAsolo.GT.0.0).AND.(CROSTA(iii).GT.0.0))THEN
-      EFsoil(I,J,K)=(CSOIL(I,J,K)/EFCSOIL(J,K))/(CROSTA(iii)/EFCROSTAsolo)
+      IF((EFCSOIL(J,K).GT.0.0).AND.(EFCROSTAsolo.GT.0.0).AND.(SOILREF(iii).GT.0.0))THEN
+      EFsoil(I,J,K)=(CSOIL(I,J,K)/EFCSOIL(J,K))/(SOILREF(iii)/EFCROSTAsolo)
 	  ELSE
 	  EFsoil(I,J,K)=0.0
 	  ENDIF
@@ -13558,12 +13558,17 @@
 	  IGEOsed(I,J,K)=0.0
 	  ENDIF
 !-------------------------------------------------------------------
-      PIsed(I,J,K)=CFsed(I,J,K)
+      IF(SEDREF(iii).GT.0.0)THEN
+      PIsed(I,J,K)=CSEDIMENT(I,J,K)/SEDREF(iii)
+	  ELSE
+	  PIsed(I,J,K)=0.0
+	  ENDIF 
+!
 !
 !-------------------------------------------------------------------
 !
-      IF((EFCSEDIMENT(J,K).GT.0.0).AND.(EFCROSTAsed.GT.0.0).AND.(CROSTA(iii).GT.0.0))THEN
-      EFsed(I,J,K)=(CSEDIMENT(I,J,K)/EFCSEDIMENT(J,K))/(CROSTA(iii)/EFCROSTAsed)
+      IF((EFCSEDIMENT(J,K).GT.0.0).AND.(EFCROSTAsed.GT.0.0).AND.(SEDREF(iii).GT.0.0))THEN
+      EFsed(I,J,K)=(CSEDIMENT(I,J,K)/EFCSEDIMENT(J,K))/(SEDREF(iii)/EFCROSTAsed)
 	  ELSE
 	  EFsed(I,J,K)=0.0
 	  ENDIF
@@ -13756,11 +13761,12 @@
       IPIT_sed(J,K)=S_CFsedNAC_sed(J,K)/NRAIZSE2
 	  ENDIF
 !-------------------------------------------------------------------
-      IF(NRAIZSE2.GT.0)THEN
-      P2_PINEWsed(J,K)=P1_PINEWsed(J,K)/NRAIZSE2
+      IF(NRAIZSE1.GT.0)THEN
+      P2_PINEWsed(J,K)=P1_PINEWsed(J,K)/NRAIZSE1
 	  ENDIF
 !
       MAX_PIsed(J,K)=MAXVAL(COPIA_PIsed)
+!
 !
       DO IKK=1,NCHEM
 	  COPIA_PIsed(IKK,J,K)=0.0
@@ -13914,12 +13920,13 @@
       write(68,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
       write(68,'(A1,"CFwater",A1,":",1x,ES12.5,",") )') aspas,aspas,CFwater(I,J,K)
       write(68,'(A1,"CFsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsoil(I,J,K)
+	  write(68,'(A1,"CFsed",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsed(I,J,K)
 	  write(68,'(A1,"Igeo soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
       write(68,'(A1,"EF soil - ",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
-      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
+!      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
       write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
-      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
-      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
+      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5) )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
+!      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(68,'("}")')
 	  ELSE
@@ -13933,12 +13940,13 @@
       write(68,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
       write(68,'(A1,"CFwater",A1,":",1x,ES12.5,",") )') aspas,aspas,CFwater(I,J,K)
       write(68,'(A1,"CFsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsoil(I,J,K)
+	  write(68,'(A1,"CFsed",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsed(I,J,K)
 	  write(68,'(A1,"Igeo soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
       write(68,'(A1,"EF soil -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
-      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
+!      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
       write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
-      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
-      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
+      write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5) )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
+!      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
       IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
 	  WRITE(68,'("}")')
 	  ELSE
