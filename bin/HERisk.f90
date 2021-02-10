@@ -8546,6 +8546,7 @@
 !
       CALL NOMINATION(CHEMICAL,NCHEM,NOMES)
 !
+      GOTO 84
 !
 !	  ABRE-SE O ARQUIVO DE SAIDA E 'Exposure.out'
 	  OPEN(UNIT=33,FILE='Results\Doses, HQ and CR.json')
@@ -8727,6 +8728,7 @@
 !
 	  WRITE(33,'("}")')
 !
+84    CONTINUE
 !
       RETURN	! FIM DA SUB-ROTINA EXPOSURE
 	  END		
