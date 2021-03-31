@@ -1,0 +1,11 @@
+********************************************************************************************************************************************
+                                                         !!!!!!!!!WARNINGS!!!!!!!!!
+********************************************************************************************************************************************
+ 
+ 
+  WARNING!!! Soil concentrations of the chemical species K-40, Th-232 and U-238 
+  were not provided in the concentration sheet of the input file.
+  The radiological risk calculation will not be performed!
+ 
+  The radiological indexes values will be zero  
+ 

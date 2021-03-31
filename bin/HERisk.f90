@@ -11665,7 +11665,9 @@
 	DIMENSION CARC_TOT_ac(NTIME,NLOCAL),SD_CARC_TOT_ac(NTIME,NLOCAL)
 	DIMENSION SD_CARC_IN_ac_TEMP(0:NTIME,NLOCAL),SD_CARC_OUT_ac_TEMP(0:NTIME,NLOCAL),SD_CARC_IN_ac(NTIME,NLOCAL),SD_CARC_OUT_ac(NTIME,NLOCAL)
 	DIMENSION HIND_EXT(0:NTIME,NLOCAL),HIND_INT(NTIME,NLOCAL),SD_HIND_EXT(NTIME,NLOCAL),SD_HIND_INT(NTIME,NLOCAL)
-	DIMENSION KALL(NLOCAL),JALL(NLOCAL),IALL(NLOCAL)
+	DIMENSION ELCR_IN(0:NTIME,NLOCAL),ELCR_OUT(0:NTIME,NLOCAL),SD_ELCR_IN(NTIME,NLOCAL),SD_ELCR_OUT(NTIME,NLOCAL)
+	DIMENSION ELCR_fin(0:NTIME,NLOCAL),SD_ELCR_fin_STEP(NTIME,NLOCAL),SD_ELCR_fin(NTIME,NLOCAL)
+	DIMENSION KALL(NLOCAL),JALL(NLOCAL),IALL(NLOCAL),KELALL(NLOCAL)
 !
 !
       CALL CONCENTRATION(VARIASAO,NDURATION,NCHEM,NTYPECONC,CHEMICAL,&
@@ -11676,8 +11678,13 @@
 !	  
 	  DO k=1,NLOCAL
 	  KALL(k)=0
+	  KELALL(k)=0
 	  JALL(k)=0
       IALL(k)=0
+!
+	  ELCR_IN(0,k)=0.0
+	  ELCR_OUT(0,k)=0.0
+	  ELCR_fin(0,k)=0.0
       DO i=1,3
 	  ATIVI_ESP(i,0,k)=0.0
       ATIVI_EQU(0,k)=0.0
@@ -11702,6 +11709,14 @@
 	  SD_DOSE_IN(j,k)=0.0
 	  DOSE_OUT(j,k)=0.0
 	  SD_DOSE_OUT(j,k)=0.0
+!
+      ELCR_IN(j,k)=0.0
+	  ELCR_OUT(j,k)=0.0
+	  ELCR_fin(j,k)=0.0
+	  SD_ELCR_IN(j,k)=0.0
+	  SD_ELCR_OUT(j,k)=0.0
+	  SD_ELCR_fin_STEP(j,k)=0.0
+	  SD_ELCR_fin(j,k)=0.0
 !
 	  CARC_IN(j,k)=0.0
 	  SD_CARC_IN(j,k)=0.0
@@ -11766,6 +11781,30 @@
       ENDDO	   !FIM DO CICLO POR TEMPO
       ENDDO    !FIM DO CICLO POR LOCAL
       ENDDO   ! FIM CICLO POR ESPÉCIE QUÍMICA
+!
+      IUTR=0
+!
+      DO i=1,3
+	  DO k=1,NLOCAL		!CICLO POR LOCAL
+      DO j=1,NTIME		!CICLO POR TEMPO
+!
+      IF(CONC_RADIO(i,j,k).NE.0.0)THEN
+	  IUTR=1
+	  ENDIF
+!
+	  ENDDO
+	  ENDDO
+	  ENDDO
+!
+      IF(IUTR.EQ.0)THEN
+      WRITE(99,*)
+	  WRITE(99,'("  WARNING!!! Soil concentrations of the chemical species K-40, Th-232 and U-238 ")')
+	  WRITE(99,'("  were not provided in the concentration sheet of the input file.")')
+	  WRITE(99,'("  The radiological risk calculation will not be performed!")')
+	  WRITE(99,*)   
+	  WRITE(99,'("  The radiological indexes values will be zero  ")')
+      WRITE(99,*)
+	  ENDIF
 !
 !-----------------------------------------------------------
 !	  CALCULO DA ATIVIDADE ESPECÍFICA
@@ -11866,12 +11905,34 @@
 !-----------------------------------------------------------
 !	  CALCULO DO RISCO CARCINOGENICO
 !-----------------------------------------------------------
-!	  
+! 
+!
       DO j=1,NTIME
 	  DO k=1,NLOCAL
 !
-      CARC_IN(j,k)=DOSE_IN(j,k)/1000*78.0*0.05
-	  CARC_OUT(j,k)=DOSE_OUT(j,k)/1000*78.0*0.05
+      ELCR_IN(j,k)=(DOSE_IN(j,k)/1000)*78.0*0.05
+	  ELCR_OUT(j,k)=(DOSE_OUT(j,k)/1000)*78.0*0.05
+!
+	  IF(DOSE_IN(j,k).NE.0.0)THEN	 
+      SD_ELCR_IN(j,k)=ELCR_IN(j,k)*(SD_DOSE_IN(j,k)/DOSE_IN(j,k))
+      SD_ELCR_OUT(j,k)=ELCR_OUT(j,k)*(SD_DOSE_OUT(j,k)/DOSE_OUT(j,k))
+	  ELSE
+      SD_ELCR_IN(j,k)=0.0
+      SD_ELCR_OUT(j,k)=0.0
+	  ENDIF	
+!
+      ELCR_fin(j,k)=ELCR_IN(j,k)+ELCR_OUT(j,k)
+!
+	  SD_ELCR_fin_STEP(j,k)=SD_ELCR_IN(j,k)**2+SD_ELCR_OUT(j,k)**2
+	  IF(SD_ELCR_fin_STEP(j,k).NE.0.0)THEN
+	  SD_ELCR_fin(j,k)=SQRT(SD_ELCR_fin_STEP(j,k))	
+	  ELSE
+	  SD_ELCR_fin(j,k)=0.0
+	  ENDIF
+!....................................................................
+!
+      CARC_IN(j,k)=(DOSE_IN(j,k)/1000)*1.0*0.05
+	  CARC_OUT(j,k)=(DOSE_OUT(j,k)/1000)*1.0*0.05
 !
 	  IF(DOSE_IN(j,k).NE.0.0)THEN	 
       SD_CARC_IN(j,k)=CARC_IN(j,k)*(SD_DOSE_IN(j,k)/DOSE_IN(j,k))
@@ -12188,10 +12249,109 @@
 !
 	  ENDDO		! fim DO k=1,NLOCAL
 !
-!
 	  WRITE(63,'("],")')
 !
 	  WRITE(63,'(A1,"Excess Lifetime Cancer Risk",A1,": [")')aspas,aspas
+!
+      DO k=1,NLOCAL
+	  DO j=NCOMESO,NTIME
+!
+      IF((ELCR_IN(j,k).NE.ELCR_IN(j-1,k)).OR.(ELCR_OUT(j,k).NE.ELCR_OUT(j-1,k)).OR.(ELCR_fin(j,k).NE.ELCR_fin(j-1,k)))THEN
+      KELALL(k)=1
+	  ENDIF
+!
+      ENDDO
+	  ENDDO
+!
+      DO k=1,NLOCAL
+	  DO j=1,NTIME
+!
+	  IF(KEY_SD.EQV..TRUE.)THEN
+!
+      IF(KELALL(k).EQ.1)THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ELCR_IN(j,k)
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ELCR_OUT(j,k)
+      write(63,'(A1,"total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_fin(j,k)
+      write(63,'(A1,"total ELCR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ELCR_fin(j,k)
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ELSEIF((KELALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ELCR_IN(j,k)
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_ELCR_OUT(j,k)
+      write(63,'(A1,"total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_fin(j,k)
+      write(63,'(A1,"total ELCR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_ELCR_fin(j,k)
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ENDIF
+!
+!
+	  ELSE
+!
+      IF(KELALL(k).EQ.1)THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,I3,",") )') aspas,aspas,j
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_fin(j,k)
+      write(63,'(A1,"total ELCR error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ELSEIF((KELALL(k).NE.1).AND.(j.EQ.1))THEN
+!
+      WRITE(63,'("{")')
+      write(63,'(A1,"Local",A1,":",1x,I3,",") )') aspas,aspas,K
+      write(63,'(A1,"Time",A1,":",1x,A1,"All",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Indoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_IN(j,k)
+      write(63,'(A1,"Indoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_OUT(j,k)
+      write(63,'(A1,"Outdoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,ELCR_fin(j,k)
+      write(63,'(A1,"total ELCR error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      IF((J.EQ.1).and.(K.EQ.NLOCAL))THEN
+	  WRITE(63,'("}")')
+	  ELSE
+	  WRITE(63,'("},")')
+	  ENDIF
+!
+	  ENDIF
+!
+	  ENDIF 
+!
+      ENDDO     ! fim DO k=1,NLOCAL
+	  ENDDO		! fim DO k=1,NLOCAL
+!
+!
+	  WRITE(63,'("],")')
+!
+	  WRITE(63,'(A1,"Spatio-temporal carcinogenic risk assessment",A1,": [")')aspas,aspas
 !
 !
       DO k=1,NLOCAL
@@ -12211,7 +12371,7 @@
       write(63,'(A1,"Accumulated outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
       write(63,'(A1,"Accumulated outdoor error",A1,":",1x,ES12.5,",") )') aspas,aspas,SD_CARC_OUT_ac(j,k)
       write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
-      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5) )') aspas,aspas,SD_CARC_TOT_ac(j,k)
+      write(63,'(A1,"Accumulated total ELCR error",A1,":",1x,ES12.5) )') aspas,aspas,SD_CARC_TOT_ac(j,k)
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
@@ -12232,7 +12392,7 @@
       write(63,'(A1,"Accumulated outdoor value",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_OUT_ac(j,k)
       write(63,'(A1,"Accumulated outdoor error",A1,":",1x,A1,"null",A1,",") )') aspas,aspas,aspas,aspas
       write(63,'(A1,"Accumulated total ELCR",A1,":",1x,ES12.5,",") )') aspas,aspas,CARC_TOT_ac(j,k)
-      write(63,'(A1,"Accumulated total ELCR",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
+      write(63,'(A1,"Accumulated total ELCR error",A1,":",1x,A1,"null",A1) )') aspas,aspas,aspas,aspas
       IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
 	  WRITE(63,'("}")')
 	  ELSE
