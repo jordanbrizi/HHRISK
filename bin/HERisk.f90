@@ -13409,7 +13409,7 @@
       NDIVISAO=NCOMPARTIMENTO1+NCOMPARTIMENTO2+NCOMPARTIMENTO3
 !
 !
-      DO J=1,NTIME			! CICLO POR TEMPO
+      DO J=1,NDURATION    	! CICLO POR TEMPO
 !
       DO K=1,NLOCAL			! CICLO POR LOCAL
 !
@@ -14052,14 +14052,14 @@
       ENDDO
 !
 !
-      IF(NTIME.EQ.1)THEN
+      IF(NDURATION.EQ.1)THEN
       NINICIO=1
 	  ELSE
 	  NINICIO=2
 	  ENDIF
 !
       DO k=1,NLOCAL
-	  DO j=NINICIO,NTIME
+	  DO j=NINICIO,NDURATION
 !
       IF((CFsed(I,J,K).NE.CFsed(I,J-1,K)).OR.(CFsoil(I,J,K).NE.CFsoil(I,J-1,K)).OR.(CFwater(I,J,K).NE.CFwater(I,J-1,K)).OR.(EFCsoil(J,K).NE.EFCsoil(J-1,K)).OR.(EFCsediment(J,K).NE.EFCsediment(J-1,K)))THEN
       IALL(k)=1
@@ -14070,7 +14070,7 @@
 !
 !
       DO k=1,NLOCAL
-	  DO j=1,NTIME
+	  DO j=1,NDURATION
 !
 !
 !	  IF(j.EQ.1)THEN
@@ -14089,7 +14089,7 @@
       write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
       write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5) )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
 !      write(68,'(A1,"PI sediment",A1,":",1x,ES12.5) )') aspas,aspas,PIsed(I,J,K)
-      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+      IF((J.EQ.NDURATION).and.(K.EQ.NLOCAL))THEN
 	  WRITE(68,'("}")')
 	  ELSE
 	  WRITE(68,'("},")')
@@ -14104,7 +14104,7 @@
       write(68,'(A1,"CFsoil",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsoil(I,J,K)
 	  write(68,'(A1,"CFsed",A1,":",1x,ES12.5,",") )') aspas,aspas,CFsed(I,J,K)
 	  write(68,'(A1,"Igeo soil",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsoil(I,J,K)
-      write(68,'(A1,"EF soil -",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
+      write(68,'(A1,"EF soil - ",A2,A1,":",1x,ES12.5,",") )') aspas,EFREFsoil,aspas,EFsoil(I,J,K)
 !      write(68,'(A1,"PI soil",A1,":",1x,ES12.5,",") )') aspas,aspas,PIsoil(I,J,K)
       write(68,'(A1,"Igeo sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,IGEOsed(I,J,K)
       write(68,'(A1,"EF sediment -",A2,A1,":",1x,ES12.5) )') aspas,EFREFsediment,aspas,EFsed(I,J,K)
@@ -14153,14 +14153,14 @@
 	  WRITE(70,'(A1,"Water compartment",A1,": [")')aspas,aspas
 !
 !
-      IF(NTIME.EQ.1)THEN
+      IF(NDURATION.EQ.1)THEN
       NINICIO1=1
 	  ELSE
 	  NINICIO1=2
 	  ENDIF
 !
       DO k=1,NLOCAL
-	  DO j=NINICIO1,NTIME
+	  DO j=NINICIO1,NDURATION
 !
       IF((MPIwat(J,K).NE.MPIwat(J-1,K)).OR.(RWcomb(J,K).NE.RWcomb(J-1,K)).OR.(IPIT_water(J,K).NE.IPIT_water(J-1,K)))THEN
       JALL1(k)=1
@@ -14171,7 +14171,7 @@
 !
 !
       DO k=1,NLOCAL
-	  DO j=1,NTIME
+	  DO j=1,NDURATION
 !
 !
 !	  IF(j.EQ.1)THEN
@@ -14184,7 +14184,7 @@
       write(70,'(A1,"MPI",A1,":",1x,ES12.5,",") )') aspas,aspas,MPIwat(J,K)
       write(70,'(A1,"Rw-comb",A1,":",1x,ES12.5,",") )') aspas,aspas,RWcomb(J,K)
 	  write(70,'(A1,"IPIth",A1,":",1x,ES12.5) )') aspas,aspas,IPIT_water(J,K)
-      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+      IF((J.EQ.NDURATION).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
 	  WRITE(70,'("},")')
@@ -14227,14 +14227,14 @@
 	  WRITE(70,'(A1,"Soil compartment",A1,": [")')aspas,aspas
 !
 !
-      IF(NTIME.EQ.1)THEN
+      IF(NDURATION.EQ.1)THEN
       NINICIO2=1
 	  ELSE
 	  NINICIO2=2
 	  ENDIF
 !
       DO k=1,NLOCAL
-	  DO j=NINICIO2,NTIME
+	  DO j=NINICIO2,NDURATION
 !
       IF(PLIsoil(J,K).NE.PLIsoil(J-1,K))THEN
       JALL2(k)=1
@@ -14245,7 +14245,7 @@
 !
 !
       DO k=1,NLOCAL
-	  DO j=1,NTIME
+	  DO j=1,NDURATION
 !
 !
 !	  IF(j.EQ.1)THEN
@@ -14260,7 +14260,7 @@
       write(70,'(A1,"PERI",A1,":",1x,ES12.5,",") )') aspas,aspas,PERIsoil(J,K)
       write(70,'(A1,"IPIT",A1,":",1x,ES12.5,",") )') aspas,aspas,IPIT_soil(J,K)
 	  write(70,'(A1,"PInem",A1,":",1x,ES12.5) )') aspas,aspas,PINEWsoil(J,K)
-      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+      IF((J.EQ.NDURATION).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
 	  WRITE(70,'("},")')
@@ -14304,14 +14304,14 @@
 !
 	  WRITE(70,'(A1,"Sediment compartment",A1,": [")')aspas,aspas
 !
-      IF(NTIME.EQ.1)THEN
+      IF(NDURATION.EQ.1)THEN
       NINICIO3=1
 	  ELSE
 	  NINICIO3=2
 	  ENDIF
 !
       DO k=1,NLOCAL
-	  DO j=NINICIO3,NTIME
+	  DO j=NINICIO3,NDURATION
 !
       IF(PLIsed(J,K).NE.PLIsed(J-1,K))THEN
       JALL3(k)=1
@@ -14322,7 +14322,7 @@
 !
 !
       DO k=1,NLOCAL
-	  DO j=1,NTIME
+	  DO j=1,NDURATION
 !
 !
 !	  IF(j.EQ.1)THEN
@@ -14340,7 +14340,7 @@
 	  write(70,'(A1,"m-PEL-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mPELq(J,K)
       write(70,'(A1,"m-ERM-q",A1,":",1x,ES12.5,",") )') aspas,aspas,mERMq(J,K)
       write(70,'(A1,"TRI",A1,":",1x,ES12.5) )') aspas,aspas,TRI(J,K)
-      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+      IF((J.EQ.NDURATION).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
 	  WRITE(70,'("},")')
@@ -14390,14 +14390,14 @@
 	  WRITE(70,'(A1,"Chemical Line of Evidence",A1,": [")')aspas,aspas
 !
 !
-      IF(NTIME.EQ.1)THEN
+      IF(NDURATION.EQ.1)THEN
       NINICIO4=1
 	  ELSE
 	  NINICIO4=2
 	  ENDIF
 !
       DO k=1,NLOCAL
-	  DO j=NINICIO4,NTIME
+	  DO j=NINICIO4,NDURATION
 !
       IF((Kd_MPI(J,K).NE.Kd_MPI(J-1,K)).OR.(RISKwat(J,K).NE.RISKwat(J-1,K)).OR.(RISKsoil(J,K).NE.RISKsoil(J-1,K)).OR.(RISKsed(J,K).NE.RISKsed(J-1,K)).OR.(IRjFIN(J,K).NE.IRjFIN(J-1,K)))THEN
       JALL4(k)=1
@@ -14408,7 +14408,7 @@
 !
 !
       DO k=1,NLOCAL
-	  DO j=1,NTIME
+	  DO j=1,NDURATION
 !
       IF(JALL4(k).EQ.1)THEN
 !
@@ -14420,7 +14420,7 @@
       write(70,'(A1,"Risk ChemLoE soil",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsoil(J,K)
       write(70,'(A1,"Risk ChemLoE sediment",A1,":",1x,ES12.5,",") )') aspas,aspas,RISKsed(J,K)
 	  write(70,'(A1,"IR",A1,":",1x,ES12.5) )') aspas,aspas,IRjFIN(J,K)
-      IF((J.EQ.NTIME).and.(K.EQ.NLOCAL))THEN
+      IF((J.EQ.NDURATION).and.(K.EQ.NLOCAL))THEN
 	  WRITE(70,'("}")')
 	  ELSE
 	  WRITE(70,'("},")')
